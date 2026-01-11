@@ -1,21 +1,7 @@
 ---
-
+import BaseLayout from '../layouts/BaseLayout.astro';
+const pageTitle = "愛包ダンスホール";
 ---
-
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<button><a href="/">首页 </a></button>
-		<button><a href="/about">关于</a></button>
-		<button><a href="/blog">博客</a></button>
-		<h1>Welcome to Smoggy Shepherd</h1>
-		<h1>now I changed some things to test my blog</h1>
-
-	</body>
-</html>
+<BaseLayout pageTitle={pageTitle}>
+  <h2>我超棒的博客副标题</h2>
+</BaseLayout>
