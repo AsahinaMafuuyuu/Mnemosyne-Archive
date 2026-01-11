@@ -5,7 +5,7 @@ interface Frontmatter {
     pubDate: string;
     description: string;
     author: string;
-    image: {
+    image?: {
         url: string;
         alt: string;
     };
@@ -19,6 +19,6 @@ const { frontmatter } = Astro.props as { frontmatter: Frontmatter };
     <p>{frontmatter.pubDate.toString().slice(0, 10)}</p>
     <p><em>{frontmatter.description}</em></p>
     <p>作者：{frontmatter.author}</p>
-    <img src={frontmatter.image.url} width="300" alt={frontmatter.image.alt} />
+    <img src={frontmatter.image?.url} width="300" alt={frontmatter.image?.alt} />
     <slot />
 </BaseLayout>
