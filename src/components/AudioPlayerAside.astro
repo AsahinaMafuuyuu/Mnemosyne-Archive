@@ -1,0 +1,322 @@
+---
+import Yuki from "../images/Yuki.jpg";
+import aipai from "../audios/aipaidancehall.mp3";
+---
+
+<div class="aside-container">
+    <!-- 音频（不可见） -->
+    <audio class="hidden-audio-entity" src={aipai}></audio>
+    <!-- 播放音乐功能面板容器 -->
+    <div class="audio-aside-container">
+        <!-- 封面 -->
+        <img
+            class="audio-cover-image"
+            style="width: 80px; height: 80px; border-radius: 50%; object-fit: cover;"
+            src={Yuki.src}
+            alt=""
+        />
+        <!-- 歌曲信息 -->
+
+        <div class="audio-entity-panel-container">
+            <!-- 上一首 -->
+            <svg
+                class="audio_panel_icon"
+                xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink"
+                viewBox="0 0 1024 1024"
+                ><path
+                    d="M803.584 134.592c-18.176-10.048-39.936-10.112-58.112 0L192 443.008l0-282.88c0-17.664-14.336-32-32-32S128 142.464 128 160.128l0 344.896C127.744 507.2 127.104 509.248 127.104 511.488S127.744 515.84 128 518.016l0 346.112c0 17.664 14.336 32 32 32s32-14.336 32-32L192 579.968l553.408 308.352C754.56 893.44 764.48 896 774.528 896s19.968-2.56 29.056-7.616c18.176-10.112 28.992-28.224 28.992-48.576L832.576 183.104C832.576 162.88 821.76 144.768 803.584 134.592zM768.192 829.248 198.016 511.488 771.328 192 768.192 829.248z"
+                    fill="#2c2c2c"
+                    p-id="10215"></path></svg
+            >
+
+            <!-- 播放替换 -->
+            <div class="audio-player-btn-container">
+                <!-- 播放 -->
+                <svg
+                    class="audio_panel_icon audio-player-svg"
+                    xmlns="http://www.w3.org/2000/svg"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                    viewBox="0 0 1024 1024"
+                    ><path
+                        d="M512 113c220 0 399 179 399 399S732 911 512 911 113 732 113 512s179-399 399-399m0-42C268.4 71 71 268.4 71 512s197.4 441 441 441 441-197.4 441-441S755.6 71 512 71z"
+                        p-id="4702"></path><path
+                        d="M440.3 697.6c-29.9 0-54.3-24.3-54.3-54.3V380.6c0-29.9 24.4-54.3 54.3-54.3 9.4 0 18.7 2.5 27 7.3L694.9 465c17 9.8 27.1 27.4 27.1 47s-10.1 37.2-27.1 47L467.4 690.3c-8.4 4.8-17.7 7.3-27.1 7.3z m0-329.2c-5.9 0-12.3 4.7-12.3 12.3v262.7c0 10.3 10.9 14.9 18.4 10.6l227.5-131.4c5.5-3.2 6.1-8.4 6.1-10.6s-0.6-7.4-6.1-10.6L446.4 370c-2-1.1-4-1.6-6.1-1.6z"
+                        p-id="4703"></path></svg
+                >
+                <!-- 暂停 -->
+                <svg
+                    class="audio_panel_icon audio-player-svg audio-player-svg--disabled"
+                    xmlns="http://www.w3.org/2000/svg"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                    viewBox="0 0 1024 1024"
+                    ><path
+                        d="M512 35.031579C247.915789 35.031579 35.031579 247.915789 35.031579 512S247.915789 988.968421 512 988.968421 988.968421 776.084211 988.968421 512 776.084211 35.031579 512 35.031579z m0 916.210526C269.473684 951.242105 72.757895 754.526316 72.757895 512S269.473684 72.757895 512 72.757895 951.242105 269.473684 951.242105 512 754.526316 951.242105 512 951.242105z"
+                        fill="#101010"
+                        p-id="6233"></path><path
+                        d="M463.494737 296.421053h-91.621053c-16.168421 0-29.642105 13.473684-29.642105 29.642105V700.631579c0 16.168421 13.473684 29.642105 29.642105 29.642105h91.621053c16.168421 0 29.642105-13.473684 29.642105-29.642105V323.368421c0-16.168421-13.473684-26.947368-29.642105-26.947368z m-8.084211 393.431579h-75.452631V334.147368h75.452631v355.705264zM652.126316 296.421053h-91.621053c-16.168421 0-29.642105 13.473684-29.642105 29.642105V700.631579c0 16.168421 13.473684 29.642105 29.642105 29.642105h91.621053c16.168421 0 29.642105-13.473684 29.642105-29.642105V323.368421c0-16.168421-13.473684-26.947368-29.642105-26.947368z m-8.084211 393.431579h-75.452631V334.147368h75.452631v355.705264z"
+                        fill="#101010"
+                        p-id="6234"></path></svg
+                >
+            </div>
+
+            <!-- 下一首 -->
+            <svg
+                class="audio_panel_icon"
+                xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink"
+                viewBox="0 0 1024 1024"
+                ><path
+                    d="M192.512 899.072c-5.632 0-11.264-1.536-15.872-4.096-9.728-5.632-15.872-16.384-15.872-27.648V159.232c0-11.264 6.144-22.016 15.872-27.648 9.728-5.632 22.016-5.632 31.744 0l612.864 353.792c9.728 5.632 15.872 16.384 15.872 27.648s-6.144 22.016-15.872 27.648L208.896 894.464c-5.12 3.072-10.752 4.608-16.384 4.608z m32.256-684.544v596.992l516.608-298.496L224.768 214.528z"
+                    fill="#2c2c2c"
+                    p-id="9076"></path><path
+                    d="M821.76 899.072c-22.016 0-39.936-17.92-39.936-39.936V166.912c0-22.016 17.92-39.936 39.936-39.936s39.936 17.92 39.936 39.936v691.712c0 22.528-17.92 40.448-39.936 40.448z"
+                    fill="#2c2c2c"
+                    p-id="9077"></path></svg
+            >
+            <!-- 音量键 -->
+            <div class="volume-button-container">
+                <!-- 音量图标 -->
+                <svg
+                    class="audio_panel_icon volume-button"
+                    xmlns="http://www.w3.org/2000/svg"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                    viewBox="0 0 1024 1024"
+                    ><path
+                        d="M448 938.666667a21.333333 21.333333 0 0 1-15.093333-6.246667L225.833333 725.333333H53.333333a53.393333 53.393333 0 0 1-53.333333-53.333333V352a53.393333 53.393333 0 0 1 53.333333-53.333333h172.5l207.08-207.086667A21.333333 21.333333 0 0 1 469.333333 106.666667v810.666666a21.333333 21.333333 0 0 1-21.333333 21.333334zM53.333333 341.333333a10.666667 10.666667 0 0 0-10.666666 10.666667v320a10.666667 10.666667 0 0 0 10.666666 10.666667h181.333334a21.333333 21.333333 0 0 1 15.086666 6.246666L426.666667 865.833333V158.166667L249.753333 335.086667A21.333333 21.333333 0 0 1 234.666667 341.333333z m664.266667 437.246667a21.333333 21.333333 0 0 1-13.733333-37.666667c6.666667-5.586667 13.146667-11.553333 19.333333-17.726666C779.6 666.78 810.666667 591.78 810.666667 512s-31.066667-154.78-87.48-211.186667c-6.173333-6.173333-12.666667-12.14-19.333334-17.726666a21.333333 21.333333 0 1 1 27.446667-32.666667 346.585333 346.585333 0 0 1 22.046667 20.213333 341.066667 341.066667 0 0 1 0 482.72 346.585333 346.585333 0 0 1-22.046667 20.213334 21.24 21.24 0 0 1-13.7 5.013333zM629.333333 625.72a21.333333 21.333333 0 0 1-16.733333-34.546667 127.366667 127.366667 0 0 0 0-158.346666 21.333333 21.333333 0 0 1 33.486667-26.433334 170.733333 170.733333 0 0 1 0 211.213334A21.333333 21.333333 0 0 1 629.333333 625.72z"
+                        fill="#5C5C66"
+                        p-id="19492"></path>
+                </svg>
+
+                <!-- 静音图标 -->
+                <svg
+                    class="audio_panel_icon volume-button volume-button--hidden"
+                    xmlns="http://www.w3.org/2000/svg"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                    viewBox="0 0 1024 1024"
+                    ><path
+                        d="M448 938.666667a21.333333 21.333333 0 0 1-15.093333-6.246667L225.833333 725.333333H53.333333a53.393333 53.393333 0 0 1-53.333333-53.333333V352a53.393333 53.393333 0 0 1 53.333333-53.333333h172.5l207.08-207.086667A21.333333 21.333333 0 0 1 469.333333 106.666667v810.666666a21.333333 21.333333 0 0 1-21.333333 21.333334zM53.333333 341.333333a10.666667 10.666667 0 0 0-10.666666 10.666667v320a10.666667 10.666667 0 0 0 10.666666 10.666667h181.333334a21.333333 21.333333 0 0 1 15.086666 6.246666L426.666667 865.833333V158.166667L249.753333 335.086667A21.333333 21.333333 0 0 1 234.666667 341.333333z m964.42 377.753334a21.333333 21.333333 0 0 0 0-30.173334L840.833333 512l176.92-176.913333a21.333333 21.333333 0 1 0-30.173333-30.173334L810.666667 481.833333 633.753333 304.913333a21.333333 21.333333 0 0 0-30.173333 30.173334L780.5 512l-176.92 176.913333a21.333333 21.333333 0 0 0 30.173333 30.173334L810.666667 542.166667l176.913333 176.92a21.333333 21.333333 0 0 0 30.173333 0z"
+                        fill="#5C5C66"
+                        p-id="19644"></path></svg
+                >
+
+                <!-- 调整音量 -->
+            </div>
+
+            <!-- 播放模式 -->
+            <svg
+                class="audio_panel_icon"
+                xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink"
+                viewBox="0 0 1024 1024"
+                ><path
+                    d="M133 251.1h295.5c13.6 31.8 45.1 54 81.8 54 49.2 0 89-39.8 89-89s-39.8-89-89-89c-36.7 0-68.3 22.2-81.8 54H133c-19.3 0-35 15.7-35 35s15.7 35 35 35zM133 552.5h95.5c13.6 31.8 45.1 54 81.8 54 49.2 0 89-39.8 89-89s-39.8-89-89-89c-36.7 0-68.3 22.2-81.8 54H133c-19.3 0-35 15.7-35 35s15.7 35 35 35zM718.2 251.1h174.3c19.4 0 35-15.7 35-35s-15.7-35-35-35H718.2c-19.3 0-35 15.7-35 35s15.7 35 35 35zM892.5 771H818c-19.3 0-35 15.7-35 35s15.7 35 35 35h74.5c19.4 0 35-15.7 35-35s-15.7-35-35-35zM894.2 482.5H509c-19.3 0-35 15.7-35 35s15.7 35 35 35h385.2c19.3 0 35-15.7 35-35s-15.7-35-35-35zM630.3 717c-36.7 0-68.3 22.2-81.8 54H133c-19.3 0-35 15.7-35 35s15.7 35 35 35h415.5c13.6 31.8 45.1 54 81.8 54 49.2 0 89-39.8 89-89s-39.8-89-89-89z"
+                    fill="#040000"
+                    p-id="12378"></path></svg
+            >
+
+            <!-- 播放列表 -->
+            <svg
+                class="audio_panel_icon"
+                xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink"
+                viewBox="0 0 1024 1024"
+                ><path
+                    d="M736 352a32 32 0 0 1 31.264 25.088c4.384 18.816 9.792 32.256 15.232 39.712l2.336 3.008c0.8 0.896 1.088 1.024 1.28 1.024 46.624 0 65.76 39.68 65.088 101.024a32 32 0 0 1-64-0.704c0.192-16.32-1.344-28.16-3.776-34.944l-0.608-1.504-1.92-0.032a65.088 65.088 0 0 1-12.896-2.24V736c0 57.824-66.816 96-144 96S480 793.824 480 736s66.816-96 144-96c29.184 0 56.864 5.44 80.032 15.36L704 384.704c0-1.408 0.032-2.816 0.192-4.224L704 384a32 32 0 0 1 32-32zM416 704a32 32 0 0 1 0 64H224a32 32 0 0 1 0-64h192z m208 0c-46.528 0-80 19.136-80 32s33.472 32 80 32 80-19.136 80-32-33.472-32-80-32zM544 448a32 32 0 0 1 0 64H224a32 32 0 0 1 0-64h320z m256-256a32 32 0 0 1 0 64H224a32 32 0 1 1 0-64h576z"
+                    fill="#000000"
+                    p-id="13503"></path></svg
+            >
+        </div>
+    </div>
+
+    <!-- 侧边折叠栏 -->
+    <div class="aside-folder">
+        <svg
+            class="audio-aside-svg"
+            xmlns="http://www.w3.org/2000/svg"
+            xmlns:xlink="http://www.w3.org/1999/xlink"
+            viewBox="360 180 360 700"
+            ><path
+                d="M383.291616 808.954249c-5.175883 0-10.353812-1.950422-14.338566-5.862521-8.064676-7.919367-8.182356-20.877493-0.26299-28.942169l273.602402-278.620695L368.69006 216.907145c-7.919367-8.064676-7.801686-21.022803 0.26299-28.942169 8.065699-7.918343 21.022803-7.80271 28.942169 0.26299l287.685141 292.960285c7.818059 7.961322 7.818059 20.717857 0 28.67918L397.895219 802.826692C393.887952 806.907637 388.591319 808.954249 383.291616 808.954249z"
+                p-id="1579"></path></svg
+        >
+    </div>
+</div>
+
+<script>
+    const audio_aside_bar_el: HTMLElement = document.getElementsByClassName(
+        "audio-aside-svg",
+    )[0] as HTMLElement;
+    const aside_folder: HTMLElement = document.getElementsByClassName(
+        "aside-folder",
+    )[0] as HTMLElement;
+    const audio_container: HTMLElement = document.getElementsByClassName(
+        "audio-aside-container",
+    )[0] as HTMLElement;
+    const audio_player_btn_container = document.getElementsByClassName(
+        "audio-player-btn-container",
+    )[0] as HTMLElement;
+    const audio_player_btns =
+        document.getElementsByClassName("audio-player-svg");
+    const cover_image: HTMLElement = document.getElementsByClassName(
+        "audio-cover-image",
+    )[0] as HTMLElement;
+    const audio_entity: HTMLAudioElement = document.getElementsByClassName(
+        "hidden-audio-entity",
+    )[0] as HTMLAudioElement;
+    // 音量键
+    const volume_container: HTMLAudioElement = document.getElementsByClassName(
+        "volume-button-container",
+    )[0] as HTMLAudioElement;
+    // 静音和音量图标
+    const volume_button_list = document.getElementsByClassName(
+        "volume-button",
+    );
+
+    // 添加按钮监听
+    aside_folder.addEventListener("click", () => {
+        if (!audio_aside_bar_el.style.transform) {
+            audio_aside_bar_el.style.transform = "rotateZ(-180deg)";
+
+            audio_container.classList.add("audio-aside-container--unfolded");
+        } else {
+            audio_container.classList.remove("audio-aside-container--unfolded");
+            audio_aside_bar_el.style.removeProperty("transform");
+        }
+    });
+
+    // 播放等操作
+    audio_player_btn_container.addEventListener("click", () => {
+        audio_player_btns[0].classList.toggle("audio-player-svg--disabled");
+        audio_player_btns[1].classList.toggle("audio-player-svg--disabled");
+        cover_image.classList.toggle("audio-cover-image--rotate");
+        if (audio_entity.paused) {
+            audio_entity.play();
+        } else {
+            audio_entity.pause();
+        }
+    });
+
+    // 调整音量等
+    volume_container.addEventListener("click", ()=> {
+        volume_button_list[0].classList.toggle("volume-button--hidden")
+        volume_button_list[1].classList.toggle("volume-button--hidden")
+        audio_entity.muted = !audio_entity.muted    
+    })
+</script>
+
+<style lang="scss">
+    @keyframes cover_images_rotate {
+        0% {
+            transform: rotate(0deg);
+        }
+        100% {
+            transform: rotate(360deg);
+        }
+    }
+    .aside-container {
+        display: flex;
+        width: fit-content;
+        border: 1px solid #ccc;
+
+        .audio-aside-container {
+            box-sizing: border-box;
+            width: 0px;
+            height: 100px;
+            padding: 0px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            overflow: hidden;
+            background: rgba(255, 255, 255, 0.55);
+            transition: all 1s ease-in-out;
+            backdrop-filter: blur(14px) saturate(120%);
+            .audio-cover-image {
+                animation: cover_images_rotate 6s linear infinite forwards;
+                animation-play-state: paused;
+            }
+            .audio-cover-image--rotate {
+                animation-play-state: running;
+            }
+
+            .audio-entity-panel-container {
+                width: 100px;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                overflow: hidden;
+                // background-color: #fff;
+                transition: all 1s ease-in-out;
+                .audio_panel_icon {
+                    width: 15px;
+                    height: 15px;
+
+                    path {
+                        fill: black;
+                    }
+                }
+                .volume-button-container {
+                    width: 15px;
+                    height: 15px;
+                    display: flex;
+                    position: relative;
+                     
+                    .volume-button {
+                        position: absolute;
+                    }
+                    .volume-button--hidden {
+                        display: none;
+                    }
+                }
+                .audio-player-btn-container {
+                    position: relative;
+                    overflow: hidden;
+                    min-width: 0px;
+                    min-height: 0px;
+                    width: 19px;
+                    height: 19px;
+
+                    &:hover {
+                        transform: scale(1.2);
+                    }
+
+                    .audio-player-svg {
+                        position: absolute;
+                        top: 2px;
+                        left: 2px;
+                    }
+                    .audio-player-svg--disabled {
+                        display: none;
+                    }
+                }
+            }
+        }
+        .audio-aside-container--unfolded {
+            padding: 15px;
+            width: 300px;
+        }
+
+        .aside-folder {
+            width: 20px;
+            height: 100px;
+            background-color: #faf8f8;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 1px solid #ccc;
+            overflow: hidden;
+        }
+
+        .audio-aside-svg {
+            height: 30px;
+            width: 30px;
+            font-weight: 1000;
+            fill: #ccc;
+            path {
+                width: 25px;
+                height: 30px;
+            }
+            transition: all 1s linear;
+        }
+    }
+</style>

@@ -1,7 +1,37 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Greeting from "../components/Greeting";
+import AudioPlayerAside from "../components/AudioPlayerAside.astro";
+import Luna from "../images/luna.jpg";
 const pageTitle = "愛包ダンスホール";
 ---
-<BaseLayout pageTitle={pageTitle}>
-  <h2>我超棒的博客副标题</h2>
-</BaseLayout>
+
+<div class="all-body-container">
+  <div class="body-div">
+    <BaseLayout pageTitle={pageTitle}>
+      <h2>我超棒的博客副标题</h2>
+      <Greeting messages={["Hi", "Hello", "Howdy", "Hey there"]} />
+      <Greeting client:load messages={["Hej", "Hallo", "Hola", "Habari"]} />
+    </BaseLayout>
+    <div>This is AudioPlayerAside</div>
+    <AudioPlayerAside class="audio-player-aside-bar" client:load />
+  </div>
+</div>
+
+<style define:vars={{ lunaUrl: `url(${Luna.src})` }}>
+  .audio-player-aside-bar {
+    position: absolute;
+  }
+  .all-body-container {
+    height: 100vh;
+    background-image: var(--lunaUrl);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+  .body-div {
+    height: fit-content;
+    background-color: rgba(255, 255, 255, 0.55);
+    backdrop-filter: blur(14px) saturate(120%);
+  }
+</style>
