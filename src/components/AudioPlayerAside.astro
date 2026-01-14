@@ -463,6 +463,7 @@ import "../output.css";
 
     // 等待音频加载完毕再获取
     audio_entity.addEventListener("loadedmetadata", () => {
+        console.log("audio_entity.duration: ", audio_entity.duration)
         // 悬停展开
         volume_container.addEventListener("mouseenter", () => {
             volume_control_bar.dataset.hidden = "false";
