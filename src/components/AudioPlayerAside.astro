@@ -1,12 +1,11 @@
 ---
 import Yuki from "../images/Yuki.jpg";
-import aipai from "../audios/aipaidancehall.mp3";
 import "../output.css";
 ---
 
 <div data-unfold="false" data-ui="aside-container" class="flex w-fit">
     <!-- 音频（不可见） -->
-    <audio data-audio="hidden" src={aipai}></audio>
+    <!-- <audio data-audio="hidden" src={aipai}></audio> -->
 
     <!-- 折叠面板 + 播放音乐的简易面板 -->
     <div data-covermove="false" data-ui="unfold-area" class="relative">
@@ -347,6 +346,7 @@ import "../output.css";
 </div>
 
 <script>
+    import aipai from "../audios/aipaidancehall.mp3";
     // 获取到侧边栏的整体元素
     const aside_container: HTMLElement = document.querySelector(
         '[data-ui="aside-container"]',
@@ -368,9 +368,11 @@ import "../output.css";
     ) as HTMLElement;
 
     // 获取到隐藏的音乐控件
-    const audio_entity: HTMLAudioElement = document.querySelector(
-        '[data-audio="hidden"]',
-    ) as HTMLAudioElement;
+    // const audio_entity: HTMLAudioElement = document.querySelector(
+    //     '[data-audio="hidden"]',
+    // ) as HTMLAudioElement;
+    const audio_entity: HTMLAudioElement = new Audio(aipai)
+    
 
     // 获取到播放音乐功能面板容器
     const audio_container: HTMLElement = aside_container.querySelector(
