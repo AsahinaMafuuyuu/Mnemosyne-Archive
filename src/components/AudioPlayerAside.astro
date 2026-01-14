@@ -524,6 +524,7 @@ import "../output.css";
     // 等待音频加载完毕再获取
     audio_entity.addEventListener("loadedmetadata", () => {
         console.log("audio_entity.duration: ",audio_entity.duration)
+        
         // 加载完毕后才能注册对应的事件和变量
         total_played_time = audio_entity.duration;
         total_played_time_by_min =
