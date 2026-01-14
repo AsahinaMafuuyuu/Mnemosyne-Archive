@@ -1,142 +1,345 @@
 ---
 import Yuki from "../images/Yuki.jpg";
 import aipai from "../audios/aipaidancehall.mp3";
+import "../output.css";
 ---
 
-<div class="aside-container">
+<div data-unfold="false" data-ui="aside-container" class="flex w-fit">
     <!-- 音频（不可见） -->
-    <audio class="hidden-audio-entity" src={aipai}></audio>
-    <!-- 播放音乐功能面板容器 -->
-    <div class="audio-aside-container">
-        <!-- 封面 -->
-        <img
-            class="audio-cover-image"
-            style="width: 80px; height: 80px; border-radius: 50%; object-fit: cover;"
-            src={Yuki.src}
-            alt=""
-        />
-        <!-- 歌曲信息 -->
+    <audio data-audio="hidden" src={aipai}></audio>
 
-        <div class="audio-entity-panel-container">
-            <!-- 上一首 -->
-            <svg
-                class="audio_panel_icon"
-                xmlns="http://www.w3.org/2000/svg"
-                xmlns:xlink="http://www.w3.org/1999/xlink"
-                viewBox="0 0 1024 1024"
-                ><path
-                    d="M803.584 134.592c-18.176-10.048-39.936-10.112-58.112 0L192 443.008l0-282.88c0-17.664-14.336-32-32-32S128 142.464 128 160.128l0 344.896C127.744 507.2 127.104 509.248 127.104 511.488S127.744 515.84 128 518.016l0 346.112c0 17.664 14.336 32 32 32s32-14.336 32-32L192 579.968l553.408 308.352C754.56 893.44 764.48 896 774.528 896s19.968-2.56 29.056-7.616c18.176-10.112 28.992-28.224 28.992-48.576L832.576 183.104C832.576 162.88 821.76 144.768 803.584 134.592zM768.192 829.248 198.016 511.488 771.328 192 768.192 829.248z"
-                    fill="#2c2c2c"
-                    p-id="10215"></path></svg
+    <!-- 折叠面板 + 播放音乐的简易面板 -->
+    <div data-covermove="false" data-ui="unfold-area" class="relative">
+        <!-- 点击封面后的详细信息等 -->
+        <div
+            data-ui="audio-detail-info-display-container"
+            data-hidden="true"
+            class="w-0 h-80 absolute bottom-full transition-all duration-1000 ease-in-out overflow-hidden bg-blue-200 rounded-t-[5px]
+            unfold:border-l unfold:border-r unfold:border-t border-[#ccc]
+            flex items-center
+            hidden:translate-y-0 unfold:w-100 hidden:h-0"
+        >
+            <!-- 关闭的固定视口 -->
+            <header
+                data-ui="detail-info-shut-down-panel"
+                class="absolute w-full h-5 top-0 bg-[rgba(255,255,255,0.55)] backdrop-blur-[15px] saturate-150"
             >
+            </header>
+            <div
+                data-ui="audio-detail-cover-image-container"
+                class="flex-1 h-full items-center justify-center flex bg-amber-300"
+            >
+                <div
+                    data-ui="larger-cover-display"
+                    class="w-[60%] aspect-square bg-amber-800 rounded-[50%]"
+                >
+                </div>
+            </div>
+            <div
+                data-ui="audio-detail-singer-lyric-info"
+                class="flex-1 h-full bg-black"
+            >
+            </div>
+        </div>
 
-            <!-- 播放替换 -->
-            <div class="audio-player-btn-container">
-                <!-- 播放 -->
-                <svg
-                    class="audio_panel_icon audio-player-svg"
-                    xmlns="http://www.w3.org/2000/svg"
-                    xmlns:xlink="http://www.w3.org/1999/xlink"
-                    viewBox="0 0 1024 1024"
-                    ><path
-                        d="M512 113c220 0 399 179 399 399S732 911 512 911 113 732 113 512s179-399 399-399m0-42C268.4 71 71 268.4 71 512s197.4 441 441 441 441-197.4 441-441S755.6 71 512 71z"
-                        p-id="4702"></path><path
-                        d="M440.3 697.6c-29.9 0-54.3-24.3-54.3-54.3V380.6c0-29.9 24.4-54.3 54.3-54.3 9.4 0 18.7 2.5 27 7.3L694.9 465c17 9.8 27.1 27.4 27.1 47s-10.1 37.2-27.1 47L467.4 690.3c-8.4 4.8-17.7 7.3-27.1 7.3z m0-329.2c-5.9 0-12.3 4.7-12.3 12.3v262.7c0 10.3 10.9 14.9 18.4 10.6l227.5-131.4c5.5-3.2 6.1-8.4 6.1-10.6s-0.6-7.4-6.1-10.6L446.4 370c-2-1.1-4-1.6-6.1-1.6z"
-                        p-id="4703"></path></svg
-                >
-                <!-- 暂停 -->
-                <svg
-                    class="audio_panel_icon audio-player-svg audio-player-svg--disabled"
-                    xmlns="http://www.w3.org/2000/svg"
-                    xmlns:xlink="http://www.w3.org/1999/xlink"
-                    viewBox="0 0 1024 1024"
-                    ><path
-                        d="M512 35.031579C247.915789 35.031579 35.031579 247.915789 35.031579 512S247.915789 988.968421 512 988.968421 988.968421 776.084211 988.968421 512 776.084211 35.031579 512 35.031579z m0 916.210526C269.473684 951.242105 72.757895 754.526316 72.757895 512S269.473684 72.757895 512 72.757895 951.242105 269.473684 951.242105 512 754.526316 951.242105 512 951.242105z"
-                        fill="#101010"
-                        p-id="6233"></path><path
-                        d="M463.494737 296.421053h-91.621053c-16.168421 0-29.642105 13.473684-29.642105 29.642105V700.631579c0 16.168421 13.473684 29.642105 29.642105 29.642105h91.621053c16.168421 0 29.642105-13.473684 29.642105-29.642105V323.368421c0-16.168421-13.473684-26.947368-29.642105-26.947368z m-8.084211 393.431579h-75.452631V334.147368h75.452631v355.705264zM652.126316 296.421053h-91.621053c-16.168421 0-29.642105 13.473684-29.642105 29.642105V700.631579c0 16.168421 13.473684 29.642105 29.642105 29.642105h91.621053c16.168421 0 29.642105-13.473684 29.642105-29.642105V323.368421c0-16.168421-13.473684-26.947368-29.642105-26.947368z m-8.084211 393.431579h-75.452631V334.147368h75.452631v355.705264z"
-                        fill="#101010"
-                        p-id="6234"></path></svg
-                >
+        <!-- 播放音乐功能面板容器 -->
+        <div
+            data-ui="audio-aside-container"
+            class="relative unfold:p-3.75 unfold:w-100 
+        box-border w-0 h-25 p-0 flex items-center justify-between
+        bg-[rgba(255,255,255,0.55)]
+        transition-all duration-1000 ease-in-out
+        backdrop-blur-[14px] backdrop-saturate-[120]
+        unfold:border-l border-l-[#ccc] border-l-solid
+        border-t border-t-[#ccc] border-t-solid
+        border-b border-b-[#ccc] border-b-solid
+        unfold:rounded-tl-[5px] unfold:rounded-bl-[5px]"
+        >
+        <!-- 移动的话移动容器 -->
+            <div
+                data-ui="audio-cover-image-container"
+                class="w-0 h-0 rounded-[50%] transition-all duration-1000 ease-in-out
+        unfold:w-20 unfold:h-20"
+            >
+                <img
+                    data-rotate="false"
+                    data-ui="audio-cover-image"
+                    class="w-0 h-0 relative rounded-[50%] object-cover animate-cover-rotate [animation-play-state:paused] rotate:[animation-play-state:running]
+            transition-all duration-1000 ease-in-out
+            unfold:w-20 unfold:h-20"
+                    src={Yuki.src}
+                    alt=""
+                />
             </div>
 
-            <!-- 下一首 -->
-            <svg
-                class="audio_panel_icon"
-                xmlns="http://www.w3.org/2000/svg"
-                xmlns:xlink="http://www.w3.org/1999/xlink"
-                viewBox="0 0 1024 1024"
-                ><path
-                    d="M192.512 899.072c-5.632 0-11.264-1.536-15.872-4.096-9.728-5.632-15.872-16.384-15.872-27.648V159.232c0-11.264 6.144-22.016 15.872-27.648 9.728-5.632 22.016-5.632 31.744 0l612.864 353.792c9.728 5.632 15.872 16.384 15.872 27.648s-6.144 22.016-15.872 27.648L208.896 894.464c-5.12 3.072-10.752 4.608-16.384 4.608z m32.256-684.544v596.992l516.608-298.496L224.768 214.528z"
-                    fill="#2c2c2c"
-                    p-id="9076"></path><path
-                    d="M821.76 899.072c-22.016 0-39.936-17.92-39.936-39.936V166.912c0-22.016 17.92-39.936 39.936-39.936s39.936 17.92 39.936 39.936v691.712c0 22.528-17.92 40.448-39.936 40.448z"
-                    fill="#2c2c2c"
-                    p-id="9077"></path></svg
+            <!-- 歌曲信息 -->
+            <div
+                data-ui="audio-info-display"
+                class="w-0 flex flex-col overflow-hidden transition-all duration-1000 ease-in-out justify-between items-start unfold:w-30"
             >
-            <!-- 音量键 -->
-            <div class="volume-button-container">
-                <!-- 音量图标 -->
-                <svg
-                    class="audio_panel_icon volume-button"
-                    xmlns="http://www.w3.org/2000/svg"
-                    xmlns:xlink="http://www.w3.org/1999/xlink"
-                    viewBox="0 0 1024 1024"
-                    ><path
-                        d="M448 938.666667a21.333333 21.333333 0 0 1-15.093333-6.246667L225.833333 725.333333H53.333333a53.393333 53.393333 0 0 1-53.333333-53.333333V352a53.393333 53.393333 0 0 1 53.333333-53.333333h172.5l207.08-207.086667A21.333333 21.333333 0 0 1 469.333333 106.666667v810.666666a21.333333 21.333333 0 0 1-21.333333 21.333334zM53.333333 341.333333a10.666667 10.666667 0 0 0-10.666666 10.666667v320a10.666667 10.666667 0 0 0 10.666666 10.666667h181.333334a21.333333 21.333333 0 0 1 15.086666 6.246666L426.666667 865.833333V158.166667L249.753333 335.086667A21.333333 21.333333 0 0 1 234.666667 341.333333z m664.266667 437.246667a21.333333 21.333333 0 0 1-13.733333-37.666667c6.666667-5.586667 13.146667-11.553333 19.333333-17.726666C779.6 666.78 810.666667 591.78 810.666667 512s-31.066667-154.78-87.48-211.186667c-6.173333-6.173333-12.666667-12.14-19.333334-17.726666a21.333333 21.333333 0 1 1 27.446667-32.666667 346.585333 346.585333 0 0 1 22.046667 20.213333 341.066667 341.066667 0 0 1 0 482.72 346.585333 346.585333 0 0 1-22.046667 20.213334 21.24 21.24 0 0 1-13.7 5.013333zM629.333333 625.72a21.333333 21.333333 0 0 1-16.733333-34.546667 127.366667 127.366667 0 0 0 0-158.346666 21.333333 21.333333 0 0 1 33.486667-26.433334 170.733333 170.733333 0 0 1 0 211.213334A21.333333 21.333333 0 0 1 629.333333 625.72z"
-                        fill="#5C5C66"
-                        p-id="19492"></path>
-                </svg>
-
-                <!-- 静音图标 -->
-                <svg
-                    class="audio_panel_icon volume-button volume-button--hidden"
-                    xmlns="http://www.w3.org/2000/svg"
-                    xmlns:xlink="http://www.w3.org/1999/xlink"
-                    viewBox="0 0 1024 1024"
-                    ><path
-                        d="M448 938.666667a21.333333 21.333333 0 0 1-15.093333-6.246667L225.833333 725.333333H53.333333a53.393333 53.393333 0 0 1-53.333333-53.333333V352a53.393333 53.393333 0 0 1 53.333333-53.333333h172.5l207.08-207.086667A21.333333 21.333333 0 0 1 469.333333 106.666667v810.666666a21.333333 21.333333 0 0 1-21.333333 21.333334zM53.333333 341.333333a10.666667 10.666667 0 0 0-10.666666 10.666667v320a10.666667 10.666667 0 0 0 10.666666 10.666667h181.333334a21.333333 21.333333 0 0 1 15.086666 6.246666L426.666667 865.833333V158.166667L249.753333 335.086667A21.333333 21.333333 0 0 1 234.666667 341.333333z m964.42 377.753334a21.333333 21.333333 0 0 0 0-30.173334L840.833333 512l176.92-176.913333a21.333333 21.333333 0 1 0-30.173333-30.173334L810.666667 481.833333 633.753333 304.913333a21.333333 21.333333 0 0 0-30.173333 30.173334L780.5 512l-176.92 176.913333a21.333333 21.333333 0 0 0 30.173333 30.173334L810.666667 542.166667l176.913333 176.92a21.333333 21.333333 0 0 0 30.173333 0z"
-                        fill="#5C5C66"
-                        p-id="19644"></path></svg
+                <div data-show="audio_title" class="w-28 truncate font-bold">
+                    愛包ダンスホール
+                </div>
+                <div
+                    data-show="singer_info"
+                    class="w-28 block truncate text-[#e8dfdf]"
                 >
-
-                <!-- 调整音量 -->
+                    HIMEHINA
+                </div>
             </div>
 
-            <!-- 播放模式 -->
-            <svg
-                class="audio_panel_icon"
-                xmlns="http://www.w3.org/2000/svg"
-                xmlns:xlink="http://www.w3.org/1999/xlink"
-                viewBox="0 0 1024 1024"
-                ><path
-                    d="M133 251.1h295.5c13.6 31.8 45.1 54 81.8 54 49.2 0 89-39.8 89-89s-39.8-89-89-89c-36.7 0-68.3 22.2-81.8 54H133c-19.3 0-35 15.7-35 35s15.7 35 35 35zM133 552.5h95.5c13.6 31.8 45.1 54 81.8 54 49.2 0 89-39.8 89-89s-39.8-89-89-89c-36.7 0-68.3 22.2-81.8 54H133c-19.3 0-35 15.7-35 35s15.7 35 35 35zM718.2 251.1h174.3c19.4 0 35-15.7 35-35s-15.7-35-35-35H718.2c-19.3 0-35 15.7-35 35s15.7 35 35 35zM892.5 771H818c-19.3 0-35 15.7-35 35s15.7 35 35 35h74.5c19.4 0 35-15.7 35-35s-15.7-35-35-35zM894.2 482.5H509c-19.3 0-35 15.7-35 35s15.7 35 35 35h385.2c19.3 0 35-15.7 35-35s-15.7-35-35-35zM630.3 717c-36.7 0-68.3 22.2-81.8 54H133c-19.3 0-35 15.7-35 35s15.7 35 35 35h415.5c13.6 31.8 45.1 54 81.8 54 49.2 0 89-39.8 89-89s-39.8-89-89-89z"
-                    fill="#040000"
-                    p-id="12378"></path></svg
+            <!-- 仪表盘 -->
+            <div
+                data-ui="panel-and-play-visualized-bar"
+                class="w-0 flex flex-col items-center transition-all duration-1000 unfold:w-35"
             >
+                <!-- 控件 -->
+                <div
+                    data-ui="audio-real-player-hidden"
+                    class="w-0 flex items-center justify-between
+                unfold:w-25
+                transition-all duration-1000 ease-in-out"
+                >
+                    <!-- 上一首 -->
+                    <svg
+                        class="svg-size"
+                        xmlns="http://www.w3.org/2000/svg"
+                        xmlns:xlink="http://www.w3.org/1999/xlink"
+                        viewBox="0 0 1024 1024"
+                        ><path
+                            d="M803.584 134.592c-18.176-10.048-39.936-10.112-58.112 0L192 443.008l0-282.88c0-17.664-14.336-32-32-32S128 142.464 128 160.128l0 344.896C127.744 507.2 127.104 509.248 127.104 511.488S127.744 515.84 128 518.016l0 346.112c0 17.664 14.336 32 32 32s32-14.336 32-32L192 579.968l553.408 308.352C754.56 893.44 764.48 896 774.528 896s19.968-2.56 29.056-7.616c18.176-10.112 28.992-28.224 28.992-48.576L832.576 183.104C832.576 162.88 821.76 144.768 803.584 134.592zM768.192 829.248 198.016 511.488 771.328 192 768.192 829.248z"
+                            fill="black"
+                            p-id="10215"></path></svg
+                    >
 
-            <!-- 播放列表 -->
-            <svg
-                class="audio_panel_icon"
-                xmlns="http://www.w3.org/2000/svg"
-                xmlns:xlink="http://www.w3.org/1999/xlink"
-                viewBox="0 0 1024 1024"
-                ><path
-                    d="M736 352a32 32 0 0 1 31.264 25.088c4.384 18.816 9.792 32.256 15.232 39.712l2.336 3.008c0.8 0.896 1.088 1.024 1.28 1.024 46.624 0 65.76 39.68 65.088 101.024a32 32 0 0 1-64-0.704c0.192-16.32-1.344-28.16-3.776-34.944l-0.608-1.504-1.92-0.032a65.088 65.088 0 0 1-12.896-2.24V736c0 57.824-66.816 96-144 96S480 793.824 480 736s66.816-96 144-96c29.184 0 56.864 5.44 80.032 15.36L704 384.704c0-1.408 0.032-2.816 0.192-4.224L704 384a32 32 0 0 1 32-32zM416 704a32 32 0 0 1 0 64H224a32 32 0 0 1 0-64h192z m208 0c-46.528 0-80 19.136-80 32s33.472 32 80 32 80-19.136 80-32-33.472-32-80-32zM544 448a32 32 0 0 1 0 64H224a32 32 0 0 1 0-64h320z m256-256a32 32 0 0 1 0 64H224a32 32 0 1 1 0-64h576z"
-                    fill="#000000"
-                    p-id="13503"></path></svg
-            >
+                    <!-- 播放替换 -->
+                    <div
+                        data-ui="audio-player-btn-container"
+                        class="relative overflow-hidden
+                w-4.75 h-4.75
+                hover:scale-[1.2]
+                audio-player-btn-container"
+                    >
+                        <!-- 播放 -->
+                        <svg
+                            data-hidden="false"
+                            class="svg-size absolute top-0.5 left-0.5
+                        hidden:hidden"
+                            xmlns="http://www.w3.org/2000/svg"
+                            xmlns:xlink="http://www.w3.org/1999/xlink"
+                            viewBox="0 0 1024 1024"
+                            ><path
+                                d="M512 113c220 0 399 179 399 399S732 911 512 911 113 732 113 512s179-399 399-399m0-42C268.4 71 71 268.4 71 512s197.4 441 441 441 441-197.4 441-441S755.6 71 512 71z"
+                                p-id="4702"></path><path
+                                d="M440.3 697.6c-29.9 0-54.3-24.3-54.3-54.3V380.6c0-29.9 24.4-54.3 54.3-54.3 9.4 0 18.7 2.5 27 7.3L694.9 465c17 9.8 27.1 27.4 27.1 47s-10.1 37.2-27.1 47L467.4 690.3c-8.4 4.8-17.7 7.3-27.1 7.3z m0-329.2c-5.9 0-12.3 4.7-12.3 12.3v262.7c0 10.3 10.9 14.9 18.4 10.6l227.5-131.4c5.5-3.2 6.1-8.4 6.1-10.6s-0.6-7.4-6.1-10.6L446.4 370c-2-1.1-4-1.6-6.1-1.6z"
+                                p-id="4703"></path></svg
+                        >
+                        <!-- 暂停 -->
+                        <svg
+                            data-hidden="true"
+                            class="svg-size absolute top-0.5 left-0.5 hidden:hidden"
+                            xmlns="http://www.w3.org/2000/svg"
+                            xmlns:xlink="http://www.w3.org/1999/xlink"
+                            viewBox="0 0 1024 1024"
+                            ><path
+                                d="M512 35.031579C247.915789 35.031579 35.031579 247.915789 35.031579 512S247.915789 988.968421 512 988.968421 988.968421 776.084211 988.968421 512 776.084211 35.031579 512 35.031579z m0 916.210526C269.473684 951.242105 72.757895 754.526316 72.757895 512S269.473684 72.757895 512 72.757895 951.242105 269.473684 951.242105 512 754.526316 951.242105 512 951.242105z"
+                                fill="black"
+                                p-id="6233"></path><path
+                                d="M463.494737 296.421053h-91.621053c-16.168421 0-29.642105 13.473684-29.642105 29.642105V700.631579c0 16.168421 13.473684 29.642105 29.642105 29.642105h91.621053c16.168421 0 29.642105-13.473684 29.642105-29.642105V323.368421c0-16.168421-13.473684-26.947368-29.642105-26.947368z m-8.084211 393.431579h-75.452631V334.147368h75.452631v355.705264zM652.126316 296.421053h-91.621053c-16.168421 0-29.642105 13.473684-29.642105 29.642105V700.631579c0 16.168421 13.473684 29.642105 29.642105 29.642105h91.621053c16.168421 0 29.642105-13.473684 29.642105-29.642105V323.368421c0-16.168421-13.473684-26.947368-29.642105-26.947368z m-8.084211 393.431579h-75.452631V334.147368h75.452631v355.705264z"
+                                fill="black"
+                                p-id="6234"></path></svg
+                        >
+                    </div>
+
+                    <!-- 下一首 -->
+                    <svg
+                        class="svg-size"
+                        xmlns="http://www.w3.org/2000/svg"
+                        xmlns:xlink="http://www.w3.org/1999/xlink"
+                        viewBox="0 0 1024 1024"
+                        ><path
+                            d="M192.512 899.072c-5.632 0-11.264-1.536-15.872-4.096-9.728-5.632-15.872-16.384-15.872-27.648V159.232c0-11.264 6.144-22.016 15.872-27.648 9.728-5.632 22.016-5.632 31.744 0l612.864 353.792c9.728 5.632 15.872 16.384 15.872 27.648s-6.144 22.016-15.872 27.648L208.896 894.464c-5.12 3.072-10.752 4.608-16.384 4.608z m32.256-684.544v596.992l516.608-298.496L224.768 214.528z"
+                            fill="black"
+                            p-id="9076"></path><path
+                            d="M821.76 899.072c-22.016 0-39.936-17.92-39.936-39.936V166.912c0-22.016 17.92-39.936 39.936-39.936s39.936 17.92 39.936 39.936v691.712c0 22.528-17.92 40.448-39.936 40.448z"
+                            fill="black"
+                            p-id="9077"></path></svg
+                    >
+                    <!-- 音量键 -->
+                    <div
+                        data-ui="volume-button-container-and-volume-adjust"
+                        class="w-3.75 h-3.75 flex relative"
+                    >
+                        <div
+                            data-ui="volume-button-container"
+                            class="w-0 h-0 unfold:w-3.75 unfold:h-3.75 transition-all duration-1000 ease-in-out flex relative overflow-hidden"
+                        >
+                            <!-- 音量图标 -->
+                            <svg
+                                data-ui="volume-button"
+                                data-hidden="false"
+                                class="svg-size absolute hidden:hidden"
+                                xmlns="http://www.w3.org/2000/svg"
+                                xmlns:xlink="http://www.w3.org/1999/xlink"
+                                viewBox="0 0 1024 1024"
+                                ><path
+                                    d="M448 938.666667a21.333333 21.333333 0 0 1-15.093333-6.246667L225.833333 725.333333H53.333333a53.393333 53.393333 0 0 1-53.333333-53.333333V352a53.393333 53.393333 0 0 1 53.333333-53.333333h172.5l207.08-207.086667A21.333333 21.333333 0 0 1 469.333333 106.666667v810.666666a21.333333 21.333333 0 0 1-21.333333 21.333334zM53.333333 341.333333a10.666667 10.666667 0 0 0-10.666666 10.666667v320a10.666667 10.666667 0 0 0 10.666666 10.666667h181.333334a21.333333 21.333333 0 0 1 15.086666 6.246666L426.666667 865.833333V158.166667L249.753333 335.086667A21.333333 21.333333 0 0 1 234.666667 341.333333z m664.266667 437.246667a21.333333 21.333333 0 0 1-13.733333-37.666667c6.666667-5.586667 13.146667-11.553333 19.333333-17.726666C779.6 666.78 810.666667 591.78 810.666667 512s-31.066667-154.78-87.48-211.186667c-6.173333-6.173333-12.666667-12.14-19.333334-17.726666a21.333333 21.333333 0 1 1 27.446667-32.666667 346.585333 346.585333 0 0 1 22.046667 20.213333 341.066667 341.066667 0 0 1 0 482.72 346.585333 346.585333 0 0 1-22.046667 20.213334 21.24 21.24 0 0 1-13.7 5.013333zM629.333333 625.72a21.333333 21.333333 0 0 1-16.733333-34.546667 127.366667 127.366667 0 0 0 0-158.346666 21.333333 21.333333 0 0 1 33.486667-26.433334 170.733333 170.733333 0 0 1 0 211.213334A21.333333 21.333333 0 0 1 629.333333 625.72z"
+                                    fill="black"
+                                    p-id="19492"></path>
+                            </svg>
+
+                            <!-- 静音图标 -->
+                            <svg
+                                data-ui="volume-button"
+                                data-hidden="true"
+                                class="svg-size absolute hidden:hidden"
+                                xmlns="http://www.w3.org/2000/svg"
+                                xmlns:xlink="http://www.w3.org/1999/xlink"
+                                viewBox="0 0 1024 1024"
+                                ><path
+                                    d="M448 938.666667a21.333333 21.333333 0 0 1-15.093333-6.246667L225.833333 725.333333H53.333333a53.393333 53.393333 0 0 1-53.333333-53.333333V352a53.393333 53.393333 0 0 1 53.333333-53.333333h172.5l207.08-207.086667A21.333333 21.333333 0 0 1 469.333333 106.666667v810.666666a21.333333 21.333333 0 0 1-21.333333 21.333334zM53.333333 341.333333a10.666667 10.666667 0 0 0-10.666666 10.666667v320a10.666667 10.666667 0 0 0 10.666666 10.666667h181.333334a21.333333 21.333333 0 0 1 15.086666 6.246666L426.666667 865.833333V158.166667L249.753333 335.086667A21.333333 21.333333 0 0 1 234.666667 341.333333z m964.42 377.753334a21.333333 21.333333 0 0 0 0-30.173334L840.833333 512l176.92-176.913333a21.333333 21.333333 0 1 0-30.173333-30.173334L810.666667 481.833333 633.753333 304.913333a21.333333 21.333333 0 0 0-30.173333 30.173334L780.5 512l-176.92 176.913333a21.333333 21.333333 0 0 0 30.173333 30.173334L810.666667 542.166667l176.913333 176.92a21.333333 21.333333 0 0 0 30.173333 0z"
+                                    fill="black"
+                                    p-id="19644"></path></svg
+                            >
+                        </div>
+
+                        <!-- 调整音量 -->
+                        <div
+                            data-ui="volume-control-bar"
+                            data-hidden="true"
+                            class="w-7 h-30 absolute -top-33 -left-2 transition-all ease-in-out duration-1000 hidden:hidden"
+                        >
+                            <div
+                                class="h-4 w-4 rotate-45 absolute bg-[#676060] rounded-[5px] -bottom-[6.5px] left-[5.65px]"
+                            >
+                            </div>
+                            <div
+                                class="h-30 w-7 bg-[#676060] rounded-[5px] relative flex items-end justify-center"
+                            >
+                                <!-- 音量滑块 -->
+                                <input
+                                    data-ui="audio-volume-slider"
+                                    type="range"
+                                    data-ui="adjust-bar"
+                                    class="-rotate-90 w-22 absolute bottom-14 hover:text-[blue]"
+                                    value="50"
+                                />
+                                <!-- 数字显示 -->
+                                <div
+                                    data-ui="digital-volume-display"
+                                    class="w-fit text-[0.6rem] text-[white] bottom-1"
+                                >
+                                    50%
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 播放模式 -->
+                    <div
+                        data-ui="audio-play-mode-container"
+                        class="flex relative overflow-hidden"
+                    >
+                        <!-- 顺序播放 -->
+                        <svg
+                            data-hidden="false"
+                            class="svg-size hidden:hidden"
+                            xmlns="http://www.w3.org/2000/svg"
+                            xmlns:xlink="http://www.w3.org/1999/xlink"
+                            viewBox="0 0 1024 1024"
+                            ><path
+                                d="M133 251.1h295.5c13.6 31.8 45.1 54 81.8 54 49.2 0 89-39.8 89-89s-39.8-89-89-89c-36.7 0-68.3 22.2-81.8 54H133c-19.3 0-35 15.7-35 35s15.7 35 35 35zM133 552.5h95.5c13.6 31.8 45.1 54 81.8 54 49.2 0 89-39.8 89-89s-39.8-89-89-89c-36.7 0-68.3 22.2-81.8 54H133c-19.3 0-35 15.7-35 35s15.7 35 35 35zM718.2 251.1h174.3c19.4 0 35-15.7 35-35s-15.7-35-35-35H718.2c-19.3 0-35 15.7-35 35s15.7 35 35 35zM892.5 771H818c-19.3 0-35 15.7-35 35s15.7 35 35 35h74.5c19.4 0 35-15.7 35-35s-15.7-35-35-35zM894.2 482.5H509c-19.3 0-35 15.7-35 35s15.7 35 35 35h385.2c19.3 0 35-15.7 35-35s-15.7-35-35-35zM630.3 717c-36.7 0-68.3 22.2-81.8 54H133c-19.3 0-35 15.7-35 35s15.7 35 35 35h415.5c13.6 31.8 45.1 54 81.8 54 49.2 0 89-39.8 89-89s-39.8-89-89-89z"
+                                fill="black"
+                                p-id="12378"></path></svg
+                        >
+                        <!-- 单曲循环 -->
+                        <svg
+                            data-hidden="true"
+                            class="svg-size hidden:hidden"
+                            xmlns="http://www.w3.org/2000/svg"
+                            xmlns:xlink="http://www.w3.org/1999/xlink"
+                            viewBox="0 0 1024 1024"
+                            ><path
+                                d="M192 789.333333a21.24 21.24 0 0 1-12.8-4.28 344.513333 344.513333 0 0 1-99.333333-118A341.246667 341.246667 0 0 1 384 170.666667h256q6.36 0 12.733333 0.233333l-49.153333-49.146667a21.333333 21.333333 0 0 1 30.173333-30.173333l85.333334 85.333333a21.333333 21.333333 0 0 1 0 30.173334l-85.333334 85.333333a21.333333 21.333333 0 0 1-30.173333-30.173333l48.666667-48.666667Q646.126667 213.333333 640 213.333333H384c-164.666667 0-298.666667 134-298.666667 298.666667 0 94.833333 43.546667 181.933333 119.48 238.966667A21.333333 21.333333 0 0 1 192 789.333333z m228.433333 143.06a21.333333 21.333333 0 0 0 0-30.173333l-49.153333-49.146667q6.366667 0.233333 12.733333 0.233334H640a341.46 341.46 0 0 0 304.146667-496.42 344.513333 344.513333 0 0 0-99.333334-118 21.333333 21.333333 0 1 0-25.626666 34.113333C895.12 330.066667 938.666667 417.166667 938.666667 512c0 164.666667-134 298.666667-298.666667 298.666667H384q-6.12 0-12.246667-0.246667l48.666667-48.666667a21.333333 21.333333 0 0 0-30.173333-30.173333l-85.333334 85.333333a21.333333 21.333333 0 0 0 0 30.173334l85.333334 85.333333a21.333333 21.333333 0 0 0 30.173333 0zM554.666667 618.666667V405.333333a21.333333 21.333333 0 0 0-21.333334-21.333333h-42.666666a21.333333 21.333333 0 0 0 0 42.666667h21.333333v192a21.333333 21.333333 0 0 0 42.666667 0z"
+                                fill="black"
+                                p-id="1780"></path></svg
+                        >
+                        <!-- 列表循环 -->
+                        <svg
+                            data-hidden="true"
+                            class="svg-size hidden:hidden"
+                            xmlns="http://www.w3.org/2000/svg"
+                            xmlns:xlink="http://www.w3.org/1999/xlink"
+                            viewBox="0 0 1024 1024"
+                            ><path
+                                d="M361.5 727.8c-119.1 0-215.9-96.9-215.9-215.9 0-119.1 96.9-215.9 215.9-215.9 2.3 0 4.6-0.2 6.8-0.6v58.3c0 12.3 14 19.4 23.9 12.1l132.6-97.6c8.1-6 8.1-18.2 0-24.2l-132.6-97.6c-9.9-7.3-23.9-0.2-23.9 12.1v58.1c-2.2-0.4-4.5-0.6-6.8-0.6-39.8 0-78.5 7.9-115 23.4-35.2 15-66.8 36.3-94 63.5s-48.6 58.8-63.5 94c-15.5 36.5-23.4 75.2-23.4 115s7.9 78.5 23.4 115c15 35.2 36.3 66.8 63.5 94s58.8 48.6 94 63.5c36.5 15.5 75.2 23.4 115 23.4 22.1 0 40-17.9 40-40s-17.9-40-40-40z m576.7-330.9c-15-35.2-36.3-66.8-63.5-94s-58.8-48.6-94-63.5c-36.5-15.5-75.2-23.4-115-23.4-22.1 0-40 17.9-40 40s17.9 40 40 40c119.1 0 215.9 96.9 215.9 215.9 0 119.1-96.9 215.9-215.9 215.9-4.1 0-8.1 0.6-11.8 1.8v-60.8c0-12.3-14-19.4-23.9-12.1l-132.6 97.6c-8.1 6-8.1 18.2 0 24.2L629.9 876c9.9 7.3 23.9 0.2 23.9-12.1V806c3.7 1.2 7.7 1.8 11.8 1.8 39.8 0 78.5-7.9 115-23.4 35.2-15 66.8-36.3 94-63.5s48.6-58.8 63.5-94c15.5-36.5 23.4-75.2 23.4-115s-7.8-78.5-23.3-115z"
+                                p-id="2762"
+                                fill="black"></path></svg
+                        >
+
+                        <!-- 随机播放 -->
+                        <svg
+                            data-hidden="true"
+                            class="svg-size hidden:hidden"
+                            xmlns="http://www.w3.org/2000/svg"
+                            xmlns:xlink="http://www.w3.org/1999/xlink"
+                            viewBox="0 0 1024 1024"
+                            ><path
+                                d="M682.48 297.633333L332.666667 752.386667A149.333333 149.333333 0 0 1 214.306667 810.666667H64a21.333333 21.333333 0 0 1 0-42.666667h150.306667a107.333333 107.333333 0 0 0 84.546666-41.633333L648.666667 271.613333A149.333333 149.333333 0 0 1 767.026667 213.333333h141.473333l-48.92-48.913333a21.333333 21.333333 0 0 1 30.173333-30.173333l85.333334 85.333333a21.333333 21.333333 0 0 1 0 30.173333l-85.333334 85.333334a21.333333 21.333333 0 0 1-30.173333-30.173334l48.92-48.913333h-141.473333a107.333333 107.333333 0 0 0-84.546667 41.633333zM64 256h150.306667a107.333333 107.333333 0 0 1 84.546666 41.633333l109.26 142.04a21.333333 21.333333 0 0 0 33.82-26L332.666667 271.613333A149.333333 149.333333 0 0 0 214.306667 213.333333H64a21.333333 21.333333 0 0 0 0 42.666667z m825.753333 432.913333a21.333333 21.333333 0 0 0-30.173333 30.173334l48.92 48.913333h-141.473333a107.333333 107.333333 0 0 1-84.546667-41.633333L573.22 584.326667a21.333333 21.333333 0 0 0-33.82 26L648.666667 752.386667a149.333333 149.333333 0 0 0 118.36 58.28h141.473333l-48.92 48.913333a21.333333 21.333333 0 0 0 30.173333 30.173333l85.333334-85.333333a21.333333 21.333333 0 0 0 0-30.173333z"
+                                fill="black"
+                                p-id="3745"></path></svg
+                        >
+                    </div>
+
+                    <!-- 播放列表 -->
+                    <svg
+                        class="svg-size"
+                        xmlns="http://www.w3.org/2000/svg"
+                        xmlns:xlink="http://www.w3.org/1999/xlink"
+                        viewBox="0 0 1024 1024"
+                        ><path
+                            d="M736 352a32 32 0 0 1 31.264 25.088c4.384 18.816 9.792 32.256 15.232 39.712l2.336 3.008c0.8 0.896 1.088 1.024 1.28 1.024 46.624 0 65.76 39.68 65.088 101.024a32 32 0 0 1-64-0.704c0.192-16.32-1.344-28.16-3.776-34.944l-0.608-1.504-1.92-0.032a65.088 65.088 0 0 1-12.896-2.24V736c0 57.824-66.816 96-144 96S480 793.824 480 736s66.816-96 144-96c29.184 0 56.864 5.44 80.032 15.36L704 384.704c0-1.408 0.032-2.816 0.192-4.224L704 384a32 32 0 0 1 32-32zM416 704a32 32 0 0 1 0 64H224a32 32 0 0 1 0-64h192z m208 0c-46.528 0-80 19.136-80 32s33.472 32 80 32 80-19.136 80-32-33.472-32-80-32zM544 448a32 32 0 0 1 0 64H224a32 32 0 0 1 0-64h320z m256-256a32 32 0 0 1 0 64H224a32 32 0 1 1 0-64h576z"
+                            fill="black"
+                            p-id="13503"></path></svg
+                    >
+                </div>
+
+                <!-- 播放进度 -->
+                <div
+                    data-ui="audio-play-time"
+                    class="w-0 h-0 unfold:w-35 unfold:h-10 transition-all duration-1000 ease-in-out overflow-hidden"
+                >
+                    <input
+                        data-ui="playback-bar"
+                        type="range"
+                        class=""
+                        value="0"
+                    />
+                    <!-- 字体显示播放进度 -->
+                    <div
+                        data-ui="play-progress-text"
+                        class="text-[12px] leading-3 text-center truncate"
+                    >
+                        0:00 / 3:19
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
     <!-- 侧边折叠栏 -->
-    <div class="aside-folder">
+    <div
+        data-ui="aside-folder"
+        class="w-5 h-25 bg-[#faf8f8] flex justify-center items-center border border-[#ccc] border-solid overflow-hidden rounded-r-[5px]"
+    >
         <svg
-            class="audio-aside-svg"
+            data-ui="audio-aside-svg"
+            class="h-7.5 w-7.5 font-[1000] fill-[#ccc] transition-all duration-1000 ease-linear"
             xmlns="http://www.w3.org/2000/svg"
             xmlns:xlink="http://www.w3.org/1999/xlink"
             viewBox="360 180 360 700"
             ><path
+                class="w-6.25 h-7.5"
                 d="M383.291616 808.954249c-5.175883 0-10.353812-1.950422-14.338566-5.862521-8.064676-7.919367-8.182356-20.877493-0.26299-28.942169l273.602402-278.620695L368.69006 216.907145c-7.919367-8.064676-7.801686-21.022803 0.26299-28.942169 8.065699-7.918343 21.022803-7.80271 28.942169 0.26299l287.685141 292.960285c7.818059 7.961322 7.818059 20.717857 0 28.67918L397.895219 802.826692C393.887952 806.907637 388.591319 808.954249 383.291616 808.954249z"
                 p-id="1579"></path></svg
         >
@@ -144,179 +347,389 @@ import aipai from "../audios/aipaidancehall.mp3";
 </div>
 
 <script>
-    const audio_aside_bar_el: HTMLElement = document.getElementsByClassName(
-        "audio-aside-svg",
-    )[0] as HTMLElement;
-    const aside_folder: HTMLElement = document.getElementsByClassName(
-        "aside-folder",
-    )[0] as HTMLElement;
-    const audio_container: HTMLElement = document.getElementsByClassName(
-        "audio-aside-container",
-    )[0] as HTMLElement;
-    const audio_player_btn_container = document.getElementsByClassName(
-        "audio-player-btn-container",
-    )[0] as HTMLElement;
+    // 获取到侧边栏的整体元素
+    const aside_container: HTMLElement = document.querySelector(
+        '[data-ui="aside-container"]',
+    ) as HTMLElement;
+
+    // 获取到播放面板和详细信息面板
+    const unfold_area: HTMLElement = document.querySelector(
+        '[data-ui="unfold-area"]',
+    ) as HTMLElement;
+
+    // 获取歌词以及详细信息面板
+    const audio_detail_info_pane: HTMLElement = aside_container.querySelector(
+        '[data-ui="audio-detail-info-display-container"]',
+    ) as HTMLElement;
+
+    // 获取到封面
+    const larger_cover: HTMLElement = audio_detail_info_pane.querySelector(
+        '[data-ui="larger-cover-display"]',
+    ) as HTMLElement;
+
+    // 获取到隐藏的音乐控件
+    const audio_entity: HTMLAudioElement = document.querySelector(
+        '[data-audio="hidden"]',
+    ) as HTMLAudioElement;
+
+    // 获取到播放音乐功能面板容器
+    const audio_container: HTMLElement = aside_container.querySelector(
+        '[data-ui="audio-aside-container"]',
+    ) as HTMLElement;
+
+    // 获取到封面容器
+    const cover_image_container: HTMLElement = audio_container.querySelector(
+        '[data-ui="audio-cover-image-container"]',
+    ) as HTMLElement;
+    
+
+    // 获取到侧边折叠栏展开隐藏控件
+    const aside_folder: HTMLElement = aside_container.querySelector(
+        '[data-ui="aside-folder"]',
+    ) as HTMLElement;
+
+    // 获取到侧边折叠栏展开隐藏控件当中的svg
+    const audio_aside_bar_el: HTMLElement = aside_folder.querySelector(
+        '[data-ui="audio-aside-svg"]',
+    ) as HTMLElement;
+
+    // 获取到播放和暂停交替的按钮容器
+    const audio_player_btn_container = audio_container.querySelector(
+        '[data-ui="audio-player-btn-container"]',
+    ) as HTMLElement;
+
+    // 获取到播放按钮和暂停按钮
     const audio_player_btns =
-        document.getElementsByClassName("audio-player-svg");
-    const cover_image: HTMLElement = document.getElementsByClassName(
-        "audio-cover-image",
-    )[0] as HTMLElement;
-    const audio_entity: HTMLAudioElement = document.getElementsByClassName(
-        "hidden-audio-entity",
-    )[0] as HTMLAudioElement;
+        audio_player_btn_container.querySelectorAll<HTMLElement>("svg");
+
+    // 获取播放模式按钮容器
+    const audio_play_mode_container: HTMLElement =
+        audio_container.querySelector(
+            '[data-ui="audio-play-mode-container"]',
+        ) as HTMLElement;
+
+    // 获取到播放模式按钮的list
+    const audio_play_mode_list =
+        audio_play_mode_container.querySelectorAll<HTMLElement>("svg");
+
+    // 获取到封面
+    const cover_image: HTMLElement = audio_container.querySelector(
+        '[data-ui="audio-cover-image"]',
+    ) as HTMLElement;
+
     // 音量键
-    const volume_container: HTMLAudioElement = document.getElementsByClassName(
-        "volume-button-container",
-    )[0] as HTMLAudioElement;
+    const volume_container: HTMLAudioElement = audio_container.querySelector(
+        '[data-ui="volume-button-container"]',
+    ) as HTMLAudioElement;
+
     // 静音和音量图标
-    const volume_button_list = document.getElementsByClassName(
-        "volume-button",
+    const volume_button_list = volume_container.querySelectorAll<HTMLElement>(
+        '[data-ui="volume-button"]',
     );
 
-    // 添加按钮监听
-    aside_folder.addEventListener("click", () => {
-        if (!audio_aside_bar_el.style.transform) {
-            audio_aside_bar_el.style.transform = "rotateZ(-180deg)";
+    // 音量调节
+    const volume_slider: HTMLInputElement = audio_container.querySelector(
+        '[data-ui="audio-volume-slider"]',
+    ) as HTMLInputElement;
 
-            audio_container.classList.add("audio-aside-container--unfolded");
+    // 获取到音量字体
+    const volume_font: HTMLElement = audio_container.querySelector(
+        '[data-ui="digital-volume-display"]',
+    ) as HTMLElement;
+
+    // 获取到播放条
+    const playback_bar: HTMLInputElement = audio_container.querySelector(
+        '[data-ui="playback-bar"]',
+    ) as HTMLInputElement;
+
+    // 获取到播放条文字
+    const play_progress_text: HTMLElement = audio_container.querySelector(
+        '[data-ui="play-progress-text"]',
+    ) as HTMLElement;
+
+    // 获取音乐条
+    const volume_control_bar: HTMLElement = audio_container.querySelector(
+        '[data-ui="volume-control-bar"]',
+    ) as HTMLElement;
+
+    // 定义两个变量
+    // 如果鼠标移出去就设置为false
+    let isInVolumeContainer = false;
+    let isInVolumeAdjustBar = false;
+
+    // 悬停展开
+    volume_container.addEventListener("mouseenter", () => {
+        volume_control_bar.dataset.hidden = "false";
+        isInVolumeContainer = true;
+    });
+
+    // 移出检测
+    volume_container.addEventListener("mouseleave", () => {
+        isInVolumeContainer = false;
+        // 如果0.2s内没进去另一个，就关闭
+        setTimeout(() => {
+            if (!isInVolumeAdjustBar) {
+                volume_control_bar.dataset.hidden = "true";
+            }
+        }, 200);
+    });
+
+    // 悬停展开
+    volume_control_bar.addEventListener("mouseenter", () => {
+        volume_control_bar.dataset.hidden = "false";
+        isInVolumeAdjustBar = true;
+    });
+
+    // 移出检测
+    volume_control_bar.addEventListener("mouseleave", () => {
+        isInVolumeAdjustBar = false;
+        // 如果0.2s内没进去另一个，就关闭
+        setTimeout(() => {
+            if (!isInVolumeContainer) {
+                volume_control_bar.dataset.hidden = "true";
+            }
+        }, 200);
+    });
+
+    // 添加按钮监听展开
+    aside_folder.addEventListener("click", () => {
+        if (!audio_aside_bar_el.classList.contains("rotate-[-180deg]")) {
+            audio_aside_bar_el.classList.add("rotate-[-180deg]");
+
+            aside_container.dataset.unfold = "true";
         } else {
-            audio_container.classList.remove("audio-aside-container--unfolded");
-            audio_aside_bar_el.style.removeProperty("transform");
+            aside_container.dataset.unfold = "false";
+            audio_aside_bar_el.classList.remove("rotate-[-180deg]");
         }
     });
 
-    // 播放等操作
-    audio_player_btn_container.addEventListener("click", () => {
-        audio_player_btns[0].classList.toggle("audio-player-svg--disabled");
-        audio_player_btns[1].classList.toggle("audio-player-svg--disabled");
-        cover_image.classList.toggle("audio-cover-image--rotate");
-        if (audio_entity.paused) {
-            audio_entity.play();
-        } else {
-            audio_entity.pause();
-        }
+    let origin_volume = 50;
+    let picked_play_time = 0;
+    let total_played_time = 0; // audio_entity.duration
+    let total_played_time_by_min: String = " "; // Math.floor(total_played_time / 60000).toString() + ((total_played_time % 60000) / 1000).toFixed(2)
+
+    function getPlayTimeProgressText(
+        currentPlayedTime: number,
+        totalPlayedTime: number,
+    ): string {
+        return (
+            Math.floor(currentPlayedTime / 60).toString() +
+            ":" +
+            ("0" + Math.floor(currentPlayedTime % 60)).slice(-2) +
+            " / " +
+            total_played_time_by_min
+        );
+    }
+
+    // 等待音频加载完毕再获取
+    audio_entity.addEventListener("loadedmetadata", () => {
+        // 加载完毕后才能注册对应的事件和变量
+        total_played_time = audio_entity.duration;
+        total_played_time_by_min =
+            Math.floor(total_played_time / 60).toString() +
+            ":" +
+            (total_played_time % 60).toFixed(0);
+
+        // 动态修改数值
+        audio_entity.addEventListener("timeupdate", () => {
+            picked_play_time = audio_entity.currentTime;
+            // 记录的时间
+            play_progress_text.innerText = getPlayTimeProgressText(
+                picked_play_time,
+                total_played_time,
+            );
+
+            // 调整滑动条的显示
+            playback_bar.value = (
+                (picked_play_time / total_played_time) *
+                100
+            ).toString();
+        });
+        // 注册歌曲进度时间
+        // 歌曲进度滑动
+        playback_bar.addEventListener("input", (e: HTMLInputElement | any) => {
+            // 只改变当前时间戳和记录的值
+            const current_time = (e.target.value / 100) * total_played_time;
+
+            // 改变进度
+            audio_entity.currentTime = current_time;
+
+            // 记录的时间
+            play_progress_text.innerText = getPlayTimeProgressText(
+                current_time,
+                total_played_time,
+            );
+        });
+
+        // 同时准许播放
+        // 播放等操作
+        audio_player_btn_container.addEventListener("click", () => {
+            if (audio_entity.paused) {
+                audio_player_btns[0].dataset.hidden = "true";
+                audio_player_btns[1].dataset.hidden = "false";
+                audio_entity.play();
+                cover_image.dataset.rotate = "true";
+            } else {
+                audio_player_btns[0].dataset.hidden = "false";
+                audio_player_btns[1].dataset.hidden = "true";
+                audio_entity.pause();
+                cover_image.dataset.rotate = "false";
+            }
+        });
+
+        // 滑动
+        volume_slider.addEventListener("input", (e: HTMLInputElement | any) => {
+            const volume_value = Number(e.target.value) / 100;
+
+            // 调整音量
+            audio_entity.volume = volume_value;
+
+            origin_volume = volume_value * 100;
+
+            // 改变数值
+            volume_font.innerText = (volume_value * 100).toFixed(0) + "%";
+
+            // 检测是否为0，为0则需要换图标
+            if (e.target.value === "0") {
+                volume_button_list[0].dataset.hidden = "true";
+                volume_button_list[1].dataset.hidden = "false";
+            } else {
+                volume_button_list[0].dataset.hidden = "false";
+                volume_button_list[1].dataset.hidden = "true";
+            }
+        });
     });
 
     // 调整音量等
-    volume_container.addEventListener("click", ()=> {
-        volume_button_list[0].classList.toggle("volume-button--hidden")
-        volume_button_list[1].classList.toggle("volume-button--hidden")
-        audio_entity.muted = !audio_entity.muted    
-    })
+    volume_container.addEventListener("click", () => {
+        audio_entity.muted = !audio_entity.muted;
+        if (volume_button_list[0].dataset.hidden === "true") {
+            // 音量键为hidden，那么此时就是静音
+            volume_button_list[0].dataset.hidden = "false";
+            volume_button_list[1].dataset.hidden = "true";
+
+            // 赋值
+            volume_slider.value = origin_volume.toString();
+            audio_entity.volume = origin_volume / 100;
+            volume_font.innerText = origin_volume + "%";
+            // 音量调节
+        } else {
+            volume_button_list[0].dataset.hidden = "true";
+            volume_button_list[1].dataset.hidden = "false";
+
+            // 记录下当前音量
+
+            origin_volume = Number(volume_slider.value);
+            volume_slider.value = "0";
+            audio_entity.volume = 0;
+            volume_font.innerText = 0 + "%";
+        }
+    });
+
+    let playMode: String = "wholeOnce";
+    // 调整播放模式
+    // 顺序->单曲循环->列表循环->随机播放
+    audio_play_mode_container.addEventListener("click", () => {
+        if (playMode === "wholeOnce") {
+            playMode = "singleCircle";
+            audio_play_mode_list[0].dataset.hidden = "true";
+            audio_play_mode_list[1].dataset.hidden = "false";
+            audio_entity.loop;
+        } else if (playMode === "singleCircle") {
+            playMode = "wholeCircle";
+            audio_play_mode_list[1].dataset.hidden = "true";
+            audio_play_mode_list[2].dataset.hidden = "false";
+        } else if (playMode === "wholeCircle") {
+            playMode = "random";
+            audio_play_mode_list[2].dataset.hidden = "true";
+            audio_play_mode_list[3].dataset.hidden = "false";
+        } else {
+            playMode = "wholeOnce";
+            audio_play_mode_list[3].dataset.hidden = "true";
+            audio_play_mode_list[0].dataset.hidden = "false";
+        }
+    });
+
+    // 歌曲播放开始转动
+    // 按钮也要调整
+    audio_entity.addEventListener("play", () => {
+        cover_image.dataset.rotate = "true";
+        audio_player_btns[0].dataset.hidden = "true";
+        audio_player_btns[1].dataset.hidden = "false";
+    });
+
+    // 歌曲暂停封面停止转动
+    audio_entity.addEventListener("pause", () => {
+        cover_image.dataset.rotate = "false";
+        audio_player_btns[0].dataset.hidden = "false";
+        audio_player_btns[1].dataset.hidden = "true";
+    });
+
+    let detail_info_panel_height = 0;
+    let cover_size = 0;
+    let larger_cover_size = 0;
+    let origin_cover_container_height = 0;
+    let scale_ratio: string = "";
+    let translateY = "";
+    let translateX = "";
+    let detail_info_panel_width = 0;
+    // 点击封面出现歌词等
+    cover_image.addEventListener("click", () => {
+        if (audio_detail_info_pane.dataset.hidden === "false") {
+            audio_detail_info_pane.dataset.hidden = "true";
+            unfold_area.dataset.covermove = "false";
+            // 边框加上
+            audio_container.classList.add("unfold:rounded-tl-[5px]");
+
+            // 移除transform
+            cover_image_container.style.transform = `translateY(0) translateX(0) scale(1)`;
+
+            // 移除absolute
+            cover_image_container.classList.remove('absolute')
+        } else {
+            audio_detail_info_pane.dataset.hidden = "false";
+            // 设置状态
+            unfold_area.dataset.covermove = "true";
+
+            // 获取到大小
+            larger_cover_size = larger_cover.clientWidth;
+
+            // 获取到原封面大小
+            cover_size = cover_image.clientHeight;
+
+            // 边框取消
+            audio_container.classList.remove("unfold:rounded-tl-[5px]");
+
+            // 得到父容器的大小
+            origin_cover_container_height = audio_container.clientHeight;
+
+            // 得到
+            scale_ratio =
+                ((larger_cover_size / cover_size) * 100).toFixed(2) + "%";
+
+            // 得到详细面板大小：
+            detail_info_panel_height = 320;
+            detail_info_panel_width = 400;
+
+            translateX =
+                (
+                    detail_info_panel_width / 4 -
+                    15 -
+                    cover_size / 2 -
+                    0.667 * 2
+                ).toString() + "px";
+            translateY =
+                (
+                    -(
+                        origin_cover_container_height + detail_info_panel_height
+                    ) * 0.5
+                ).toString() + "px";
+
+            // 移动cover（的容器）
+            cover_image_container.style.transform = `translateY(${translateY}) translateX(${translateX}) scale(${scale_ratio})`;
+
+            // 并且设置为absolute
+            cover_image_container.classList.add('absolute')
+        }
+    });
 </script>
-
-<style lang="scss">
-    @keyframes cover_images_rotate {
-        0% {
-            transform: rotate(0deg);
-        }
-        100% {
-            transform: rotate(360deg);
-        }
-    }
-    .aside-container {
-        display: flex;
-        width: fit-content;
-        border: 1px solid #ccc;
-
-        .audio-aside-container {
-            box-sizing: border-box;
-            width: 0px;
-            height: 100px;
-            padding: 0px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            overflow: hidden;
-            background: rgba(255, 255, 255, 0.55);
-            transition: all 1s ease-in-out;
-            backdrop-filter: blur(14px) saturate(120%);
-            .audio-cover-image {
-                animation: cover_images_rotate 6s linear infinite forwards;
-                animation-play-state: paused;
-            }
-            .audio-cover-image--rotate {
-                animation-play-state: running;
-            }
-
-            .audio-entity-panel-container {
-                width: 100px;
-                display: flex;
-                align-items: center;
-                justify-content: space-between;
-                overflow: hidden;
-                // background-color: #fff;
-                transition: all 1s ease-in-out;
-                .audio_panel_icon {
-                    width: 15px;
-                    height: 15px;
-
-                    path {
-                        fill: black;
-                    }
-                }
-                .volume-button-container {
-                    width: 15px;
-                    height: 15px;
-                    display: flex;
-                    position: relative;
-                     
-                    .volume-button {
-                        position: absolute;
-                    }
-                    .volume-button--hidden {
-                        display: none;
-                    }
-                }
-                .audio-player-btn-container {
-                    position: relative;
-                    overflow: hidden;
-                    min-width: 0px;
-                    min-height: 0px;
-                    width: 19px;
-                    height: 19px;
-
-                    &:hover {
-                        transform: scale(1.2);
-                    }
-
-                    .audio-player-svg {
-                        position: absolute;
-                        top: 2px;
-                        left: 2px;
-                    }
-                    .audio-player-svg--disabled {
-                        display: none;
-                    }
-                }
-            }
-        }
-        .audio-aside-container--unfolded {
-            padding: 15px;
-            width: 300px;
-        }
-
-        .aside-folder {
-            width: 20px;
-            height: 100px;
-            background-color: #faf8f8;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            border: 1px solid #ccc;
-            overflow: hidden;
-        }
-
-        .audio-aside-svg {
-            height: 30px;
-            width: 30px;
-            font-weight: 1000;
-            fill: #ccc;
-            path {
-                width: 25px;
-                height: 30px;
-            }
-            transition: all 1s linear;
-        }
-    }
-</style>

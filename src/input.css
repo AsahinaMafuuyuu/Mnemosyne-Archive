@@ -1,0 +1,37 @@
+@import "tailwindcss";
+
+/* 关键：让 Tailwind 扫描 Astro 文件 */
+@source "./**/*.{astro,html,js,ts,jsx,tsx,vue,md,mdx}";
+
+@custom-variant unfold (&:where([data-unfold="true"] &));
+
+@custom-variant rotate (&:where(&[data-rotate="true"]));
+
+@custom-variant hidden (&:where(&[data-hidden="true"]));
+
+@custom-variant covermove (&:where([data-covermove="true"] &));
+
+@theme {
+    /* 定义动画token，到时候直接调用cover-rotate即可 */
+    --animate-cover-rotate: cover-images-rotate 6s linear infinite forwards;
+
+    /* 定义keyframes */
+    @keyframes cover-images-rotate {
+        0% {
+            transform: rotate(0deg);
+        }
+
+        100% {
+            transform: rotate(360deg);
+        }
+    }
+}
+
+@layer base, components, utilities;
+
+@layer components {
+    .svg-size {
+        @apply w-3.75 h-3.75
+    }
+}
+

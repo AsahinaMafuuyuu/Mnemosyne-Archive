@@ -3,6 +3,10 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import Greeting from "../components/Greeting";
 import AudioPlayerAside from "../components/AudioPlayerAside.astro";
 import Luna from "../images/luna.jpg";
+// import "../styles/normalize.css"
+import '../styles/global.css'
+import "../output.css"
+
 const pageTitle = "愛包ダンスホール";
 ---
 
@@ -24,7 +28,7 @@ const pageTitle = "愛包ダンスホール";
   }
   .all-body-container {
     height: 100vh;
-    background-image: var(--lunaUrl);
+    /* background-image: var(--lunaUrl); */
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
