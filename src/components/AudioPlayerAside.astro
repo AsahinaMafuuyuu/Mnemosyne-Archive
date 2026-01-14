@@ -45,7 +45,7 @@ import "../output.css";
         <!-- 播放音乐功能面板容器 -->
         <div
             data-ui="audio-aside-container"
-            class="relative unfold:p-3.75 unfold:w-100 
+            class="relative unfold:p-3.75 unfold:w-100
         box-border w-0 h-25 p-0 flex items-center justify-between
         bg-[rgba(255,255,255,0.55)]
         transition-all duration-1000 ease-in-out
@@ -55,7 +55,7 @@ import "../output.css";
         border-b border-b-[#ccc] border-b-solid
         unfold:rounded-tl-[5px] unfold:rounded-bl-[5px]"
         >
-        <!-- 移动的话移动容器 -->
+            <!-- 移动的话移动容器 -->
             <div
                 data-ui="audio-cover-image-container"
                 class="w-0 h-0 rounded-[50%] transition-all duration-1000 ease-in-out
@@ -381,7 +381,6 @@ import "../output.css";
     const cover_image_container: HTMLElement = audio_container.querySelector(
         '[data-ui="audio-cover-image-container"]',
     ) as HTMLElement;
-    
 
     // 获取到侧边折叠栏展开隐藏控件
     const aside_folder: HTMLElement = aside_container.querySelector(
@@ -462,6 +461,7 @@ import "../output.css";
         volume_control_bar.dataset.hidden = "false";
         isInVolumeContainer = true;
     });
+    
 
     // 移出检测
     volume_container.addEventListener("mouseleave", () => {
@@ -523,6 +523,7 @@ import "../output.css";
 
     // 等待音频加载完毕再获取
     audio_entity.addEventListener("loadedmetadata", () => {
+        console.log("audio_entity.duration: ",audio_entity.duration)
         // 加载完毕后才能注册对应的事件和变量
         total_played_time = audio_entity.duration;
         total_played_time_by_min =
@@ -598,6 +599,18 @@ import "../output.css";
                 volume_button_list[1].dataset.hidden = "true";
             }
         });
+    });
+
+    // 添加监听
+    audio_entity.addEventListener("error", () => {
+        const err = audio_entity.error;
+        console.error("Audio load error:", err);
+
+        // MediaError code:
+        // 1 = MEDIA_ERR_ABORTED
+        // 2 = MEDIA_ERR_NETWORK
+        // 3 = MEDIA_ERR_DECODE
+        // 4 = MEDIA_ERR_SRC_NOT_SUPPORTED
     });
 
     // 调整音量等
@@ -685,7 +698,7 @@ import "../output.css";
             cover_image_container.style.transform = `translateY(0) translateX(0) scale(1)`;
 
             // 移除absolute
-            cover_image_container.classList.remove('absolute')
+            cover_image_container.classList.remove("absolute");
         } else {
             audio_detail_info_pane.dataset.hidden = "false";
             // 设置状态
@@ -729,7 +742,7 @@ import "../output.css";
             cover_image_container.style.transform = `translateY(${translateY}) translateX(${translateX}) scale(${scale_ratio})`;
 
             // 并且设置为absolute
-            cover_image_container.classList.add('absolute')
+            cover_image_container.classList.add("absolute");
         }
     });
 </script>
