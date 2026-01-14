@@ -45,7 +45,7 @@ import "../output.css";
         <!-- 播放音乐功能面板容器 -->
         <div
             data-ui="audio-aside-container"
-            class="relative unfold:p-3.75 unfold:w-100 
+            class="relative unfold:p-3.75 unfold:w-100
         box-border w-0 h-25 p-0 flex items-center justify-between
         bg-[rgba(255,255,255,0.55)]
         transition-all duration-1000 ease-in-out
@@ -55,7 +55,7 @@ import "../output.css";
         border-b border-b-[#ccc] border-b-solid
         unfold:rounded-tl-[5px] unfold:rounded-bl-[5px]"
         >
-        <!-- 移动的话移动容器 -->
+            <!-- 移动的话移动容器 -->
             <div
                 data-ui="audio-cover-image-container"
                 class="w-0 h-0 rounded-[50%] transition-all duration-1000 ease-in-out
@@ -381,7 +381,6 @@ import "../output.css";
     const cover_image_container: HTMLElement = audio_container.querySelector(
         '[data-ui="audio-cover-image-container"]',
     ) as HTMLElement;
-    
 
     // 获取到侧边折叠栏展开隐藏控件
     const aside_folder: HTMLElement = aside_container.querySelector(
@@ -457,72 +456,77 @@ import "../output.css";
     let isInVolumeContainer = false;
     let isInVolumeAdjustBar = false;
 
-    // 悬停展开
-    volume_container.addEventListener("mouseenter", () => {
-        volume_control_bar.dataset.hidden = "false";
-        isInVolumeContainer = true;
-    });
-
-    // 移出检测
-    volume_container.addEventListener("mouseleave", () => {
-        isInVolumeContainer = false;
-        // 如果0.2s内没进去另一个，就关闭
-        setTimeout(() => {
-            if (!isInVolumeAdjustBar) {
-                volume_control_bar.dataset.hidden = "true";
-            }
-        }, 200);
-    });
-
-    // 悬停展开
-    volume_control_bar.addEventListener("mouseenter", () => {
-        volume_control_bar.dataset.hidden = "false";
-        isInVolumeAdjustBar = true;
-    });
-
-    // 移出检测
-    volume_control_bar.addEventListener("mouseleave", () => {
-        isInVolumeAdjustBar = false;
-        // 如果0.2s内没进去另一个，就关闭
-        setTimeout(() => {
-            if (!isInVolumeContainer) {
-                volume_control_bar.dataset.hidden = "true";
-            }
-        }, 200);
-    });
-
-    // 添加按钮监听展开
-    aside_folder.addEventListener("click", () => {
-        if (!audio_aside_bar_el.classList.contains("rotate-[-180deg]")) {
-            audio_aside_bar_el.classList.add("rotate-[-180deg]");
-
-            aside_container.dataset.unfold = "true";
-        } else {
-            aside_container.dataset.unfold = "false";
-            audio_aside_bar_el.classList.remove("rotate-[-180deg]");
-        }
-    });
-
-    let origin_volume = 50;
-    let picked_play_time = 0;
-    let total_played_time = 0; // audio_entity.duration
-    let total_played_time_by_min: String = " "; // Math.floor(total_played_time / 60000).toString() + ((total_played_time % 60000) / 1000).toFixed(2)
-
-    function getPlayTimeProgressText(
-        currentPlayedTime: number,
-        totalPlayedTime: number,
-    ): string {
-        return (
-            Math.floor(currentPlayedTime / 60).toString() +
-            ":" +
-            ("0" + Math.floor(currentPlayedTime % 60)).slice(-2) +
-            " / " +
-            total_played_time_by_min
-        );
-    }
+    /////////////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////////////////////////
+    // 事件监听
 
     // 等待音频加载完毕再获取
     audio_entity.addEventListener("loadedmetadata", () => {
+        // 悬停展开
+        volume_container.addEventListener("mouseenter", () => {
+            volume_control_bar.dataset.hidden = "false";
+            isInVolumeContainer = true;
+        });
+
+        // 移出检测
+        volume_container.addEventListener("mouseleave", () => {
+            isInVolumeContainer = false;
+            // 如果0.2s内没进去另一个，就关闭
+            setTimeout(() => {
+                if (!isInVolumeAdjustBar) {
+                    volume_control_bar.dataset.hidden = "true";
+                }
+            }, 200);
+        });
+
+        // 悬停展开
+        volume_control_bar.addEventListener("mouseenter", () => {
+            volume_control_bar.dataset.hidden = "false";
+            isInVolumeAdjustBar = true;
+        });
+
+        // 移出检测
+        volume_control_bar.addEventListener("mouseleave", () => {
+            isInVolumeAdjustBar = false;
+            // 如果0.2s内没进去另一个，就关闭
+            setTimeout(() => {
+                if (!isInVolumeContainer) {
+                    volume_control_bar.dataset.hidden = "true";
+                }
+            }, 200);
+        });
+
+        // 添加按钮监听展开
+        aside_folder.addEventListener("click", () => {
+            if (!audio_aside_bar_el.classList.contains("rotate-[-180deg]")) {
+                audio_aside_bar_el.classList.add("rotate-[-180deg]");
+
+                aside_container.dataset.unfold = "true";
+            } else {
+                aside_container.dataset.unfold = "false";
+                audio_aside_bar_el.classList.remove("rotate-[-180deg]");
+            }
+        });
+
+        let origin_volume = 50;
+        let picked_play_time = 0;
+        let total_played_time = 0; // audio_entity.duration
+        let total_played_time_by_min: String = " "; // Math.floor(total_played_time / 60000).toString() + ((total_played_time % 60000) / 1000).toFixed(2)
+
+        function getPlayTimeProgressText(
+            currentPlayedTime: number,
+            totalPlayedTime: number,
+        ): string {
+            return (
+                Math.floor(currentPlayedTime / 60).toString() +
+                ":" +
+                ("0" + Math.floor(currentPlayedTime % 60)).slice(-2) +
+                " / " +
+                total_played_time_by_min
+            );
+        }
+
         // 加载完毕后才能注册对应的事件和变量
         total_played_time = audio_entity.duration;
         total_played_time_by_min =
@@ -598,138 +602,139 @@ import "../output.css";
                 volume_button_list[1].dataset.hidden = "true";
             }
         });
-    });
 
-    // 调整音量等
-    volume_container.addEventListener("click", () => {
-        audio_entity.muted = !audio_entity.muted;
-        if (volume_button_list[0].dataset.hidden === "true") {
-            // 音量键为hidden，那么此时就是静音
-            volume_button_list[0].dataset.hidden = "false";
-            volume_button_list[1].dataset.hidden = "true";
+        // 调整音量等
+        volume_container.addEventListener("click", () => {
+            audio_entity.muted = !audio_entity.muted;
+            if (volume_button_list[0].dataset.hidden === "true") {
+                // 音量键为hidden，那么此时就是静音
+                volume_button_list[0].dataset.hidden = "false";
+                volume_button_list[1].dataset.hidden = "true";
 
-            // 赋值
-            volume_slider.value = origin_volume.toString();
-            audio_entity.volume = origin_volume / 100;
-            volume_font.innerText = origin_volume + "%";
-            // 音量调节
-        } else {
-            volume_button_list[0].dataset.hidden = "true";
-            volume_button_list[1].dataset.hidden = "false";
+                // 赋值
+                volume_slider.value = origin_volume.toString();
+                audio_entity.volume = origin_volume / 100;
+                volume_font.innerText = origin_volume + "%";
+                // 音量调节
+            } else {
+                volume_button_list[0].dataset.hidden = "true";
+                volume_button_list[1].dataset.hidden = "false";
 
-            // 记录下当前音量
+                // 记录下当前音量
 
-            origin_volume = Number(volume_slider.value);
-            volume_slider.value = "0";
-            audio_entity.volume = 0;
-            volume_font.innerText = 0 + "%";
-        }
-    });
+                origin_volume = Number(volume_slider.value);
+                volume_slider.value = "0";
+                audio_entity.volume = 0;
+                volume_font.innerText = 0 + "%";
+            }
+        });
 
-    let playMode: String = "wholeOnce";
-    // 调整播放模式
-    // 顺序->单曲循环->列表循环->随机播放
-    audio_play_mode_container.addEventListener("click", () => {
-        if (playMode === "wholeOnce") {
-            playMode = "singleCircle";
-            audio_play_mode_list[0].dataset.hidden = "true";
-            audio_play_mode_list[1].dataset.hidden = "false";
-            audio_entity.loop;
-        } else if (playMode === "singleCircle") {
-            playMode = "wholeCircle";
-            audio_play_mode_list[1].dataset.hidden = "true";
-            audio_play_mode_list[2].dataset.hidden = "false";
-        } else if (playMode === "wholeCircle") {
-            playMode = "random";
-            audio_play_mode_list[2].dataset.hidden = "true";
-            audio_play_mode_list[3].dataset.hidden = "false";
-        } else {
-            playMode = "wholeOnce";
-            audio_play_mode_list[3].dataset.hidden = "true";
-            audio_play_mode_list[0].dataset.hidden = "false";
-        }
-    });
+        let playMode: String = "wholeOnce";
+        // 调整播放模式
+        // 顺序->单曲循环->列表循环->随机播放
+        audio_play_mode_container.addEventListener("click", () => {
+            if (playMode === "wholeOnce") {
+                playMode = "singleCircle";
+                audio_play_mode_list[0].dataset.hidden = "true";
+                audio_play_mode_list[1].dataset.hidden = "false";
+                audio_entity.loop;
+            } else if (playMode === "singleCircle") {
+                playMode = "wholeCircle";
+                audio_play_mode_list[1].dataset.hidden = "true";
+                audio_play_mode_list[2].dataset.hidden = "false";
+            } else if (playMode === "wholeCircle") {
+                playMode = "random";
+                audio_play_mode_list[2].dataset.hidden = "true";
+                audio_play_mode_list[3].dataset.hidden = "false";
+            } else {
+                playMode = "wholeOnce";
+                audio_play_mode_list[3].dataset.hidden = "true";
+                audio_play_mode_list[0].dataset.hidden = "false";
+            }
+        });
 
-    // 歌曲播放开始转动
-    // 按钮也要调整
-    audio_entity.addEventListener("play", () => {
-        cover_image.dataset.rotate = "true";
-        audio_player_btns[0].dataset.hidden = "true";
-        audio_player_btns[1].dataset.hidden = "false";
-    });
+        // 歌曲播放开始转动
+        // 按钮也要调整
+        audio_entity.addEventListener("play", () => {
+            cover_image.dataset.rotate = "true";
+            audio_player_btns[0].dataset.hidden = "true";
+            audio_player_btns[1].dataset.hidden = "false";
+        });
 
-    // 歌曲暂停封面停止转动
-    audio_entity.addEventListener("pause", () => {
-        cover_image.dataset.rotate = "false";
-        audio_player_btns[0].dataset.hidden = "false";
-        audio_player_btns[1].dataset.hidden = "true";
-    });
+        // 歌曲暂停封面停止转动
+        audio_entity.addEventListener("pause", () => {
+            cover_image.dataset.rotate = "false";
+            audio_player_btns[0].dataset.hidden = "false";
+            audio_player_btns[1].dataset.hidden = "true";
+        });
 
-    let detail_info_panel_height = 0;
-    let cover_size = 0;
-    let larger_cover_size = 0;
-    let origin_cover_container_height = 0;
-    let scale_ratio: string = "";
-    let translateY = "";
-    let translateX = "";
-    let detail_info_panel_width = 0;
-    // 点击封面出现歌词等
-    cover_image.addEventListener("click", () => {
-        if (audio_detail_info_pane.dataset.hidden === "false") {
-            audio_detail_info_pane.dataset.hidden = "true";
-            unfold_area.dataset.covermove = "false";
-            // 边框加上
-            audio_container.classList.add("unfold:rounded-tl-[5px]");
+        let detail_info_panel_height = 0;
+        let cover_size = 0;
+        let larger_cover_size = 0;
+        let origin_cover_container_height = 0;
+        let scale_ratio: string = "";
+        let translateY = "";
+        let translateX = "";
+        let detail_info_panel_width = 0;
+        // 点击封面出现歌词等
+        cover_image.addEventListener("click", () => {
+            if (audio_detail_info_pane.dataset.hidden === "false") {
+                audio_detail_info_pane.dataset.hidden = "true";
+                unfold_area.dataset.covermove = "false";
+                // 边框加上
+                audio_container.classList.add("unfold:rounded-tl-[5px]");
 
-            // 移除transform
-            cover_image_container.style.transform = `translateY(0) translateX(0) scale(1)`;
+                // 移除transform
+                cover_image_container.style.transform = `translateY(0) translateX(0) scale(1)`;
 
-            // 移除absolute
-            cover_image_container.classList.remove('absolute')
-        } else {
-            audio_detail_info_pane.dataset.hidden = "false";
-            // 设置状态
-            unfold_area.dataset.covermove = "true";
+                // 移除absolute
+                cover_image_container.classList.remove("absolute");
+            } else {
+                audio_detail_info_pane.dataset.hidden = "false";
+                // 设置状态
+                unfold_area.dataset.covermove = "true";
 
-            // 获取到大小
-            larger_cover_size = larger_cover.clientWidth;
+                // 获取到大小
+                larger_cover_size = larger_cover.clientWidth;
 
-            // 获取到原封面大小
-            cover_size = cover_image.clientHeight;
+                // 获取到原封面大小
+                cover_size = cover_image.clientHeight;
 
-            // 边框取消
-            audio_container.classList.remove("unfold:rounded-tl-[5px]");
+                // 边框取消
+                audio_container.classList.remove("unfold:rounded-tl-[5px]");
 
-            // 得到父容器的大小
-            origin_cover_container_height = audio_container.clientHeight;
+                // 得到父容器的大小
+                origin_cover_container_height = audio_container.clientHeight;
 
-            // 得到
-            scale_ratio =
-                ((larger_cover_size / cover_size) * 100).toFixed(2) + "%";
+                // 得到
+                scale_ratio =
+                    ((larger_cover_size / cover_size) * 100).toFixed(2) + "%";
 
-            // 得到详细面板大小：
-            detail_info_panel_height = 320;
-            detail_info_panel_width = 400;
+                // 得到详细面板大小：
+                detail_info_panel_height = 320;
+                detail_info_panel_width = 400;
 
-            translateX =
-                (
-                    detail_info_panel_width / 4 -
-                    15 -
-                    cover_size / 2 -
-                    0.667 * 2
-                ).toString() + "px";
-            translateY =
-                (
-                    -(
-                        origin_cover_container_height + detail_info_panel_height
-                    ) * 0.5
-                ).toString() + "px";
+                translateX =
+                    (
+                        detail_info_panel_width / 4 -
+                        15 -
+                        cover_size / 2 -
+                        0.667 * 2
+                    ).toString() + "px";
+                translateY =
+                    (
+                        -(
+                            origin_cover_container_height +
+                            detail_info_panel_height
+                        ) * 0.5
+                    ).toString() + "px";
 
-            // 移动cover（的容器）
-            cover_image_container.style.transform = `translateY(${translateY}) translateX(${translateX}) scale(${scale_ratio})`;
+                // 移动cover（的容器）
+                cover_image_container.style.transform = `translateY(${translateY}) translateX(${translateX}) scale(${scale_ratio})`;
 
-            // 并且设置为absolute
-            cover_image_container.classList.add('absolute')
-        }
+                // 并且设置为absolute
+                cover_image_container.classList.add("absolute");
+            }
+        });
     });
 </script>

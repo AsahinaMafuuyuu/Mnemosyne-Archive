@@ -595,11 +595,6 @@
       translate: var(--tw-translate-x) var(--tw-translate-y);
     }
   }
-  .covermove\:hidden {
-    &:where([data-covermove="true"] &) {
-      display: none;
-    }
-  }
 }
 @layer base, components, utilities;
 @layer components {
