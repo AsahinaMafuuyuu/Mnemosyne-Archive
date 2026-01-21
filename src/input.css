@@ -3,7 +3,8 @@
 /* 关键：让 Tailwind 扫描 Astro 文件 */
 @source "./**/*.{astro,html,js,ts,jsx,tsx,vue,md,mdx}";
 
-@custom-variant unfold (&:where([data-unfold="true"] &));
+@custom-variant unfold (&:where([data-unfold="true"] &),
+    &:where(&[data-unfold="true"]));
 
 @custom-variant rotate (&:where(&[data-rotate="true"]));
 
@@ -11,9 +12,14 @@
 
 @custom-variant covermove (&:where([data-covermove="true"] &));
 
+@custom-variant titleoverflow (&:where([data-titleoverflow="true"] &));
+
+@custom-variant disabled (&:where(&[data-disabled="true"]));
+
 @theme {
     /* 定义动画token，到时候直接调用cover-rotate即可 */
     --animate-cover-rotate: cover-images-rotate 6s linear infinite forwards;
+    --animate-title-scroll: audio-title-scroll 6s linear infinite;
 
     /* 定义keyframes */
     @keyframes cover-images-rotate {
@@ -25,13 +31,119 @@
             transform: rotate(360deg);
         }
     }
+
+    @keyframes audio-title-scroll {
+        from {
+            transform: translateX(0px);
+        }
+
+        to {
+            transform: translateX(-50%);
+        }
+    }
 }
 
 @layer base, components, utilities;
 
 @layer components {
     .svg-size {
-        @apply w-3.75 h-3.75
+        @apply w-6.25 h-6.25
+    }
+
+    @media (max-width: 768px) {
+        .svg-size-small {
+            @apply w-5 h-5
+        }
     }
 }
 
+@layer utilities {
+    .scrollbar-hidden {
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+    }
+
+    .scrollbar-hidden::-webkit-scrollbar {
+        display: none;
+    }
+
+    .fade-vertical {
+        -webkit-mask-image: linear-gradient(to top,
+                transparent 0%,
+                rgba(255, 255, 255, .55) 25%,
+                rgba(255, 255, 255, .55) 75%,
+                transparent 100%);
+        mask-image: linear-gradient(to top,
+                transparent 0%,
+                rgba(255, 255, 255, .55) 25%,
+                rgba(255, 255, 255, .55) 75%,
+                transparent 100%);
+    }
+
+    /* 设置初始值 */
+    .volume-range-style {
+        --min: 0;
+        --max: 100;
+        --val: 50;
+    }
+
+    /* 轨道部分 */
+    .volume-range-style::-webkit-slider-runnable-track {
+        height: 5px;
+        background: #ddd;
+        border-radius: 999px;
+        background: linear-gradient(to right,
+                red 0%,
+                red calc((var(--val) - var(--min)) / (var(--max) - var(--min)) * 100%),
+                #ddd calc((var(--val) - var(--min)) / (var(--max) - var(--min)) * 100%),
+                #ddd 100%);
+    }
+
+    /* 滑块部分 */
+    .volume-range-style::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        width: 16px;
+        height: 16px;
+        border-radius: 50%;
+        background-color: white;
+        border: 1px solid black;
+        margin-top: -5.6px;
+    }
+
+    /**
+        设置进度条
+    **/
+    .play-time-schedule-range-style {
+        --min: 0;
+        --max: 100;
+        --val: 50;
+    }
+    .play-time-schedule-range-style::-webkit-slider-runnable-track {
+        height: 5px;
+        border-radius: 999px;
+        background: linear-gradient(to right,
+                aqua 0%,
+                aqua calc((var(--val) - var(--min)) / (var(--max) - var(--min)) * 100%),
+                #f0e7e7 calc((var(--val) - var(--min)) / (var(--max) - var(--min)) * 100%),
+                #f0e7e7 100%);
+    }
+    /* 滑块部分 */
+    .play-time-schedule-range-style::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        width: 16px;
+        height: 16px;
+        border-radius: 50%;
+        background-color: #ccc;
+        border: 1px solid white;
+        margin-top: -5.6px;
+    }
+}
+
+@layer base {
+    input[type="range"] {
+        -webkit-appearance: none;
+        appearance: none;
+        background: transparent;
+        outline: none;
+    }
+}

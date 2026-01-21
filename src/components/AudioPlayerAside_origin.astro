@@ -1,0 +1,1548 @@
+---
+import Yuki from "../images/Yuki.jpg";
+import "../output.css";
+
+---
+
+<div
+    data-unfold="false"
+    data-ui="aside-container"
+    class="w-5 absolute bottom-10 left-0 flex unfold:w-[33vw] transition-all ease-in-out duration-1000 max-w-[580px]"
+>
+    <!-- 折叠面板 + 播放音乐的简易面板 -->
+    <div
+        data-covermove="false"
+        data-ui="unfold-area"
+        class="w-0 h-full relative transition-all duration-1000 ease-in-out unfold:w-[calc(33vw-20px)]"
+    >
+        <!-- 点击封面后的详细信息等 -->
+        <div
+            data-ui="audio-detail-info-display-container"
+            data-hidden="true"
+            class="w-full h-80 absolute bottom-full transition-all duration-1000 ease-in-out overflow-hidden rounded-t-[5px]
+            unfold:border-l unfold:border-r border-[#ccc]
+            flex items-center
+            [background-image:var(--bg)] bg-cover bg-center bg-no-repeat
+            hidden:translate-y-0 hidden:h-0 hidden:border-t-0 saturate-150 backdrop-blur-[15px]"
+            style={`--bg: url(${Yuki.src});`}
+        >
+            <div
+                data-ui="medium-glass-filter"
+                class="w-full transition-all duration-1000 ease-in-out h-80 flex items-center unfold:h-full unfold:bg-[rgba(255,255,255,0.55)] unfold:saturate-150 unfold:backdrop-blur-[15px]"
+            >
+                <!-- 关闭的固定视口 -->
+                <header
+                    data-ui="detail-info-shut-down-panel"
+                    class="absolute w-full h-5 top-0 bg-[rgba(255,255,255,0.55)] backdrop-blur-[15px] saturate-150"
+                >
+                </header>
+
+                <!-- 大封面展示 -->
+                <div
+                    data-ui="audio-detail-cover-image-container"
+                    class="flex-1 h-full items-center justify-center flex bg-[rgba(255,255,255,0.55)]"
+                >
+                    <div
+                        data-ui="larger-cover-display"
+                        class="w-[60%] aspect-square rounded-[50%]"
+                    >
+                    </div>
+                </div>
+
+                <!-- 歌词内容以及信息展示 -->
+                <div
+                    data-ui="audio-detail-singer-lyric-info"
+                    class="flex-1 h-full bg-[rgba(255,255,255,0.55)] pt-5 flex flex-col justify-center items-start"
+                >
+                    <!-- 歌名，歌手以及专辑 -->
+                    <div data-ui="lyric-header-song-info">
+                        <div
+                            data-ui="detail-info-about-song-name"
+                            class="text-2xl"
+                        >
+                        </div>
+                        <span
+                            data-ui="detail-info-about-album-name"
+                            class="text-[12px] text-[#ccc]"
+                            >专辑:
+                        </span>
+                        <span
+                            data-ui="detail-info-about-singer-name"
+                            class="text-[12px] text-[#ccc]"
+                            >歌手:
+                        </span>
+                    </div>
+                    <!-- 用一个盒子装起来，作为显示lyric的父容器 -->
+                    <div
+                        data-ui="audio-lyric-display-container"
+                        class="h-[70%] w-[80%] relative overflow-hidden"
+                    >
+                        <!-- 歌词滑动长页 -->
+                        <div
+                            data-ui="lyric-real-panel"
+                            class="scrollbar-hidden h-full w-20 absolute overflow-scroll z-1 flex flex-col items-start gap-[10px]"
+                        >
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 播放音乐功能面板容器 -->
+        <div
+            data-ui="audio-aside-container"
+            class="relative unfold:p-3.75 w-full
+        box-border h-25 p-0 flex items-center gap-0 unfold:gap-5
+        bg-[rgba(255,255,255,0.85)]
+        transition-all duration-1000 ease-in-out
+        backdrop-blur-[14px] backdrop-saturate-[120]
+        unfold:border-l border-l-[#ccc] border-l-solid
+        border-t border-t-[#ccc] border-t-solid
+        border-b border-b-[#ccc] border-b-solid
+        unfold:rounded-tl-[5px] unfold:rounded-bl-[5px]"
+        >
+            <!-- 移动的话移动容器 -->
+            <div
+                data-ui="audio-cover-image-container"
+                class="w-0 h-0 rounded-[50%] transition-all duration-1000 ease-[cubic-bezier(0.78,-0.32,0.00,1.34)]
+        unfold:w-20 unfold:h-20"
+            >
+                <!-- 封面图 -->
+                <img
+                    data-rotate="false"
+                    data-ui="audio-cover-image"
+                    class="w-0 h-0 relative rounded-[50%] object-cover animate-cover-rotate [animation-play-state:paused] rotate:[animation-play-state:running]
+            transition-all duration-1000 ease-in-out
+            unfold:w-20 unfold:h-20"
+                    src={Yuki.src}
+                    alt=""
+                />
+            </div>
+
+            <!-- 歌曲信息 -->
+            <div
+                data-ui="audio-info-display"
+                class="w-0 flex flex-col overflow-hidden transition-all duration-1000 ease-in-out justify-between items-start unfold:w-30"
+            >
+                <div data-show="audio_title" class="w-30 truncate font-bold text-[18px]">
+                    愛包ダンスホール
+                </div>
+                <div
+                    data-show="singer_info"
+                    class="w-30 block truncate text-[#e8dfdf]  "
+                >
+                    HIMEHINA
+                </div>
+            </div>
+
+            <!-- 仪表盘 -->
+            <div
+                data-ui="panel-and-play-visualized-bar"
+                class="h-full w-0 flex flex-col justify-end gap-2 items-center transition-all duration-1000 unfold:w-[calc(100%-80px-120px-40px)] max-w-75"
+            >
+                <!-- 控件 -->
+                <div
+                    data-ui="audio-real-player-hidden"
+                    class="w-full h-fit flex items-center justify-between"
+                >
+                    <!-- 上一首 -->
+                    <div class="overflow-hidden">
+                        <svg
+                            class="svg-size"
+                            xmlns="http://www.w3.org/2000/svg"
+                            xmlns:xlink="http://www.w3.org/1999/xlink"
+                            viewBox="0 0 1024 1024"
+                            ><path
+                                d="M803.584 134.592c-18.176-10.048-39.936-10.112-58.112 0L192 443.008l0-282.88c0-17.664-14.336-32-32-32S128 142.464 128 160.128l0 344.896C127.744 507.2 127.104 509.248 127.104 511.488S127.744 515.84 128 518.016l0 346.112c0 17.664 14.336 32 32 32s32-14.336 32-32L192 579.968l553.408 308.352C754.56 893.44 764.48 896 774.528 896s19.968-2.56 29.056-7.616c18.176-10.112 28.992-28.224 28.992-48.576L832.576 183.104C832.576 162.88 821.76 144.768 803.584 134.592zM768.192 829.248 198.016 511.488 771.328 192 768.192 829.248z"
+                                fill="black"
+                                p-id="10215"></path></svg
+                        >
+                    </div>
+
+                    <!-- 播放替换 -->
+                    <div
+                        data-ui="audio-player-btn-container"
+                        class="relative flex justify-center items-center overflow-hidden
+                        w-6 h-6
+                        hover:scale-[1.2]
+                        audio-player-btn-container"
+                    >
+                        <!-- 播放 -->
+                        <svg
+                            data-hidden="false"
+                            class="svg-size relative
+                        hidden:hidden"
+                            xmlns="http://www.w3.org/2000/svg"
+                            xmlns:xlink="http://www.w3.org/1999/xlink"
+                            viewBox="0 0 1024 1024"
+                            ><path
+                                d="M512 113c220 0 399 179 399 399S732 911 512 911 113 732 113 512s179-399 399-399m0-42C268.4 71 71 268.4 71 512s197.4 441 441 441 441-197.4 441-441S755.6 71 512 71z"
+                                p-id="4702"></path><path
+                                d="M440.3 697.6c-29.9 0-54.3-24.3-54.3-54.3V380.6c0-29.9 24.4-54.3 54.3-54.3 9.4 0 18.7 2.5 27 7.3L694.9 465c17 9.8 27.1 27.4 27.1 47s-10.1 37.2-27.1 47L467.4 690.3c-8.4 4.8-17.7 7.3-27.1 7.3z m0-329.2c-5.9 0-12.3 4.7-12.3 12.3v262.7c0 10.3 10.9 14.9 18.4 10.6l227.5-131.4c5.5-3.2 6.1-8.4 6.1-10.6s-0.6-7.4-6.1-10.6L446.4 370c-2-1.1-4-1.6-6.1-1.6z"
+                                p-id="4703"></path></svg
+                        >
+                        <!-- 暂停 -->
+                        <svg
+                            data-hidden="true"
+                            class="svg-size relative hidden:hidden"
+                            xmlns="http://www.w3.org/2000/svg"
+                            xmlns:xlink="http://www.w3.org/1999/xlink"
+                            viewBox="0 0 1024 1024"
+                            ><path
+                                d="M512 35.031579C247.915789 35.031579 35.031579 247.915789 35.031579 512S247.915789 988.968421 512 988.968421 988.968421 776.084211 988.968421 512 776.084211 35.031579 512 35.031579z m0 916.210526C269.473684 951.242105 72.757895 754.526316 72.757895 512S269.473684 72.757895 512 72.757895 951.242105 269.473684 951.242105 512 754.526316 951.242105 512 951.242105z"
+                                fill="black"
+                                p-id="6233"></path><path
+                                d="M463.494737 296.421053h-91.621053c-16.168421 0-29.642105 13.473684-29.642105 29.642105V700.631579c0 16.168421 13.473684 29.642105 29.642105 29.642105h91.621053c16.168421 0 29.642105-13.473684 29.642105-29.642105V323.368421c0-16.168421-13.473684-26.947368-29.642105-26.947368z m-8.084211 393.431579h-75.452631V334.147368h75.452631v355.705264zM652.126316 296.421053h-91.621053c-16.168421 0-29.642105 13.473684-29.642105 29.642105V700.631579c0 16.168421 13.473684 29.642105 29.642105 29.642105h91.621053c16.168421 0 29.642105-13.473684 29.642105-29.642105V323.368421c0-16.168421-13.473684-26.947368-29.642105-26.947368z m-8.084211 393.431579h-75.452631V334.147368h75.452631v355.705264z"
+                                fill="black"
+                                p-id="6234"></path></svg
+                        >
+                    </div>
+
+                    <!-- 下一首 -->
+                    <div class="overflow-hidden">
+                        <svg
+                            class="svg-size"
+                            xmlns="http://www.w3.org/2000/svg"
+                            xmlns:xlink="http://www.w3.org/1999/xlink"
+                            viewBox="0 0 1024 1024"
+                            ><path
+                                d="M192.512 899.072c-5.632 0-11.264-1.536-15.872-4.096-9.728-5.632-15.872-16.384-15.872-27.648V159.232c0-11.264 6.144-22.016 15.872-27.648 9.728-5.632 22.016-5.632 31.744 0l612.864 353.792c9.728 5.632 15.872 16.384 15.872 27.648s-6.144 22.016-15.872 27.648L208.896 894.464c-5.12 3.072-10.752 4.608-16.384 4.608z m32.256-684.544v596.992l516.608-298.496L224.768 214.528z"
+                                fill="black"
+                                p-id="9076"></path><path
+                                d="M821.76 899.072c-22.016 0-39.936-17.92-39.936-39.936V166.912c0-22.016 17.92-39.936 39.936-39.936s39.936 17.92 39.936 39.936v691.712c0 22.528-17.92 40.448-39.936 40.448z"
+                                fill="black"
+                                p-id="9077"></path></svg
+                        >
+                    </div>
+
+                    <!-- 音量键 -->
+                    <div
+                        data-ui="volume-button-container-and-volume-adjust"
+                        class="flex relative"
+                    >
+                        <div
+                            data-ui="volume-button-container"
+                            class="w-0 h-0 unfold:w-6.25 unfold:h-6.25 transition-all ease-in-out duration-1000 overflow-hidden"
+                        >
+                            <!-- 音量图标 -->
+                            <svg
+                                data-ui="volume-button"
+                                data-hidden="false"
+                                class="svg-size hidden:hidden"
+                                xmlns="http://www.w3.org/2000/svg"
+                                xmlns:xlink="http://www.w3.org/1999/xlink"
+                                viewBox="0 0 1024 1024"
+                                ><path
+                                    d="M448 938.666667a21.333333 21.333333 0 0 1-15.093333-6.246667L225.833333 725.333333H53.333333a53.393333 53.393333 0 0 1-53.333333-53.333333V352a53.393333 53.393333 0 0 1 53.333333-53.333333h172.5l207.08-207.086667A21.333333 21.333333 0 0 1 469.333333 106.666667v810.666666a21.333333 21.333333 0 0 1-21.333333 21.333334zM53.333333 341.333333a10.666667 10.666667 0 0 0-10.666666 10.666667v320a10.666667 10.666667 0 0 0 10.666666 10.666667h181.333334a21.333333 21.333333 0 0 1 15.086666 6.246666L426.666667 865.833333V158.166667L249.753333 335.086667A21.333333 21.333333 0 0 1 234.666667 341.333333z m664.266667 437.246667a21.333333 21.333333 0 0 1-13.733333-37.666667c6.666667-5.586667 13.146667-11.553333 19.333333-17.726666C779.6 666.78 810.666667 591.78 810.666667 512s-31.066667-154.78-87.48-211.186667c-6.173333-6.173333-12.666667-12.14-19.333334-17.726666a21.333333 21.333333 0 1 1 27.446667-32.666667 346.585333 346.585333 0 0 1 22.046667 20.213333 341.066667 341.066667 0 0 1 0 482.72 346.585333 346.585333 0 0 1-22.046667 20.213334 21.24 21.24 0 0 1-13.7 5.013333zM629.333333 625.72a21.333333 21.333333 0 0 1-16.733333-34.546667 127.366667 127.366667 0 0 0 0-158.346666 21.333333 21.333333 0 0 1 33.486667-26.433334 170.733333 170.733333 0 0 1 0 211.213334A21.333333 21.333333 0 0 1 629.333333 625.72z"
+                                    fill="black"
+                                    p-id="19492"></path>
+                            </svg>
+
+                            <!-- 静音图标 -->
+                            <svg
+                                data-ui="volume-button"
+                                data-hidden="true"
+                                class="svg-size hidden:hidden"
+                                xmlns="http://www.w3.org/2000/svg"
+                                xmlns:xlink="http://www.w3.org/1999/xlink"
+                                viewBox="0 0 1024 1024"
+                                ><path
+                                    d="M448 938.666667a21.333333 21.333333 0 0 1-15.093333-6.246667L225.833333 725.333333H53.333333a53.393333 53.393333 0 0 1-53.333333-53.333333V352a53.393333 53.393333 0 0 1 53.333333-53.333333h172.5l207.08-207.086667A21.333333 21.333333 0 0 1 469.333333 106.666667v810.666666a21.333333 21.333333 0 0 1-21.333333 21.333334zM53.333333 341.333333a10.666667 10.666667 0 0 0-10.666666 10.666667v320a10.666667 10.666667 0 0 0 10.666666 10.666667h181.333334a21.333333 21.333333 0 0 1 15.086666 6.246666L426.666667 865.833333V158.166667L249.753333 335.086667A21.333333 21.333333 0 0 1 234.666667 341.333333z m964.42 377.753334a21.333333 21.333333 0 0 0 0-30.173334L840.833333 512l176.92-176.913333a21.333333 21.333333 0 1 0-30.173333-30.173334L810.666667 481.833333 633.753333 304.913333a21.333333 21.333333 0 0 0-30.173333 30.173334L780.5 512l-176.92 176.913333a21.333333 21.333333 0 0 0 30.173333 30.173334L810.666667 542.166667l176.913333 176.92a21.333333 21.333333 0 0 0 30.173333 0z"
+                                    fill="black"
+                                    p-id="19644"></path></svg
+                            >
+                        </div>
+
+                        <!-- 调整音量 -->
+                        <div
+                            data-ui="volume-control-bar"
+                            data-hidden="true"
+                            class="w-7 h-30 absolute -top-33 -left-1 transition-all ease-in-out duration-1000 hidden:hidden"
+                        >
+                            <div
+                                class="h-4 w-4 rotate-45 absolute bg-[#676060] rounded-[5px] top-full left-[50%] -translate-x-2 -translate-y-2.25"
+                            >
+                            </div>
+                            <div
+                                class="h-30 w-8 bg-[#676060] rounded-[5px] relative flex items-end justify-center"
+                            >
+                                <!-- 音量滑块 -->
+                                <input
+                                    data-ui="audio-volume-slider"
+                                    type="range"
+                                    data-ui="adjust-bar"
+                                    class="-rotate-90 w-22 absolute bottom-14 hover:text-[blue]"
+                                    value="50"
+                                />
+                                <!-- 数字显示 -->
+                                <div
+                                    data-ui="digital-volume-display"
+                                    class="w-fit text-[0.6rem] text-[white] bottom-1"
+                                >
+                                    50%
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 播放模式 -->
+                    <div
+                        data-ui="audio-play-mode-container"
+                        class="flex relative overflow-hidden"
+                    >
+                        <!-- 顺序播放 -->
+                        <svg
+                            data-hidden="false"
+                            class="svg-size hidden:hidden"
+                            xmlns="http://www.w3.org/2000/svg"
+                            xmlns:xlink="http://www.w3.org/1999/xlink"
+                            viewBox="0 0 1024 1024"
+                            ><path
+                                d="M133 251.1h295.5c13.6 31.8 45.1 54 81.8 54 49.2 0 89-39.8 89-89s-39.8-89-89-89c-36.7 0-68.3 22.2-81.8 54H133c-19.3 0-35 15.7-35 35s15.7 35 35 35zM133 552.5h95.5c13.6 31.8 45.1 54 81.8 54 49.2 0 89-39.8 89-89s-39.8-89-89-89c-36.7 0-68.3 22.2-81.8 54H133c-19.3 0-35 15.7-35 35s15.7 35 35 35zM718.2 251.1h174.3c19.4 0 35-15.7 35-35s-15.7-35-35-35H718.2c-19.3 0-35 15.7-35 35s15.7 35 35 35zM892.5 771H818c-19.3 0-35 15.7-35 35s15.7 35 35 35h74.5c19.4 0 35-15.7 35-35s-15.7-35-35-35zM894.2 482.5H509c-19.3 0-35 15.7-35 35s15.7 35 35 35h385.2c19.3 0 35-15.7 35-35s-15.7-35-35-35zM630.3 717c-36.7 0-68.3 22.2-81.8 54H133c-19.3 0-35 15.7-35 35s15.7 35 35 35h415.5c13.6 31.8 45.1 54 81.8 54 49.2 0 89-39.8 89-89s-39.8-89-89-89z"
+                                fill="black"
+                                p-id="12378"></path></svg
+                        >
+                        <!-- 单曲循环 -->
+                        <svg
+                            data-hidden="true"
+                            class="svg-size hidden:hidden"
+                            xmlns="http://www.w3.org/2000/svg"
+                            xmlns:xlink="http://www.w3.org/1999/xlink"
+                            viewBox="0 0 1024 1024"
+                            ><path
+                                d="M192 789.333333a21.24 21.24 0 0 1-12.8-4.28 344.513333 344.513333 0 0 1-99.333333-118A341.246667 341.246667 0 0 1 384 170.666667h256q6.36 0 12.733333 0.233333l-49.153333-49.146667a21.333333 21.333333 0 0 1 30.173333-30.173333l85.333334 85.333333a21.333333 21.333333 0 0 1 0 30.173334l-85.333334 85.333333a21.333333 21.333333 0 0 1-30.173333-30.173333l48.666667-48.666667Q646.126667 213.333333 640 213.333333H384c-164.666667 0-298.666667 134-298.666667 298.666667 0 94.833333 43.546667 181.933333 119.48 238.966667A21.333333 21.333333 0 0 1 192 789.333333z m228.433333 143.06a21.333333 21.333333 0 0 0 0-30.173333l-49.153333-49.146667q6.366667 0.233333 12.733333 0.233334H640a341.46 341.46 0 0 0 304.146667-496.42 344.513333 344.513333 0 0 0-99.333334-118 21.333333 21.333333 0 1 0-25.626666 34.113333C895.12 330.066667 938.666667 417.166667 938.666667 512c0 164.666667-134 298.666667-298.666667 298.666667H384q-6.12 0-12.246667-0.246667l48.666667-48.666667a21.333333 21.333333 0 0 0-30.173333-30.173333l-85.333334 85.333333a21.333333 21.333333 0 0 0 0 30.173334l85.333334 85.333333a21.333333 21.333333 0 0 0 30.173333 0zM554.666667 618.666667V405.333333a21.333333 21.333333 0 0 0-21.333334-21.333333h-42.666666a21.333333 21.333333 0 0 0 0 42.666667h21.333333v192a21.333333 21.333333 0 0 0 42.666667 0z"
+                                fill="black"
+                                p-id="1780"></path></svg
+                        >
+                        <!-- 列表循环 -->
+                        <svg
+                            data-hidden="true"
+                            class="svg-size hidden:hidden"
+                            xmlns="http://www.w3.org/2000/svg"
+                            xmlns:xlink="http://www.w3.org/1999/xlink"
+                            viewBox="0 0 1024 1024"
+                            ><path
+                                d="M361.5 727.8c-119.1 0-215.9-96.9-215.9-215.9 0-119.1 96.9-215.9 215.9-215.9 2.3 0 4.6-0.2 6.8-0.6v58.3c0 12.3 14 19.4 23.9 12.1l132.6-97.6c8.1-6 8.1-18.2 0-24.2l-132.6-97.6c-9.9-7.3-23.9-0.2-23.9 12.1v58.1c-2.2-0.4-4.5-0.6-6.8-0.6-39.8 0-78.5 7.9-115 23.4-35.2 15-66.8 36.3-94 63.5s-48.6 58.8-63.5 94c-15.5 36.5-23.4 75.2-23.4 115s7.9 78.5 23.4 115c15 35.2 36.3 66.8 63.5 94s58.8 48.6 94 63.5c36.5 15.5 75.2 23.4 115 23.4 22.1 0 40-17.9 40-40s-17.9-40-40-40z m576.7-330.9c-15-35.2-36.3-66.8-63.5-94s-58.8-48.6-94-63.5c-36.5-15.5-75.2-23.4-115-23.4-22.1 0-40 17.9-40 40s17.9 40 40 40c119.1 0 215.9 96.9 215.9 215.9 0 119.1-96.9 215.9-215.9 215.9-4.1 0-8.1 0.6-11.8 1.8v-60.8c0-12.3-14-19.4-23.9-12.1l-132.6 97.6c-8.1 6-8.1 18.2 0 24.2L629.9 876c9.9 7.3 23.9 0.2 23.9-12.1V806c3.7 1.2 7.7 1.8 11.8 1.8 39.8 0 78.5-7.9 115-23.4 35.2-15 66.8-36.3 94-63.5s48.6-58.8 63.5-94c15.5-36.5 23.4-75.2 23.4-115s-7.8-78.5-23.3-115z"
+                                p-id="2762"
+                                fill="black"></path></svg
+                        >
+
+                        <!-- 随机播放 -->
+                        <svg
+                            data-hidden="true"
+                            class="svg-size hidden:hidden"
+                            xmlns="http://www.w3.org/2000/svg"
+                            xmlns:xlink="http://www.w3.org/1999/xlink"
+                            viewBox="0 0 1024 1024"
+                            ><path
+                                d="M682.48 297.633333L332.666667 752.386667A149.333333 149.333333 0 0 1 214.306667 810.666667H64a21.333333 21.333333 0 0 1 0-42.666667h150.306667a107.333333 107.333333 0 0 0 84.546666-41.633333L648.666667 271.613333A149.333333 149.333333 0 0 1 767.026667 213.333333h141.473333l-48.92-48.913333a21.333333 21.333333 0 0 1 30.173333-30.173333l85.333334 85.333333a21.333333 21.333333 0 0 1 0 30.173333l-85.333334 85.333334a21.333333 21.333333 0 0 1-30.173333-30.173334l48.92-48.913333h-141.473333a107.333333 107.333333 0 0 0-84.546667 41.633333zM64 256h150.306667a107.333333 107.333333 0 0 1 84.546666 41.633333l109.26 142.04a21.333333 21.333333 0 0 0 33.82-26L332.666667 271.613333A149.333333 149.333333 0 0 0 214.306667 213.333333H64a21.333333 21.333333 0 0 0 0 42.666667z m825.753333 432.913333a21.333333 21.333333 0 0 0-30.173333 30.173334l48.92 48.913333h-141.473333a107.333333 107.333333 0 0 1-84.546667-41.633333L573.22 584.326667a21.333333 21.333333 0 0 0-33.82 26L648.666667 752.386667a149.333333 149.333333 0 0 0 118.36 58.28h141.473333l-48.92 48.913333a21.333333 21.333333 0 0 0 30.173333 30.173333l85.333334-85.333333a21.333333 21.333333 0 0 0 0-30.173333z"
+                                fill="black"
+                                p-id="3745"></path></svg
+                        >
+                    </div>
+
+                    <!-- 播放列表 -->
+                    <svg
+                        class="svg-size"
+                        xmlns="http://www.w3.org/2000/svg"
+                        xmlns:xlink="http://www.w3.org/1999/xlink"
+                        viewBox="0 0 1024 1024"
+                        ><path
+                            d="M736 352a32 32 0 0 1 31.264 25.088c4.384 18.816 9.792 32.256 15.232 39.712l2.336 3.008c0.8 0.896 1.088 1.024 1.28 1.024 46.624 0 65.76 39.68 65.088 101.024a32 32 0 0 1-64-0.704c0.192-16.32-1.344-28.16-3.776-34.944l-0.608-1.504-1.92-0.032a65.088 65.088 0 0 1-12.896-2.24V736c0 57.824-66.816 96-144 96S480 793.824 480 736s66.816-96 144-96c29.184 0 56.864 5.44 80.032 15.36L704 384.704c0-1.408 0.032-2.816 0.192-4.224L704 384a32 32 0 0 1 32-32zM416 704a32 32 0 0 1 0 64H224a32 32 0 0 1 0-64h192z m208 0c-46.528 0-80 19.136-80 32s33.472 32 80 32 80-19.136 80-32-33.472-32-80-32zM544 448a32 32 0 0 1 0 64H224a32 32 0 0 1 0-64h320z m256-256a32 32 0 0 1 0 64H224a32 32 0 1 1 0-64h576z"
+                            fill="black"
+                            p-id="13503"></path></svg
+                    >
+                </div>
+
+                <!-- 播放进度 -->
+                <div
+                    data-ui="audio-play-time"
+                    class="w-full h-full flex gap-2 overflow-hidden"
+                >
+                    <input
+                        data-ui="playback-bar"
+                        type="range"
+                        class=""
+                        value="0"
+                    />
+                    <!-- 字体显示播放进度 -->
+                    <div
+                        data-ui="play-progress-text"
+                        class="text-[12px] flex items-center text-center truncate"
+                    >
+                        0:00 / 3:19
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 侧边折叠栏 -->
+    <div
+        data-ui="aside-folder"
+        class="w-5 h-25 bg-[#faf8f8] flex justify-center items-center border border-[#ccc] border-solid overflow-hidden rounded-r-[5px]"
+    >
+        <svg
+            data-ui="audio-aside-svg"
+            class="h-7.5 w-7.5 font-[1000] fill-[#ccc] transition-all duration-1000 ease-linear"
+            xmlns="http://www.w3.org/2000/svg"
+            xmlns:xlink="http://www.w3.org/1999/xlink"
+            viewBox="360 180 360 700"
+            ><path
+                class="w-6.25 h-7.5"
+                d="M383.291616 808.954249c-5.175883 0-10.353812-1.950422-14.338566-5.862521-8.064676-7.919367-8.182356-20.877493-0.26299-28.942169l273.602402-278.620695L368.69006 216.907145c-7.919367-8.064676-7.801686-21.022803 0.26299-28.942169 8.065699-7.918343 21.022803-7.80271 28.942169 0.26299l287.685141 292.960285c7.818059 7.961322 7.818059 20.717857 0 28.67918L397.895219 802.826692C393.887952 806.907637 388.591319 808.954249 383.291616 808.954249z"
+                p-id="1579"></path></svg
+        >
+    </div>
+</div>
+
+<script>
+    type singleLyric = {
+        time: string;
+        timeFormat: number;
+        lyric: string;
+        trans: string;
+    };
+    type lyricFile = {
+        audio_info: {
+            title: string;
+            artist: string;
+            album?: string;
+            lyricist?: string;
+        };
+        lyrics: Array<singleLyric>;
+    };
+
+    import aipai from "../audios/aipaidancehall.mp3";
+    // 这里暂时用const变量来代替歌词文本
+    // 直接使用即可
+
+    const AipaiLyric: lyricFile = {
+        audio_info: {
+            title: "爱派Dancehall",
+            artist: "HIMEHINA",
+            album: "爱派Dancehall",
+            lyricist: "AsahinaMafuyu",
+        },
+        lyrics: [
+            {
+                time: "00:00.00",
+                timeFormat: 0.0,
+                lyric: "爱派Dancehall - HIMEHINA ",
+                trans: "",
+            },
+            {
+                time: "00:00.24",
+                timeFormat: 0.24,
+                lyric: "词：Gohgo",
+                trans: "",
+            },
+            {
+                time: "00:00.42",
+                timeFormat: 0.42,
+                lyric: "曲：涼木シンジ/Gohgo ",
+                trans: "",
+            },
+            {
+                time: "00:00.86",
+                timeFormat: 0.86,
+                lyric: "愛包ダンスホール 今日はボレロ",
+                trans: "爱派Dancehall 今天上演博莱罗",
+            },
+            {
+                time: "00:03.73",
+                timeFormat: 3.73,
+                lyric: "蕩けった少年 甘酸っぱい感情",
+                trans: "神魂颠倒的少年 情愫如柠檬酸甜",
+            },
+            {
+                time: "00:06.08",
+                timeFormat: 6.08,
+                lyric: "求愛人類♥満杯",
+                trans: "求爱人类♥满杯",
+            },
+            {
+                time: "00:07.84",
+                timeFormat: 7.84,
+                lyric: "オーブントースターは漏れ漏れよ",
+                trans: "烤箱塞得满满就要漏出来",
+            },
+            {
+                time: "00:10.55",
+                timeFormat: 10.55,
+                lyric: "おかわりはアンコール次第ね",
+                trans: "想要续杯 就不要吝惜安可哦",
+            },
+            {
+                time: "00:12.98",
+                timeFormat: 12.98,
+                lyric: "オワラナイラブコールノダンスデ",
+                trans: "永不结束的・爱的呼唤・之・舞步",
+            },
+            {
+                time: "00:17.09",
+                timeFormat: 17.09,
+                lyric: "愛包ダンスホール",
+                trans: "爱派Dancehall",
+            },
+            {
+                time: "00:20.44",
+                timeFormat: 20.44,
+                lyric: "おかわりならもう欲しい",
+                trans: "再来一杯 现在就想要",
+            },
+            {
+                time: "00:23.94",
+                timeFormat: 23.94,
+                lyric: "愛包ダンスホール",
+                trans: "爱派Dancehall",
+            },
+            {
+                time: "00:28.52",
+                timeFormat: 28.52,
+                lyric: "3.1415926535のπだって",
+                trans: "就算是3.1415926535的π",
+            },
+            {
+                time: "00:31.82",
+                timeFormat: 31.82,
+                lyric: "割り切れない気持ち抱えてるよ",
+                trans: "也满怀着除不尽的期待",
+            },
+            {
+                time: "00:35.24",
+                timeFormat: 35.24,
+                lyric: "ロボ人も幻人も猿人も",
+                trans: "不管是机器人幻人猿人",
+            },
+            {
+                time: "00:36.86",
+                timeFormat: 36.86,
+                lyric: "円陣組んで仲良くやれたらとか",
+                trans: "都围成一圈友好相待",
+            },
+            {
+                time: "00:38.73",
+                timeFormat: 38.73,
+                lyric: "割り切れない生命諍いのヘブン",
+                trans: "分割不开的生命 争奇斗艳的天堂",
+            },
+            {
+                time: "00:42.22",
+                timeFormat: 42.22,
+                lyric: "今宵はいいんじゃない？",
+                trans: "今晚这样不也挺好",
+            },
+            {
+                time: "00:43.46",
+                timeFormat: 43.46,
+                lyric: "ほらオエオエオエオエよ",
+                trans: "一起噢耶噢耶噢耶喊叫",
+            },
+            {
+                time: "00:45.57",
+                timeFormat: 45.57,
+                lyric: "踊ればいいんじゃない？",
+                trans: "跳起舞来不也挺好",
+            },
+            {
+                time: "00:46.83",
+                timeFormat: 46.83,
+                lyric: "ほらフリフリフラレば",
+                trans: "来吧身体放松扭扭摇摇",
+            },
+            {
+                time: "00:48.66",
+                timeFormat: 48.66,
+                lyric: "休戦しようぜ 涙腺が源泉温泉",
+                trans: "休战一下吧 泪腺就是源泉温泉",
+            },
+            {
+                time: "00:52.03",
+                timeFormat: 52.03,
+                lyric: "汗ばんだらガンダーラサンサーラ",
+                trans: "汗如雨下 Gandhara Samsara",
+            },
+            {
+                time: "00:54.84",
+                timeFormat: 54.84,
+                lyric: "なに言ってんだ？(自問自答)",
+                trans: "说的是啥（自问自答）",
+            },
+            {
+                time: "00:55.86",
+                timeFormat: 55.86,
+                lyric: "高まった感動の再会",
+                trans: "感动的再会 高涨的期待",
+            },
+            {
+                time: "00:57.44",
+                timeFormat: 57.44,
+                lyric: "集まった愛情のWi-Fi",
+                trans: "聚在一起的 爱意的Wi-Fi",
+            },
+            {
+                time: "00:59.00",
+                timeFormat: 59.0,
+                lyric: "持寄った常灯の人提灯",
+                trans: "常亮的手灯 连成一排排",
+            },
+            {
+                time: "01:00.52",
+                timeFormat: 60.52,
+                lyric: "愛してるが重なって",
+                trans: "“我爱你”将全场覆盖",
+            },
+            {
+                time: "01:02.50",
+                timeFormat: 62.5,
+                lyric: "包まった人類の状態",
+                trans: "层层叠叠的人类的状态",
+            },
+            {
+                time: "01:03.93",
+                timeFormat: 63.93,
+                lyric: "熱いミートパイみたいだね",
+                trans: "不就像那炙热的肉派",
+            },
+            {
+                time: "01:07.37",
+                timeFormat: 67.37,
+                lyric: "パパッパッパッパパ パイ ♥？",
+                trans: "PAPA PA PA PAPA ♥？",
+            },
+            {
+                time: "01:09.10",
+                timeFormat: 69.1,
+                lyric: "愛包 愛一杯で惚れ惚れよ",
+                trans: "爱派 爱满杯 心荡又神迷",
+            },
+            {
+                time: "01:11.76",
+                timeFormat: 71.76,
+                lyric: "蕩けった少年 甘酸っぱい感情",
+                trans: "神魂颠倒的少年 情愫如柠檬酸甜",
+            },
+            {
+                time: "01:14.12",
+                timeFormat: 74.12,
+                lyric: "求愛人類♥満杯だい",
+                trans: "求爱人类♥满杯",
+            },
+            {
+                time: "01:15.82",
+                timeFormat: 75.82,
+                lyric: "完敗 完全に惚れ惚れよ",
+                trans: "完败 完全是心荡又神迷",
+            },
+            {
+                time: "01:18.62",
+                timeFormat: 78.62,
+                lyric: "ミルフィーユみたいね愛ほろり",
+                trans: "就像千层酥一样 洒下爱的碎片",
+            },
+            {
+                time: "01:20.92",
+                timeFormat: 80.92,
+                lyric: "頭んなかパッパラッパッパー",
+                trans: "大脑里面PA PALA PA PA",
+            },
+            {
+                time: "01:23.24",
+                timeFormat: 83.24,
+                lyric: "艶やかな脳内の脳裏の",
+                trans: "艳丽的脑内里",
+            },
+            {
+                time: "01:24.67",
+                timeFormat: 84.67,
+                lyric: "ジョンレノンも愛包家",
+                trans: "住着的约翰列侬也是爱派家",
+            },
+            {
+                time: "01:26.09",
+                timeFormat: 86.09,
+                lyric: "イマジンオールザピーポーの祭典",
+                trans: "Imagine All the People的狂欢",
+            },
+            {
+                time: "01:27.76",
+                timeFormat: 87.76,
+                lyric: "ダンスホールじゃ暇人もヒーロー",
+                trans: "Dancehall里闲人也是主演",
+            },
+            {
+                time: "01:29.97",
+                timeFormat: 89.97,
+                lyric: "乾杯ね 今日はボレロ",
+                trans: "干杯吧 今天上演博莱罗",
+            },
+            {
+                time: "01:32.26",
+                timeFormat: 92.25999999999999,
+                lyric: "交わって人類 馬鹿んなって笑って",
+                trans: "交融的人类 面对面傻笑",
+            },
+            {
+                time: "01:35.04",
+                timeFormat: 95.03999999999999,
+                lyric: "おかわり欲しいでしょ？",
+                trans: "想要再来一杯吧",
+            },
+            {
+                time: "01:36.95",
+                timeFormat: 96.95,
+                lyric: "全人類公正舞踏会の",
+                trans: "全人类公正舞会",
+            },
+            {
+                time: "01:38.54",
+                timeFormat: 98.53999999999999,
+                lyric: "目指すべき一日は",
+                trans: "努力实现的光景",
+            },
+            {
+                time: "01:39.75",
+                timeFormat: 99.75,
+                lyric: "レンジでチンしてパイになる様な",
+                trans: "在微波炉里热一下就变成派的一日",
+            },
+            {
+                time: "01:41.44",
+                timeFormat: 101.44,
+                lyric: "脳みそもトロトロの世の実現を",
+                trans: "实现将脑浆都融化的世界",
+            },
+            {
+                time: "01:43.84",
+                timeFormat: 103.84,
+                lyric: "スローガンにオールナイト",
+                trans: "让这口号循环整夜",
+            },
+            {
+                time: "01:45.10",
+                timeFormat: 105.1,
+                lyric: "踊りまして煩悩は早退",
+                trans: "只要舞动起来 烦恼就早退",
+            },
+            {
+                time: "01:46.62",
+                timeFormat: 106.62,
+                lyric: "つきまして聖人を増産",
+                trans: "如此一来就能 将圣人增产",
+            },
+            {
+                time: "01:48.20",
+                timeFormat: 108.2,
+                lyric: "パパッパッパッパパ パイ",
+                trans: "PAPA PA PA PAPA 派",
+            },
+            {
+                time: "01:49.89",
+                timeFormat: 109.89,
+                lyric: "人類最高のダンスタイム",
+                trans: "人类最棒的Dance Time",
+            },
+            {
+                time: "01:54.10",
+                timeFormat: 114.1,
+                lyric: "愛包ダンスホール",
+                trans: "爱派Dancehall",
+            },
+            {
+                time: "01:56.89",
+                timeFormat: 116.89,
+                lyric: "嗚呼ライライ愛包ダンスホール",
+                trans: "啊 来来 爱派Dancehall",
+            },
+            {
+                time: "02:00.96",
+                timeFormat: 120.96,
+                lyric: "愛包ダンスホール",
+                trans: "爱派Dancehall",
+            },
+            {
+                time: "02:05.35",
+                timeFormat: 125.35,
+                lyric: "僕等が生まれて初めて知る音は",
+                trans: "我们出生之后 首先听到的",
+            },
+            {
+                time: "02:10.35",
+                timeFormat: 130.35,
+                lyric: "心臓の鼓動だろ",
+                trans: "就是心脏的声音吧",
+            },
+            {
+                time: "02:12.77",
+                timeFormat: 132.77,
+                lyric: "トトン トトン タトン",
+                trans: "咚咚 咚咚 当咚",
+            },
+            {
+                time: "02:14.04",
+                timeFormat: 134.04,
+                lyric: "タトン タテン タトンタ",
+                trans: "当咚 当当 当咚当",
+            },
+            {
+                time: "02:15.51",
+                timeFormat: 135.51,
+                lyric: "それはリズムと知った",
+                trans: "这是最初熟知的节拍",
+            },
+            {
+                time: "02:18.79",
+                timeFormat: 138.79,
+                lyric: "いにしえもいまどきも",
+                trans: "无论是古代还是现在",
+            },
+            {
+                time: "02:20.53",
+                timeFormat: 140.53,
+                lyric: "♥beatが僕達を包んで繋いでんだろ？",
+                trans: "心跳声都将我们紧紧包围 联系起来",
+            },
+            {
+                time: "02:25.63",
+                timeFormat: 145.63,
+                lyric: "パパッパッパッパパ パイ ♥？",
+                trans: "PAPA PA PA PAPA 派",
+            },
+            {
+                time: "02:27.34",
+                timeFormat: 147.34,
+                lyric: "愛包 愛いっぱいで惚れ惚れよ",
+                trans: "爱派 爱满杯 心荡又神迷",
+            },
+            {
+                time: "02:30.07",
+                timeFormat: 150.07,
+                lyric: "蕩けった少年 甘酸っぱい感情",
+                trans: "神魂颠倒的少年 情感像柠檬酸甜",
+            },
+            {
+                time: "02:32.38",
+                timeFormat: 152.38,
+                lyric: "求愛人類♥満杯だい",
+                trans: "求爱人类♥满杯",
+            },
+            {
+                time: "02:34.23",
+                timeFormat: 154.23,
+                lyric: "完敗 完全に惚れ惚れよ",
+                trans: "完败 完全是心荡又神迷",
+            },
+            {
+                time: "02:36.94",
+                timeFormat: 156.94,
+                lyric: "ミルフィーユみたいね愛ほろり",
+                trans: "就像千层酥一样 洒下爱的碎片",
+            },
+            {
+                time: "02:39.25",
+                timeFormat: 159.25,
+                lyric: "頭んなかパッパラッパッパー",
+                trans: "大脑里面PA PALA PA PA",
+            },
+            {
+                time: "02:41.63",
+                timeFormat: 161.63,
+                lyric: "ララララララララララ",
+                trans: "啦啦啦啦啦啦啦啦啦啦",
+            },
+            {
+                time: "02:43.85",
+                timeFormat: 163.85,
+                lyric: "まるでバージンロードで",
+                trans: "就像在婚礼甬道上",
+            },
+            {
+                time: "02:45.19",
+                timeFormat: 165.19,
+                lyric: "踊ってるみたい",
+                trans: "翩翩起舞",
+            },
+            {
+                time: "02:45.99",
+                timeFormat: 165.99,
+                lyric: "生まれ変わった様な気分でして",
+                trans: "感觉仿佛是脱胎换骨",
+            },
+            {
+                time: "02:47.87",
+                timeFormat: 167.87,
+                lyric: "乾杯ね 今日はボレロ",
+                trans: "干杯吧 今天上演博莱罗",
+            },
+            {
+                time: "02:50.60",
+                timeFormat: 170.6,
+                lyric: "交わって人類 馬鹿んなって",
+                trans: "交融的人类",
+            },
+            {
+                time: "02:52.52",
+                timeFormat: 172.52,
+                lyric: "笑っ照れ",
+                trans: "面对面傻笑",
+            },
+            {
+                time: "02:53.34",
+                timeFormat: 173.34,
+                lyric: "てってってっ照れってってー",
+                trans: "te-te-te-tere-te-te",
+            },
+            {
+                time: "02:55.22",
+                timeFormat: 175.22,
+                lyric: "寂しいよな 終わりは近づくけどさ",
+                trans: "会感到寂寞吧 在结尾即将来到的时刻",
+            },
+            {
+                time: "02:58.34",
+                timeFormat: 178.34,
+                lyric: "終わらないπの様に続けりゃいい",
+                trans: "如果能像没有尽头的π一样就好了",
+            },
+            {
+                time: "03:01.82",
+                timeFormat: 181.82,
+                lyric: "計算なんてできないが",
+                trans: "虽然不知道怎么计算",
+            },
+            {
+                time: "03:07.46",
+                timeFormat: 187.46,
+                lyric: "愛いっぱい",
+                trans: "爱满杯",
+            },
+            {
+                time: "03:08.29",
+                timeFormat: 188.29,
+                lyric: "愛包ダンスホール 今日はボレロ",
+                trans: "爱派 爱满杯 心荡又神迷",
+            },
+            {
+                time: "03:11.03",
+                timeFormat: 191.03,
+                lyric: "蕩けった少年 甘酸っぱい感情",
+                trans: "神魂颠倒的少年 情愫如柠檬酸甜",
+            },
+            {
+                time: "03:13.29",
+                timeFormat: 193.29,
+                lyric: "求愛人類♥は満杯さ",
+                trans: "求爱人类♥满杯",
+            },
+            {
+                time: "03:15.74",
+                timeFormat: 195.74,
+                lyric: "また食べに来てね",
+                trans: "记得要再来尝尝哦",
+            },
+            {
+                time: "03:17.76",
+                timeFormat: 197.76,
+                lyric: "あなたならいつでもいいよ",
+                trans: "如果是你的话 不管什么时候",
+            },
+            {
+                time: "03:20.65",
+                timeFormat: 200.65,
+                lyric: "おかわり欲しいでしょ？",
+                trans: "都想要续杯的吧",
+            },
+            {
+                time: "03:24.26",
+                timeFormat: 204.26,
+                lyric: "愛包ダンスホール",
+                trans: "爱派Dancehall",
+            },
+            {
+                time: "03:27.71",
+                timeFormat: 207.71,
+                lyric: "おかわりならもう欲しい",
+                trans: "再来一杯 现在就想要",
+            },
+            {
+                time: "03:31.09",
+                timeFormat: 211.09,
+                lyric: "愛包ダンスホール",
+                trans: "爱派Dancehall",
+            },
+            {
+                time: "03:36.14",
+                timeFormat: 216.14,
+                lyric: "どうぞ",
+                trans: "请品尝",
+            },
+        ],
+    };
+
+    // 获取到侧边栏的整体元素
+    const aside_container: HTMLElement = document.querySelector(
+        '[data-ui="aside-container"]',
+    ) as HTMLElement;
+
+    // 获取到播放面板和详细信息面板
+    const unfold_area: HTMLElement = document.querySelector(
+        '[data-ui="unfold-area"]',
+    ) as HTMLElement;
+
+    // 获取歌词以及详细信息面板
+    const audio_detail_info_pane: HTMLElement = aside_container.querySelector(
+        '[data-ui="audio-detail-info-display-container"]',
+    ) as HTMLElement;
+
+    // 获取到歌词真正的展示面板
+    const lyric_real_panel: HTMLElement = audio_detail_info_pane.querySelector(
+        '[data-ui="lyric-real-panel"]',
+    ) as HTMLElement;
+
+    // 获取到封面
+    const larger_cover: HTMLElement = audio_detail_info_pane.querySelector(
+        '[data-ui="larger-cover-display"]',
+    ) as HTMLElement;
+
+    // 获取到隐藏的音乐控件
+    const audio_entity: HTMLAudioElement = new Audio(aipai);
+
+    // 获取到播放音乐功能面板容器
+    const audio_container: HTMLElement = aside_container.querySelector(
+        '[data-ui="audio-aside-container"]',
+    ) as HTMLElement;
+
+    // 获取audio简易信息面板
+    const single_audio_info_display: HTMLElement =
+        audio_container.querySelector(
+            '[data-ui="audio-info-display"]',
+        ) as HTMLElement;
+
+    // 获取到控件仪表盘
+    const controlPanelContainer: HTMLElement = audio_container.querySelector(
+        '[data-ui="panel-and-play-visualized-bar"]',
+    ) as HTMLElement;
+
+    // 获取到封面容器
+    const cover_image_container: HTMLElement = audio_container.querySelector(
+        '[data-ui="audio-cover-image-container"]',
+    ) as HTMLElement;
+
+    // 获取到侧边折叠栏展开隐藏控件
+    const aside_folder: HTMLElement = aside_container.querySelector(
+        '[data-ui="aside-folder"]',
+    ) as HTMLElement;
+
+    // 获取到侧边折叠栏展开隐藏控件当中的svg
+    const audio_aside_bar_el: HTMLElement = aside_folder.querySelector(
+        '[data-ui="audio-aside-svg"]',
+    ) as HTMLElement;
+
+    // 获取到播放和暂停交替的按钮容器
+    const audio_player_btn_container = audio_container.querySelector(
+        '[data-ui="audio-player-btn-container"]',
+    ) as HTMLElement;
+
+    // 获取到播放按钮和暂停按钮
+    const audio_player_btns =
+        audio_player_btn_container.querySelectorAll<HTMLElement>("svg");
+
+    // 获取播放模式按钮容器
+    const audio_play_mode_container: HTMLElement =
+        audio_container.querySelector(
+            '[data-ui="audio-play-mode-container"]',
+        ) as HTMLElement;
+
+    // 获取到播放模式按钮的list
+    const audio_play_mode_list =
+        audio_play_mode_container.querySelectorAll<HTMLElement>("svg");
+
+    // 获取到封面
+    const cover_image: HTMLElement = audio_container.querySelector(
+        '[data-ui="audio-cover-image"]',
+    ) as HTMLElement;
+
+    // 音量键
+    const volume_container: HTMLAudioElement = audio_container.querySelector(
+        '[data-ui="volume-button-container"]',
+    ) as HTMLAudioElement;
+
+    // 静音和音量图标
+    const volume_button_list = volume_container.querySelectorAll<HTMLElement>(
+        '[data-ui="volume-button"]',
+    );
+
+    // 音量调节
+    const volume_slider: HTMLInputElement = audio_container.querySelector(
+        '[data-ui="audio-volume-slider"]',
+    ) as HTMLInputElement;
+
+    // 获取到音量字体
+    const volume_font: HTMLElement = audio_container.querySelector(
+        '[data-ui="digital-volume-display"]',
+    ) as HTMLElement;
+
+    // 获取到播放条
+    const playback_bar: HTMLInputElement = audio_container.querySelector(
+        '[data-ui="playback-bar"]',
+    ) as HTMLInputElement;
+
+    // 获取到播放条文字
+    const play_progress_text: HTMLElement = audio_container.querySelector(
+        '[data-ui="play-progress-text"]',
+    ) as HTMLElement;
+
+    // 获取音乐条
+    const volume_control_bar: HTMLElement = audio_container.querySelector(
+        '[data-ui="volume-control-bar"]',
+    ) as HTMLElement;
+
+    // 定义两个变量
+    // 如果鼠标移出去就设置为false
+    let isInVolumeContainer = false;
+    let isInVolumeAdjustBar = false;
+
+    // 开始加载歌词到DOM当中
+    // 先加载整体模型
+    const lyric_header_song_info: HTMLElement =
+        audio_detail_info_pane.querySelector(
+            '[data-ui="lyric-header-song-info"]',
+        ) as HTMLElement;
+
+    const song_name_el: HTMLElement = lyric_header_song_info.querySelector(
+        '[data-ui="detail-info-about-song-name"]',
+    ) as HTMLElement;
+
+    const album_name_el: HTMLElement = lyric_header_song_info.querySelector(
+        '[data-ui="detail-info-about-album-name"]',
+    ) as HTMLElement;
+
+    const singer_name_el: HTMLElement = lyric_header_song_info.querySelector(
+        '[data-ui="detail-info-about-singer-name"]',
+    ) as HTMLElement;
+
+    // 加载到面板
+    song_name_el.innerText += AipaiLyric.audio_info.title;
+    album_name_el.innerText += AipaiLyric.audio_info.album;
+    singer_name_el.innerText += AipaiLyric.audio_info.artist;
+
+    let lyric_innerHTML: string = "";
+
+    // 主要是歌词面板
+    AipaiLyric.lyrics.forEach((singleLyricItem: singleLyric) => {
+        if (singleLyricItem.trans === "") {
+            lyric_innerHTML += `<div class="text-[#ccc] text-[8px]"><p>${singleLyricItem.lyric}</p></div>`;
+        } else {
+            lyric_innerHTML += `<div class="text-[#ccc] text-[8px]"><p>${singleLyricItem.lyric}</p><p>${singleLyricItem.trans}</p></div>`;
+        }
+    });
+    lyric_real_panel.innerHTML = lyric_innerHTML;
+
+    /////////////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////////////////////////
+    // 事件监听
+
+    // 等待音频加载完毕再获取
+    audio_entity.addEventListener("loadedmetadata", () => {
+        // 悬停展开
+        volume_container.addEventListener("mouseenter", () => {
+            volume_control_bar.dataset.hidden = "false";
+            isInVolumeContainer = true;
+        });
+
+        // 移出检测
+        volume_container.addEventListener("mouseleave", () => {
+            isInVolumeContainer = false;
+            // 如果0.2s内没进去另一个，就关闭
+            setTimeout(() => {
+                if (!isInVolumeAdjustBar) {
+                    volume_control_bar.dataset.hidden = "true";
+                }
+            }, 200);
+        });
+
+        // 悬停展开
+        volume_control_bar.addEventListener("mouseenter", () => {
+            volume_control_bar.dataset.hidden = "false";
+            isInVolumeAdjustBar = true;
+        });
+
+        // 移出检测
+        volume_control_bar.addEventListener("mouseleave", () => {
+            isInVolumeAdjustBar = false;
+            // 如果0.2s内没进去另一个，就关闭
+            setTimeout(() => {
+                if (!isInVolumeContainer) {
+                    volume_control_bar.dataset.hidden = "true";
+                }
+            }, 200);
+        });
+
+        // 添加按钮监听展开
+        aside_folder.addEventListener("click", () => {
+            // 点击展开和收起需要改变cover的过渡曲线为ease-in-out
+            // 修改动画过渡
+            cover_image_container.classList.remove(
+                "ease-[cubic-bezier(0.78,-0.32,0.00,1.34)]",
+            );
+            cover_image_container.classList.add("ease-in-out");
+
+            if (!audio_aside_bar_el.classList.contains("rotate-[-180deg]")) {
+                audio_aside_bar_el.classList.add("rotate-[-180deg]");
+                aside_container.dataset.unfold = "true";
+            } else {
+                aside_container.dataset.unfold = "false";
+                audio_aside_bar_el.classList.remove("rotate-[-180deg]");
+            }
+        });
+
+        let origin_volume = 50;
+        let picked_play_time = 0;
+        let total_played_time = 0; // audio_entity.duration
+        let total_played_time_by_min: String = " "; // Math.floor(total_played_time / 60000).toString() + ((total_played_time % 60000) / 1000).toFixed(2)
+
+        function getPlayTimeProgressText(
+            currentPlayedTime: number,
+            totalPlayedTime: number,
+        ): string {
+            return (
+                Math.floor(currentPlayedTime / 60).toString() +
+                ":" +
+                ("0" + Math.floor(currentPlayedTime % 60)).slice(-2) +
+                " / " +
+                total_played_time_by_min
+            );
+        }
+
+        // 加载完毕后才能注册对应的事件和变量
+        total_played_time = audio_entity.duration;
+        total_played_time_by_min =
+            Math.floor(total_played_time / 60).toString() +
+            ":" +
+            (total_played_time % 60).toFixed(0);
+
+        // 动态修改数值
+        audio_entity.addEventListener("timeupdate", () => {
+            picked_play_time = audio_entity.currentTime;
+            // 记录的时间
+            play_progress_text.innerText = getPlayTimeProgressText(
+                picked_play_time,
+                total_played_time,
+            );
+
+            // 调整滑动条的显示
+            playback_bar.value = (
+                (picked_play_time / total_played_time) *
+                100
+            ).toString();
+        });
+        // 注册歌曲进度时间
+        // 歌曲进度滑动
+        playback_bar.addEventListener("input", (e: HTMLInputElement | any) => {
+            // 只改变当前时间戳和记录的值
+            const current_time = (e.target.value / 100) * total_played_time;
+
+            // 改变进度
+            audio_entity.currentTime = current_time;
+
+            // 记录的时间
+            play_progress_text.innerText = getPlayTimeProgressText(
+                current_time,
+                total_played_time,
+            );
+        });
+
+        // 同时准许播放
+        // 播放等操作
+        audio_player_btn_container.addEventListener("click", () => {
+            if (audio_entity.paused) {
+                audio_player_btns[0].dataset.hidden = "true";
+                audio_player_btns[1].dataset.hidden = "false";
+                audio_entity.play();
+                cover_image.dataset.rotate = "true";
+            } else {
+                audio_player_btns[0].dataset.hidden = "false";
+                audio_player_btns[1].dataset.hidden = "true";
+                audio_entity.pause();
+                cover_image.dataset.rotate = "false";
+            }
+        });
+
+        // 滑动
+        volume_slider.addEventListener("input", (e: HTMLInputElement | any) => {
+            const volume_value = Number(e.target.value) / 100;
+
+            // 调整音量
+            audio_entity.volume = volume_value;
+
+            origin_volume = volume_value * 100;
+
+            // 改变数值
+            volume_font.innerText = (volume_value * 100).toFixed(0) + "%";
+
+            // 检测是否为0，为0则需要换图标
+            if (e.target.value === "0") {
+                volume_button_list[0].dataset.hidden = "true";
+                volume_button_list[1].dataset.hidden = "false";
+            } else {
+                volume_button_list[0].dataset.hidden = "false";
+                volume_button_list[1].dataset.hidden = "true";
+            }
+        });
+
+        // 调整音量等
+        volume_container.addEventListener("click", () => {
+            audio_entity.muted = !audio_entity.muted;
+            if (volume_button_list[0].dataset.hidden === "true") {
+                // 音量键为hidden，那么此时就是静音
+                volume_button_list[0].dataset.hidden = "false";
+                volume_button_list[1].dataset.hidden = "true";
+
+                // 赋值
+                volume_slider.value = origin_volume.toString();
+                audio_entity.volume = origin_volume / 100;
+                volume_font.innerText = origin_volume + "%";
+                // 音量调节
+            } else {
+                volume_button_list[0].dataset.hidden = "true";
+                volume_button_list[1].dataset.hidden = "false";
+
+                // 记录下当前音量
+
+                origin_volume = Number(volume_slider.value);
+                volume_slider.value = "0";
+                audio_entity.volume = 0;
+                volume_font.innerText = 0 + "%";
+            }
+        });
+
+        let playMode: String = "wholeOnce";
+        // 调整播放模式
+        // 顺序->单曲循环->列表循环->随机播放
+        audio_play_mode_container.addEventListener("click", () => {
+            if (playMode === "wholeOnce") {
+                playMode = "singleCircle";
+                audio_play_mode_list[0].dataset.hidden = "true";
+                audio_play_mode_list[1].dataset.hidden = "false";
+                audio_entity.loop;
+            } else if (playMode === "singleCircle") {
+                playMode = "wholeCircle";
+                audio_play_mode_list[1].dataset.hidden = "true";
+                audio_play_mode_list[2].dataset.hidden = "false";
+            } else if (playMode === "wholeCircle") {
+                playMode = "random";
+                audio_play_mode_list[2].dataset.hidden = "true";
+                audio_play_mode_list[3].dataset.hidden = "false";
+            } else {
+                playMode = "wholeOnce";
+                audio_play_mode_list[3].dataset.hidden = "true";
+                audio_play_mode_list[0].dataset.hidden = "false";
+            }
+        });
+
+        // 歌曲播放开始转动
+        // 按钮也要调整
+        audio_entity.addEventListener("play", () => {
+            cover_image.dataset.rotate = "true";
+            audio_player_btns[0].dataset.hidden = "true";
+            audio_player_btns[1].dataset.hidden = "false";
+        });
+
+        // 歌曲暂停封面停止转动
+        audio_entity.addEventListener("pause", () => {
+            cover_image.dataset.rotate = "false";
+            audio_player_btns[0].dataset.hidden = "false";
+            audio_player_btns[1].dataset.hidden = "true";
+        });
+
+        let detail_info_panel_height = 0;
+        let cover_size = 0;
+        let larger_cover_size = 0;
+        let origin_cover_container_height = 0;
+        let scale_ratio: string = "";
+        let translateY = "";
+        let translateX = "";
+        let detail_info_panel_width = 0;
+
+        // 点击封面出现歌词等
+        cover_image.addEventListener("click", () => {
+            // 点击封面让封面动画更丰富
+            cover_image_container.classList.remove("ease-in-out")
+            cover_image_container.classList.add("ease-[cubic-bezier(0.78,-0.32,0.00,1.34)]")
+           
+            if (audio_detail_info_pane.dataset.hidden === "false") {
+                audio_detail_info_pane.dataset.hidden = "true";
+                unfold_area.dataset.covermove = "false";
+                // 边框加上
+                audio_container.classList.add("unfold:rounded-tl-[5px]");
+
+                // 记录下当前位置（小面板上的歌名以及歌手）
+                let singleInfoContainerPos =
+                    single_audio_info_display.getBoundingClientRect();
+                let singleControlPanelPos =
+                    controlPanelContainer.getBoundingClientRect();
+                let singleInfoContainerPos_x = singleInfoContainerPos.x;
+                let singleControlPanelPos_x = singleControlPanelPos.x;
+                // single_audio_info_display.style.removeProperty("transition");
+                // controlPanelContainer.style.removeProperty("transition");
+                single_audio_info_display.classList.remove(
+                    "transition-all",
+                    "duration-1000",
+                    "ease-in-out",
+                );
+                controlPanelContainer.classList.remove(
+                    "transition-all",
+                    "duration-1000",
+                    "ease-in-out",
+                );
+
+                // 移除transform
+                cover_image_container.style.transform = `translateY(0) translateX(0) scale(1)`;
+
+                // 移除absolute
+                cover_image_container.classList.remove("absolute");
+
+                // 此时立刻计算transform
+                let new_singleInfoContainerPos =
+                    single_audio_info_display.getBoundingClientRect();
+                let new_singleControlPanelPos =
+                    controlPanelContainer.getBoundingClientRect();
+                let new_singleInfoContainerPos_x = new_singleInfoContainerPos.x;
+                let new_singleControlPanelPos_x = new_singleControlPanelPos.x;
+
+                // 然后再将transform立刻计算
+                single_audio_info_display.style.transform = `translateX(${singleInfoContainerPos_x - new_singleInfoContainerPos_x}px)`;
+                controlPanelContainer.style.transform = `translateX(${singleControlPanelPos_x - new_singleControlPanelPos_x}px)`;
+                console.log(single_audio_info_display.style.transform);
+                console.log(single_audio_info_display.style.transition);
+
+                // 这一步需要跨帧
+                // 跨两帧
+                // 一帧加过渡，零一帧加动画
+                requestAnimationFrame(() => {
+                    // 再添加transition
+                    single_audio_info_display.classList.add(
+                        "transition-all",
+                        "duration-1000",
+                        "ease-in-out",
+                    );
+                    controlPanelContainer.classList.add(
+                        "transition-all",
+                        "duration-1000",
+                        "ease-in-out",
+                    );
+
+                    requestAnimationFrame(() => {
+                        // 再移除transform
+                        single_audio_info_display.style.transform = `translateX(0px)`;
+                        controlPanelContainer.style.transform = `translateX(0px)`;
+                    });
+                });
+            } else {
+                // 显示
+                audio_detail_info_pane.dataset.hidden = "false";
+                // 设置状态
+                unfold_area.dataset.covermove = "true";
+
+                // 获取到大小
+                larger_cover_size = larger_cover.clientWidth;
+
+                // 获取到原封面大小
+                cover_size = cover_image.clientHeight;
+
+                // 边框取消
+                audio_container.classList.remove("unfold:rounded-tl-[5px]");
+
+                // 得到父容器的大小
+                origin_cover_container_height = audio_container.clientHeight;
+
+                // 得到
+                scale_ratio =
+                    ((larger_cover_size / cover_size) * 100).toFixed(2) + "%";
+
+                // 得到详细面板大小：
+                detail_info_panel_height = 320;
+                detail_info_panel_width = 400;
+
+                translateX =
+                    (
+                        detail_info_panel_width / 4 -
+                        15 -
+                        cover_size / 2 -
+                        0.667 * 2
+                    ).toString() + "px";
+                translateY =
+                    (
+                        -(
+                            origin_cover_container_height +
+                            detail_info_panel_height
+                        ) * 0.5
+                    ).toString() + "px";
+
+                // 移动cover（的容器）
+                cover_image_container.style.transform = `translateY(${translateY}) translateX(${translateX}) scale(${scale_ratio})`;
+
+                // 记录下当前位置（小面板上的歌名以及歌手）
+                let singleInfoContainerPos =
+                    single_audio_info_display.getBoundingClientRect();
+                let singleControlPanelPos =
+                    controlPanelContainer.getBoundingClientRect();
+                let singleInfoContainerPos_x = singleInfoContainerPos.x;
+                let singleControlPanelPos_x = singleControlPanelPos.x;
+                // single_audio_info_display.style.removeProperty("transition");
+                // controlPanelContainer.style.removeProperty("transition");
+                single_audio_info_display.classList.remove(
+                    "transition-all",
+                    "duration-1000",
+                    "ease-in-out",
+                );
+                controlPanelContainer.classList.remove(
+                    "transition-all",
+                    "duration-1000",
+                    "ease-in-out",
+                );
+                // 并且设置为absolute
+                cover_image_container.classList.add("absolute");
+
+                // 此时立刻计算transform
+                let new_singleInfoContainerPos =
+                    single_audio_info_display.getBoundingClientRect();
+                let new_singleControlPanelPos =
+                    controlPanelContainer.getBoundingClientRect();
+                let new_singleInfoContainerPos_x = new_singleInfoContainerPos.x;
+                let new_singleControlPanelPos_x = new_singleControlPanelPos.x;
+
+                // 然后再将transform立刻计算
+                single_audio_info_display.style.transform = `translateX(${singleInfoContainerPos_x - new_singleInfoContainerPos_x}px)`;
+                controlPanelContainer.style.transform = `translateX(${singleControlPanelPos_x - new_singleControlPanelPos_x}px)`;
+                console.log(single_audio_info_display.style.transform);
+                console.log(single_audio_info_display.style.transition);
+
+                // 这一步需要跨帧
+                // 跨两帧
+                // 一帧加过渡，零一帧加动画
+                requestAnimationFrame(() => {
+                    // 再添加transition
+                    single_audio_info_display.classList.add(
+                        "transition-all",
+                        "duration-1000",
+                        "ease-in-out",
+                    );
+                    controlPanelContainer.classList.add(
+                        "transition-all",
+                        "duration-1000",
+                        "ease-in-out",
+                    );
+
+                    requestAnimationFrame(() => {
+                        // 再移除transform
+                        single_audio_info_display.style.transform = `translateX(0px)`;
+                        controlPanelContainer.style.transform = `translateX(0px)`;
+                    });
+                });
+            }
+        });
+    });
+</script>

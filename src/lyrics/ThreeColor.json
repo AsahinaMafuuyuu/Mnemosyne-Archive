@@ -1,0 +1,448 @@
+{
+    "audio_info": {
+        "title": "三色·绘恋 (《三色△绘恋》游戏主题曲)",
+        "artist": "云翼星辰",
+        "album": "三色△绘恋 OP",
+        "lyricist": "AsahinaMafuyu"
+    },
+    "lyrics": [
+        {
+            "time": "00:00.00",
+            "timeFormat": 0.0,
+            "lyric": "三色·绘恋 - 雲翼星辰",
+            "trans": ""
+        },
+        {
+            "time": "00:00.63",
+            "timeFormat": 0.63,
+            "lyric": "词：救世猪",
+            "trans": ""
+        },
+        {
+            "time": "00:01.27",
+            "timeFormat": 1.27,
+            "lyric": "曲：maru",
+            "trans": ""
+        },
+        {
+            "time": "00:01.91",
+            "timeFormat": 1.91,
+            "lyric": "缠绕在画笔尖",
+            "trans": ""
+        },
+        {
+            "time": "00:04.20",
+            "timeFormat": 4.2,
+            "lyric": "那交织的瞬间",
+            "trans": ""
+        },
+        {
+            "time": "00:06.95",
+            "timeFormat": 6.95,
+            "lyric": "懵懂残酷的闪念",
+            "trans": ""
+        },
+        {
+            "time": "00:09.76",
+            "timeFormat": 9.76,
+            "lyric": "化作绮丽的绘卷",
+            "trans": ""
+        },
+        {
+            "time": "00:18.70",
+            "timeFormat": 18.7,
+            "lyric": "紫色光芒闪耀在双瞳之间",
+            "trans": ""
+        },
+        {
+            "time": "00:23.02",
+            "timeFormat": 23.02,
+            "lyric": "纯净眼眸如镜面",
+            "trans": ""
+        },
+        {
+            "time": "00:25.83",
+            "timeFormat": 25.83,
+            "lyric": "安静映照我心中的夙愿",
+            "trans": ""
+        },
+        {
+            "time": "00:29.47",
+            "timeFormat": 29.47,
+            "lyric": "橙色旋风在周身仿佛不知疲倦",
+            "trans": ""
+        },
+        {
+            "time": "00:33.57",
+            "timeFormat": 33.57,
+            "lyric": "掌心传来的温柔",
+            "trans": ""
+        },
+        {
+            "time": "00:36.07",
+            "timeFormat": 36.07,
+            "lyric": "鼓励我不停向前",
+            "trans": ""
+        },
+        {
+            "time": "00:39.09",
+            "timeFormat": 39.09,
+            "lyric": "不开窍未来究竟该如何是好",
+            "trans": ""
+        },
+        {
+            "time": "00:42.14",
+            "timeFormat": 42.14,
+            "lyric": "不知道胸口究竟为何而燃烧",
+            "trans": ""
+        },
+        {
+            "time": "00:44.78",
+            "timeFormat": 44.78,
+            "lyric": "太烦恼如果时光此刻停止多美妙",
+            "trans": ""
+        },
+        {
+            "time": "00:48.34",
+            "timeFormat": 48.34,
+            "lyric": "平衡点有多微妙",
+            "trans": ""
+        },
+        {
+            "time": "00:50.36",
+            "timeFormat": 50.36,
+            "lyric": "蜿蜒曲折地描着线",
+            "trans": ""
+        },
+        {
+            "time": "00:52.84",
+            "timeFormat": 52.84,
+            "lyric": "不敢轻易染这绘卷",
+            "trans": ""
+        },
+        {
+            "time": "00:55.61",
+            "timeFormat": 55.61,
+            "lyric": "但有一天它会变得惊艳",
+            "trans": ""
+        },
+        {
+            "time": "00:59.91",
+            "timeFormat": 59.91,
+            "lyric": "用青春做铺垫",
+            "trans": ""
+        },
+        {
+            "time": "01:02.86",
+            "timeFormat": 62.86,
+            "lyric": "我涂抹卑微的孤独",
+            "trans": ""
+        },
+        {
+            "time": "01:05.63",
+            "timeFormat": 65.63,
+            "lyric": "愿以后能携手同路",
+            "trans": ""
+        },
+        {
+            "time": "01:08.79",
+            "timeFormat": 68.79,
+            "lyric": "我描绘前路的美图",
+            "trans": ""
+        },
+        {
+            "time": "01:11.00",
+            "timeFormat": 71.0,
+            "lyric": "你着色满画布",
+            "trans": ""
+        },
+        {
+            "time": "01:13.99",
+            "timeFormat": 73.99,
+            "lyric": "我调整明暗的交互",
+            "trans": ""
+        },
+        {
+            "time": "01:16.37",
+            "timeFormat": 76.37,
+            "lyric": "愿将这梦想看清楚",
+            "trans": ""
+        },
+        {
+            "time": "01:19.77",
+            "timeFormat": 79.77,
+            "lyric": "无论构图多艰苦",
+            "trans": ""
+        },
+        {
+            "time": "01:22.44",
+            "timeFormat": 82.44,
+            "lyric": "这绘卷里饱含着",
+            "trans": ""
+        },
+        {
+            "time": "01:24.57",
+            "timeFormat": 84.57,
+            "lyric": "青葱岁月的温度",
+            "trans": ""
+        },
+        {
+            "time": "01:36.96",
+            "timeFormat": 96.96,
+            "lyric": "忽然开始逃避交错的视线",
+            "trans": ""
+        },
+        {
+            "time": "01:41.31",
+            "timeFormat": 101.31,
+            "lyric": "擦肩而过 假装是",
+            "trans": ""
+        },
+        {
+            "time": "01:44.03",
+            "timeFormat": 104.03,
+            "lyric": "思念已经不再盘旋",
+            "trans": ""
+        },
+        {
+            "time": "01:46.30",
+            "timeFormat": 106.3,
+            "lyric": "总有天 必须抉择",
+            "trans": ""
+        },
+        {
+            "time": "01:49.07",
+            "timeFormat": 109.07,
+            "lyric": "颜色应该 怎么填",
+            "trans": ""
+        },
+        {
+            "time": "01:51.90",
+            "timeFormat": 111.9,
+            "lyric": "重获自由的时刻",
+            "trans": ""
+        },
+        {
+            "time": "01:54.24",
+            "timeFormat": 114.24,
+            "lyric": "伤与爱 不停蔓延",
+            "trans": ""
+        },
+        {
+            "time": "01:57.16",
+            "timeFormat": 117.16,
+            "lyric": "不开窍未来究竟该如何是好",
+            "trans": ""
+        },
+        {
+            "time": "02:00.25",
+            "timeFormat": 120.25,
+            "lyric": "不知道胸口究竟为何而燃烧",
+            "trans": ""
+        },
+        {
+            "time": "02:02.92",
+            "timeFormat": 122.92,
+            "lyric": "感觉到心中的那一抹颜色在咆哮",
+            "trans": ""
+        },
+        {
+            "time": "02:07.53",
+            "timeFormat": 127.53,
+            "lyric": "仿佛怒海澜涛",
+            "trans": ""
+        },
+        {
+            "time": "02:10.39",
+            "timeFormat": 130.39,
+            "lyric": "我涂抹卑微的孤独",
+            "trans": ""
+        },
+        {
+            "time": "02:13.06",
+            "timeFormat": 133.06,
+            "lyric": "愿以后能携手同路",
+            "trans": ""
+        },
+        {
+            "time": "02:16.06",
+            "timeFormat": 136.06,
+            "lyric": "我描绘前路的美图",
+            "trans": ""
+        },
+        {
+            "time": "02:18.48",
+            "timeFormat": 138.48,
+            "lyric": "你着色满画布",
+            "trans": ""
+        },
+        {
+            "time": "02:21.35",
+            "timeFormat": 141.35,
+            "lyric": "我调整明暗的交互",
+            "trans": ""
+        },
+        {
+            "time": "02:23.79",
+            "timeFormat": 143.79,
+            "lyric": "愿将这梦想看清楚",
+            "trans": ""
+        },
+        {
+            "time": "02:27.17",
+            "timeFormat": 147.17,
+            "lyric": "无论构图多艰苦",
+            "trans": ""
+        },
+        {
+            "time": "02:29.89",
+            "timeFormat": 149.89,
+            "lyric": "愿在你的颜色里",
+            "trans": ""
+        },
+        {
+            "time": "02:31.93",
+            "timeFormat": 151.93,
+            "lyric": "我全心全意融入",
+            "trans": ""
+        },
+        {
+            "time": "02:58.30",
+            "timeFormat": 178.3,
+            "lyric": "面带着微笑道别",
+            "trans": ""
+        },
+        {
+            "time": "03:00.77",
+            "timeFormat": 180.77,
+            "lyric": "抬起沉重的双肩",
+            "trans": ""
+        },
+        {
+            "time": "03:03.63",
+            "timeFormat": 183.63,
+            "lyric": "笔端跳跃 倾诉着答案呈现",
+            "trans": ""
+        },
+        {
+            "time": "03:08.90",
+            "timeFormat": 188.9,
+            "lyric": "磅礴的回忆涌出勾勒着",
+            "trans": ""
+        },
+        {
+            "time": "03:12.66",
+            "timeFormat": 192.66,
+            "lyric": "这一刻 这一刻",
+            "trans": ""
+        },
+        {
+            "time": "03:15.23",
+            "timeFormat": 195.23,
+            "lyric": "你璀璨色彩将画卷浇筑",
+            "trans": ""
+        },
+        {
+            "time": "03:18.66",
+            "timeFormat": 198.66,
+            "lyric": "我不再孤独",
+            "trans": ""
+        },
+        {
+            "time": "03:20.43",
+            "timeFormat": 200.43,
+            "lyric": "因以后能携手同路",
+            "trans": ""
+        },
+        {
+            "time": "03:23.58",
+            "timeFormat": 203.58,
+            "lyric": "我描绘前路的美图",
+            "trans": ""
+        },
+        {
+            "time": "03:25.80",
+            "timeFormat": 205.8,
+            "lyric": "你着色满画布",
+            "trans": ""
+        },
+        {
+            "time": "03:28.86",
+            "timeFormat": 208.86,
+            "lyric": "我调整明暗的交互",
+            "trans": ""
+        },
+        {
+            "time": "03:31.23",
+            "timeFormat": 211.23,
+            "lyric": "这梦想已将我抱住",
+            "trans": ""
+        },
+        {
+            "time": "03:34.57",
+            "timeFormat": 214.57,
+            "lyric": "无论构图多艰苦",
+            "trans": ""
+        },
+        {
+            "time": "03:37.23",
+            "timeFormat": 217.23,
+            "lyric": "愿在你的颜色里",
+            "trans": ""
+        },
+        {
+            "time": "03:39.57",
+            "timeFormat": 219.57,
+            "lyric": "此刻起我不再孤独",
+            "trans": ""
+        },
+        {
+            "time": "03:42.00",
+            "timeFormat": 222.0,
+            "lyric": "因以后能携手同路",
+            "trans": ""
+        },
+        {
+            "time": "03:45.13",
+            "timeFormat": 225.13,
+            "lyric": "我描绘前路的美图",
+            "trans": ""
+        },
+        {
+            "time": "03:47.37",
+            "timeFormat": 227.37,
+            "lyric": "你着色满画布",
+            "trans": ""
+        },
+        {
+            "time": "03:50.37",
+            "timeFormat": 230.37,
+            "lyric": "我调整明暗的交互",
+            "trans": ""
+        },
+        {
+            "time": "03:52.79",
+            "timeFormat": 232.79,
+            "lyric": "这梦想已将我抱住",
+            "trans": ""
+        },
+        {
+            "time": "03:56.04",
+            "timeFormat": 236.04,
+            "lyric": "无论构图多艰苦",
+            "trans": ""
+        },
+        {
+            "time": "03:58.80",
+            "timeFormat": 238.8,
+            "lyric": "愿在你的颜色里",
+            "trans": ""
+        },
+        {
+            "time": "04:00.97",
+            "timeFormat": 240.97,
+            "lyric": "我全心全意融入",
+            "trans": ""
+        }
+    ]
+}

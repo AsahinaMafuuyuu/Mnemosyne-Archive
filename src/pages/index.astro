@@ -2,10 +2,10 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Greeting from "../components/Greeting";
 import AudioPlayerAside from "../components/AudioPlayerAside.astro";
-import Luna from "../images/luna.jpg";
-// import "../styles/normalize.css"
-import '../styles/global.css'
+import "../styles/normalize.css"
+// import '../styles/global.css'
 import "../output.css"
+import Yuki from '../images/Yuki.jpg'
 
 const pageTitle = "愛包ダンスホール";
 ---
@@ -17,15 +17,12 @@ const pageTitle = "愛包ダンスホール";
       <Greeting messages={["Hi", "Hello", "Howdy", "Hey there"]} />
       <Greeting client:load messages={["Hej", "Hallo", "Hola", "Habari"]} />
     </BaseLayout>
-    <div>This is AudioPlayerAside</div>
-    <AudioPlayerAside class="audio-player-aside-bar" client:load />
+    <AudioPlayerAside className="fixed top-[50px] left-[50px]" class="" client:load />
   </div>
 </div>
 
-<style define:vars={{ lunaUrl: `url(${Luna.src})` }}>
-  .audio-player-aside-bar {
-    position: absolute;
-  }
+<style>
+
   .all-body-container {
     height: 100vh;
     /* background-image: var(--lunaUrl); */
@@ -33,8 +30,10 @@ const pageTitle = "愛包ダンスホール";
     background-position: center;
     background-repeat: no-repeat;
   }
+
   .body-div {
-    height: fit-content;
+    height: 100%;
+    width: 100vw;
     background-color: rgba(255, 255, 255, 0.55);
     backdrop-filter: blur(14px) saturate(120%);
   }

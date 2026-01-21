@@ -1,0 +1,562 @@
+{
+    "audio_info": {
+        "title": "爱派Dancehall",
+        "artist": "HIMEHINA",
+        "album": "爱派Dancehall",
+        "lyricist": "AsahinaMafuyu"
+    },
+    "lyrics": [
+        {
+            "time": "00:00.00",
+            "timeFormat": 0.0,
+            "lyric": "爱派Dancehall - HIMEHINA ",
+            "trans": ""
+        },
+        {
+            "time": "00:00.24",
+            "timeFormat": 0.24,
+            "lyric": "词：Gohgo",
+            "trans": ""
+        },
+        {
+            "time": "00:00.42",
+            "timeFormat": 0.42,
+            "lyric": "曲：涼木シンジ/Gohgo ",
+            "trans": ""
+        },
+        {
+            "time": "00:00.86",
+            "timeFormat": 0.86,
+            "lyric": "愛包ダンスホール 今日はボレロ",
+            "trans": "爱派Dancehall 今天上演博莱罗"
+        },
+        {
+            "time": "00:03.73",
+            "timeFormat": 3.73,
+            "lyric": "蕩けった少年 甘酸っぱい感情",
+            "trans": "神魂颠倒的少年 情愫如柠檬酸甜"
+        },
+        {
+            "time": "00:06.08",
+            "timeFormat": 6.08,
+            "lyric": "求愛人類♥満杯",
+            "trans": "求爱人类♥满杯"
+        },
+        {
+            "time": "00:07.84",
+            "timeFormat": 7.84,
+            "lyric": "オーブントースターは漏れ漏れよ",
+            "trans": "烤箱塞得满满就要漏出来"
+        },
+        {
+            "time": "00:10.55",
+            "timeFormat": 10.55,
+            "lyric": "おかわりはアンコール次第ね",
+            "trans": "想要续杯 就不要吝惜安可哦"
+        },
+        {
+            "time": "00:12.98",
+            "timeFormat": 12.98,
+            "lyric": "オワラナイラブコールノダンスデ",
+            "trans": "永不结束的・爱的呼唤・之・舞步"
+        },
+        {
+            "time": "00:17.09",
+            "timeFormat": 17.09,
+            "lyric": "愛包ダンスホール",
+            "trans": "爱派Dancehall"
+        },
+        {
+            "time": "00:20.44",
+            "timeFormat": 20.44,
+            "lyric": "おかわりならもう欲しい",
+            "trans": "再来一杯 现在就想要"
+        },
+        {
+            "time": "00:23.94",
+            "timeFormat": 23.94,
+            "lyric": "愛包ダンスホール",
+            "trans": "爱派Dancehall"
+        },
+        {
+            "time": "00:28.52",
+            "timeFormat": 28.52,
+            "lyric": "3.1415926535のπだって",
+            "trans": "就算是3.1415926535的π"
+        },
+        {
+            "time": "00:31.82",
+            "timeFormat": 31.82,
+            "lyric": "割り切れない気持ち抱えてるよ",
+            "trans": "也满怀着除不尽的期待"
+        },
+        {
+            "time": "00:35.24",
+            "timeFormat": 35.24,
+            "lyric": "ロボ人も幻人も猿人も",
+            "trans": "不管是机器人幻人猿人"
+        },
+        {
+            "time": "00:36.86",
+            "timeFormat": 36.86,
+            "lyric": "円陣組んで仲良くやれたらとか",
+            "trans": "都围成一圈友好相待"
+        },
+        {
+            "time": "00:38.73",
+            "timeFormat": 38.73,
+            "lyric": "割り切れない生命諍いのヘブン",
+            "trans": "分割不开的生命 争奇斗艳的天堂"
+        },
+        {
+            "time": "00:42.22",
+            "timeFormat": 42.22,
+            "lyric": "今宵はいいんじゃない？",
+            "trans": "今晚这样不也挺好"
+        },
+        {
+            "time": "00:43.46",
+            "timeFormat": 43.46,
+            "lyric": "ほらオエオエオエオエよ",
+            "trans": "一起噢耶噢耶噢耶喊叫"
+        },
+        {
+            "time": "00:45.57",
+            "timeFormat": 45.57,
+            "lyric": "踊ればいいんじゃない？",
+            "trans": "跳起舞来不也挺好"
+        },
+        {
+            "time": "00:46.83",
+            "timeFormat": 46.83,
+            "lyric": "ほらフリフリフラレば",
+            "trans": "来吧身体放松扭扭摇摇"
+        },
+        {
+            "time": "00:48.66",
+            "timeFormat": 48.66,
+            "lyric": "休戦しようぜ 涙腺が源泉温泉",
+            "trans": "休战一下吧 泪腺就是源泉温泉"
+        },
+        {
+            "time": "00:52.03",
+            "timeFormat": 52.03,
+            "lyric": "汗ばんだらガンダーラサンサーラ",
+            "trans": "汗如雨下 Gandhara Samsara"
+        },
+        {
+            "time": "00:54.84",
+            "timeFormat": 54.84,
+            "lyric": "なに言ってんだ？(自問自答)",
+            "trans": "说的是啥（自问自答）"
+        },
+        {
+            "time": "00:55.86",
+            "timeFormat": 55.86,
+            "lyric": "高まった感動の再会",
+            "trans": "感动的再会 高涨的期待"
+        },
+        {
+            "time": "00:57.44",
+            "timeFormat": 57.44,
+            "lyric": "集まった愛情のWi-Fi",
+            "trans": "聚在一起的 爱意的Wi-Fi"
+        },
+        {
+            "time": "00:59.00",
+            "timeFormat": 59.0,
+            "lyric": "持寄った常灯の人提灯",
+            "trans": "常亮的手灯 连成一排排"
+        },
+        {
+            "time": "01:00.52",
+            "timeFormat": 60.52,
+            "lyric": "愛してるが重なって",
+            "trans": "“我爱你”将全场覆盖"
+        },
+        {
+            "time": "01:02.50",
+            "timeFormat": 62.5,
+            "lyric": "包まった人類の状態",
+            "trans": "层层叠叠的人类的状态"
+        },
+        {
+            "time": "01:03.93",
+            "timeFormat": 63.93,
+            "lyric": "熱いミートパイみたいだね",
+            "trans": "不就像那炙热的肉派"
+        },
+        {
+            "time": "01:07.37",
+            "timeFormat": 67.37,
+            "lyric": "パパッパッパッパパ パイ ♥？",
+            "trans": "PAPA PA PA PAPA ♥？"
+        },
+        {
+            "time": "01:09.10",
+            "timeFormat": 69.1,
+            "lyric": "愛包 愛一杯で惚れ惚れよ",
+            "trans": "爱派 爱满杯 心荡又神迷"
+        },
+        {
+            "time": "01:11.76",
+            "timeFormat": 71.76,
+            "lyric": "蕩けった少年 甘酸っぱい感情",
+            "trans": "神魂颠倒的少年 情愫如柠檬酸甜"
+        },
+        {
+            "time": "01:14.12",
+            "timeFormat": 74.12,
+            "lyric": "求愛人類♥満杯だい",
+            "trans": "求爱人类♥满杯"
+        },
+        {
+            "time": "01:15.82",
+            "timeFormat": 75.82,
+            "lyric": "完敗 完全に惚れ惚れよ",
+            "trans": "完败 完全是心荡又神迷"
+        },
+        {
+            "time": "01:18.62",
+            "timeFormat": 78.62,
+            "lyric": "ミルフィーユみたいね愛ほろり",
+            "trans": "就像千层酥一样 洒下爱的碎片"
+        },
+        {
+            "time": "01:20.92",
+            "timeFormat": 80.92,
+            "lyric": "頭んなかパッパラッパッパー",
+            "trans": "大脑里面PA PALA PA PA"
+        },
+        {
+            "time": "01:23.24",
+            "timeFormat": 83.24,
+            "lyric": "艶やかな脳内の脳裏の",
+            "trans": "艳丽的脑内里"
+        },
+        {
+            "time": "01:24.67",
+            "timeFormat": 84.67,
+            "lyric": "ジョンレノンも愛包家",
+            "trans": "住着的约翰列侬也是爱派家"
+        },
+        {
+            "time": "01:26.09",
+            "timeFormat": 86.09,
+            "lyric": "イマジンオールザピーポーの祭典",
+            "trans": "Imagine All the People的狂欢"
+        },
+        {
+            "time": "01:27.76",
+            "timeFormat": 87.76,
+            "lyric": "ダンスホールじゃ暇人もヒーロー",
+            "trans": "Dancehall里闲人也是主演"
+        },
+        {
+            "time": "01:29.97",
+            "timeFormat": 89.97,
+            "lyric": "乾杯ね 今日はボレロ",
+            "trans": "干杯吧 今天上演博莱罗"
+        },
+        {
+            "time": "01:32.26",
+            "timeFormat": 92.25999999999999,
+            "lyric": "交わって人類 馬鹿んなって笑って",
+            "trans": "交融的人类 面对面傻笑"
+        },
+        {
+            "time": "01:35.04",
+            "timeFormat": 95.03999999999999,
+            "lyric": "おかわり欲しいでしょ？",
+            "trans": "想要再来一杯吧"
+        },
+        {
+            "time": "01:36.95",
+            "timeFormat": 96.95,
+            "lyric": "全人類公正舞踏会の",
+            "trans": "全人类公正舞会"
+        },
+        {
+            "time": "01:38.54",
+            "timeFormat": 98.53999999999999,
+            "lyric": "目指すべき一日は",
+            "trans": "努力实现的光景"
+        },
+        {
+            "time": "01:39.75",
+            "timeFormat": 99.75,
+            "lyric": "レンジでチンしてパイになる様な",
+            "trans": "在微波炉里热一下就变成派的一日"
+        },
+        {
+            "time": "01:41.44",
+            "timeFormat": 101.44,
+            "lyric": "脳みそもトロトロの世の実現を",
+            "trans": "实现将脑浆都融化的世界"
+        },
+        {
+            "time": "01:43.84",
+            "timeFormat": 103.84,
+            "lyric": "スローガンにオールナイト",
+            "trans": "让这口号循环整夜"
+        },
+        {
+            "time": "01:45.10",
+            "timeFormat": 105.1,
+            "lyric": "踊りまして煩悩は早退",
+            "trans": "只要舞动起来 烦恼就早退"
+        },
+        {
+            "time": "01:46.62",
+            "timeFormat": 106.62,
+            "lyric": "つきまして聖人を増産",
+            "trans": "如此一来就能 将圣人增产"
+        },
+        {
+            "time": "01:48.20",
+            "timeFormat": 108.2,
+            "lyric": "パパッパッパッパパ パイ",
+            "trans": "PAPA PA PA PAPA 派"
+        },
+        {
+            "time": "01:49.89",
+            "timeFormat": 109.89,
+            "lyric": "人類最高のダンスタイム",
+            "trans": "人类最棒的Dance Time"
+        },
+        {
+            "time": "01:54.10",
+            "timeFormat": 114.1,
+            "lyric": "愛包ダンスホール",
+            "trans": "爱派Dancehall"
+        },
+        {
+            "time": "01:56.89",
+            "timeFormat": 116.89,
+            "lyric": "嗚呼ライライ愛包ダンスホール",
+            "trans": "啊 来来 爱派Dancehall"
+        },
+        {
+            "time": "02:00.96",
+            "timeFormat": 120.96,
+            "lyric": "愛包ダンスホール",
+            "trans": "爱派Dancehall"
+        },
+        {
+            "time": "02:05.35",
+            "timeFormat": 125.35,
+            "lyric": "僕等が生まれて初めて知る音は",
+            "trans": "我们出生之后 首先听到的"
+        },
+        {
+            "time": "02:10.35",
+            "timeFormat": 130.35,
+            "lyric": "心臓の鼓動だろ",
+            "trans": "就是心脏的声音吧"
+        },
+        {
+            "time": "02:12.77",
+            "timeFormat": 132.77,
+            "lyric": "トトン トトン タトン",
+            "trans": "咚咚 咚咚 当咚"
+        },
+        {
+            "time": "02:14.04",
+            "timeFormat": 134.04,
+            "lyric": "タトン タテン タトンタ",
+            "trans": "当咚 当当 当咚当"
+        },
+        {
+            "time": "02:15.51",
+            "timeFormat": 135.51,
+            "lyric": "それはリズムと知った",
+            "trans": "这是最初熟知的节拍"
+        },
+        {
+            "time": "02:18.79",
+            "timeFormat": 138.79,
+            "lyric": "いにしえもいまどきも",
+            "trans": "无论是古代还是现在"
+        },
+        {
+            "time": "02:20.53",
+            "timeFormat": 140.53,
+            "lyric": "♥beatが僕達を包んで繋いでんだろ？",
+            "trans": "心跳声都将我们紧紧包围 联系起来"
+        },
+        {
+            "time": "02:25.63",
+            "timeFormat": 145.63,
+            "lyric": "パパッパッパッパパ パイ ♥？",
+            "trans": "PAPA PA PA PAPA 派"
+        },
+        {
+            "time": "02:27.34",
+            "timeFormat": 147.34,
+            "lyric": "愛包 愛いっぱいで惚れ惚れよ",
+            "trans": "爱派 爱满杯 心荡又神迷"
+        },
+        {
+            "time": "02:30.07",
+            "timeFormat": 150.07,
+            "lyric": "蕩けった少年 甘酸っぱい感情",
+            "trans": "神魂颠倒的少年 情感像柠檬酸甜"
+        },
+        {
+            "time": "02:32.38",
+            "timeFormat": 152.38,
+            "lyric": "求愛人類♥満杯だい",
+            "trans": "求爱人类♥满杯"
+        },
+        {
+            "time": "02:34.23",
+            "timeFormat": 154.23,
+            "lyric": "完敗 完全に惚れ惚れよ",
+            "trans": "完败 完全是心荡又神迷"
+        },
+        {
+            "time": "02:36.94",
+            "timeFormat": 156.94,
+            "lyric": "ミルフィーユみたいね愛ほろり",
+            "trans": "就像千层酥一样 洒下爱的碎片"
+        },
+        {
+            "time": "02:39.25",
+            "timeFormat": 159.25,
+            "lyric": "頭んなかパッパラッパッパー",
+            "trans": "大脑里面PA PALA PA PA"
+        },
+        {
+            "time": "02:41.63",
+            "timeFormat": 161.63,
+            "lyric": "ララララララララララ",
+            "trans": "啦啦啦啦啦啦啦啦啦啦"
+        },
+        {
+            "time": "02:43.85",
+            "timeFormat": 163.85,
+            "lyric": "まるでバージンロードで",
+            "trans": "就像在婚礼甬道上"
+        },
+        {
+            "time": "02:45.19",
+            "timeFormat": 165.19,
+            "lyric": "踊ってるみたい",
+            "trans": "翩翩起舞"
+        },
+        {
+            "time": "02:45.99",
+            "timeFormat": 165.99,
+            "lyric": "生まれ変わった様な気分でして",
+            "trans": "感觉仿佛是脱胎换骨"
+        },
+        {
+            "time": "02:47.87",
+            "timeFormat": 167.87,
+            "lyric": "乾杯ね 今日はボレロ",
+            "trans": "干杯吧 今天上演博莱罗"
+        },
+        {
+            "time": "02:50.60",
+            "timeFormat": 170.6,
+            "lyric": "交わって人類 馬鹿んなって",
+            "trans": "交融的人类"
+        },
+        {
+            "time": "02:52.52",
+            "timeFormat": 172.52,
+            "lyric": "笑っ照れ",
+            "trans": "面对面傻笑"
+        },
+        {
+            "time": "02:53.34",
+            "timeFormat": 173.34,
+            "lyric": "てってってっ照れってってー",
+            "trans": "te-te-te-tere-te-te"
+        },
+        {
+            "time": "02:55.22",
+            "timeFormat": 175.22,
+            "lyric": "寂しいよな 終わりは近づくけどさ",
+            "trans": "会感到寂寞吧 在结尾即将来到的时刻"
+        },
+        {
+            "time": "02:58.34",
+            "timeFormat": 178.34,
+            "lyric": "終わらないπの様に続けりゃいい",
+            "trans": "如果能像没有尽头的π一样就好了"
+        },
+        {
+            "time": "03:01.82",
+            "timeFormat": 181.82,
+            "lyric": "計算なんてできないが",
+            "trans": "虽然不知道怎么计算"
+        },
+        {
+            "time": "03:07.46",
+            "timeFormat": 187.46,
+            "lyric": "愛いっぱい",
+            "trans": "爱满杯"
+        },
+        {
+            "time": "03:08.29",
+            "timeFormat": 188.29,
+            "lyric": "愛包ダンスホール 今日はボレロ",
+            "trans": "爱派 爱满杯 心荡又神迷"
+        },
+        {
+            "time": "03:11.03",
+            "timeFormat": 191.03,
+            "lyric": "蕩けった少年 甘酸っぱい感情",
+            "trans": "神魂颠倒的少年 情愫如柠檬酸甜"
+        },
+        {
+            "time": "03:13.29",
+            "timeFormat": 193.29,
+            "lyric": "求愛人類♥は満杯さ",
+            "trans": "求爱人类♥满杯"
+        },
+        {
+            "time": "03:15.74",
+            "timeFormat": 195.74,
+            "lyric": "また食べに来てね",
+            "trans": "记得要再来尝尝哦"
+        },
+        {
+            "time": "03:17.76",
+            "timeFormat": 197.76,
+            "lyric": "あなたならいつでもいいよ",
+            "trans": "如果是你的话 不管什么时候"
+        },
+        {
+            "time": "03:20.65",
+            "timeFormat": 200.65,
+            "lyric": "おかわり欲しいでしょ？",
+            "trans": "都想要续杯的吧"
+        },
+        {
+            "time": "03:24.26",
+            "timeFormat": 204.26,
+            "lyric": "愛包ダンスホール",
+            "trans": "爱派Dancehall"
+        },
+        {
+            "time": "03:27.71",
+            "timeFormat": 207.71,
+            "lyric": "おかわりならもう欲しい",
+            "trans": "再来一杯 现在就想要"
+        },
+        {
+            "time": "03:31.09",
+            "timeFormat": 211.09,
+            "lyric": "愛包ダンスホール",
+            "trans": "爱派Dancehall"
+        },
+        {
+            "time": "03:36.14",
+            "timeFormat": 216.14,
+            "lyric": "どうぞ",
+            "trans": "请品尝"
+        }
+    ]
+}
