@@ -234,13 +234,12 @@ import PrevIcon from "./SVGComponents/prev.astro";
                             max-[768px]:w-5 max-[768px]:h-5
                             max-[425px]:w-7 max-[425px]:h-7"
                             xmlns="http://www.w3.org/2000/svg"
-                            xmlns:xlink="http://www.w3.org/1999/xlink"
                             viewBox="0 0 1024 1024"
                             ><path
                                 d="M512 113c220 0 399 179 399 399S732 911 512 911 113 732 113 512s179-399 399-399m0-42C268.4 71 71 268.4 71 512s197.4 441 441 441 441-197.4 441-441S755.6 71 512 71z"
-                                p-id="4702"></path><path
+                                ></path><path
                                 d="M440.3 697.6c-29.9 0-54.3-24.3-54.3-54.3V380.6c0-29.9 24.4-54.3 54.3-54.3 9.4 0 18.7 2.5 27 7.3L694.9 465c17 9.8 27.1 27.4 27.1 47s-10.1 37.2-27.1 47L467.4 690.3c-8.4 4.8-17.7 7.3-27.1 7.3z m0-329.2c-5.9 0-12.3 4.7-12.3 12.3v262.7c0 10.3 10.9 14.9 18.4 10.6l227.5-131.4c5.5-3.2 6.1-8.4 6.1-10.6s-0.6-7.4-6.1-10.6L446.4 370c-2-1.1-4-1.6-6.1-1.6z"
-                                p-id="4703"></path></svg
+                               ></path></svg
                         >
                         <!-- 暂停 -->
                         <svg
@@ -251,15 +250,14 @@ import PrevIcon from "./SVGComponents/prev.astro";
                             max-[768px]:w-5 max-[768px]:h-5
                             max-[425px]:w-7 max-[425px]:h-7"
                             xmlns="http://www.w3.org/2000/svg"
-                            xmlns:xlink="http://www.w3.org/1999/xlink"
                             viewBox="0 0 1024 1024"
                             ><path
                                 d="M512 35.031579C247.915789 35.031579 35.031579 247.915789 35.031579 512S247.915789 988.968421 512 988.968421 988.968421 776.084211 988.968421 512 776.084211 35.031579 512 35.031579z m0 916.210526C269.473684 951.242105 72.757895 754.526316 72.757895 512S269.473684 72.757895 512 72.757895 951.242105 269.473684 951.242105 512 754.526316 951.242105 512 951.242105z"
                                 fill="black"
-                                p-id="6233"></path><path
+                                ></path><path
                                 d="M463.494737 296.421053h-91.621053c-16.168421 0-29.642105 13.473684-29.642105 29.642105V700.631579c0 16.168421 13.473684 29.642105 29.642105 29.642105h91.621053c16.168421 0 29.642105-13.473684 29.642105-29.642105V323.368421c0-16.168421-13.473684-26.947368-29.642105-26.947368z m-8.084211 393.431579h-75.452631V334.147368h75.452631v355.705264zM652.126316 296.421053h-91.621053c-16.168421 0-29.642105 13.473684-29.642105 29.642105V700.631579c0 16.168421 13.473684 29.642105 29.642105 29.642105h91.621053c16.168421 0 29.642105-13.473684 29.642105-29.642105V323.368421c0-16.168421-13.473684-26.947368-29.642105-26.947368z m-8.084211 393.431579h-75.452631V334.147368h75.452631v355.705264z"
                                 fill="black"
-                                p-id="6234"></path></svg
+                               ></path></svg
                         >
                     </div>
 
@@ -427,9 +425,9 @@ import PrevIcon from "./SVGComponents/prev.astro";
                         >
                     </div>
 
-                    <!-- 播放列表 -->
+                    <!-- 播放列表按钮 -->
                     <div
-                        data-ui="audio-play-mode-container"
+                        data-ui="audio-play-list-btn-container"
                         class="flex relative overflow-hidden"
                     >
                         <!-- 播放列表图标 -->
@@ -475,16 +473,26 @@ import PrevIcon from "./SVGComponents/prev.astro";
             </div>
         </div>
 
-
         <!-- 播放列表展示 -->
         <aside
             data-ui="play-list-visual-panel"
-            data-hidden="false"
-            class="w-[40%] h-75 rounded-[10px] border border-[#ccc] absolute right-0 bg-[rgba(0,0,0,.4)] saturate-100 backdrop-blur-[12px] bottom-full transition-all duration-1000 ease-in-out
+            data-hidden="true"
+            class="w-[60%] h-75 flex flex-col rounded-[10px] p-0 overflow-hidden border-[#ccc] absolute right-0 bg-[rgba(0,0,0,.4)] saturate-100 backdrop-blur-[12px] bottom-full transition-all duration-1000 ease-in-out
             covermove:rounded-tr-none covermove:rounded-br-none z-0
-            hidden:h-0
-            "
+            unfold:p-2 unfold:border
+            hidden:h-0 hidden:border-0 hidden:pt-0 hidden:pb-0"
         >
+        
+            <header data-ui="play-array-header" class="text-[16px] text-[#ccc] whitespace-nowrap">
+                播放列表
+            </header>
+            <div class="overflow-auto play-array-scrollbar">
+                <ul
+                    data-ui="real-play-array-container"
+                    class="flex flex-1 flex-col items-center justify-center gap-[10px]"
+                >
+                </ul>
+            </div>
         </aside>
     </div>
 
@@ -564,7 +572,15 @@ import PrevIcon from "./SVGComponents/prev.astro";
     const play_list_area: HTMLElement = unfold_area.querySelector(
         '[data-ui="play-list-visual-panel"]',
     ) as HTMLElement;
-    
+
+    // 获取播放列表中的父容器
+    const play_array_container: HTMLElement = play_list_area.querySelector(
+        '[data-ui="real-play-array-container"]',
+    ) as HTMLElement;
+
+    // 获取到播放列表中的子元素合集
+    const play_array_audio: NodeListOf<HTMLLIElement> =
+        play_list_area.querySelectorAll("li");
 
     // 获取歌词以及详细信息面板
     const audio_detail_info_panel: HTMLElement = aside_container.querySelector(
@@ -659,6 +675,12 @@ import PrevIcon from "./SVGComponents/prev.astro";
     const audio_play_mode_container: HTMLElement =
         audio_container.querySelector(
             '[data-ui="audio-play-mode-container"]',
+        ) as HTMLElement;
+
+    // 获取播放列表的按钮容器
+    const audio_play_list_btn_container: HTMLElement =
+        audio_container.querySelector(
+            '[data-ui="audio-play-list-btn-container"]',
         ) as HTMLElement;
 
     // 获取到播放模式按钮的list
@@ -812,12 +834,12 @@ import PrevIcon from "./SVGComponents/prev.astro";
 
     // 定义播放列表面板上的可视数据部分
     type playPanelSingleAudioInfo = {
-        coverUrl:string,
-        title:string,
-        artist:string,
-        duration:string
-    }
-    let playPanelArray:playPanelSingleAudioInfo[] = []
+        coverUrl: string;
+        title: string;
+        artist: string;
+        duration: string;
+    };
+    let playPanelArray: playPanelSingleAudioInfo[] = [];
 
     // 获取到原来的title
     let original_title_text = single_audio_title.innerText;
@@ -832,6 +854,9 @@ import PrevIcon from "./SVGComponents/prev.astro";
 
     // 还需要创造一个index用来维护和监控
     let playIndex = 0;
+
+    // 维护一个上一首播放的曲子
+    let prevPlayIndex: number | null = null;
 
     // 定义事件队列（其实就是取出）
     let timeMessageQueue: Array<singleLyric> = [];
@@ -917,11 +942,28 @@ import PrevIcon from "./SVGComponents/prev.astro";
 
     // 重置播放列表,用来将原先的index索引回去
     function resetPlayArray() {
-        realPlayArray = Array.from(
-            { length: PlayAudioList.length },
-            (_, i) => i,
-        );
+        // 如果playArray未初始化，则先进行初始化
+        if (realPlayArray.length === 0) {
+            realPlayArray = Array.from(
+                { length: PlayAudioList.length },
+                (_, i) => i,
+            );
+        } else {
+            // 首先按照原来的队列替换索引
+            playIndex = realPlayArray[playIndex];
+
+            if (prevPlayIndex !== null) {
+                prevPlayIndex = realPlayArray[prevPlayIndex];
+            }
+
+            // 记住当前曲子和prev曲子的索引
+            realPlayArray = Array.from(
+                { length: PlayAudioList.length },
+                (_, i) => i,
+            );
+        }
     }
+
 
     // 重新寻找一下DivList
     // DivList就是将当前歌词页上的所有歌词对象化
@@ -1104,6 +1146,9 @@ import PrevIcon from "./SVGComponents/prev.astro";
         // 重置playList
         resetPlayArray();
 
+        // 播放列表显示重置
+        reloadPlayArrayItems();
+
         // 颜色进度条需要初始化
         sync(playback_bar, playback_bar.value);
         sync(volume_slider, volume_slider.value);
@@ -1115,18 +1160,82 @@ import PrevIcon from "./SVGComponents/prev.astro";
         audio_entity.volume = Number(volume_slider.value) / 100;
     }
 
+    // 通过playArray来重新加载播放列表中的播放队列
+    /*
+    <li class="w-full flex gap-1 items-center">
+            <img src={HIMEHINA.src} class="min-w-8 max-h-8 w-8 aspect-square rounded-[5px] object-cover" alt="">
+            <div class="flex flex-col flex-1 text-[14px] overflow-hidden">
+                <span class="w-full truncate">爱派dancehall</span>
+                <span class="w-full truncate">HIMEHINA</span>
+            </div>
+            <span class="flex justify-center items-center text-[10px]">02:59</span>
+        </li>
+
+    */
+    function reloadPlayArrayItems() {
+        // 对于实际播放队列的元素
+        let tempHTML = "";
+        realPlayArray.forEach((realIndex, index) => {
+            // 每一个item才是真正的序列
+            // 拼接
+            // TODO 这里需要将时间戳进行修改
+            tempHTML += `<li class="w-full flex gap-1 items-center">
+                <img src=${PlayAudioList[realIndex].coverUrl} class="min-w-8 max-h-8 border border-[#black] w-8 aspect-square rounded-[5px] object-cover" alt="">
+                <div class="flex flex-col flex-1 text-[14px] overflow-hidden">
+                    <span class="w-full truncate">${PlayAudioList[realIndex].lyric.audio_info.title}</span>
+                    <span class="w-full truncate">${PlayAudioList[realIndex].lyric.audio_info.artist}</span>
+                </div>
+                <span class="flex justify-center items-center text-[10px]">02:30</span>
+            </li>`;
+        });
+
+        // 替换即可
+        play_array_container.innerHTML = tempHTML;
+
+        // 上滑
+
+        // 并且重新注册事件监听
+        const playArray = play_array_container.querySelectorAll("li");
+        playArray.forEach((item, index) => {
+            item.addEventListener("mouseenter", () => {
+                item.classList.add("bg-[#ccc]", "opacity:0.1");
+            });
+            item.addEventListener("mouseleave", () => {
+                item.classList.remove("bg-[#ccc]", "opacity:0.1");
+            });
+            item.addEventListener("dblclick", () => {
+                // 暂停
+                audio_entity.pause();
+
+                // 光标切换
+                if (prevPlayIndex !== null) {
+                    playArray[prevPlayIndex].classList.remove(
+                        "bg-[#ccc]",
+                        "text-[red]",
+                    );
+                }
+
+                // 修改index
+                prevPlayIndex = playIndex;
+
+                playIndex = index;
+
+                item.classList.add("bg-[#ccc]", "opacity:0.1");
+
+                // 开始装载
+                // 包括封面和歌词以及音频
+                audio_entity_init();
+                audio_entity.load();
+            });
+        });
+        // 然后还要给当前播放的index加上对应的高亮
+        // 此时index也要发生对应的变化
+    }
+
     /*****************************************************************************************/
     /*****************************************************************************************/
     /*****************************************************************************************/
     // 定义事件处理函数
-
-    // 给播放列表的可视区域部分进行加载
-    // 通过playList进行重加载
-    function loadPlayList (){
-        realPlayArray.forEach((realPlayAudioArrayIndex)=> {
-            // 重新加载到队列当中
-        })
-    }
 
     // 注册封面展开函数相关的事件处理函数
     function coverImageMoveEvent() {
@@ -1348,6 +1457,16 @@ import PrevIcon from "./SVGComponents/prev.astro";
     /*****************************************************************************************/
     /*****************************************************************************************/
     // 定义事件监听
+    // 点击播放列表展开
+    audio_play_list_btn_container.addEventListener("click", () => {
+        // 展开即可
+        if (play_list_area.dataset.hidden === "true") {
+            // 展开
+            play_list_area.dataset.hidden = "false";
+        } else {
+            play_list_area.dataset.hidden = "true";
+        }
+    });
 
     // 音量键悬停展开
     volume_container.addEventListener("mouseenter", () => {
@@ -1459,10 +1578,23 @@ import PrevIcon from "./SVGComponents/prev.astro";
 
             // 然后洗掉playArray
             realPlayArray = resetRandomPlayArray();
+
+            // 默认播放的时候设置playIndex = 0
+            playIndex = 0
+            prevPlayIndex = null
+
+            // 重新注册list
+            reloadPlayArrayItems();
         } else {
             playMode = "wholeOnce";
             audio_play_mode_list[3].dataset.hidden = "true";
             audio_play_mode_list[0].dataset.hidden = "false";
+
+            // 重置realPlayArray
+            resetPlayArray();
+
+            // 重新注册list
+            reloadPlayArrayItems();
         }
     });
 

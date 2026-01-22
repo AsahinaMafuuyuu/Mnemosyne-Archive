@@ -58,6 +58,24 @@
 }
 
 @layer utilities {
+
+    /* 播放列表的样式 */
+    .play-array-scrollbar {}
+
+    .play-array-scrollbar::-webkit-scrollbar {
+        width: 6px;
+    }
+
+    .play-array-scrollbar::-webkit-scrollbar-track {
+        background: #888;
+        border-radius: 3px;
+    }
+
+    .play-array-scrollbar::-webkit-scrollbar-thumb {
+        background: #f1f1f1;
+        border-radius: 3px;
+    }
+
     .scrollbar-hidden {
         scrollbar-width: none;
         -ms-overflow-style: none;
@@ -118,6 +136,7 @@
         --max: 100;
         --val: 50;
     }
+
     .play-time-schedule-range-style::-webkit-slider-runnable-track {
         height: 5px;
         border-radius: 999px;
@@ -127,6 +146,7 @@
                 #f0e7e7 calc((var(--val) - var(--min)) / (var(--max) - var(--min)) * 100%),
                 #f0e7e7 100%);
     }
+
     /* 滑块部分 */
     .play-time-schedule-range-style::-webkit-slider-thumb {
         -webkit-appearance: none;
@@ -145,5 +165,8 @@
         appearance: none;
         background: transparent;
         outline: none;
+    }
+    * {
+        cursor: default;
     }
 }
