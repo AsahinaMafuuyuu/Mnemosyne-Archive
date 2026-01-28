@@ -1,0 +1,32 @@
+  /* 亮色主题 */
+  :root {
+      --font-color: rgba(0, 0, 0, 0.75);
+      --background-color: rgba(255, 255, 255, 0.8);
+      --hover-color: #ccc;
+      --font-size: 16px;
+      --scrollbar-width: 4px;
+  }
+
+  /* 创建暗色主题 */
+  .dark {
+      --font-color: rgba(255, 255, 255, .75);
+      --background-color: rgba(23, 23, 23, 0.8);
+      --hover-color: rgba(0, 0, 0, .75);
+  }
+
+  html {
+      width: 100vw;
+      height: 100vh;
+  }
+
+  body {
+      width: 100vw;
+      height: 100vh;
+  }
+
+  @media screen and (max-width: 768px) {
+      :root {
+          --font-size: 14px;
+      }
+  }
+  

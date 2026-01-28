@@ -1,0 +1,13 @@
+---
+import SearchIcon from "@/Icons/search.svg";
+---
+
+<div class="relative text-(--font-color) h-10 rounded-lg border border-[#ccc] max-lg:hidden pl-9">
+    <div class="absolute left-1 top-[calc(50%-3.5*4px)] rounded-lg p-1 transition-colors ease-in-out duration-300 hover:bg-(--hover-color)">
+        <SearchIcon class="w-5 h-5 "/>
+    </div>
+    
+    <input type="text" placeholder="Search" class="w-36 h-10 rounded-r-lg pl-1 text-body
+    cursor-text transition-all duration-300 ease-in-out focus:w-52
+    " >
+</div>

@@ -1,0 +1,73 @@
+---
+// 主要是制作navigation
+import NavIcon from "@/Icons/nav.svg"
+import HOMESVG from "@/Icons/home.svg";
+import ARTICLESVG from "@/Icons/article.svg";
+import FRIENDSLINK from "@/Icons/friends.svg";
+import ABOUTME from "@/Icons/aboutme.svg";
+import STATISTIC from "@/Icons/statistic.svg";
+---
+
+<div
+    class="text-(--font-color) simp-control-interact md:hidden"
+>
+<!-- 导航图标展示 -->
+    <NavIcon class="w-6 h-6"></NavIcon>
+<!-- 真正导航栏 -->
+    <div class="absolute hidden">
+        <a
+            href=""
+            class="h-fit p-2 link-container"
+        >
+            <div class="w-full flex justify-center items-center">
+                <HOMESVG class="w-5 h-5 flex items-center justify-center" />
+                <span class="truncate">首页</span>
+            </div>
+        </a>
+
+        <a
+            href=""
+            class="relative p-2 flex justify-center items-center h-fit rounded-lg link-container"
+        >
+            <div class="w-full flex justify-center items-center">
+                <ARTICLESVG class="w-5 h-5 flex items-center justify-center" />
+                <span class="truncate">文章</span>
+            </div>
+        </a>
+        <a
+            href=""
+            class="w-full flex justify-center items-center"
+        >
+            <div class="w-full flex justify-center items-center">
+                <FRIENDSLINK class="w-5 h-5 flex items-center justify-center" />
+                <span class="">友链</span>
+            </div>
+        </a>
+
+        <a
+            href=""
+            class="w-full flex justify-center items-center"
+        >
+            <div class="w-full flex justify-center items-center">
+                <ABOUTME class="w-5 h-5 flex items-center justify-center" />
+                <span class="">关于</span>
+            </div>
+        </a>
+        <a
+            href=""
+            class="w-full flex justify-center items-center"
+        >
+            <div class="w-full flex justify-center items-center">
+                <STATISTIC class="w-5 h-5 flex items-center justify-center" />
+                <span class="">统计</span>
+            </div>
+        </a>
+    </div>
+</div>
+
+<!-- 这里编写特定的style -->
+<style>
+    .link-container:hover {
+        background-color: var(--hover-color);
+    }
+</style>

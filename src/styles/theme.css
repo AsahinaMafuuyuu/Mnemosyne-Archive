@@ -1,0 +1,77 @@
+/* 定义暗色主题的相关元素 */
+@custom-variant dark (&:where(.dark, .dark *));
+
+@utility link-container {
+    @apply relative rounded-lg flex justify-center items-center gap-1 transition-all ease-in-out duration-300 hover:text-body;
+
+    &::before {
+        content: '';
+        position: absolute;
+        background-color: transparent;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        cursor: pointer;
+        z-index: 1;
+    }
+
+    &:hover {
+        background-color: var(--hover-color);
+    }
+}
+
+/* 创建整个基本容器的相关样式 */
+@utility layout-basic-style {
+    @apply rounded-lg border bg-(--background-color)
+}
+
+/* 可悬停控件样式 */
+@layer utilities {
+    /* 创建header container的样式 */
+
+    .link-header-nav {
+        @apply link-container hover:scale-110;
+    }
+
+
+
+    /* 定义简易控件的交互逻辑 */
+    .simp-control-interact {
+        @apply relative p-2 rounded-lg transition-colors ease-in-out duration-300 hover:bg-hover-color hover:text-body
+    }
+
+    .simp-control-interact::before {
+        content: '';
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        left: 0;
+        cursor: pointer;
+    }
+
+    /* 为容器添加border和rounded以及背景色 */
+
+}
+
+/* 创建普通页面浏览时候的viewScrollBar */
+@utility base-scroll-bar {
+    &::-webkit-scrollbar {
+        width: 4px;
+    }
+
+    &::-webkit-scrollbar-button {
+        height:4px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background: rgba(120, 120, 120, .6);
+        border-radius: 999px;
+    
+    }
+
+    &::-webkit-scrollbar-track {
+        background: transparent;
+    }
+  
+}

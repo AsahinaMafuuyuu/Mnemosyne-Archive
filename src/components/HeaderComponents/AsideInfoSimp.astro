@@ -1,0 +1,24 @@
+---
+import Profile from "../AsideComponents/Profile.astro";
+import LinkNav from "../AsideComponents/link-nav.astro";
+import Kanade from "@/images/kanade.png";
+---
+
+<!-- 头像展示 -->
+<div class="avatar-container relative md:hidden">
+    <img src={Kanade.src} alt="简易头像展示" class="w-10 h-10" />
+
+    <div
+    data-ui="display-panel"
+     class="absolute hidden h-fit w-fit flex-col justify-center items-center gap-2">
+        <Profile />
+        <LinkNav />
+    </div>
+</div>
+<style scoped>
+    .avatar-container:hover [data-ui="display-panel"]{
+        display: flex;
+    }
+
+
+</style>

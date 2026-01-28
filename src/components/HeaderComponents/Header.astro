@@ -1,0 +1,35 @@
+---
+import Navigation from "./Navigation.astro";
+import WebSignature from "./WebSignature.astro";
+import SearchBar from "./SearchBar.astro";
+import ThemeSetting from "./ThemeSetting.astro";
+import NavigationSimp from "./NavigationSimp.astro";
+import SearchBarSimp from "./SearchBarSimp.astro";
+import AsideInfoSimp from "./AsideInfoSimp.astro";
+---
+
+<header class="flex h-18 w-full p-3 items-center justify-between layout-basic-style">
+  <!-- 主题标签 -->
+  <WebSignature />
+
+  <!-- 导航栏 -->
+  <Navigation class="flex-1" />
+
+  <!-- 搜索框 -->
+  <SearchBar />
+
+  <!-- 主题设置以及小界面展示 -->
+  <div class="flex gap-1">
+    <AsideInfoSimp />
+    <NavigationSimp />
+    <SearchBarSimp />
+    <ThemeSetting />
+  </div>
+</header>
+
+<style>
+  div {
+    display: flex;
+    justify-content: space-between;
+  }
+</style>

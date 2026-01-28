@@ -1,0 +1,26 @@
+---
+import SettingIcon from "@/Icons/themeSetting.svg";
+---
+
+<div
+    data-ui="setting-btn"
+    class="text-(--font-color) simp-control-interact"
+>
+    <!-- 后面需要动态展示功能列表以及搜索框 -->
+     
+    <SettingIcon class="w-6 h-6" />
+    <!-- 动态的打开设置栏 -->
+    <div class="absolute"></div>
+</div>
+<style>
+ 
+</style>
+
+<script>
+    const SettingBtn: HTMLElement = document.querySelector(
+        '[data-ui="setting-btn"]',
+    ) as HTMLElement;
+    SettingBtn.addEventListener("click", () => {
+        console.log('ahhh')
+    });
+</script>

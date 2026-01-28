@@ -1,21 +1,58 @@
 ---
-import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
-import '../styles/global.css';
-const { pageTitle } = Astro.props;
+import HeaderIcon from "../../emma.ico";
+import AiPai from "../images/AiPai.webp";
 ---
+
 <html lang="zh-CN">
   <head>
     <meta charset="utf-8" />
-    <link rel="icon" type="image/svg+xml" />
+    <link rel="icon" type="image/svg+xml" href={HeaderIcon} />
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
-    <title>{pageTitle}</title>
+    <title>AsahinaMafuyu</title>
   </head>
   <body>
-    <Header />
-    <slot></slot>
-    <Footer />
+    <!-- 页面整体布局 -->
+    <div
+      data-ui="html-container"
+      class="w-screen h-screen bg-cover bg-center bg-no-repeat"
+      style={`background-image: url(${AiPai.src});`}
+    >
+      <!-- 覆盖一层毛玻璃 -->
+      <div
+        data-ui="real-visual-container"
+        class="h-full w-full bg-[rgba(255,255,255,0.36)] backdrop-blur-[5px] flex justify-center overflow-auto base-scroll-bar"
+      >
+        <!-- 内容容器 -->
+        <!-- 要规定尺寸，大小，展示方式等等 -->
+        <div
+          data-ui="visual-content-area"
+          class="w-full min-w-[320px] max-w-300 px-4 grid gap-3 grid-cols-[240px_1fr] grid-rows-[auto_1fr_auto] max-[768px]:grid-cols-[1fr]"
+        >
+          <!-- 导航栏 -->
+          <div class="col-span-1 md:col-span-2">
+            <slot name="header" />
+          </div>
+
+          <!-- 左侧个人信息栏 -->
+          <div class="max-[768px]:hidden">
+            <slot name="asideInfo" />
+          </div>
+
+          <!-- 正文博客内容展示 -->
+          <div class="" >
+            <slot name="mainContent" />
+          </div>
+
+          <!-- 底部内容 -->
+          <div class="col-span-1 md:col-span-2" >
+            <slot name="footerInfo" />
+          </div>
+        </div>
+        <!-- 插件 -->
+        <slot />
+      </div>
+    </div>
     <script>
       import "../scripts/menu";
     </script>

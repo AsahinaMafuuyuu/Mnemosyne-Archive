@@ -1,0 +1,59 @@
+---
+// 主要是制作navigation
+import HOMESVG from "@/Icons/home.svg";
+import ARTICLESVG from "@/Icons/article.svg";
+import FRIENDSLINK from "@/Icons/friends.svg";
+import ABOUTME from "@/Icons/aboutme.svg";
+import STATISTIC from "@/Icons/statistic.svg";
+---
+
+<div class="flex justify-between font-bold px-3 text-(--font-color) gap-3 max-md:hidden">
+    <a
+        href=""
+        class="p-2 h-fit link-header-nav"
+    >
+        <div class="w-full flex justify-center items-center">
+            <HOMESVG class="w-5 h-5 flex items-center justify-center" />
+            <span class="truncate">首页</span>
+        </div>
+    </a>
+
+    <a
+        href=""
+        class="p-2 h-fit link-header-nav"
+    >
+        <div class="w-full flex justify-center items-center">
+            <ARTICLESVG class="w-5 h-5 flex items-center justify-center" />
+            <span class="truncate">文章</span>
+        </div>
+    </a>
+    <a
+        href=""
+        class="p-2 h-fit link-header-nav"
+    >
+        <div class="w-full flex justify-center items-center">
+            <FRIENDSLINK class="w-5 h-5 flex items-center justify-center" />
+            <span class="">友链</span>
+        </div>
+    </a>
+
+    <a
+        href=""
+        class="p-2 h-fit link-header-nav"
+    >
+        <div class="w-full flex justify-center items-center">
+            <ABOUTME class="w-5 h-5 flex items-center justify-center" />
+            <span class="">关于</span>
+        </div>
+    </a>
+    <a
+        href=""
+        class="p-2 h-fit link-header-nav"
+    >
+        <div class="w-full flex justify-center items-center">
+            <STATISTIC class="w-5 h-5 flex items-center justify-center" />
+            <span class="">统计</span>
+        </div>
+    </a>
+</div>
+

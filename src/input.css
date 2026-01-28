@@ -1,10 +1,17 @@
 @import "tailwindcss";
+/* 导入字体相关 */
+@import "./styles/theme.runtime.css";
+@import "./styles/theme.token.css";
+
+
+/* 导入主题相关的css */
+@import "./styles/theme.css";
 
 /* 关键：让 Tailwind 扫描 Astro 文件 */
 @source "./**/*.{astro,html,js,ts,jsx,tsx,vue,md,mdx}";
 
-@custom-variant unfold (&:where([data-unfold="true"] &),
-    &:where(&[data-unfold="true"]));
+@custom-variant unfold (&:where([data-unfold="true"] &) &:where(&[data-unfold="true"]));
+
 
 @custom-variant rotate (&:where(&[data-rotate="true"]));
 
@@ -15,6 +22,7 @@
 @custom-variant titleoverflow (&:where([data-titleoverflow="true"] &));
 
 @custom-variant disabled (&:where(&[data-disabled="true"]));
+
 
 @theme {
     /* 定义动画token，到时候直接调用cover-rotate即可 */
@@ -157,16 +165,20 @@
         border: 1px solid white;
         margin-top: -5.6px;
     }
+
 }
 
 @layer base {
-    input[type="range"] {
+    /* input[type="range"] {
         -webkit-appearance: none;
         appearance: none;
         background: transparent;
         outline: none;
-    }
-    * {
-        cursor: default;
+    } */
+    input {
+        -webkit-appearance: none;
+        appearance: none;
+        background: transparent;
+        outline: none;
     }
 }

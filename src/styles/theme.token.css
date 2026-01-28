@@ -1,0 +1,41 @@
+/* 该文件主要用于变量名映射注册 */
+@theme {
+    /* 首先定义字体大小 */
+    /* displayHero / 首页大标题 */
+    --text-display: calc(1.95*var(--font-size));
+    /* headline页面主标题 */
+    --text-headline: calc(1.56*var(--font-size));
+    /* title卡片 / 模块标题 */
+    --text-title: calc(1.25*var(--font-size));
+    /* meta时间 / 作者 / 次要信息 */
+    --text-meta: calc(0.875*var(--font-size));
+
+    /* 其次定义字体权重（font weight） */
+    --font-weight-display: 700;
+    --font-weight-title: 500;
+    --font-weight-meta: 400;
+
+    /* 定义颜色 */
+    --color-background: var(--background-color);
+    --color-hover-color: var(--hover-color);
+}
+
+/* 定义body正文内容主题类 */
+@utility text-body {
+    font-size: var(--font-size);;
+    font-weight: 400;
+    color: var(--font-color);
+}
+
+/* 定义字幕专用主题类 */
+@utility text-caption {
+    font-size: calc(0.75*var(--font-size));
+    font-weight: 300;
+    color: rgb(163, 163, 163);
+}
+
+/* 定义加粗个人信息 */
+@utility text-bold-body {
+    @apply text-body;
+    font-weight: 700;
+}
