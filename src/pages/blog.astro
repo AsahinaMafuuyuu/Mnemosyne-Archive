@@ -1,6 +1,5 @@
 ---
 import Header from "../components/HeaderComponents/Header.astro";
-import Footer from "../components/Footer.astro";
 import "../styles/global.css";
 
 const allPosts = Object.values(import.meta.glob('./posts/*.md', { eager: true }));
@@ -24,7 +23,6 @@ const allPosts = Object.values(import.meta.glob('./posts/*.md', { eager: true })
                 <li><a href={post.url}>{post.frontmatter.title}</a></li>
             ))}
         </ul>
-        <Footer />
         <script>
             import "../scripts/menu";
         </script>

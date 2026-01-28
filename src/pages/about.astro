@@ -1,6 +1,5 @@
 ---
 import Header from "../components/HeaderComponents/Header.astro";
-import Footer from "../components/Footer.astro";
 import "../styles/global.css";
 
 const pageTitle = "关于我";
@@ -58,7 +57,6 @@ const skills: string[] = [
         <ul>
             {skills.map((skill) => <li>{skill}</li>)}
         </ul>
-        <Footer />
         <script>
             import "../scripts/menu.js";
         </script>
