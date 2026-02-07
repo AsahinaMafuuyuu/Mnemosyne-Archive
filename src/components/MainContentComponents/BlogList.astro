@@ -1,0 +1,17 @@
+---
+import SingleBlog from "./SingleBlog.astro";
+---
+
+<div data-ui="blog-list-container"
+    class="flex flex-col gap-5">
+    <SingleBlog />
+    <SingleBlog />
+</div>
+<script>
+    const blogListContainer: HTMLElement = document.querySelector(
+        '[data-ui="blog-list-container"]',
+    ) as HTMLElement;
+
+    // 重新加载博客内容
+    function reloadBlogList() {}
+</script>

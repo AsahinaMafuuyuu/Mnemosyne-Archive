@@ -1,24 +1,31 @@
 ---
 import BaseLayout from "./BaseLayout.astro";
-interface Frontmatter {
+import ArticleDetailDisplay from "@/components/BlogContent/ArticleDetailDisplay.astro";
+import { fade, slide } from "astro:transitions";
+import "../output.css";
+type ImageInfo = {
+    url: string;
+    alt: string;
+};
+interface FrontMatter {
     title: string;
     pubDate: string;
     description: string;
     author: string;
-    image?: {
-        url: string;
-        alt: string;
-    };
+    images?: Array<ImageInfo> | ImageInfo;
     tags: string[];
 }
-const { frontmatter } = Astro.props as { frontmatter: Frontmatter };
+const { frontmatter, compiledContent } = Astro.props as {
+    frontmatter: FrontMatter;
+    compiledContent: () => string;
+};
 ---
 
-<BaseLayout pageTitle={frontmatter.title}>
-    <h1>{frontmatter.title}</h1>
-    <p>{frontmatter.pubDate.toString().slice(0, 10)}</p>
-    <p><em>{frontmatter.description}</em></p>
-    <p>作者：{frontmatter.author}</p>
-    <img src={frontmatter.image?.url} width="300" alt={frontmatter.image?.alt} />
-    <slot />
+<BaseLayout>
+    <!-- <ArticleDetailDisplay params={frontmatter} name="mainContent"></ArticleDetailDisplay> -->
+    <ArticleDetailDisplay
+        slot="mainContent"
+        params={frontmatter}
+        content={compiledContent()}
+    />
 </BaseLayout>

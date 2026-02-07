@@ -1,6 +1,15 @@
 ---
-
+import NoticeMessage from "./NoticeMessage.astro";
+import BlogList from "./BlogList.astro";
+import { slide } from "astro:transitions";
 ---
-<div class="flex h-500 w-full layout-basic-style">
-</div>
 
+<div class="flex h-500 w-full flex-col gap-5">
+    <!-- 公告消息 -->
+    <NoticeMessage />
+
+    <!-- 文章列表 -->
+    <BlogList />
+
+    <!-- 翻页条 -->
+</div>

@@ -1,9 +1,12 @@
 ---
 layout: ../../layouts/MarkdownPostLayout.astro
-title: 论label<a>为什么是最头疼的元素
+title: '论label<a>为什么是最头疼的元素'
 pubDate: 2026-01-25
-author: AsahinaMafuyu
-description: "a链接标签的样式是我调整起来最头疼的，没有之一！！！"
+author: 'AsahinaMafuyu'
+description: 'a链接标签的样式是我调整起来最头疼的，没有之一！！！'
+# images:
+#     url: 'https://s2.loli.net/2025/12/28/TU3SW1Fu5Rsiqrv.jpg'
+#     alt: '洛琪希'
 tags: ["前端", "html", "debug"]
 ---
 
@@ -12,7 +15,7 @@ tags: ["前端", "html", "debug"]
 头疼的原因是因为内部有**其他元素**，而且最头疼的一点（cursor-pointer对内部是组件的元素无效，因此的话需要单独挨个儿设计）
 或者直接改成cursor-pointer（可以不需要hover）
 再讲讲::before这个元素，对于链接而言：
-> 1. width和height都是针对父元素（也就是a标签本身而言），所以width:100% height:100%的话就和父容器一样大了
+> 1. width和height都是针对父元素（也就是a标签本身而言），所以width:100%, height:100%的话就和父容器一样大了
 > 2. 默认是在元素前方插入这个，所以要设置成position:absolute
 > 3. 通常作为装饰元素，因此z-index应当设置成1，然后用透明色掩盖
 

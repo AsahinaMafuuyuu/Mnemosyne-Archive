@@ -2,7 +2,9 @@
 const PaperCount = 10
 const totalCount = '1.9w'
 const requestCount = '114514'
-const containDays = '2days'
+const nowaDays = Date.now()
+const originDays = Date.parse('2026-01-05')
+const maintainDays = Math.floor((nowaDays - originDays) / 1000 / 3600 / 24)
 ---
 <div class="grid grid-cols-2 grid-rows-2 gap-3 items-center">
     <div>
@@ -21,7 +23,7 @@ const containDays = '2days'
     
     <div >
         <div class="text-caption text-center">维护时长</div>
-        <div class="text-body text-center">{containDays}</div>
+        <div class="text-body text-center">{maintainDays}天</div>
     </div>
 
 </div>

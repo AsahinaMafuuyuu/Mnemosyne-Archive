@@ -1,0 +1,65 @@
+@layer components {
+  .md-content {
+    @apply text-base leading-8 text-(--font-color);
+  }
+
+  .md-content h1 {
+    @apply text-3xl font-bold mt-10 mb-6;
+  }
+
+  .md-content h2 {
+    @apply text-2xl font-semibold mt-8 mb-4;
+  }
+
+  .md-content p {
+    @apply my-4;
+  }
+
+  .md-content pre {
+    @apply rounded-xl p-4 overflow-x-auto;
+  }
+
+  .md-content code:not(pre code) {
+    @apply px-1 py-0.5 rounded bg-neutral-800;
+  }
+
+  .md-content blockquote {
+    position: relative;
+    margin:15px 0px;
+    &::before {
+      position: absolute;
+      left: -4px;
+      top: 0;
+      content: "";
+      height: 100%;
+      width: 4px;
+      background-color: rgb(230, 34, 230);
+    }
+  }
+
+  .md-content ul {
+    list-style: disc;
+    padding-left: 1.5em;
+  }
+
+  .md-content ol {
+    list-style: decimal;
+    padding: 10px;
+    padding-left: 27.97px;
+    background-color: #fff;
+    border-radius: 5px;
+
+    & li {
+      /* 设置成允许西洋换行 */
+      word-break: break-all;
+
+      &::marker {
+        color: aqua;
+      }
+    }
+  }
+
+  .md-content img {
+    @apply rounded-lg border-2 border-[rgba(0,0,0,.05)];
+  }
+}

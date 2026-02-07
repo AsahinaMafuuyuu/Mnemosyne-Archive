@@ -23,7 +23,7 @@
 
 /* 创建整个基本容器的相关样式 */
 @utility layout-basic-style {
-    @apply rounded-lg border bg-(--background-color)
+    @apply rounded-lg border border-[rgba(0,0,0,0.05)] shadow-sm bg-(--background-color)
 }
 
 /* 可悬停控件样式 */
@@ -61,17 +61,62 @@
     }
 
     &::-webkit-scrollbar-button {
-        height:4px;
+        height: 4px;
     }
 
     &::-webkit-scrollbar-thumb {
         background: rgba(120, 120, 120, .6);
         border-radius: 999px;
-    
+
     }
 
     &::-webkit-scrollbar-track {
         background: transparent;
     }
-  
+
+}
+
+/* 设置模糊滚动条的样式 */
+@utility blur-setting-scroll-bar {
+    --min: 0;
+    --max: 15;
+    --val: 0;
+
+    /* 滑过部分高亮 */
+    /* 轨道样式设置 */
+    &::-webkit-slider-runnable-track {
+        height: 20px;
+        background: linear-gradient(to right,
+                pink 0%,
+                pink calc((var(--val) - var(--min)) / (var(--max) - var(--min)) * 100%),
+                rgba(0,0,0,.05) calc((var(--val) - var(--min)) / (var(--max) - var(--min)) * 100%),
+                rgba(0,0,0,.05) 100%);
+        border-radius: 5px;
+    }
+
+    /* 滑块样式设置 */
+    &::-webkit-slider-thumb {
+        width: 6px;
+        height: 20px;
+
+        border-radius: 2px;
+        background: aqua;
+
+        margin-top:
+            /* 居中关键 */
+    }
+}
+
+/* 设置Blog单个容器的样式 */
+@utility single-blog-card-decoration {
+    &:hover {
+        box-shadow: 0 5px 16px rgba(0, 0, 0, 0.2),
+     0 12px 40px rgba(0, 0, 0, 0.08);
+    }
+    @apply py-3 px-5  rounded-lg shadow-[rgba(0,0,0,.15)];
+}
+
+/* 设置常用图标的具体样式 */
+@utility md-icon-basic-style {
+    @apply w-5 h-5 
 }

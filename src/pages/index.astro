@@ -1,38 +1,17 @@
 ---
-import AudioPlayerAside from "../components/AudioPlayerAside.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
-import Header from "../components/HeaderComponents/Header.astro";
-import AsideInfo from "@/components/AsideComponents/AsideInfo.astro";
 import Main from "@/components/MainContentComponents/Main.astro";
-import Footer from "@/components/FooterComponents/Footer.astro"
 import "../output.css";
+import { slide } from "astro:transitions";
 ---
 
 <!-- 首先整理整体的布局 -->
 <div class="w-screen h-screen overflow-hidden">
   <BaseLayout>
-
-    <!-- 导航栏 -->
-    <Header slot="header" />
-
-    <!-- 左侧信息栏 -->
-    <AsideInfo slot="asideInfo" />
-
     <!-- 正文内容 -->
-    <Main slot="mainContent"/>
 
-    <!-- 页脚 -->
-    <Footer slot="footerInfo"/>
-
-    
+    <Main slot="mainContent" />
   </BaseLayout>
-
-  <!-- 小插件 -->
-    <AudioPlayerAside
-      className="fixed top-[50px] left-[50px]"
-      class=""
-      client:load
-    />
-    
 </div>
 
+<script></script>

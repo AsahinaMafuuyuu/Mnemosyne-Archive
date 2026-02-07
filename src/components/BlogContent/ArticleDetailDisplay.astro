@@ -1,0 +1,91 @@
+---
+import Cat from "@/Icons/cat.svg";
+import Date from "@/Icons/date.svg";
+import ViewCount from "@/Icons/view-count.svg";
+import WingPencil from "@/Icons/wing.svg";
+import Time from "@/Icons/time.svg";
+type ImageInfo = {
+    url: string;
+    alt: string;
+};
+interface FrontMatter {
+    title: string;
+    pubDate: string;
+    description: string;
+    author: string;
+    images?: Array<ImageInfo> | ImageInfo;
+    tags: string[];
+}
+const { params, content } = Astro.props as {
+    params: FrontMatter;
+    content: string;
+};
+
+let imageList: ImageInfo[] = [];
+if (typeof params.images !== "undefined") {
+    if (Array.isArray(params.images)) {
+        imageList = params.images;
+    } else {
+        imageList = [params.images];
+    }
+}
+---
+
+<div
+    class="layout-basic-style py-6 px-6"
+>
+    <!-- title info Ai_abstract content  -->
+
+    <h1 class="text-blog-title-light mb-3">{params.title}</h1>
+    <div class="text-blog-subtract-light mb-3">{params.description}</div>
+
+    <!-- 信息展示 -->
+    <div class="flex gap-6 mb-3">
+        <!-- 作者展示 -->
+        <div class="flex gap-2 max-[540px]:hidden">
+            <Cat class="md-icon-basic-style" />
+            <span class="text-blog-info">{params.author}</span>
+        </div>
+        <!-- 浏览量 -->
+        <div data-ui="view-count-display" class="flex items-center gap-1">
+            <ViewCount class="md-icon-basic-style" />
+            <span class="text-blog-info">1</span>
+        </div>
+        <!-- 日期 -->
+        <div data-ui="view-count-display" class="flex items-center gap-1">
+            <Date class="md-icon-basic-style" />
+            <span class="text-blog-info">{params.pubDate.split("T")[0]}</span>
+        </div>
+        <!-- 字数 -->
+        <div data-ui="view-count-display" class="flex items-center gap-1">
+            <WingPencil class="md-icon-basic-style" />
+            <span class="text-blog-info">1.2k</span>
+        </div>
+        <!-- 预计浏览时长 -->
+        <div data-ui="view-count-display" class="flex items-center gap-1">
+            <Time class="md-icon-basic-style" />
+            <span class="text-blog-info">6min</span>
+        </div>
+    </div>
+
+    <!-- image列表展示 -->
+    <div
+        data-ui="image-list"
+        class=`${typeof(params.images) === 'undefined' ? "" : "py-2 px-2"}`
+    >
+        {
+            imageList.map((item) => (
+                <img
+                    class="w-50 object-cover object-center"
+                    src={item.url}
+                    alt={item.alt}
+                />
+            ))
+        }
+    </div>
+
+    <!-- 正文内容 -->
+    <div class="md-content" set:html={content} />
+</div>
+
+<script></script>

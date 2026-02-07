@@ -2,8 +2,8 @@
 /* 导入字体相关 */
 @import "./styles/theme.runtime.css";
 @import "./styles/theme.token.css";
-
-
+/* 导入markdown */
+@import "./styles/markdownStyle.css";
 /* 导入主题相关的css */
 @import "./styles/theme.css";
 
@@ -68,7 +68,9 @@
 @layer utilities {
 
     /* 播放列表的样式 */
-    .play-array-scrollbar {}
+    .play-array-scrollbar {
+
+    }
 
     .play-array-scrollbar::-webkit-scrollbar {
         width: 6px;
@@ -135,7 +137,7 @@
         border: 1px solid black;
         margin-top: -5.6px;
     }
-
+   
     /**
         设置进度条
     **/
@@ -180,5 +182,11 @@
         appearance: none;
         background: transparent;
         outline: none;
+
+        &::-webkit-slider-thumb{
+            -webkit-appearance: none;
+            appearance: none;
+        }
+      
     }
 }

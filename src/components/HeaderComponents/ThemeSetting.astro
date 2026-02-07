@@ -1,26 +1,125 @@
 ---
 import SettingIcon from "@/Icons/themeSetting.svg";
+import System from "@/Icons/mode-system.svg";
+import Light from "@/Icons/mode-light.svg";
+import Dark from "@/Icons/mode-dark.svg";
+import Rss from "@/Icons/rss.svg";
 ---
 
-<div
-    data-ui="setting-btn"
-    class="text-(--font-color) simp-control-interact"
->
-    <!-- 后面需要动态展示功能列表以及搜索框 -->
-     
-    <SettingIcon class="w-6 h-6" />
+<div class="relative">
+    <div
+        data-ui="setting-btn"
+        class="text-(--font-color) simp-control-interact"
+    >
+        <!-- 后面需要动态展示功能列表以及搜索框 -->
+
+        <SettingIcon class="w-6 h-6" />
+    </div>
     <!-- 动态的打开设置栏 -->
-    <div class="absolute"></div>
+    <div
+        data-hidden="true"
+        data-ui="web-theme-control-panel"
+        class="hidden:invisible w-fit h-fit opacity-100 transition-all ease-in-out duration-1000 hidden:opacity-0 absolute top-[calc(100%+15px)] -right-3 p-3 layout-basic-style"
+    >
+        <div class="w-full flex flex-col gap-3">
+            <!-- 主题设置 背景图片切换 模糊设置 保存当前背景图片 订阅RSS -->
+            <div class="flex justify-center items-center gap-3">
+                <span class="truncate">主题设置</span>
+                <div class="flex gap-2">
+                    <button class="link-container p-2">
+                        <Light
+                            class="w-5 h-5 flex items-center justify-center"
+                        />
+                    </button>
+                    <button class="link-container p-2">
+                        <Dark
+                            class="w-5 h-5 flex items-center justify-center"
+                        />
+                    </button>
+                    <button class="link-container p-2">
+                        <System
+                            class="w-5 h-5 flex items-center justify-center"
+                        />
+                    </button>
+                </div>
+            </div>
+
+            <button class="w-full flex items-start">
+                <span class="truncate">背景图片切换</span>
+            </button>
+
+            <button class="w-full flex items-start">
+                <span class="truncate">下载背景图</span>
+            </button>
+
+            <div
+                data-ui="scroll-bar-setting"
+                class="flex flex-col items-center justify-between gap-3"
+            >
+                <div class="w-full flex justify-between">
+                    <span class="truncate">模糊设置</span>
+                    <span data-ui="blur-value" class="truncate">0px</span>
+                </div>
+                <input
+                    type="range"
+                    min="0"
+                    max="15"
+                    value="0"
+                    class="w-full blur-setting-scroll-bar"
+                />
+            </div>
+
+            <div class="flex justify-between items-center">
+                <span class="truncate">订阅RSS</span>
+                <button class="link-container p-2">
+                    <Rss class="w-5 h-5 flex items-center justify-center" />
+                </button>
+            </div>
+        </div>
+    </div>
 </div>
-<style>
- 
-</style>
+
+<style></style>
 
 <script>
     const SettingBtn: HTMLElement = document.querySelector(
         '[data-ui="setting-btn"]',
     ) as HTMLElement;
+
+    const controlPanel: HTMLElement = document.querySelector(
+        '[data-ui="web-theme-control-panel"]',
+    ) as HTMLElement;
+
+    // 获取到scrollbar容器
+    const scrollBarDiv: HTMLElement = controlPanel.querySelector(
+        '[data-ui="scroll-bar-setting"]',
+    ) as HTMLElement;
+
+    // 获取模糊字体
+    const blurValue: HTMLElement = controlPanel.querySelector(
+        '[data-ui="blur-value"]',
+    ) as HTMLElement;
+
+    // 获取scrollbar
+    const scrollBar: HTMLInputElement = scrollBarDiv.querySelector(
+        ".blur-setting-scroll-bar",
+    ) as HTMLInputElement;
+
     SettingBtn.addEventListener("click", () => {
-        console.log('ahhh')
+        if (controlPanel.dataset.hidden === "false") {
+            controlPanel.dataset.hidden = "true";
+        } else {
+            controlPanel.dataset.hidden = "false";
+        }
+    });
+
+    // 添加模糊滚动条滚动设计
+    scrollBar.addEventListener("input", () => {
+        scrollBar.style.setProperty("--val", scrollBar.value);
+        blurValue.innerHTML = `${scrollBar.value}px`;
+        document.documentElement.style.setProperty(
+            "--blur-val",
+            `${scrollBar.value}px`,
+        );
     });
 </script>

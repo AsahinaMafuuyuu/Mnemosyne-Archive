@@ -1,0 +1,58 @@
+---
+import ViewCount from "@/Icons/view-count.svg";
+import Date from "@/Icons/date.svg";
+import WingPencil from "@/Icons/wing.svg";
+import Time from "@/Icons/time.svg";
+import PurpleSunflower from "@/images/PurpleSunflower.webp"
+---
+
+<article class="single-blog-card-decoration layout-basic-style flex justify-between group transition-all duration-500 ease-in-out hover:scale-101">
+    <div data-ui="blog-content-area" class="min-w-50 max-w-150 flex-1 flex flex-col justify-between">
+        <a href="/posts/Alabel">
+            <h1 class="text-blog-title-light hover:text-pink-400 cursor-pointer">测试用的标题</h1>
+        </a>
+        <div class="text-body line-clamp-3 transition-all h-fit">
+            17:02:03 [200] / 4ms You are attempting to render client:load , but
+            AudioPlayerAside is an Astro component. Astro components do not
+            render in the client and should not have a hydration directive.
+            Please use a framework component for client rendering. 17:02:12
+            [200] / 4ms You are attempting to render , but AudioPlayerAside is
+            an Astro component. Astro components do not render in the client and
+            should not have a hydration directive. Please use a framework
+            component for client rendering.
+        </div>
+        <!-- 信息展示 -->
+        <div class="text-caption flex gap-6">
+            <!-- 浏览量 -->
+            <div data-ui="view-count-display" class="flex items-center gap-1">
+                <ViewCount class="md-icon-basic-style" />
+                <span>1</span>
+            </div>
+            <!-- 日期 -->
+            <div data-ui="view-count-display" class="flex items-center gap-1">
+                <Date class="md-icon-basic-style" />
+                <span>2026-01-22</span>
+            </div>
+            <!-- 字数 -->
+            <div data-ui="view-count-display" class="flex items-center gap-1">
+                <WingPencil class="md-icon-basic-style" />
+                <span>1.2k</span>
+            </div>
+            <!-- 预计浏览时长 -->
+            <div data-ui="view-count-display" class="flex items-center gap-1">
+                <Time class="md-icon-basic-style" />
+                <span>6min</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- 图片部分 -->
+     <div data-ui="blog-pic-area" class="w-40 h-40 rounded-xl overflow-hidden">
+
+        <a href="/posts/Alabel" >
+            <img class="w-full h-full cursor-pointer object-cover group-hover:scale-110 group-hover:rotate-z-8 transition-transform duration-500 ease-in-out" 
+            src={PurpleSunflower.src} alt="">
+        </a>
+     </div>
+     
+</article>

@@ -1,16 +1,24 @@
 ---
 import AiPai from "../images/AiPai.webp";
+import Header from "@/components/HeaderComponents/Header.astro";
+import AsideInfo from "@/components/AsideComponents/AsideInfo.astro";
+import Footer from "@/components/FooterComponents/Footer.astro";
+import AudioPlayerAside from "@/components/AudioPlayerAside.astro";
+import { slide } from "astro:transitions";
+import { ClientRouter } from "astro:transitions";
+const url: string = Astro.url.toString();
 ---
 
 <html lang="zh-CN">
   <head>
     <meta charset="utf-8" />
-    <link rel="icon" type="image/svg+xml" href='/emma.ico' />
+    <link rel="icon" type="image/svg+xml" href="/emma.ico" />
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
     <title>AsahinaMafuyu</title>
+    <ClientRouter />
   </head>
-  <body>
+  <body transition:animate="none">
     <!-- 页面整体布局 -->
     <div
       data-ui="html-container"
@@ -20,40 +28,93 @@ import AiPai from "../images/AiPai.webp";
       <!-- 覆盖一层毛玻璃 -->
       <div
         data-ui="real-visual-container"
-        class="h-full w-full bg-[rgba(255,255,255,0.36)] backdrop-blur-[5px] flex justify-center overflow-auto base-scroll-bar"
+        class="h-full w-full bg-[rgba(255,255,255,.36)] backdrop-blur-(--blur-val) flex justify-center overflow-auto base-scroll-bar"
       >
         <!-- 内容容器 -->
         <!-- 要规定尺寸，大小，展示方式等等 -->
         <div
           data-ui="visual-content-area"
-          class="w-full min-w-[320px] max-w-300 px-4 grid gap-3 grid-cols-[240px_1fr] grid-rows-[auto_1fr_auto] max-[768px]:grid-cols-[1fr]"
+          class="w-full min-w-[320px] max-w-350 px-4 grid gap-3 grid-cols-[240px_1fr] grid-rows-[auto_1fr_auto] max-[768px]:grid-cols-[1fr]"
         >
           <!-- 导航栏 -->
-          <div class="col-span-1 md:col-span-2">
-            <slot name="header" />
+
+          <div class="col-span-1 md:col-span-2 z-999">
+            <Header />
           </div>
 
           <!-- 左侧个人信息栏 -->
           <div class="max-[768px]:hidden">
-            <slot name="asideInfo" />
+            <AsideInfo />
           </div>
 
           <!-- 正文博客内容展示 -->
-          <div class="" >
+          <div transition:name="mainContent" transition:animate="fade">
             <slot name="mainContent" />
           </div>
 
           <!-- 底部内容 -->
-          <div class="col-span-1 md:col-span-2" >
-            <slot name="footerInfo" />
+          <div class="col-span-1 md:col-span-2">
+            <Footer />
           </div>
         </div>
-        <!-- 插件 -->
-        <slot />
       </div>
     </div>
+    <!-- 小插件 -->
+    <AudioPlayerAside
+      className="fixed top-[50px] left-[50px]"
+      class=""
+      client:load
+      transition:persist
+    />
+
     <script>
-      import "../scripts/menu";
+      // let NAV_KEY = sessionStorage.getItem('__nav_by_browser__') || false
+      let is_NAV_OPERATION = false;
+
+      let scrollPage = document.querySelector(
+        '[data-ui="real-visual-container"]',
+      ) as HTMLElement;
+      function reloadListen(): HTMLElement {
+        return document.querySelector(
+          '[data-ui="real-visual-container"]',
+        ) as HTMLElement;
+      }
+      // 不用监听scroll，只需要在卸载DOM前获取到scrollTop即可
+
+      // 在刷新的时候存储到页面当中
+      document.addEventListener("astro:before-preparation", (e) => {
+        // 存储到session当中去
+        // 存储当前值
+        sessionStorage.setItem(
+          e.from.pathname,
+          scrollPage.scrollTop.toString(),
+        );
+      });
+
+      // 进行前进后退的时候才会读取
+      window.addEventListener("popstate", () => {
+        //  sessionStorage.getItem()
+        // console.log(window.location.href)    // 报错是因为暂时没有注册
+        // 此时可以将键值存储起来，并且将nav的KEY设置为true
+        sessionStorage.setItem("__nav_by_browser__", "true");
+      });
+
+      // 重加载，页面进行渲染的时候就可以重加载了
+      document.addEventListener("astro:page-load", () => {
+        // 如果是前进或者后退的话，则直接读取即可
+        if (sessionStorage.getItem("__nav_by_browser__") === "true") {
+          scrollPage = reloadListen();
+
+          // 跨一帧
+          requestAnimationFrame(() => {
+            const a = Number(
+              sessionStorage.getItem(window.location.pathname) ?? 0,
+            );
+            console.log(scrollPage);
+          });
+        }
+        sessionStorage.setItem("__nav_by_browser__", "false");
+      });
     </script>
   </body>
 </html>

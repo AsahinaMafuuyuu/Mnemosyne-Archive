@@ -39,3 +39,24 @@
     @apply text-body;
     font-weight: 700;
 }
+
+/* 定义博客样式 */
+@utility text-blog-title-light {
+    font-family: system-ui ;
+    font-size: calc(1.75*var(--font-size));
+    font-weight: 700;
+    color: rgba(0,0,0,0.75)
+}
+@utility text-blog-title-dark {
+    color: rgba(246,246,246,0.75)
+}
+@utility text-blog-subtract-light {
+    font-size: calc(0.9*var(--font-size));
+    font-weight: 400;
+    color: var(--font-color);
+}
+@utility text-blog-info {
+    font-size: calc(0.9*var(--font-size));
+    font-weight: 500;
+    color: #00000080;
+}
