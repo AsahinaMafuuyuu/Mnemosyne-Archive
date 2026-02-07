@@ -1,10 +1,10 @@
 ---
 layout: ../../layouts/MarkdownPostLayout.astro
-title: 我的第四篇博客文章
+title: astro中---与script的对比
 pubDate: 2026-01-11
-author: Astro 学习者
+author: Asahina Mafuyu
 description: "我遇到了一些问题，但是在社区里面提问真的很有帮助！"
-tags: ["astro", "blogging", "learning in public", "爱派Dancehall"]
+tags: ["astro"]
 ---
 
 # Astro 中 `---` 与 `<script>` 的本质区别（核心知识点）

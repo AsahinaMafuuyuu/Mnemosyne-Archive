@@ -48,7 +48,7 @@ const url: string = Astro.url.toString();
           </div>
 
           <!-- 正文博客内容展示 -->
-          <div transition:name="mainContent" transition:animate="fade">
+          <div transition:name="mainContent" transition:animate="fade" class="min-w-0">
             <slot name="mainContent" />
           </div>
 
@@ -60,12 +60,12 @@ const url: string = Astro.url.toString();
       </div>
     </div>
     <!-- 小插件 -->
-    <AudioPlayerAside
+    <!-- <AudioPlayerAside
       className="fixed top-[50px] left-[50px]"
       class=""
       client:load
       transition:persist
-    />
+    /> -->
 
     <script>
       // let NAV_KEY = sessionStorage.getItem('__nav_by_browser__') || false

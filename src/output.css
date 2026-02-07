@@ -13,7 +13,6 @@
     --color-blue-700: oklch(48.8% 0.243 264.376);
     --color-pink-400: oklch(71.8% 0.202 349.761);
     --color-gray-200: oklch(92.8% 0.006 264.531);
-    --color-neutral-800: oklch(26.9% 0 0);
     --spacing: 0.25rem;
     --text-base: 1rem;
     --text-base--line-height: calc(1.5 / 1);
@@ -525,6 +524,9 @@
   }
   .max-w-350 {
     max-width: calc(var(--spacing) * 350);
+  }
+  .min-w-0 {
+    min-width: calc(var(--spacing) * 0);
   }
   .min-w-8 {
     min-width: calc(var(--spacing) * 8);
@@ -1747,19 +1749,26 @@ body {
     margin-block: calc(var(--spacing) * 4);
   }
   .md-content pre {
+    display: flex;
     overflow-x: auto;
     border-radius: var(--radius-xl);
     padding: calc(var(--spacing) * 4);
   }
   .md-content code:not(pre code) {
     border-radius: 0.25rem;
-    background-color: var(--color-neutral-800);
+    background-color: rgba(0,0,0,.1);
     padding-inline: calc(var(--spacing) * 1);
     padding-block: calc(var(--spacing) * 0.5);
+    font-family: var(--font-mono);
+    color: rgba(0,0,0,.55);
   }
   .md-content blockquote {
     position: relative;
     margin: 15px 0px;
+    padding-left: 20px;
+    background-color: antiquewhite;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    color: rgba(0,0,0,.53);
     &::before {
       position: absolute;
       left: -4px;
@@ -1773,6 +1782,9 @@ body {
   .md-content ul {
     list-style: disc;
     padding-left: 1.5em;
+    & li::marker {
+      color: aqua;
+    }
   }
   .md-content ol {
     list-style: decimal;
@@ -1792,6 +1804,32 @@ body {
     border-style: var(--tw-border-style);
     border-width: 2px;
     border-color: rgba(0,0,0,.05);
+  }
+  .md-content table {
+    border-collapse: collapse;
+    width: 100%;
+    margin: 20px 0;
+    overflow-x: auto;
+    display: block;
+  }
+  .md-content thead {
+    background-color: #f6f8fa;
+  }
+  .md-content th, td {
+    border: 1px solid #dfe2e5;
+    padding: 12px 16px;
+    text-align: left;
+  }
+  .md-content th {
+    font-weight: 600;
+    color: #24292e;
+  }
+  .md-content tbody tr:nth-child(even) {
+    background-color: #f6f8fa;
+  }
+  .md-content tbody tr:hover {
+    background-color: #e1e4e8;
+    transition: background-color 0.2s ease;
   }
 }
 @layer utilities {
