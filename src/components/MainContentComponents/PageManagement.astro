@@ -1,0 +1,106 @@
+---
+import type { ScrollPageParams } from "@/types/posts";
+import Back from "@/Icons/back.svg";
+import Front from "@/Icons/front.svg";
+const { params } = Astro.props as { params: ScrollPageParams };
+
+// 生成pageManagement的算法
+function buildPager(
+    totalPage: number,
+    currentPage: number,
+): Array<number | "..."> {
+    // 如果小于等于3，则生成1， 2， 3这种
+    if (totalPage <= 3) {
+        return Array.from({ length: totalPage }, (_, i) => i + 1);
+    }
+    // total > 3：根据 current 生成
+    // 目标形态：1 ..c-1 c c+1... total
+    else {
+        //  cur - 1 > 1.有左项
+        //  cur - 1 > 2,有左省略且有左项
+        // total - cur > 1, 有右项
+        // total - cur > 2 ,有右省略号且有右项
+        const res: Array<number | "..."> = [];
+        res.push(1);
+        if (currentPage - 1 >= 2) {
+            if (currentPage - 1 > 2) {
+                res.push("...");
+            }
+            res.push(currentPage - 1);
+        }
+        if (currentPage !== 1 && currentPage !== totalPage) {
+            res.push(currentPage);
+        }
+
+        if (totalPage - currentPage >= 2) {
+            res.push(currentPage + 1);
+            if (totalPage - currentPage > 2) {
+                res.push("...");
+            }
+        }
+        res.push(totalPage);
+        return res;
+    }
+}
+const currentPage = params.currentPage;
+const totalPage = params.lastPage;
+const pageItems = buildPager(totalPage, currentPage);
+---
+
+<div class="flex items-center justify-center gap-8">
+    <!-- 后退 -->
+    <a
+        href={`/${params.currentPage - 1}`}
+        class={`blog-nav-icon
+        ${
+            currentPage === 1
+                ? "pointer-events-none cursor-not-allowed text-[#ccc]"
+                : ""
+        }`}
+    >
+        <Back class="md-icon-basic-style" /></a
+    >
+    <!-- page展示 -->
+    {
+        pageItems.map((item) => {
+            if (item === "...") {
+                return <span class="span-eli">...</span>;
+            }
+
+            const page = item;
+            const isActive = page === currentPage;
+
+            return (
+                // 当前页的话就要设置成pink色彩，后期改成动态修改色彩
+                <a
+                    href={`/${page}`}
+                    class={`blog-nav-icon
+        ${isActive ? "pointer-events-none cursor-default text-[red]" : ""}`}
+                >
+                    {page}
+                </a>
+            );
+        })
+    }
+
+    <a
+        href={`/${params.currentPage + 1}`}
+        class={`blog-nav-icon
+        ${
+            currentPage === totalPage
+                ? "pointer-events-none cursor-not-allowed text-[#ccc]"
+                : ""
+        }`}
+    >
+        <Front class="md-icon-basic-style" /></a
+    >
+</div>
+
+<style>
+    .span-eli {
+        display: inline-block;
+        height: 32px;
+        width: 32px;
+        text-align: center;
+    }
+</style>

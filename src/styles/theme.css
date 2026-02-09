@@ -34,7 +34,9 @@
         @apply link-container hover:scale-110;
     }
 
-
+    .link-anchor-nav {
+        @apply link-container
+    }
 
     /* 定义简易控件的交互逻辑 */
     .simp-control-interact {
@@ -119,4 +121,22 @@
 /* 设置常用图标的具体样式 */
 @utility md-icon-basic-style {
     @apply w-5 h-5 
+}
+
+/* 设置翻页条的相关导航样式 */
+@utility blog-nav-icon {
+    @apply relative transition-all ease-in-out duration-500 rounded-md w-8 h-8 flex items-center justify-center hover:bg-[rgba(0,0,0,.2)];
+    &::before {
+        content: '';
+        position: absolute;
+        background-color: transparent;
+        top: 0;
+        left: 0;
+        cursor: pointer;
+        z-index: 1;
+    }
+}
+/* 设置翻页条的span样式 */
+@utility span-eli {
+    @apply w-8 h-8 inline-block leading-8
 }

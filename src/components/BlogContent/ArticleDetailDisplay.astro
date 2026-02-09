@@ -31,9 +31,7 @@ if (typeof params.images !== "undefined") {
 }
 ---
 
-<div
-    class="layout-basic-style py-6 px-6"
->
+<div class="layout-basic-style py-6 px-6">
     <!-- title info Ai_abstract content  -->
 
     <h1 class="text-blog-title-light mb-3">{params.title}</h1>
@@ -88,4 +86,30 @@ if (typeof params.images !== "undefined") {
     <div class="md-content" set:html={content} />
 </div>
 
-<script></script>
+<script>
+    function init() {
+        const contentItem = document.querySelector(
+            ".md-content",
+        ) as HTMLElement;
+        // 获取到h1
+        const h1List = contentItem.getElementsByTagName("h1");
+        for (let i = 0; i < h1List.length; i++) {
+            let nav = document.createElement("a");
+            nav.setAttribute("href", `#${h1List[i].id}`);
+            nav.innerText = "#";
+            nav.classList.add("blog-anchor-nav");
+            h1List[i].appendChild(nav);
+        }
+        // 获取到h2
+        const h2List = contentItem.getElementsByTagName("h2");
+        for (let i = 0; i < h2List.length; i++) {
+            let nav = document.createElement("a");
+            nav.setAttribute("href", `#${h2List[i].id}`);
+            nav.innerText = "#";
+            nav.classList.add("blog-anchor-nav");
+            h2List[i].appendChild(nav);
+        }
+    }
+    init()
+    document.addEventListener('astro:page-load', init)
+</script>

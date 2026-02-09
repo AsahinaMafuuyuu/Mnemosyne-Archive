@@ -1,0 +1,9 @@
+---
+import Header from "../components/HeaderComponents/Header.astro";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+
+const allPosts = Object.values(import.meta.glob('./posts/*.md', { eager: true }));
+---
+<BaseLayout>
+    <!-- 按标签进行索引 -->
+</BaseLayout>

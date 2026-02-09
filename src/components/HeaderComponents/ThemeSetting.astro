@@ -82,7 +82,8 @@ import Rss from "@/Icons/rss.svg";
 <style></style>
 
 <script>
-    const SettingBtn: HTMLElement = document.querySelector(
+    function init() {
+        const SettingBtn: HTMLElement = document.querySelector(
         '[data-ui="setting-btn"]',
     ) as HTMLElement;
 
@@ -122,4 +123,7 @@ import Rss from "@/Icons/rss.svg";
             `${scrollBar.value}px`,
         );
     });
+    }
+    init()
+    document.addEventListener('astro:page-load', init)
 </script>

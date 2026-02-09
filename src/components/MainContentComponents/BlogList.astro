@@ -1,19 +1,18 @@
 ---
 import SingleBlog from "./SingleBlog.astro";
-const allPosts = import.meta.glob('@/pages/posts/*.md', {eager: true});
+const { params } = Astro.props as { params:any }
 ---
-
+   
 <div data-ui="blog-list-container"
     class="flex flex-col gap-5">
     <!-- 动态生成所有文章 -->
-    {Object.entries(allPosts).map(([path, mod]:[string, any])=>{
-        const mdUrl = path.split('/').at(-1)!.replace('.md', '')
-        const params = {
-            url: mdUrl,
-            frontmatter: mod.frontmatter
-        }
-        return <SingleBlog params={params}/>
+    {params.map((item:any)=>{
+        return <SingleBlog params={item}/>
     })}
+
+    <!-- <div>{params.forEach((item)=> {
+        return {item}
+    })}</div> -->
 </div>
 <script>
     const blogListContainer: HTMLElement = document.querySelector(
@@ -21,5 +20,7 @@ const allPosts = import.meta.glob('@/pages/posts/*.md', {eager: true});
     ) as HTMLElement;
 
     // 重新加载博客内容
-    function reloadBlogList() {}
+    function reloadBlogList() {
+        
+    }
 </script>

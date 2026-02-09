@@ -1,15 +1,19 @@
 ---
 import NoticeMessage from "./NoticeMessage.astro";
 import BlogList from "./BlogList.astro";
-import { slide } from "astro:transitions";
+import PageManagement from "./PageManagement.astro";
+
+const { params, pageScrollParams } = Astro.props;
 ---
 
-<div class="flex h-500 w-full flex-col gap-5">
-    <!-- 公告消息 -->
-    <NoticeMessage />
+<div class="flex w-full flex-col gap-5">
+   <!-- 公告消息 -->
+   <NoticeMessage />
 
-    <!-- 文章列表 -->
-    <BlogList />
+   <!-- 文章列表 -->
+   <BlogList params={params} />
 
-    <!-- 翻页条 -->
+   <!-- 翻页条 -->
+
+   <PageManagement params={pageScrollParams} />
 </div>

@@ -1,35 +1,65 @@
-@layer components {
-  .md-content {
-    @apply text-base leading-8 text-(--font-color);
+@utility md-content {
+  @apply text-base leading-8 text-(--font-color);
+
+  /* 所有标题的基础样式 */
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    font-weight: 600;
+    line-height: 1.3;
+    margin-top: 24px;
+    margin-bottom: 16px;
   }
 
-  .md-content h1 {
-    @apply text-3xl font-bold mt-10 mb-6;
+  /* 特定标题样式 */
+  h1 {
+    font-size: calc(1.75*var(--font-size));
+    border-bottom: 2px solid #eaecef;
+    padding-bottom: 10px;
   }
 
-  .md-content h2 {
-    @apply text-2xl font-semibold mt-8 mb-4;
+  h2 {
+    font-size: 2em;
+    border-bottom: 1px solid #eaecef;
+    padding-bottom: 8px;
   }
 
-  .md-content p {
+  h3 {
+    font-size: 1.5em;
+    color: #0366d6;
+  }
+
+  p {
     @apply my-4;
   }
 
-  .md-content pre {
+  pre {
     @apply rounded-xl p-4 overflow-x-auto flex;
   }
 
-  .md-content code:not(pre code) {
+  code:not(pre code) {
     @apply px-1 py-0.5 rounded bg-[rgba(0,0,0,.1)] font-mono text-[rgba(0,0,0,.55)];
   }
 
-  .md-content blockquote {
+  blockquote {
     position: relative;
-    margin:15px 0px;
+    margin: 15px 0;
     padding-left: 20px;
     background-color: antiquewhite;
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-    color: rgba(0,0,0,.53);
+    font-family:
+      'Lucida Sans',
+      'Lucida Sans Regular',
+      'Lucida Grande',
+      'Lucida Sans Unicode',
+      Geneva,
+      Verdana,
+      sans-serif;
+    color: rgba(0, 0, 0, .53);
+
     &::before {
       position: absolute;
       left: -4px;
@@ -41,25 +71,23 @@
     }
   }
 
-  .md-content ul {
+  ul {
     list-style: disc;
     padding-left: 1.5em;
 
-    & li::marker {
+    li::marker {
       color: aqua;
-      
     }
   }
 
-  .md-content ol {
+  ol {
     list-style: decimal;
     padding: 10px;
     padding-left: 27.97px;
     background-color: #fff;
     border-radius: 5px;
 
-    & li {
-      /* 设置成允许西洋换行 */
+    li {
       word-break: break-all;
 
       &::marker {
@@ -68,39 +96,82 @@
     }
   }
 
-  .md-content img {
+  img {
     @apply rounded-lg border-2 border-[rgba(0,0,0,.05)];
   }
-  /* 表格样式块 */
-  .md-content table {
-  border-collapse: collapse;
-  width: 100%;
-  margin: 20px 0;
-  overflow-x: auto;
-  display: block;
-}
 
-.md-content thead {
-  background-color: #f6f8fa;
-}
+  /* 表格 */
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    margin: 20px 0;
+    overflow-x: auto;
+    display: block;
+  }
 
-.md-content th, td {
-  border: 1px solid #dfe2e5;
-  padding: 12px 16px;
-  text-align: left;
-}
+  thead {
+    background-color: #f6f8fa;
+  }
 
-.md-content th {
-  font-weight: 600;
-  color: #24292e;
-}
+  th,
+  td {
+    border: 1px solid #dfe2e5;
+    padding: 12px 16px;
+    text-align: left;
+  }
 
-.md-content tbody tr:nth-child(even) {
-  background-color: #f6f8fa;
-}
+  th {
+    font-weight: 600;
+    color: #24292e;
+  }
 
-.md-content tbody tr:hover {
-  background-color: #e1e4e8;
-  transition: background-color 0.2s ease;
+  tbody tr:nth-child(even) {
+    background-color: #f6f8fa;
+  }
+
+  tbody tr:hover {
+    background-color: #e1e4e8;
+    transition: background-color 0.2s ease;
+  }
+
+  /* 链接 */
+  a {
+    color: #0366d6;
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: all 0.3s ease;
+  }
+
+  a:hover {
+    border-bottom: 1px solid #0366d6;
+  }
+
+  a:visited {
+    color: #6f42c1;
+    background-color: #fff;
+  }
+
+  /* 外链标识 */
+  a[href^="http"]::after {
+    content: " ↗";
+    font-size: 0.8em;
+    vertical-align: super;
+  }
+  .blog-anchor-nav {
+    @apply w-fit opacity-0 h-fit py-0.5 px-3 inline-block text-[28px] relative rounded-lg gap-1 
+    transition-all ease-in-out duration-300 
+    hover:bg-(--hover-color) hover:opacity-100;
+
+    &::before {
+        content: '';
+        position: absolute;
+        background-color: transparent;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        cursor: pointer;
+        z-index: 1;
+    }
 }
 }

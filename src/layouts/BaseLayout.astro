@@ -6,7 +6,9 @@ import Footer from "@/components/FooterComponents/Footer.astro";
 import AudioPlayerAside from "@/components/AudioPlayerAside.astro";
 import { slide } from "astro:transitions";
 import { ClientRouter } from "astro:transitions";
+import "../output.css";
 const url: string = Astro.url.toString();
+
 ---
 
 <html lang="zh-CN">
@@ -28,13 +30,13 @@ const url: string = Astro.url.toString();
       <!-- 覆盖一层毛玻璃 -->
       <div
         data-ui="real-visual-container"
-        class="h-full w-full bg-[rgba(255,255,255,.36)] backdrop-blur-(--blur-val) flex justify-center overflow-auto base-scroll-bar"
+        class="h-full w-full bg-[rgba(255,255,255,.36)] backdrop-blur-(--blur-val) flex justify-center "
       >
         <!-- 内容容器 -->
         <!-- 要规定尺寸，大小，展示方式等等 -->
         <div
           data-ui="visual-content-area"
-          class="w-full min-w-[320px] max-w-350 px-4 grid gap-3 grid-cols-[240px_1fr] grid-rows-[auto_1fr_auto] max-[768px]:grid-cols-[1fr]"
+          class="w-full h-full min-w-[320px] max-w-350 px-4 pb-5 grid gap-3 grid-cols-[240px_1fr] scroll-smooth transition-all ease-in-out duration-1000 overflow-auto base-scroll-bar grid-rows-[auto_1fr_auto] max-[768px]:grid-cols-[1fr]"
         >
           <!-- 导航栏 -->
 
@@ -53,7 +55,7 @@ const url: string = Astro.url.toString();
           </div>
 
           <!-- 底部内容 -->
-          <div class="col-span-1 md:col-span-2">
+          <div class="col-span-1 md:col-span-2 mt-5">
             <Footer />
           </div>
         </div>

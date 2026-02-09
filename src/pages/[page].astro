@@ -1,0 +1,54 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Main from "@/components/MainContentComponents/Main.astro";
+import type { Page } from "astro";
+import type {ScrollPageParams} from '@/types/posts';
+export function getStaticPaths({ paginate }: {paginate:Function}) {
+  let postsList: Array<any> = [];
+  const allPosts = import.meta.glob("@/pages/posts/*.md", { eager: true });
+  Object.entries(allPosts).map(([path, mod]: [string, any]) => {
+    const mdUrl = path.split("/").at(-1)!.replace(".md", "");
+    const params = {
+      url: mdUrl,
+      frontmatter: mod.frontmatter,
+    };
+    postsList.push(params);
+  });
+
+  // 进行排序
+  postsList.sort((a, b) => {
+    const aTime = a.frontmatter.pubDate
+      ? new Date(a.frontmatter.pubDate).getTime()
+      : 0;
+
+    const bTime = b.frontmatter.pubDate
+      ? new Date(b.frontmatter.pubDate).getTime()
+      : 0;
+
+    if (aTime !== bTime) {
+      return bTime - aTime;
+    }
+
+    // 次级排序，保证稳定
+    return a.url.localeCompare(b.url);
+  });
+
+  return paginate(postsList, { pageSize: 3 });
+}
+// 所有分页数据都在 "page" 参数中传递
+const { page } = Astro.props as { page:Page};
+// if (page.currentPage === 1){
+//    return Astro.rewrite("/404NotFound");
+// }
+
+// 滚动条数据
+const scrollPageParams:ScrollPageParams = {
+  currentPage:page.currentPage,
+  lastPage:page.lastPage,
+}
+---
+
+<!-- 显示当前页面。也可以使用 `Astro.params.page`！--><!-- 得到page的数据，并进行渲染 -->
+<BaseLayout>
+  <Main slot="mainContent" params={page.data}  pageScrollParams={scrollPageParams}/>
+</BaseLayout>
