@@ -59,7 +59,7 @@
 /* 创建普通页面浏览时候的viewScrollBar */
 @utility base-scroll-bar {
     &::-webkit-scrollbar {
-        width: 4px;
+        width: 6px;
     }
 
     &::-webkit-scrollbar-button {

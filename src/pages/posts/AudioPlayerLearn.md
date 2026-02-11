@@ -24,13 +24,14 @@ Flip就是：
 # 3. 滑动歌词处理
 方法1. 制作一个大的容器，每次滑动一些在视口显示，形成最简单的滚动歌词的逻辑
 方法2. 做一个list，只显示要展示的部分，每次只展示部分：
-![alt text](image.png)
+![image-20260209174524492](D:\web_project\Mnemosyne-Archive\src\pages\posts\public\images\posts\AudioPlayerLearn\image-20260209174524492.png)
 当下一次播放插入的时候，利用FLIP动画来实现过渡效果：
-![alt text](image-1.png)
+![image-20260209174607487](D:\web_project\Mnemosyne-Archive\src\pages\posts\public\images\posts\AudioPlayerLearn\image-20260209174607487.png)
 
 **注**：上述两种方法的核心都是要用到timeupdate这个核心事件来监听audio的变化，然后将currentTime来进行时间戳的判断
 **对歌词来说，我不管你这一句唱了多长时间，我只管你这一句歌词是不是要展示的一个时间段的内容**  
 数据结构的话，通常用如下数据结构：
+
 ```typescript
 type LyricLine = {
   t: number;        // 时间（秒，浮点）
@@ -113,7 +114,7 @@ const lines: LyricLine[] = [
 > 1. 首先需要创建一个数组用来维护Fisher-Yates所创建的Array
 > 2. 然后还需要创建一个Dict用来映射这些逻辑关系
 > 3. 监听的事件有:切换播放模式, 音频加载的时候需要进行判断(是否当前为最后一首,如果是的话需要重新shuffle)(这样的话不需要维护上一首和下一首这些控件的逻辑,我只用看当前加载的音频的index是否为最后一首即可)
-  
+
 具体使用的话,就将当前array中播放的曲子拿出来(保留上下,然后再进行Fisher-Yates的算法)
 
 # 10. 音频的 preload 到底怎么用？

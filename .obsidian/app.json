@@ -1,0 +1,10 @@
+{
+  "defaultViewMode": "source",
+  "newFileLocation": "folder",
+  "newLinkFormat": "shortest",
+  "alwaysUpdateLinks": true,
+  "useMarkdownLinks": false,
+  "attachmentFolderPath": "public/images/posts",
+  "newFileFolderPath": "src/pages/posts",
+  "showUnsupportedFiles": true
+}

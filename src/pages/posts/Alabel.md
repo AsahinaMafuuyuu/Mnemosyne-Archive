@@ -4,9 +4,9 @@ title: '论label<a>为什么是最头疼的元素'
 pubDate: 2026-01-25
 author: 'AsahinaMafuyu'
 description: 'a链接标签的样式是我调整起来最头疼的，没有之一！！！'
-# images:
-#     url: 'https://s2.loli.net/2025/12/28/TU3SW1Fu5Rsiqrv.jpg'
-#     alt: '洛琪希'
+images:
+  url: https://s2.loli.net/2025/12/28/TU3SW1Fu5Rsiqrv.jpg
+  alt: 洛琪希
 tags: ["前端", "html", "debug"]
 ---
 
@@ -34,9 +34,9 @@ tags: ["前端", "html", "debug"]
     }
 ```
 插播一点：a的样式（主要是background）一定要写在当前文件下的css当中，不然的话：
-![alt text](image-13.png)
-这里我在utility层定义的，但是被根元素css覆盖了
 
+这里我在utility层定义的，但是被根元素css覆盖了
+![[Pasted image 20260210103704.png]]
 # 总结
 其实这篇文章更多的是对伪元素进行剖析，记住以下三点：
 > 1. 伪元素设置样式，absolute并且建议height和width设置成100%
