@@ -32,30 +32,6 @@
             }
           },
           {
-            "id": "b5e1e4eaf3d12db3",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "src/pages/posts/PicGo Alist.md",
-                "mode": "source",
-                "source": false,
-                "backlinks": true,
-                "backlinkOpts": {
-                  "collapseAll": false,
-                  "extraContext": false,
-                  "sortOrder": "alphabetical",
-                  "showSearch": false,
-                  "searchQuery": "",
-                  "backlinkCollapsed": false,
-                  "unlinkedCollapsed": true
-                }
-              },
-              "icon": "lucide-file",
-              "title": "PicGo Alist"
-            }
-          },
-          {
             "id": "dc314d41db877294",
             "type": "leaf",
             "state": {
@@ -67,8 +43,7 @@
               "title": "Pasted image 20260214161804"
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "vertical"
@@ -230,42 +205,44 @@
       "bases:新建数据库": false
     }
   },
-  "active": "b5e1e4eaf3d12db3",
+  "active": "57ae9dafbe6b572e",
   "lastOpenFiles": [
-    "src/pages/posts/UniApp.md",
-    "src/pages/posts/PicGo Alist.md",
-    "src/pages/posts/Alabel.md",
-    "public/images/posts/Pasted image 20260214161538.png",
     "public/images/posts/Pasted image 20260214161804.png",
+    "images/posts/20260211135612.png.md",
+    "src/pages/posts/ComputerInternetBasicKnowledge.md",
+    "images/posts",
+    "images",
+    "src/pages/posts/AstroTransitionAnimation.md",
+    "src/pages/posts/AstroLayout.md",
+    "src/images/no-cover.png",
+    "src/pages/posts/astro-frontmatter-vs-script.md",
+    "src/pages/posts/Alabel.md",
+    "src/pages/posts/PicGo Alist.md",
+    "src/pages/posts/UniApp.md",
+    "public/images/posts/Pasted image 20260214161538.png",
     "public/images/posts/Pasted image 20260214161024.png",
     "public/images/posts/Pasted image 20260214141922.png",
     "public/images/posts/Pasted image 20260214141759.png",
     "public/images/posts/Pasted image 20260214123538.png",
     "public/images/posts/Pasted image 20260214122724.png",
-    "src/pages/posts/ComputerInternetBasicKnowledge.md",
     "public/images/posts/20260211135612.png",
     "public/images/posts/TCP 20260211133203.png",
-    "public/images/posts/20260211123125.png",
     "public/images/posts/OSI.md",
     "src/pages/posts/CustomYourScrollbar.md",
     "src/pages/posts/DynamicRouterInAstro.md",
     "src/pages/posts/GameRegret.md",
     "src/pages/posts/fontdesignproject.md",
     "src/pages/posts/TailwindAddCustomClass.md",
-    "src/pages/posts/astro-frontmatter-vs-script.md",
     "src/pages/posts/AstroMdInfo.md",
     "public/images/posts/FristContact.md",
     "src/pages/posts/WebGl_Fundamentation.md",
     "src/template/index.md.md",
-    "src/pages/posts/AstroLayout.md",
     "src/pages/posts/未命名.base",
     "src/template",
     "2026-01-25.md",
     "未命名.canvas",
     "node_modules/prismjs/_headers.md",
     "public/images/posts/${filename}",
-    "images/posts",
-    "images",
     "src/audios/AiPai.mp3"
   ]
 }

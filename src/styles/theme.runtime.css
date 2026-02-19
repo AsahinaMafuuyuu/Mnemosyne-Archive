@@ -6,6 +6,7 @@
       --font-size: 16px;
       --scrollbar-width: 4px;
       --blur-val: 0px;
+      --background-src: none;
   }
 
   /* 创建暗色主题 */

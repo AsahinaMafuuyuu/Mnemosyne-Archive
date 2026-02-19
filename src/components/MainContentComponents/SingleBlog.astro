@@ -4,18 +4,19 @@ import Date from "@/Icons/date.svg";
 import WingPencil from "@/Icons/wing.svg";
 import Time from "@/Icons/time.svg";
 import PurpleSunflower from "@/images/PurpleSunflower.webp"
+import DefaultCover from "@/images/no-cover.png"
 
 // 传递过来相关的参数
 type ImageInfo = {
-    url: string;
-    alt: string;
+    url: string | null;
+    alt: string | null;
 };
 interface FrontMatter {
     title: string;
     pubDate: string;
     description: string;
     author: string;
-    images?: Array<ImageInfo> | ImageInfo;
+    cover?: ImageInfo;
     tags: string[];
 }
 type Params = {
@@ -23,6 +24,18 @@ type Params = {
     frontmatter:FrontMatter
 }
 const { params } = Astro.props as {params:Params}
+
+// 检查是否有cover图，如果有则展示，没有则展示默认图
+let displayCover:ImageInfo = {
+    url: DefaultCover.src,
+    alt: "默认封面"
+}
+
+// 如果有封面，那就赋值url
+if (params.frontmatter.cover && params.frontmatter.cover.url) {
+    displayCover.url = params.frontmatter.cover.url
+    displayCover.alt = params.frontmatter.cover.alt
+}
 ---
 
 <article class="single-blog-card-decoration layout-basic-style flex justify-between group transition-all duration-500 ease-in-out hover:scale-101">
@@ -60,9 +73,9 @@ const { params } = Astro.props as {params:Params}
 
     <!-- 图片部分 -->
      <div data-ui="blog-pic-area" class="w-40 h-40 rounded-xl overflow-hidden">
-        <a href="/posts/Alabel" >
+        <a href={`/posts/${params.url}`} >
             <img class="w-full h-full cursor-pointer object-cover group-hover:scale-110 group-hover:rotate-z-8 transition-transform duration-500 ease-in-out" 
-            src={PurpleSunflower.src} alt="" />
+            src={displayCover.url} alt={displayCover.alt} />
         </a>
      </div>
      

@@ -44,11 +44,11 @@ import Rss from "@/Icons/rss.svg";
                 </div>
             </div>
 
-            <button class="w-full flex items-start">
+            <button id="switchBackground" class="w-full flex link-container items-start py-2">
                 <span class="truncate">背景图片切换</span>
             </button>
 
-            <button class="w-full flex items-start">
+            <button data-ui="downloadBg" class="w-full flex link-container items-start py-2">
                 <span class="truncate">下载背景图</span>
             </button>
 
@@ -82,48 +82,93 @@ import Rss from "@/Icons/rss.svg";
 <style></style>
 
 <script>
+    import { fetchBackgroundImage } from "@/function";
     function init() {
         const SettingBtn: HTMLElement = document.querySelector(
-        '[data-ui="setting-btn"]',
-    ) as HTMLElement;
+            '[data-ui="setting-btn"]',
+        ) as HTMLElement;
 
-    const controlPanel: HTMLElement = document.querySelector(
-        '[data-ui="web-theme-control-panel"]',
-    ) as HTMLElement;
+        const controlPanel: HTMLElement = document.querySelector(
+            '[data-ui="web-theme-control-panel"]',
+        ) as HTMLElement;
 
-    // 获取到scrollbar容器
-    const scrollBarDiv: HTMLElement = controlPanel.querySelector(
-        '[data-ui="scroll-bar-setting"]',
-    ) as HTMLElement;
+        // 获取到scrollbar容器
+        const scrollBarDiv: HTMLElement = controlPanel.querySelector(
+            '[data-ui="scroll-bar-setting"]',
+        ) as HTMLElement;
 
-    // 获取模糊字体
-    const blurValue: HTMLElement = controlPanel.querySelector(
-        '[data-ui="blur-value"]',
-    ) as HTMLElement;
+        // 获取模糊字体
+        const blurValue: HTMLElement = controlPanel.querySelector(
+            '[data-ui="blur-value"]',
+        ) as HTMLElement;
 
-    // 获取scrollbar
-    const scrollBar: HTMLInputElement = scrollBarDiv.querySelector(
-        ".blur-setting-scroll-bar",
-    ) as HTMLInputElement;
+        // 获取到背景主题切换按钮
+        const switchBackgroundBtn: HTMLElement = document.getElementById(
+            "switchBackground",
+        ) as HTMLElement;
 
-    SettingBtn.addEventListener("click", () => {
-        if (controlPanel.dataset.hidden === "false") {
-            controlPanel.dataset.hidden = "true";
-        } else {
-            controlPanel.dataset.hidden = "false";
-        }
-    });
+        // 获取scrollbar
+        const scrollBar: HTMLInputElement = scrollBarDiv.querySelector(
+            ".blur-setting-scroll-bar",
+        ) as HTMLInputElement;
 
-    // 添加模糊滚动条滚动设计
-    scrollBar.addEventListener("input", () => {
-        scrollBar.style.setProperty("--val", scrollBar.value);
-        blurValue.innerHTML = `${scrollBar.value}px`;
-        document.documentElement.style.setProperty(
-            "--blur-val",
-            `${scrollBar.value}px`,
-        );
-    });
+        // 设置按钮点击事件，切换控制面板显示状态
+        SettingBtn.addEventListener("click", () => {
+            if (controlPanel.dataset.hidden === "false") {
+                controlPanel.dataset.hidden = "true";
+            } else {
+                controlPanel.dataset.hidden = "false";
+            }
+        });
+
+        // 点击控制面板以外的区域，关闭控制面板
+        document.addEventListener("click", (e) => {
+            if (
+                !controlPanel.contains(e.target as Node) &&
+                !SettingBtn.contains(e.target as Node)
+            ) {
+                controlPanel.dataset.hidden = "true";
+            }
+        });
+
+        // 获取到下载背景图按钮
+        const downloadBgBtn: HTMLElement = controlPanel.querySelector(
+            '[data-ui="downloadBg"]',
+        ) as HTMLElement;
+
+        // 下载背景图
+        downloadBgBtn.addEventListener("click", async () => {
+            const url = getComputedStyle(document.documentElement).getPropertyValue(
+                "--background-src",
+            ).slice(4, -1).replace(/"/g, "");
+            const link = document.createElement("a");
+            link.href = url;
+            link.download = new Date().getTime().toString(); // 设置下载的文件名，可以根据需要修改
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);    
+        });
+
+        // 切换背景
+        switchBackgroundBtn.addEventListener("click", async () => {
+            // --background-src: url(../assets/bg-2.jpg);
+            // 返回的content-type是image/jpeg或者image/png
+          const url = await fetchBackgroundImage()
+          document.documentElement.style.setProperty(
+            "--background-src",
+            `url(${url})`,
+          );
+        });
+
+        // 添加模糊滚动条滚动设计
+        scrollBar.addEventListener("input", () => {
+            scrollBar.style.setProperty("--val", scrollBar.value);
+            blurValue.innerHTML = `${scrollBar.value}px`;
+            document.documentElement.style.setProperty(
+                "--blur-val",
+                `${scrollBar.value}px`,
+            );
+        });
     }
-    init()
-    document.addEventListener('astro:page-load', init)
+    document.addEventListener("astro:page-load", init);
 </script>

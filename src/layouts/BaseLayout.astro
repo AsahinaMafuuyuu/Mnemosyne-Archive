@@ -8,7 +8,6 @@ import { slide } from "astro:transitions";
 import { ClientRouter } from "astro:transitions";
 import "../output.css";
 const url: string = Astro.url.toString();
-
 ---
 
 <html lang="zh-CN">
@@ -17,6 +16,7 @@ const url: string = Astro.url.toString();
     <link rel="icon" type="image/svg+xml" href="/Icons/WebIcon.ico  " />
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
+    <meta name="" />
     <title>AsahinaMafuyu</title>
     <ClientRouter />
   </head>
@@ -24,13 +24,13 @@ const url: string = Astro.url.toString();
     <!-- 页面整体布局 -->
     <div
       data-ui="html-container"
-      class="w-screen h-screen bg-cover bg-center bg-no-repeat"
-      style={`background-image: url(${AiPai.src});`}
+      class="w-screen h-screen bg-cover bg-center bg-no-repeat transition-background-image duration-1000 ease-in-out"
+      style="background-image: var(--background-src);"
     >
       <!-- 覆盖一层毛玻璃 -->
       <div
         data-ui="real-visual-container"
-        class="h-full w-full bg-[rgba(255,255,255,.36)] backdrop-blur-(--blur-val) flex justify-center overflow-auto base-scroll-bar scroll-smooth "
+        class="h-full w-full bg-[rgba(255,255,255,.36)] backdrop-blur-(--blur-val) flex justify-center overflow-auto base-scroll-bar scroll-smooth"
       >
         <!-- 内容容器 -->
         <!-- 要规定尺寸，大小，展示方式等等 -->
@@ -50,7 +50,11 @@ const url: string = Astro.url.toString();
           </div>
 
           <!-- 正文博客内容展示 -->
-          <div transition:name="mainContent" transition:animate="fade" class="min-w-0">
+          <div
+            transition:name="mainContent"
+            transition:animate="fade"
+            class="min-w-0"
+          >
             <slot name="mainContent" />
           </div>
 
@@ -62,61 +66,53 @@ const url: string = Astro.url.toString();
       </div>
     </div>
     <!-- 小插件 -->
-    <!-- <AudioPlayerAside
-      className="fixed top-[50px] left-[50px]"
-      class=""
-      client:load
-      transition:persist
-    /> -->
+    <AudioPlayerAside />
 
     <script>
-      // let NAV_KEY = sessionStorage.getItem('__nav_by_browser__') || false
-      let is_NAV_OPERATION = false;
+      import { fetchBackgroundImage } from "@/function";
+      //  记录url
+      let bgUrl: string;
+      function init() {
+        // 获取背景图片的容器
+        // const bgContainer = document.querySelector(
+        //   '[data-ui="html-container"]',
+        // ) as HTMLElement;
 
-      let scrollPage = document.querySelector(
-        '[data-ui="real-visual-container"]',
-      ) as HTMLElement;
-      function reloadListen(): HTMLElement {
-        return document.querySelector(
-          '[data-ui="real-visual-container"]',
-        ) as HTMLElement;
+        async function initBackground() {
+          // 如果设置了背景图片，就直接使用，否则就去获取一个随机背景图
+          if (
+            getComputedStyle(document.documentElement).getPropertyValue(
+              "--background-src",
+            ) === "none"
+          ) {
+            bgUrl = await fetchBackgroundImage();
+            document.documentElement.style.setProperty(
+              "--background-src",
+              `url(${bgUrl})`,
+            );
+          }
+        }
+        initBackground();
       }
-      // 不用监听scroll，只需要在卸载DOM前获取到scrollTop即可
 
-      // 在刷新的时候存储到页面当中
-      document.addEventListener("astro:before-preparation", (e) => {
-        // 存储到session当中去
-        // 存储当前值
-        sessionStorage.setItem(
-          e.from.pathname,
-          scrollPage.scrollTop.toString(),
+      // 切换路由前需要将Url取出来
+      document.addEventListener("astro:before-swap", () => {
+        bgUrl = getComputedStyle(document.documentElement).getPropertyValue(
+          "--background-src",
+        ).slice(4, -1).replace(/"/g, "");
+      });
+
+      // 路由切换后将之前的Url设置回去
+      document.addEventListener("astro:after-swap", () => {
+        // 设置background-src的url
+        document.documentElement.style.setProperty(
+          "--background-src",
+          `url(${bgUrl})`,
         );
       });
 
-      // 进行前进后退的时候才会读取
-      window.addEventListener("popstate", () => {
-        //  sessionStorage.getItem()
-        // console.log(window.location.href)    // 报错是因为暂时没有注册
-        // 此时可以将键值存储起来，并且将nav的KEY设置为true
-        sessionStorage.setItem("__nav_by_browser__", "true");
-      });
-
-      // 重加载，页面进行渲染的时候就可以重加载了
-      document.addEventListener("astro:page-load", () => {
-        // 如果是前进或者后退的话，则直接读取即可
-        if (sessionStorage.getItem("__nav_by_browser__") === "true") {
-          scrollPage = reloadListen();
-
-          // 跨一帧
-          requestAnimationFrame(() => {
-            const a = Number(
-              sessionStorage.getItem(window.location.pathname) ?? 0,
-            );
-            console.log(scrollPage);
-          });
-        }
-        sessionStorage.setItem("__nav_by_browser__", "false");
-      });
+      // 如果刷新页面，直接执行 init 函数
+      document.addEventListener("DOMContentLoaded", init);
     </script>
   </body>
 </html>

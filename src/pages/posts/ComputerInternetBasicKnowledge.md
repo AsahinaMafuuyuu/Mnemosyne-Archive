@@ -11,7 +11,7 @@ tags: []
 ---
 # 1. 基础介绍
 ## 1.1 七层模型
-![](/public/images/posts/OSI%20seven%20layers%20model%2020260211120714.png)
+![](/images/posts/OSI%20seven%20layers%20model%2020260211120714.png)
 
 ### 物理层
 
@@ -21,7 +21,7 @@ tags: []
 
 这一层的话主要是将比特流来拼接起来，其中MAC地址在硬件层是唯一的
 
-![](/public/images/posts/20260211121425.png)
+![](/images/posts/20260211121425.png)
 
 ### 网络层
 
@@ -65,7 +65,7 @@ tags: []
 
 应用层就是我们使用最多的一层，例如ajax调用接口发送http请求，再比如域名系统DNS，邮件协议SMTP，webSocket长连接，SSH协议
 
-![](/public/images/posts/20260211123125.png)
+![](/images/posts/20260211123125.png)
 
 # TCP UDP协议详解
 ##  TCP三次握手
@@ -73,7 +73,7 @@ tags: []
 TCP是面向`连接`的 什么是面向连接，**面向连接就是数据通讯的时候需要进行`三次握手`，断开通信的时候进行`四次挥手`**
 
 
-![](/public/images/posts/TCP%2020260211133203.png)
+![](/images/posts/TCP%2020260211133203.png)
 
 上面这张图就是三次握手的协议
 
@@ -99,7 +99,7 @@ TCP是面向`连接`的 什么是面向连接，**面向连接就是数据通讯
 
 `这是为了保证服务端收到ACK包，假设如果没有2MSL的等待时间，ACK包丢失了，那服务端将永远不会断开连接，有了2MSL，如果一旦发生丢包将会进行超时重传，实现可靠连接。`
 
-![](/public/images/posts/20260211135612.png)
+![](/images/posts/20260211135612.png)
 
 第三次挥手才是真正要结束的状态
 
@@ -110,11 +110,11 @@ TCP是面向`连接`的 什么是面向连接，**面向连接就是数据通讯
 2. 域名Domain：例如www.baidu.com,www.xiaoxie.com等等
 3. 请求文件的资源路径名：/dist/index.html(后面同样的可以跟上参数等等)
 
-![alt text](public/images/posts/URL%2020260211154424.png)
+![alt text](/images/posts/URL%2020260211154424.png)
 
 DNS查询的话，也有四种：
 
-![DNS查询顺序](public/images/posts/DNS%20Search%2020260211154617.png)
+![DNS查询顺序](/images/posts/DNS%20Search%2020260211154617.png)
 
 DNS查找规则就是：
 - 根域名：告诉你去找哪个顶级域
@@ -126,36 +126,36 @@ DNS查找规则就是：
 缓存通常分为**强缓存和协商缓存**
 ##### 强缓存
 
-![Strong Cache](/public/images/posts/Strong%20cache%2020260211160059.png)
+![Strong Cache](/images/posts/Strong%20cache%2020260211160059.png)
 
 其实判别强缓存特别简单，直接看是否有（from disk cache）或者（from memory cache）这两个即可
 
 ##### 协商缓存
 
-![contact cache](/public/images/posts/contact%20cache%2020260211160924.png)
+![contact cache](/images/posts/contact%20cache%2020260211160924.png)
 
 HTML解析
 
 当客户端通过网络7层模型得到资源以后，浏览器就开始解析HTML
 
-![HTML Parsing](public/images/posts/HTML%20Parsing%2020260211161325.png)
+![HTML Parsing](/images/posts/HTML%20Parsing%2020260211161325.png)
 
 下一步就是css的解析（首要的就是对于css语法进行转换，尤其是tailwind之类的）
 
-![Css parsing](public/images/posts/CSS%20Parsing%2020260211161500.png)
+![Css parsing](/images/posts/CSS%20Parsing%2020260211161500.png)
 
 浏览器绘制的时候，还会碰到**回流**和**重绘**
 
-![Reflow and Repaint](public/images/posts/Reflow%20and%20Repaint%2020260211161719.png)
+![Reflow and Repaint](/images/posts/Reflow%20and%20Repaint%2020260211161719.png)
 
 经过这些变化后，就要经过Javascript
-![](/public/images/posts/V8%20JS%2020260211162042.png)
+![](/images/posts/V8%20JS%2020260211162042.png)
 
 # CDN（内容分发网络）
 
 之前了解到DNS解析的时候，就有权威域名解析（也就是通过权威域名来得到真正的IP），如果配置了CDN的话，那么DNS的最终域名解析权都交给CNAME了
 
-![](public/images/posts/CDN%2020260211162631.png)
+![](/images/posts/CDN%2020260211162631.png)
 
 # 跨域详解
 
@@ -233,7 +233,7 @@ export default defineConfig({
 
 然后就能解决跨域了：
 
-![](public/images/posts/Resolve%20CORS%2020260211170621.png)
+![](/images/posts/Resolve%20CORS%2020260211170621.png)
 
 3. 纯后端解决跨域：非常非常非常简单，直接在`res.setHead('Access-Control-Allow-Origin', '\*')`即可
 4. nginx解决：nginx的话就用proxy_pass 来进行反向代理即可
@@ -442,7 +442,7 @@ fetch('http://localhost:3000/api/post',{
             })
 ```
 
-![](public/images/posts/Read%20stream%2020260212113821.png)
+![](/images/posts/Read%20stream%2020260212113821.png)
 
 也就是说需要clone一个新的流，让`res.text()`来读取新的流就可以了：
 
@@ -731,9 +731,9 @@ wss.on('connection', (socket) => {
 
 前端发送123，获取到的是Buffer：
 
-![](/public/images/posts/send%20ws%2020260212144759.png)
+![](/images/posts/send%20ws%2020260212144759.png)
 
-![](/public/images/posts/receive%20ws%2020260212144732.png)
+![](/images/posts/receive%20ws%2020260212144732.png)
 
 所以可以将`e.toString()`进行处理即可。
 
@@ -774,7 +774,7 @@ wss.clients.forEach((websocket) => {
 
 ##### 心跳检测
 
-![](/public/images/posts/heart%20break%2020260212151258.png)
+![](/images/posts/heart%20break%2020260212151258.png)
 
 # # navigator.sendBeacon
 
@@ -1020,7 +1020,7 @@ window.addEventListener('online', () => {
 console.log(navigator.connection)
 ```
 
-![](public/images/posts/Network%20Info%2020260212203136.png)
+![](/images/posts/Network%20Info%2020260212203136.png)
 
 - `downlink`: 当前网络连接的估计下行速度（单位为 Mbps）
 - `downlinkMax`: 设备网络连接最大可能下行速度（单位为 Mbps）
@@ -1030,17 +1030,17 @@ console.log(navigator.connection)
 
 # XSS攻击
 
-![](public/images/posts/Reflect%20XSS%2020260212203557.png)
+![](/images/posts/Reflect%20XSS%2020260212203557.png)
 
-![](public/images/posts/Storage%20XSS%2020260212203714.png)
+![](/images/posts/Storage%20XSS%2020260212203714.png)
 
 存储型XSS的攻击原理就是：**如果评论没有进行script脚本过滤，那么这条评论的script就会被写入到数据库当中，当每个访问这个帖子的用户从数据库拉取这条评论的时候，都会被XSS攻击**。
 
-![](public/images/posts/DOM%20XSS%2020260212204200.png)
+![](/images/posts/DOM%20XSS%2020260212204200.png)
 
-![](public/images/posts/XSS%20TOOLS%2020260212211129.png)
+![](/images/posts/XSS%20TOOLS%2020260212211129.png)
 
-![](public/images/posts/Prevent%20XSS%2020260212211345.png)
+![](/images/posts/Prevent%20XSS%2020260212211345.png)
 
 预防XSS则可以使用第三方库: [xss - npm](https://www.npmjs.com/package/xss)
 

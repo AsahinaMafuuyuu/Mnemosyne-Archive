@@ -1,7 +1,7 @@
 {
   "defaultViewMode": "source",
   "newFileLocation": "folder",
-  "newLinkFormat": "absolute",
+  "newLinkFormat": "shortest",
   "alwaysUpdateLinks": true,
   "useMarkdownLinks": true,
   "attachmentFolderPath": "public/images/posts",

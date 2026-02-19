@@ -10,8 +10,7 @@
 /* 关键：让 Tailwind 扫描 Astro 文件 */
 @source "./**/*.{astro,html,js,ts,jsx,tsx,vue,md,mdx}";
 
-@custom-variant unfold (&:where([data-unfold="true"] &) &:where(&[data-unfold="true"]));
-
+@custom-variant unfold (&:where([data-unfold="true"] &));
 
 @custom-variant rotate (&:where(&[data-rotate="true"]));
 
@@ -22,7 +21,6 @@
 @custom-variant titleoverflow (&:where([data-titleoverflow="true"] &));
 
 @custom-variant disabled (&:where(&[data-disabled="true"]));
-
 
 @theme {
     /* 定义动画token，到时候直接调用cover-rotate即可 */

@@ -48,52 +48,54 @@ const pageItems = buildPager(totalPage, currentPage);
 ---
 
 <div class="flex items-center justify-center gap-8">
-    <!-- 后退 -->
-    <a
-        href={`/${params.currentPage - 1}`}
-        class={`blog-nav-icon
+    <div class="flex items-center justify-center gap-8 bg-[rgba(0,0,0,.2)]">
+        <!-- 后退 -->
+        <a
+            href={`/${params.currentPage - 1}`}
+            class={`blog-nav-icon
         ${
             currentPage === 1
                 ? "pointer-events-none cursor-not-allowed text-[#ccc]"
                 : ""
         }`}
-    >
-        <Back class="md-icon-basic-style" /></a
-    >
-    <!-- page展示 -->
-    {
-        pageItems.map((item) => {
-            if (item === "...") {
-                return <span class="span-eli">...</span>;
-            }
+        >
+            <Back class="md-icon-basic-style" /></a
+        >
+        <!-- page展示 -->
+        {
+            pageItems.map((item) => {
+                if (item === "...") {
+                    return <span class="span-eli">...</span>;
+                }
 
-            const page = item;
-            const isActive = page === currentPage;
+                const page = item;
+                const isActive = page === currentPage;
 
-            return (
-                // 当前页的话就要设置成pink色彩，后期改成动态修改色彩
-                <a
-                    href={`/${page}`}
-                    class={`blog-nav-icon
+                return (
+                    // 当前页的话就要设置成pink色彩，后期改成动态修改色彩
+                    <a
+                        href={`/${page}`}
+                        class={`blog-nav-icon
         ${isActive ? "pointer-events-none cursor-default text-[red]" : ""}`}
-                >
-                    {page}
-                </a>
-            );
-        })
-    }
+                    >
+                        {page}
+                    </a>
+                );
+            })
+        }
 
-    <a
-        href={`/${params.currentPage + 1}`}
-        class={`blog-nav-icon
+        <a
+            href={`/${params.currentPage + 1}`}
+            class={`blog-nav-icon
         ${
             currentPage === totalPage
                 ? "pointer-events-none cursor-not-allowed text-[#ccc]"
                 : ""
         }`}
-    >
-        <Front class="md-icon-basic-style" /></a
-    >
+        >
+            <Front class="md-icon-basic-style" /></a
+        >
+    </div>
 </div>
 
 <style>
