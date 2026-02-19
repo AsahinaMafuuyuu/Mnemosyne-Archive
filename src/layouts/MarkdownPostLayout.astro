@@ -21,7 +21,7 @@ const { frontmatter, compiledContent } = Astro.props as {
 };
 ---
 
-<BaseLayout>
+<BaseLayout params={frontmatter}>
     <!-- <ArticleDetailDisplay params={frontmatter} name="mainContent"></ArticleDetailDisplay> -->
     <ArticleDetailDisplay
         slot="mainContent"

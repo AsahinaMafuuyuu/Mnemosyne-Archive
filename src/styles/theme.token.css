@@ -60,3 +60,39 @@
     font-weight: 500;
     color: #00000080;
 }
+@utility text-footer {
+    font-size: calc(0.95*var(--font-size));
+    font-weight: 500;
+    color: rgba(89, 89, 89, 0.55)
+}
+
+/* 设置页脚的链接样式 */
+@utility footer-link {
+    display: inline-block;
+    position: relative;
+    color: purple;
+    &::before {
+        position: absolute;
+        bottom: 0px;
+        content: "";
+        width: 0;
+        height:1px;
+        background-color: red;
+        transition: width ease-in-out 300ms;
+    }
+    &:hover::before {
+        width: 100%;
+    }
+}
+/* 彩虹字体色 */
+@utility text-rainbow{
+    @apply bg-linear-to-r
+  from-pink-500 via-yellow-400 to-violet-600
+  bg-size-[200%_100%]
+  bg-clip-text text-transparent
+  animate-[rainbow_3s_linear_infinite]
+}
+@keyframes rainbow{
+  0%{ background-position: 0% 100%; }
+  100%{ background-position: 200% 100%; }
+}

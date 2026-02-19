@@ -1,0 +1,17 @@
+---
+// import "../output.css";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Main from "@/components/NotFound404/Main.astro";
+import { slide } from "astro:transitions";
+---
+
+<!-- 首先整理整体的布局 -->
+<div class="w-screen h-screen overflow-hidden">
+  <BaseLayout>
+    <!-- 404内容 -->
+    <Main slot="mainContent" />
+  </BaseLayout>
+</div>
+
+
+<script></script>

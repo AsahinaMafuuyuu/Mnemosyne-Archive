@@ -33,7 +33,7 @@ export function getStaticPaths({ paginate }: {paginate:Function}) {
     return a.url.localeCompare(b.url);
   });
 
-  return paginate(postsList, { pageSize: 3 });
+  return paginate(postsList, { pageSize: 10 });
 }
 // 所有分页数据都在 "page" 参数中传递
 const { page } = Astro.props as { page:Page};

@@ -1,0 +1,1948 @@
+---
+import HIMEHINA from "@/images/AiPai.webp";
+import ShutDownDetailBtn from "@/components/SVGComponents/clickHiddenDetailPanel.astro";
+import PrevIcon from "@/components/SVGComponents/prev.astro";
+---
+
+<div
+    data-unfold="false"
+    data-ui="aside-container"
+
+    class="w-fit fixed bottom-35 left-0 flex transition-all ease-in-out duration-1000 max-w-145 unfold:w-[33vw]
+    max-[1400px]:unfold:w-[40vw]
+    max-[1140px]:unfold:w-[50vw]
+    max-[768px]:unfold:w-[70vw]
+    max-[550px]:unfold:w-[90vw]
+    max-[425px]:unfold:min-w-67.5"
+>
+    <!-- 折叠面板 + 播放音乐的简易面板 -->
+    <div
+        data-covermove="false"
+        data-ui="unfold-area"
+        class="w-0 h-full relative transition-all duration-1000 ease-in-out unfold:w-[calc(33vw-20px)]
+        max-[1400px]:unfold:w-[calc(40vw-20px)]
+        max-[1140px]:unfold:w-[calc(50vw-20px)]
+        max-[768px]:unfold:w-[calc(70vw-20px)]
+        max-[550px]:unfold:w-[calc(90vw-20px)]"
+    >
+        <!-- 点击封面后的详细信息等 -->
+        <div
+            data-ui="audio-detail-info-display-container"
+            data-hidden="true"
+            class="w-full h-80 absolute bottom-full transition-all duration-1000 ease-in-out overflow-hidden rounded-t-[5px]
+            unfold:border-l unfold:border-r border-[#ccc]
+            unfold:border-t
+            flex items-center
+            [background-image:var(--bg)] bg-cover bg-center bg-no-repeat
+            hidden:translate-y-0 hidden:h-0 hidden:border-t-0 saturate-150 backdrop-blur-[15px]"
+            style={`--bg: url(${HIMEHINA.src});`}
+        >
+            <!-- 一层毛玻璃打底 -->
+            <div
+                data-ui="medium-glass-filter"
+                class="w-full transition-all duration-1000 ease-in-out h-80 flex items-center
+                unfold:h-full unfold:bg-[rgba(255,255,255,0.55)] unfold:saturate-150 unfold:backdrop-blur-[3px]"
+            >
+                <!-- 关闭的固定视口 -->
+                <header
+                    data-ui="detail-info-shut-down-panel"
+                    class="absolute w-full h-5 top-0 bg-[rgba(255,255,255,0.55)] backdrop-blur-[15px] saturate-150 flex justify-center items-center"
+                >
+                    <ShutDownDetailBtn class="h-5" />
+                </header>
+
+                <!-- 大封面展示 -->
+                <div
+                    data-ui="audio-detail-cover-image-container"
+                    class="w-[40%] h-full items-center justify-center flex bg-[rgba(255,255,255,0.55)]"
+                >
+                    <div
+                        data-ui="larger-cover-display"
+                        class="w-[60%] aspect-square rounded-[50%]"
+                    >
+                    </div>
+                </div>
+
+                <!-- 歌词内容以及信息展示 -->
+                <div
+                    data-ui="audio-detail-singer-lyric-info"
+                    class="w-[60%] transition-all ease-in-out duration-1000 h-full pr-2.5 bg-[rgba(255,255,255,0.55)] pt-5 flex flex-col justify-center items-start"
+                >
+                    <!-- 歌名，歌手以及专辑 -->
+                    <div data-ui="lyric-header-song-info" class="w-full">
+                        <!-- 歌名 -->
+                        <div
+                            data-ui="detail-info-about-song-name"
+                            class="h-[27px] overflow-hidden w-full text-[18px] font-bold font-sans"
+                        >
+                        </div>
+                        <div
+                            class="flex w-full
+                            max-[425px]:flex-col"
+                        >
+                            <div
+                                data-ui="detail-info-about-album-name"
+                                class="flex-1 truncate text-[12px] text-[#ccc]"
+                            >
+                                专辑:&nbsp;
+                            </div>
+                            <div
+                                data-ui="detail-info-about-singer-name"
+                                class="flex-1 truncate text-[12px] text-[#ccc]"
+                            >
+                                歌手:&nbsp;
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 用一个盒子装起来，作为显示lyric的父容器 -->
+                    <div
+                        data-ui="audio-lyric-display-container"
+                        class="h-[70%] w-[85%] relative overflow-hidden pt-3 fade-vertical"
+                    >
+                        <!-- 歌词滑动长页 -->
+                        <div
+                            data-ui="lyric-real-panel"
+                            class="scrollbar-hidden h-full w-full absolute overflow-scroll text-[14px] z-1 flex flex-col items-start gap-2.5 pt-[30%] pb-[50%]"
+                        >
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 播放音乐功能面板容器 -->
+        <div
+            data-ui="audio-aside-container"
+            class="relative w-full
+            z-10
+            box-border h-25 p-0 flex items-center gap-0
+            bg-[rgba(255,255,255,0.85)]
+            transition-all duration-1000 ease-in-out
+            backdrop-blur-[14px] backdrop-saturate-[120] border-l-[#ccc] border-l-solid
+            unfold:p-3.75 unfold:gap-5 unfold:border-l
+            border-t border-t-[#ccc] border-t-solid
+            border-b border-b-[#ccc] border-b-solid
+            unfold:rounded-tl-[5px] unfold:rounded-bl-[5px]
+            max-[768px]:unfold:justify-between
+            max-[425px]:gap-0 max-[425px]:justify-between max-[425px]:unfold:p-2.5"
+        >
+            <!-- 封面图的父容器：移动的话移动容器 -->
+            <div
+                data-ui="audio-cover-image-container"
+                class="w-0 h-0 rounded-[50%] transition-all duration-1000 ease-[cubic-bezier(0.78,-0.32,0.00,1.34)]
+                unfold:w-20 unfold:h-20
+                max-[1400px]:unfold:w-15 max-[1400px]:unfold:h-15
+                shrink-0"
+            >
+                <!-- 封面图 -->
+                <img
+                    data-rotate="false"
+                    data-ui="audio-cover-image"
+                    class="w-0 h-0 relative rounded-[50%] object-cover animate-cover-rotate [animation-play-state:paused]
+                    rotate:[animation-play-state:running]
+                    transition-all duration-1000 ease-in-out
+                    unfold:w-full unfold:h-full"
+                    src={HIMEHINA.src}
+                    alt=""
+                />
+            </div>
+
+            <!-- 歌曲信息 -->
+            <!-- 870字体变小 -->
+            <!-- 768以后字体还原 -->
+            <div
+                data-ui="audio-info-display"
+                data-titleoverflow="false"
+                class="w-0 flex flex-col transition-all duration-1000 ease-in-out justify-between items-start
+                unfold:w-30 overflow-hidden unfold:flex-1 unfold:shrink
+                
+                max-[1400px]:unfold:flex-1 max-[1400px]:unfold:shrink
+                max-[870px]:text-[12px]
+                max-[768px]:text-[16px]
+                max-[425px]:unfold:flex-1 max-[425px]:unfold:shrink-0
+                max-[425px]:unfold:min-w-15"
+            >
+                <div
+                    data-ui="audio-title-outer-container"
+                    class="w-full overflow-x-hidden"
+                >
+                    <div
+                        data-show="audio_title"
+                        class="w-0 transition-[width] ease-in-out duration-1000 text-nowrap font-bold text-[calc(1em+2px)]
+                        unfold:w-fit
+                        titleoverflow:animate-title-scroll"
+                    >
+                        愛包ダンスホール
+                    </div>
+                </div>
+
+                <div
+                    data-show="singer_info"
+                    class="w-0 unfold:w-fit block truncate text-[#e8dfdf] transition-all ease-in-out duration-1000
+                    max-[1150px]:unfold:w-fit
+                    max-[870px]:unfold:w-full max-[870px]:unfold:overflow-clip"
+                >
+                    HIMEHINA
+                </div>
+            </div>
+
+            <!-- 仪表盘 -->
+            <!-- 768以后图标变小，w也要变小 -->
+            <div
+                data-ui="panel-and-play-visualized-bar"
+                class="h-full w-0 flex flex-col justify-end gap-2 items-center transition-all duration-1000
+                pt-1 unfold:w-min-[180px] unfold:w-50 unfold:w-max-[250px] covermove:flex-1
+                max-[1140px]:unfold:w-[170px]
+                max-[870px]:unfold:w-45 max-[870px]:unfold:flex-none
+                max-[768px]:unfold:w-37.5 max-[768px]:unfold:w-min-[150px] max-[768px]:covermove:flex-1
+                max-[425px]:justify-center max-[425px]:covermove:items-center max-[425px]:unfold:w-20 max-[425px]:overflow-hidden max-[425px]:unfold:shrink-0 max-[425px]:covermove:flex-1"
+            >
+                <!-- 控件 -->
+                <div
+                    data-ui="audio-real-player-hidden"
+                    class="w-full h-fit flex items-center justify-between
+                    max-[425px]:gap-2 max-[425px]:justify-end max-[425px]:covermove:justify-center"
+                >
+                    <!-- 上一首 -->
+                    <div
+                        data-disabled="false"
+                        data-ui="forward-one"
+                        data-hidden="true"
+                        class="overflow-hidden
+                        max-[425px]:hidden:hidden
+                        disabled:cursor-not-allowed"
+                    >
+                        <PrevIcon
+                            class="svg-size max-[768px]:w-5 max-[768px]:h-5"
+                        />
+                    </div>
+
+                    <!-- 播放替换 -->
+                    <div
+                        data-disabled="false"
+                        data-ui="audio-player-btn-container"
+                        class="relative flex justify-center items-center overflow-hidden
+                        disabled:cursor-not-allowed
+                        audio-player-btn-container
+                        max-[425px]:w-8 max-[425px]:h-8"
+                    >
+                        <!-- 播放 -->
+                        <svg
+                            data-ui="play-audio-btn"
+                            data-hidden="false"
+                            class="svg-size relative
+                            hidden:hidden
+                            max-[768px]:w-5 max-[768px]:h-5
+                            max-[425px]:w-7 max-[425px]:h-7"
+                            xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 1024 1024"
+                            ><path
+                                d="M512 113c220 0 399 179 399 399S732 911 512 911 113 732 113 512s179-399 399-399m0-42C268.4 71 71 268.4 71 512s197.4 441 441 441 441-197.4 441-441S755.6 71 512 71z"
+                            ></path><path
+                                d="M440.3 697.6c-29.9 0-54.3-24.3-54.3-54.3V380.6c0-29.9 24.4-54.3 54.3-54.3 9.4 0 18.7 2.5 27 7.3L694.9 465c17 9.8 27.1 27.4 27.1 47s-10.1 37.2-27.1 47L467.4 690.3c-8.4 4.8-17.7 7.3-27.1 7.3z m0-329.2c-5.9 0-12.3 4.7-12.3 12.3v262.7c0 10.3 10.9 14.9 18.4 10.6l227.5-131.4c5.5-3.2 6.1-8.4 6.1-10.6s-0.6-7.4-6.1-10.6L446.4 370c-2-1.1-4-1.6-6.1-1.6z"
+                            ></path></svg
+                        >
+                        <!-- 暂停 -->
+                        <svg
+                            data-ui="pause-audio-btn"
+                            data-hidden="true"
+                            class="svg-size relative
+                            hidden:hidden
+                            max-[768px]:w-5 max-[768px]:h-5
+                            max-[425px]:w-7 max-[425px]:h-7"
+                            xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 1024 1024"
+                            ><path
+                                d="M512 35.031579C247.915789 35.031579 35.031579 247.915789 35.031579 512S247.915789 988.968421 512 988.968421 988.968421 776.084211 988.968421 512 776.084211 35.031579 512 35.031579z m0 916.210526C269.473684 951.242105 72.757895 754.526316 72.757895 512S269.473684 72.757895 512 72.757895 951.242105 269.473684 951.242105 512 754.526316 951.242105 512 951.242105z"
+                                fill="black"></path><path
+                                d="M463.494737 296.421053h-91.621053c-16.168421 0-29.642105 13.473684-29.642105 29.642105V700.631579c0 16.168421 13.473684 29.642105 29.642105 29.642105h91.621053c16.168421 0 29.642105-13.473684 29.642105-29.642105V323.368421c0-16.168421-13.473684-26.947368-29.642105-26.947368z m-8.084211 393.431579h-75.452631V334.147368h75.452631v355.705264zM652.126316 296.421053h-91.621053c-16.168421 0-29.642105 13.473684-29.642105 29.642105V700.631579c0 16.168421 13.473684 29.642105 29.642105 29.642105h91.621053c16.168421 0 29.642105-13.473684 29.642105-29.642105V323.368421c0-16.168421-13.473684-26.947368-29.642105-26.947368z m-8.084211 393.431579h-75.452631V334.147368h75.452631v355.705264z"
+                                fill="black"></path></svg
+                        >
+                    </div>
+
+                    <!-- 下一首 -->
+                    <div
+                        data-disabled="false"
+                        data-ui="next-one"
+                        data-hidden="true"
+                        class="overflow-hidden
+                        max-[425px]:hidden:hidden
+                        disabled:cursor-not-allowed"
+                    >
+                        <svg
+                            class="svg-size
+                            max-[768px]:w-5 max-[768px]:h-5"
+                            xmlns="http://www.w3.org/2000/svg"
+                            xmlns:xlink="http://www.w3.org/1999/xlink"
+                            viewBox="0 0 1024 1024"
+                            ><path
+                                d="M192.512 899.072c-5.632 0-11.264-1.536-15.872-4.096-9.728-5.632-15.872-16.384-15.872-27.648V159.232c0-11.264 6.144-22.016 15.872-27.648 9.728-5.632 22.016-5.632 31.744 0l612.864 353.792c9.728 5.632 15.872 16.384 15.872 27.648s-6.144 22.016-15.872 27.648L208.896 894.464c-5.12 3.072-10.752 4.608-16.384 4.608z m32.256-684.544v596.992l516.608-298.496L224.768 214.528z"
+                                fill="black"
+                                p-id="9076"></path><path
+                                d="M821.76 899.072c-22.016 0-39.936-17.92-39.936-39.936V166.912c0-22.016 17.92-39.936 39.936-39.936s39.936 17.92 39.936 39.936v691.712c0 22.528-17.92 40.448-39.936 40.448z"
+                                fill="black"
+                                p-id="9077"></path></svg
+                        >
+                    </div>
+
+                    <!-- 音量键 -->
+                    <div
+                        data-ui="volume-button-container-and-volume-adjust"
+                        class="flex relative max-[425px]:hidden"
+                    >
+                        <div
+                            data-ui="volume-button-container"
+                            class="w-0 h-0 transition-all ease-in-out overflow-hidden duration-1000
+                            unfold:w-6.25 unfold:h-6.25
+                            max-[768px]:unfold:w-5 max-[768px]:unfold:h-5"
+                        >
+                            <!-- 音量图标 -->
+                            <svg
+                                data-ui="volume-button"
+                                data-hidden="false"
+                                class="svg-size hidden:hidden
+                                svg-size-small"
+                                xmlns="http://www.w3.org/2000/svg"
+                                xmlns:xlink="http://www.w3.org/1999/xlink"
+                                viewBox="0 0 1024 1024"
+                                ><path
+                                    d="M448 938.666667a21.333333 21.333333 0 0 1-15.093333-6.246667L225.833333 725.333333H53.333333a53.393333 53.393333 0 0 1-53.333333-53.333333V352a53.393333 53.393333 0 0 1 53.333333-53.333333h172.5l207.08-207.086667A21.333333 21.333333 0 0 1 469.333333 106.666667v810.666666a21.333333 21.333333 0 0 1-21.333333 21.333334zM53.333333 341.333333a10.666667 10.666667 0 0 0-10.666666 10.666667v320a10.666667 10.666667 0 0 0 10.666666 10.666667h181.333334a21.333333 21.333333 0 0 1 15.086666 6.246666L426.666667 865.833333V158.166667L249.753333 335.086667A21.333333 21.333333 0 0 1 234.666667 341.333333z m664.266667 437.246667a21.333333 21.333333 0 0 1-13.733333-37.666667c6.666667-5.586667 13.146667-11.553333 19.333333-17.726666C779.6 666.78 810.666667 591.78 810.666667 512s-31.066667-154.78-87.48-211.186667c-6.173333-6.173333-12.666667-12.14-19.333334-17.726666a21.333333 21.333333 0 1 1 27.446667-32.666667 346.585333 346.585333 0 0 1 22.046667 20.213333 341.066667 341.066667 0 0 1 0 482.72 346.585333 346.585333 0 0 1-22.046667 20.213334 21.24 21.24 0 0 1-13.7 5.013333zM629.333333 625.72a21.333333 21.333333 0 0 1-16.733333-34.546667 127.366667 127.366667 0 0 0 0-158.346666 21.333333 21.333333 0 0 1 33.486667-26.433334 170.733333 170.733333 0 0 1 0 211.213334A21.333333 21.333333 0 0 1 629.333333 625.72z"
+                                    fill="black"
+                                    p-id="19492"></path>
+                            </svg>
+
+                            <!-- 静音图标 -->
+                            <svg
+                                data-ui="volume-button"
+                                data-hidden="true"
+                                class="svg-size hidden:hidden
+                                svg-size-small"
+                                xmlns="http://www.w3.org/2000/svg"
+                                xmlns:xlink="http://www.w3.org/1999/xlink"
+                                viewBox="0 0 1024 1024"
+                                ><path
+                                    d="M448 938.666667a21.333333 21.333333 0 0 1-15.093333-6.246667L225.833333 725.333333H53.333333a53.393333 53.393333 0 0 1-53.333333-53.333333V352a53.393333 53.393333 0 0 1 53.333333-53.333333h172.5l207.08-207.086667A21.333333 21.333333 0 0 1 469.333333 106.666667v810.666666a21.333333 21.333333 0 0 1-21.333333 21.333334zM53.333333 341.333333a10.666667 10.666667 0 0 0-10.666666 10.666667v320a10.666667 10.666667 0 0 0 10.666666 10.666667h181.333334a21.333333 21.333333 0 0 1 15.086666 6.246666L426.666667 865.833333V158.166667L249.753333 335.086667A21.333333 21.333333 0 0 1 234.666667 341.333333z m964.42 377.753334a21.333333 21.333333 0 0 0 0-30.173334L840.833333 512l176.92-176.913333a21.333333 21.333333 0 1 0-30.173333-30.173334L810.666667 481.833333 633.753333 304.913333a21.333333 21.333333 0 0 0-30.173333 30.173334L780.5 512l-176.92 176.913333a21.333333 21.333333 0 0 0 30.173333 30.173334L810.666667 542.166667l176.913333 176.92a21.333333 21.333333 0 0 0 30.173333 0z"
+                                    fill="black"
+                                    p-id="19644"></path></svg
+                            >
+                        </div>
+
+                        <!-- 调整音量 -->
+                        <!--  -->
+                        <div
+                            data-ui="volume-control-bar"
+                            data-hidden="true"
+                            class="w-7 h-30 absolute -top-33 -left-1 transition-all ease-in-out duration-1000 hidden:hidden z-[999]"
+                        >
+                            <!-- 倒三角 -->
+                            <div
+                                class="h-4 w-4 rotate-45 absolute bg-[#676060] rounded-[5px] top-full left-[50%] -translate-x-2 -translate-y-2.25"
+                            >
+                                <!-- 父容器 -->
+                            </div>
+                            <div
+                                class="h-30 w-8 bg-[#676060] -left-0.5 rounded-[5px] relative flex items-end justify-center"
+                            >
+                                <!-- 音量滑块 -->
+                                <input
+                                    data-ui="audio-volume-slider"
+                                    type="range"
+                                    data-ui="adjust-bar"
+                                    class="-rotate-90 w-22 absolute bottom-15 hover:text-[blue] volume-range-style"
+                                    value="25"
+                                />
+                                <!-- 数字显示 -->
+                                <div
+                                    data-ui="digital-volume-display"
+                                    class="w-fit text-[0.6rem] text-[white] bottom-1"
+                                >
+                                    25%
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 播放模式 -->
+                    <div
+                        data-hidden="true"
+                        data-ui="audio-play-mode-container"
+                        class="flex relative overflow-hidden
+                        max-[425px]:hidden:hidden"
+                    >
+                        <!-- 顺序播放 -->
+                        <svg
+                            data-hidden="false"
+                            class="svg-size hidden:hidden
+                            svg-size-small"
+                            xmlns="http://www.w3.org/2000/svg"
+                            xmlns:xlink="http://www.w3.org/1999/xlink"
+                            viewBox="0 0 1024 1024"
+                            ><path
+                                d="M133 251.1h295.5c13.6 31.8 45.1 54 81.8 54 49.2 0 89-39.8 89-89s-39.8-89-89-89c-36.7 0-68.3 22.2-81.8 54H133c-19.3 0-35 15.7-35 35s15.7 35 35 35zM133 552.5h95.5c13.6 31.8 45.1 54 81.8 54 49.2 0 89-39.8 89-89s-39.8-89-89-89c-36.7 0-68.3 22.2-81.8 54H133c-19.3 0-35 15.7-35 35s15.7 35 35 35zM718.2 251.1h174.3c19.4 0 35-15.7 35-35s-15.7-35-35-35H718.2c-19.3 0-35 15.7-35 35s15.7 35 35 35zM892.5 771H818c-19.3 0-35 15.7-35 35s15.7 35 35 35h74.5c19.4 0 35-15.7 35-35s-15.7-35-35-35zM894.2 482.5H509c-19.3 0-35 15.7-35 35s15.7 35 35 35h385.2c19.3 0 35-15.7 35-35s-15.7-35-35-35zM630.3 717c-36.7 0-68.3 22.2-81.8 54H133c-19.3 0-35 15.7-35 35s15.7 35 35 35h415.5c13.6 31.8 45.1 54 81.8 54 49.2 0 89-39.8 89-89s-39.8-89-89-89z"
+                                fill="black"
+                                p-id="12378"></path></svg
+                        >
+                        <!-- 单曲循环 -->
+                        <svg
+                            data-hidden="true"
+                            class="svg-size hidden:hidden
+                            svg-size-small"
+                            xmlns="http://www.w3.org/2000/svg"
+                            xmlns:xlink="http://www.w3.org/1999/xlink"
+                            viewBox="0 0 1024 1024"
+                            ><path
+                                d="M192 789.333333a21.24 21.24 0 0 1-12.8-4.28 344.513333 344.513333 0 0 1-99.333333-118A341.246667 341.246667 0 0 1 384 170.666667h256q6.36 0 12.733333 0.233333l-49.153333-49.146667a21.333333 21.333333 0 0 1 30.173333-30.173333l85.333334 85.333333a21.333333 21.333333 0 0 1 0 30.173334l-85.333334 85.333333a21.333333 21.333333 0 0 1-30.173333-30.173333l48.666667-48.666667Q646.126667 213.333333 640 213.333333H384c-164.666667 0-298.666667 134-298.666667 298.666667 0 94.833333 43.546667 181.933333 119.48 238.966667A21.333333 21.333333 0 0 1 192 789.333333z m228.433333 143.06a21.333333 21.333333 0 0 0 0-30.173333l-49.153333-49.146667q6.366667 0.233333 12.733333 0.233334H640a341.46 341.46 0 0 0 304.146667-496.42 344.513333 344.513333 0 0 0-99.333334-118 21.333333 21.333333 0 1 0-25.626666 34.113333C895.12 330.066667 938.666667 417.166667 938.666667 512c0 164.666667-134 298.666667-298.666667 298.666667H384q-6.12 0-12.246667-0.246667l48.666667-48.666667a21.333333 21.333333 0 0 0-30.173333-30.173333l-85.333334 85.333333a21.333333 21.333333 0 0 0 0 30.173334l85.333334 85.333333a21.333333 21.333333 0 0 0 30.173333 0zM554.666667 618.666667V405.333333a21.333333 21.333333 0 0 0-21.333334-21.333333h-42.666666a21.333333 21.333333 0 0 0 0 42.666667h21.333333v192a21.333333 21.333333 0 0 0 42.666667 0z"
+                                fill="black"
+                                p-id="1780"></path></svg
+                        >
+                        <!-- 列表循环 -->
+                        <svg
+                            data-hidden="true"
+                            class="svg-size hidden:hidden
+                            svg-size-small"
+                            xmlns="http://www.w3.org/2000/svg"
+                            xmlns:xlink="http://www.w3.org/1999/xlink"
+                            viewBox="0 0 1024 1024"
+                            ><path
+                                d="M361.5 727.8c-119.1 0-215.9-96.9-215.9-215.9 0-119.1 96.9-215.9 215.9-215.9 2.3 0 4.6-0.2 6.8-0.6v58.3c0 12.3 14 19.4 23.9 12.1l132.6-97.6c8.1-6 8.1-18.2 0-24.2l-132.6-97.6c-9.9-7.3-23.9-0.2-23.9 12.1v58.1c-2.2-0.4-4.5-0.6-6.8-0.6-39.8 0-78.5 7.9-115 23.4-35.2 15-66.8 36.3-94 63.5s-48.6 58.8-63.5 94c-15.5 36.5-23.4 75.2-23.4 115s7.9 78.5 23.4 115c15 35.2 36.3 66.8 63.5 94s58.8 48.6 94 63.5c36.5 15.5 75.2 23.4 115 23.4 22.1 0 40-17.9 40-40s-17.9-40-40-40z m576.7-330.9c-15-35.2-36.3-66.8-63.5-94s-58.8-48.6-94-63.5c-36.5-15.5-75.2-23.4-115-23.4-22.1 0-40 17.9-40 40s17.9 40 40 40c119.1 0 215.9 96.9 215.9 215.9 0 119.1-96.9 215.9-215.9 215.9-4.1 0-8.1 0.6-11.8 1.8v-60.8c0-12.3-14-19.4-23.9-12.1l-132.6 97.6c-8.1 6-8.1 18.2 0 24.2L629.9 876c9.9 7.3 23.9 0.2 23.9-12.1V806c3.7 1.2 7.7 1.8 11.8 1.8 39.8 0 78.5-7.9 115-23.4 35.2-15 66.8-36.3 94-63.5s48.6-58.8 63.5-94c15.5-36.5 23.4-75.2 23.4-115s-7.8-78.5-23.3-115z"
+                                p-id="2762"
+                                fill="black"></path></svg
+                        >
+
+                        <!-- 随机播放 -->
+                        <svg
+                            data-hidden="true"
+                            class="svg-size hidden:hidden
+                            svg-size-small"
+                            xmlns="http://www.w3.org/2000/svg"
+                            xmlns:xlink="http://www.w3.org/1999/xlink"
+                            viewBox="0 0 1024 1024"
+                            ><path
+                                d="M682.48 297.633333L332.666667 752.386667A149.333333 149.333333 0 0 1 214.306667 810.666667H64a21.333333 21.333333 0 0 1 0-42.666667h150.306667a107.333333 107.333333 0 0 0 84.546666-41.633333L648.666667 271.613333A149.333333 149.333333 0 0 1 767.026667 213.333333h141.473333l-48.92-48.913333a21.333333 21.333333 0 0 1 30.173333-30.173333l85.333334 85.333333a21.333333 21.333333 0 0 1 0 30.173333l-85.333334 85.333334a21.333333 21.333333 0 0 1-30.173333-30.173334l48.92-48.913333h-141.473333a107.333333 107.333333 0 0 0-84.546667 41.633333zM64 256h150.306667a107.333333 107.333333 0 0 1 84.546666 41.633333l109.26 142.04a21.333333 21.333333 0 0 0 33.82-26L332.666667 271.613333A149.333333 149.333333 0 0 0 214.306667 213.333333H64a21.333333 21.333333 0 0 0 0 42.666667z m825.753333 432.913333a21.333333 21.333333 0 0 0-30.173333 30.173334l48.92 48.913333h-141.473333a107.333333 107.333333 0 0 1-84.546667-41.633333L573.22 584.326667a21.333333 21.333333 0 0 0-33.82 26L648.666667 752.386667a149.333333 149.333333 0 0 0 118.36 58.28h141.473333l-48.92 48.913333a21.333333 21.333333 0 0 0 30.173333 30.173333l85.333334-85.333333a21.333333 21.333333 0 0 0 0-30.173333z"
+                                fill="black"
+                                p-id="3745"></path></svg
+                        >
+                    </div>
+
+                    <!-- 播放列表按钮 -->
+                    <div
+                        data-ui="audio-play-list-btn-container"
+                        class="flex relative overflow-hidden"
+                    >
+                        <!-- 播放列表图标 -->
+                        <svg
+                            class="svg-size
+                            max-[768px]:w-5 max-[768px]:h-5
+                            max-[425px]:w-7 max-[425px]:h-7"
+                            xmlns="http://www.w3.org/2000/svg"
+                            xmlns:xlink="http://www.w3.org/1999/xlink"
+                            viewBox="0 0 1024 1024"
+                            ><path
+                                d="M736 352a32 32 0 0 1 31.264 25.088c4.384 18.816 9.792 32.256 15.232 39.712l2.336 3.008c0.8 0.896 1.088 1.024 1.28 1.024 46.624 0 65.76 39.68 65.088 101.024a32 32 0 0 1-64-0.704c0.192-16.32-1.344-28.16-3.776-34.944l-0.608-1.504-1.92-0.032a65.088 65.088 0 0 1-12.896-2.24V736c0 57.824-66.816 96-144 96S480 793.824 480 736s66.816-96 144-96c29.184 0 56.864 5.44 80.032 15.36L704 384.704c0-1.408 0.032-2.816 0.192-4.224L704 384a32 32 0 0 1 32-32zM416 704a32 32 0 0 1 0 64H224a32 32 0 0 1 0-64h192z m208 0c-46.528 0-80 19.136-80 32s33.472 32 80 32 80-19.136 80-32-33.472-32-80-32zM544 448a32 32 0 0 1 0 64H224a32 32 0 0 1 0-64h320z m256-256a32 32 0 0 1 0 64H224a32 32 0 1 1 0-64h576z"
+                                fill="black"
+                                p-id="13503"></path></svg
+                        >
+                    </div>
+                </div>
+
+                <!-- 播放进度 -->
+                <div
+                    data-hidden="true"
+                    data-ui="audio-play-time"
+                    class="w-full h-full flex gap-2 overflow-hidden justify-center
+                    max-[425px]:hidden:hidden max-[425px]:flex-col max-[425px]:items-center max-[425px]:pt-1"
+                >
+                    <!-- 可以直接设置成disabled -->
+                    <input
+                        data-ui="playback-bar"
+                        type="range"
+                        class="play-time-schedule-range-style w-[calc(95%-60px)]
+                        max-[425px]:w-full"
+                        value="0"
+                    />
+                    <!-- 字体显示播放进度 -->
+                    <div
+                        data-ui="play-progress-text"
+                        class="text-[12px] flex items-center text-center truncate
+                        max-[425px]:text-[10px]"
+                    >
+                        0:00/3:19
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 播放列表展示 -->
+        <aside
+            data-ui="play-list-visual-panel"
+            data-hidden="true"
+            class="w-[60%] h-75 flex flex-col rounded-[10px] p-0 overflow-hidden border-[#ccc] absolute right-0 bg-[rgba(0,0,0,.4)] saturate-100 backdrop-blur-[12px] bottom-full transition-all duration-1000 ease-in-out
+            covermove:rounded-tr-none covermove:rounded-br-none z-0
+            unfold:p-2 unfold:border
+            hidden:h-0 hidden:border-0 hidden:pt-0 hidden:pb-0"
+        >
+            <header
+                data-ui="play-array-header"
+                class="text-[16px] text-[#ccc] whitespace-nowrap"
+            >
+                播放列表
+            </header>
+            <div class="overflow-auto play-array-scrollbar">
+                <ul
+                    data-ui="real-play-array-container"
+                    class="flex flex-1 flex-col items-center justify-center gap-[10px]"
+                >
+                </ul>
+            </div>
+        </aside>
+    </div>
+
+    <!-- 侧边折叠栏 -->
+    <div
+        data-ui="aside-folder"
+        class="w-5 h-25 bg-[#faf8f8] flex justify-center items-center border border-[#ccc] border-solid overflow-hidden rounded-r-[5px]"
+    >
+        <svg
+            data-ui="audio-aside-svg"
+            class="h-7.5 w-7.5 font-[1000] fill-[#ccc] transition-all duration-1000 ease-linear"
+            xmlns="http://www.w3.org/2000/svg"
+            xmlns:xlink="http://www.w3.org/1999/xlink"
+            viewBox="360 180 360 700"
+            ><path
+                class="w-6.25 h-7.5"
+                d="M383.291616 808.954249c-5.175883 0-10.353812-1.950422-14.338566-5.862521-8.064676-7.919367-8.182356-20.877493-0.26299-28.942169l273.602402-278.620695L368.69006 216.907145c-7.919367-8.064676-7.801686-21.022803 0.26299-28.942169 8.065699-7.918343 21.022803-7.80271 28.942169 0.26299l287.685141 292.960285c7.818059 7.961322 7.818059 20.717857 0 28.67918L397.895219 802.826692C393.887952 806.907637 388.591319 808.954249 383.291616 808.954249z"
+                p-id="1579"></path></svg
+        >
+    </div>
+</div>
+
+<script>
+    // 统一加载
+    /* AiPai */
+    import AipaiCover from "@/images/AiPai.webp";
+    import AipaiAudio from "@/audios/AiPai.mp3";
+    import AipaiLyric from "@/lyrics/AiPai.json";
+    /* PurpleSunflower */
+    import PurpleSunflowerCover from "@/images/PurpleSunflower.webp";
+    import PurpleSunflowerAudio from "@/audios/PurpleSunflower.mp3";
+    import PurpleSunflowerLyric from "@/lyrics/PurpleSunflower.json";
+    /* AiDao */
+    import AiDaoCover from "@/images/AiDao.webp";
+    import AiDaoAudio from "@/audios/AiDao.mp3";
+    import AiDaoLyric from "@/lyrics/AiDao.json";
+    /* EnvyBaby */
+    import EnvyBabyCover from "@/images/EnvyBaby.webp";
+    import EnvyBabyAudio from "@/audios/EnvyBaby.mp3";
+    import EnvyBabyLyric from "@/lyrics/EnvyBaby.json";
+    /* Loschen */
+    import LoschenCover from "@/images/Loschen.jpg";
+    import LoschenAudio from "@/audios/Loschen.mp3";
+    import LoschenLyric from "@/lyrics/Loschen.json";
+    /* Love */
+    import LoveCover from "@/images/Love.jpg";
+    import LoveAudio from "@/audios/Love.mp3";
+    import LoveLyric from "@/lyrics/Love.json";
+    /* NiceJune */
+    import NiceJuneCover from "@/images/NiceJune.jpg";
+    import NiceJuneAudio from "@/audios/NiceJune.mp3";
+    import NiceJuneLyric from "@/lyrics/NiceJune.json";
+    /* ParasolCider */
+    import ParasolCiderCover from "@/images/ParasolCider.webp";
+    import ParasolCiderAudio from "@/audios/ParasolCider.mp3";
+    import ParasolCiderLyric from "@/lyrics/ParasolCider.json";
+    /* ThreeColor */
+    import ThreeColorCover from "@/images/ThreeColor.webp";
+    import ThreeColorAudio from "@/audios/ThreeColor.mp3";
+    import ThreeColorLyric from "@/lyrics/ThreeColor.json";
+
+    /*****************************************************************************************/
+    /*****************************************************************************************/
+    /*****************************************************************************************/
+    /* 获取到所有可能获取的DOM元素 */
+    // 获取到侧边栏的整体元素
+
+    function init() {
+        const aside_container: HTMLElement = document.querySelector(
+            '[data-ui="aside-container"]',
+        ) as HTMLElement;
+
+        // 获取到播放面板和详细信息面板
+        const unfold_area: HTMLElement = document.querySelector(
+            '[data-ui="unfold-area"]',
+        ) as HTMLElement;
+
+        // 获取到播放列表
+        const play_list_area: HTMLElement = unfold_area.querySelector(
+            '[data-ui="play-list-visual-panel"]',
+        ) as HTMLElement;
+
+        // 获取播放列表中的父容器
+        const play_array_container: HTMLElement = play_list_area.querySelector(
+            '[data-ui="real-play-array-container"]',
+        ) as HTMLElement;
+
+        // 获取到播放列表中的子元素合集
+        const play_array_audio: NodeListOf<HTMLLIElement> =
+            play_list_area.querySelectorAll("li");
+
+        // 获取歌词以及详细信息面板
+        const audio_detail_info_panel: HTMLElement =
+            aside_container.querySelector(
+                '[data-ui="audio-detail-info-display-container"]',
+            ) as HTMLElement;
+
+        // 获取关闭按钮
+        const detailShutDownIcon: HTMLElement = aside_container.querySelector(
+            '[data-ui="click-hidden-detail-panel-icon"]',
+        ) as HTMLElement;
+
+        // 获取到歌词真正的展示面板
+        const lyric_real_panel: HTMLElement =
+            audio_detail_info_panel.querySelector(
+                '[data-ui="lyric-real-panel"]',
+            ) as HTMLElement;
+
+        // 获取到封面
+        const larger_cover: HTMLElement = audio_detail_info_panel.querySelector(
+            '[data-ui="larger-cover-display"]',
+        ) as HTMLElement;
+
+        // 获取到隐藏的音乐控件
+        const audio_entity: HTMLAudioElement = new Audio();
+
+        // 获取到播放音乐功能面板容器
+        const audio_container: HTMLElement = aside_container.querySelector(
+            '[data-ui="audio-aside-container"]',
+        ) as HTMLElement;
+
+        // 获取audio简易信息面板
+        const single_audio_info_display: HTMLElement =
+            audio_container.querySelector(
+                '[data-ui="audio-info-display"]',
+            ) as HTMLElement;
+
+        // 获取简易信息面板上的title
+        const single_audio_title: HTMLElement = audio_container.querySelector(
+            '[data-show="audio_title"]',
+        ) as HTMLElement;
+
+        // 获取简易信息面板上的singer
+        const single_audio_singer: HTMLElement = audio_container.querySelector(
+            '[data-show="singer_info"]',
+        ) as HTMLElement;
+
+        // 获取到控件仪表盘
+        const controlPanelContainer: HTMLElement =
+            audio_container.querySelector(
+                '[data-ui="panel-and-play-visualized-bar"]',
+            ) as HTMLElement;
+
+        // 上一首
+        const forwardOne: HTMLElement = controlPanelContainer.querySelector(
+            '[data-ui="forward-one"]',
+        ) as HTMLElement;
+
+        // 下一首
+        const nextOne: HTMLElement = controlPanelContainer.querySelector(
+            '[data-ui="next-one"]',
+        ) as HTMLElement;
+
+        // 播放进度
+        const playTimeVisualizeBar: HTMLElement =
+            controlPanelContainer.querySelector(
+                '[data-ui="audio-play-time"]',
+            ) as HTMLElement;
+
+        // 获取到封面容器
+        const cover_image_container: HTMLElement =
+            audio_container.querySelector(
+                '[data-ui="audio-cover-image-container"]',
+            ) as HTMLElement;
+
+        // 获取到侧边折叠栏展开隐藏控件
+        const aside_folder: HTMLElement = aside_container.querySelector(
+            '[data-ui="aside-folder"]',
+        ) as HTMLElement;
+
+        // 获取到侧边折叠栏展开隐藏控件当中的svg
+        const audio_aside_bar_el: HTMLElement = aside_folder.querySelector(
+            '[data-ui="audio-aside-svg"]',
+        ) as HTMLElement;
+
+        // 获取到播放和暂停交替的按钮容器
+        const audio_player_btn_container = audio_container.querySelector(
+            '[data-ui="audio-player-btn-container"]',
+        ) as HTMLElement;
+
+        // 获取到播放按钮和暂停按钮
+        const audio_player_btns =
+            audio_player_btn_container.querySelectorAll<HTMLElement>("svg");
+
+        // 获取播放模式按钮容器
+        const audio_play_mode_container: HTMLElement =
+            audio_container.querySelector(
+                '[data-ui="audio-play-mode-container"]',
+            ) as HTMLElement;
+
+        // 获取播放列表的按钮容器
+        const audio_play_list_btn_container: HTMLElement =
+            audio_container.querySelector(
+                '[data-ui="audio-play-list-btn-container"]',
+            ) as HTMLElement;
+
+        // 获取到播放模式按钮的list
+        const audio_play_mode_list =
+            audio_play_mode_container.querySelectorAll<HTMLElement>("svg");
+
+        // 获取到封面
+        const cover_image: HTMLImageElement = audio_container.querySelector(
+            '[data-ui="audio-cover-image"]',
+        ) as HTMLImageElement;
+
+        // 音量键
+        const volume_container: HTMLAudioElement =
+            audio_container.querySelector(
+                '[data-ui="volume-button-container"]',
+            ) as HTMLAudioElement;
+
+        // 静音和音量图标
+        const volume_button_list =
+            volume_container.querySelectorAll<HTMLElement>(
+                '[data-ui="volume-button"]',
+            );
+
+        // 音量调节
+        const volume_slider: HTMLInputElement = audio_container.querySelector(
+            '[data-ui="audio-volume-slider"]',
+        ) as HTMLInputElement;
+
+        // 获取到音量字体
+        const volume_font: HTMLElement = audio_container.querySelector(
+            '[data-ui="digital-volume-display"]',
+        ) as HTMLElement;
+
+        // 获取到播放条
+        const playback_bar: HTMLInputElement = audio_container.querySelector(
+            '[data-ui="playback-bar"]',
+        ) as HTMLInputElement;
+
+        // 获取到播放条文字
+        const play_progress_text: HTMLElement = audio_container.querySelector(
+            '[data-ui="play-progress-text"]',
+        ) as HTMLElement;
+
+        // 获取音乐条
+        const volume_control_bar: HTMLElement = audio_container.querySelector(
+            '[data-ui="volume-control-bar"]',
+        ) as HTMLElement;
+
+        const lyric_header_song_info: HTMLElement =
+            audio_detail_info_panel.querySelector(
+                '[data-ui="lyric-header-song-info"]',
+            ) as HTMLElement;
+
+        const song_name_el: HTMLElement = lyric_header_song_info.querySelector(
+            '[data-ui="detail-info-about-song-name"]',
+        ) as HTMLElement;
+
+        const album_name_el: HTMLElement = lyric_header_song_info.querySelector(
+            '[data-ui="detail-info-about-album-name"]',
+        ) as HTMLElement;
+
+        const singer_name_el: HTMLElement =
+            lyric_header_song_info.querySelector(
+                '[data-ui="detail-info-about-singer-name"]',
+            ) as HTMLElement;
+
+        /*****************************************************************************************/
+        /*****************************************************************************************/
+        /*****************************************************************************************/
+        // 定义变量
+        // 定义类型
+        type singleLyric = {
+            time: string;
+            timeFormat: number;
+            lyric: string;
+            trans: string;
+        };
+        type lyricType = {
+            audio_info: {
+                title: string;
+                artist: string;
+                album?: string;
+                lyricist?: string;
+            };
+            lyrics: Array<singleLyric>;
+        };
+        type singleAudioSrc = {
+            coverUrl: string;
+            lyric: lyricType;
+            audioUrl: string;
+        };
+        // 实例化这个audioList
+        const PlayAudioList: Array<singleAudioSrc> = [
+            {
+                coverUrl: AipaiCover.src,
+                lyric: AipaiLyric,
+                audioUrl: AipaiAudio,
+            },
+            {
+                coverUrl: PurpleSunflowerCover.src,
+                lyric: PurpleSunflowerLyric,
+                audioUrl: PurpleSunflowerAudio,
+            },
+
+            /* AiDao */
+            {
+                coverUrl: AiDaoCover.src,
+                lyric: AiDaoLyric,
+                audioUrl: AiDaoAudio,
+            },
+
+            /* EnvyBaby */
+            {
+                coverUrl: EnvyBabyCover.src,
+                lyric: EnvyBabyLyric,
+                audioUrl: EnvyBabyAudio,
+            },
+
+            /* Loschen */
+            {
+                coverUrl: LoschenCover.src,
+                lyric: LoschenLyric,
+                audioUrl: LoschenAudio,
+            },
+
+            /* Love */
+            {
+                coverUrl: LoveCover.src,
+                lyric: LoveLyric,
+                audioUrl: LoveAudio,
+            },
+
+            /* NiceJune */
+            {
+                coverUrl: NiceJuneCover.src,
+                lyric: NiceJuneLyric,
+                audioUrl: NiceJuneAudio,
+            },
+
+            /* ParasolCider */
+            {
+                coverUrl: ParasolCiderCover.src,
+                lyric: ParasolCiderLyric,
+                audioUrl: ParasolCiderAudio,
+            },
+
+            /* ThreeColor */
+            {
+                coverUrl: ThreeColorCover.src,
+                lyric: ThreeColorLyric,
+                audioUrl: ThreeColorAudio,
+            },
+        ];
+
+        // 定义播放列表面板上的可视数据部分
+        type playPanelSingleAudioInfo = {
+            coverUrl: string;
+            title: string;
+            artist: string;
+            duration: string;
+        };
+        let playPanelArray: playPanelSingleAudioInfo[] = [];
+
+        // 获取到原来的title
+        let original_title_text = single_audio_title.innerText;
+
+        // 定义播放模式
+        let playMode: string = "wholeOnce";
+
+        // 定义两个变量
+        // 如果鼠标移出去就设置为false
+        let isInVolumeContainer = false;
+        let isInVolumeAdjustBar = false;
+
+        // 还需要创造一个index用来维护和监控
+        let playIndex = 0;
+
+        // 维护一个上一首播放的曲子
+        let prevPlayIndex: number | null = null;
+
+        // 定义事件队列（其实就是取出）
+        let timeMessageQueue: Array<singleLyric> = [];
+        let currentTimeScheduleIndex = 0; // 要分清一个是事件的索引，也就是待办的索引
+        let currentVisualLyricIndex = 0; // 而这个是当前滚动词条的索引，也就是当前索引
+        // 定义一个播放list的index变量,用来读取对应的index
+        let realPlayArray: number[] = [];
+
+        // 设置帧ID,方便后续暂停开始等操作
+        let animationFramesId = 0;
+
+        // 还需要知道父容器的视口高度，这样的话只用滚动到中间即可
+        const visualSightHeight =
+            audio_detail_info_panel.getBoundingClientRect().width;
+
+        // 获取到歌词的list
+        let divList: NodeListOf<HTMLDivElement> =
+            lyric_real_panel.querySelectorAll("div");
+
+        // 定义当前音量
+        let origin_volume = 25;
+        // 定义选中的时间戳
+        let picked_play_time = 0;
+        // 定义总播放时长，也就是时间进度显示的时长
+        let total_played_time = 0; // audio_entity.duration
+        // 时长用min显示
+        let total_played_time_by_min: String = " "; // Math.floor(total_played_time / 60000).toString() + ((total_played_time % 60000) / 1000).toFixed(2)
+
+        // 定义一个状态变量,用户是否控制,如果用户控制的话,一些自动化事件(例如timeupdate更新进度条)失效
+        let isUserControlPlayTimeSchedule = false;
+
+        // TODO 还需要设置running来判断
+        // 这个running主要实现的是startTick和stopTick的一个互锁问题
+        let running: boolean = false;
+
+        // 设置滑动定时器的id
+        let scrollEventId = 0;
+
+        /*****************************************************************************************/
+        /*****************************************************************************************/
+        /*****************************************************************************************/
+        // 定义辅助函数
+
+        // 动态修改颜色函数,主要用于滚动条
+        const sync = (el: HTMLInputElement, value: string) => {
+            el.style.setProperty("--val", value);
+        };
+
+        // 处理播放时间的函数
+        // 将时间转换成 0:00/3:10这种形式并且返回
+        function getPlayTimeProgressText(currentPlayedTime: number): string {
+            return (
+                Math.floor(currentPlayedTime / 60).toString() +
+                ":" +
+                ("0" + Math.floor(currentPlayedTime % 60)).slice(-2) +
+                " / " +
+                total_played_time_by_min
+            );
+        }
+
+        // 定义Fisher-Yates算法
+        function FisherYatesShuffle<T>(arr: Array<T>): Array<T> {
+            const copy_arr = arr.slice();
+            // 到最后一个元素截至
+            for (let i = copy_arr.length - 1; i > 0; i--) {
+                // 保证可以取到限定范围的最后一个元素
+                const selectedIndex = Math.floor(Math.random() * (i + 1));
+
+                // 交换
+                let temp = copy_arr[selectedIndex];
+
+                copy_arr[selectedIndex] = copy_arr[i];
+
+                copy_arr[i] = temp;
+            }
+            return copy_arr;
+        }
+
+        /*****************************************************************************************/
+        /*****************************************************************************************/
+        /*****************************************************************************************/
+        // 定义业务逻辑函数(有副作用的函数,会对变量值进行修改的函数)
+
+        // 重置播放列表,用来将原先的index索引回去
+        function resetPlayArray() {
+            // 如果playArray未初始化，则先进行初始化
+            if (realPlayArray.length === 0) {
+                realPlayArray = Array.from(
+                    { length: PlayAudioList.length },
+                    (_, i) => i,
+                );
+            } else {
+                // 首先按照原来的队列替换索引
+                playIndex = realPlayArray[playIndex];
+
+                if (prevPlayIndex !== null) {
+                    prevPlayIndex = realPlayArray[prevPlayIndex];
+                }
+
+                // 记住当前曲子和prev曲子的索引
+                realPlayArray = Array.from(
+                    { length: PlayAudioList.length },
+                    (_, i) => i,
+                );
+            }
+        }
+
+        // 重新寻找一下DivList
+        // DivList就是将当前歌词页上的所有歌词对象化
+        function reloadDivList() {
+            divList = lyric_real_panel.querySelectorAll("div");
+        }
+
+        // 初始化歌词细节封面等信息
+        function detail_info_panel_init() {
+            // 详细面板的封面也要换掉
+            audio_detail_info_panel.style.setProperty(
+                "--bg",
+                `url(${PlayAudioList[realPlayArray[playIndex]].coverUrl})`,
+            );
+
+            // 加载歌手，专辑以及歌名到面板上
+            const LyricInfo = PlayAudioList[realPlayArray[playIndex]].lyric;
+            song_name_el.innerText = LyricInfo.audio_info.title;
+            album_name_el.innerText = `专辑：${LyricInfo.audio_info.album}`;
+            singer_name_el.innerText = `歌手: ${LyricInfo.audio_info.artist}`;
+
+            // 处理歌词及
+            let lyric_innerHTML: string = "";
+            LyricInfo.lyrics.forEach((singleLyricItem: singleLyric) => {
+                if (singleLyricItem.trans === "") {
+                    lyric_innerHTML += `<div class="text-[#737d83]"><p>${singleLyricItem.lyric}</p></div>`;
+                } else {
+                    lyric_innerHTML += `<div class="text-[#737d83]"><p>${singleLyricItem.lyric}</p><p>${singleLyricItem.trans}</p></div>`;
+                }
+
+                // 歌词面板渲染
+                lyric_real_panel.innerHTML = lyric_innerHTML;
+            });
+
+            // 渲染完毕以后需要将DivList也进行修改
+            reloadDivList();
+        }
+
+        // 歌词事件队列重装载
+        function reloadLyricTimeQueue() {
+            // 重置事件队列的index和queue
+            timeMessageQueue =
+                PlayAudioList[realPlayArray[playIndex]].lyric.lyrics;
+            currentVisualLyricIndex = 0;
+            currentTimeScheduleIndex = 0;
+        }
+
+        // 音频初始化函数
+        // 包括了所有其他方面的初始化
+        function audio_entity_init() {
+            // 修改封面，音频还有歌手等
+            audio_entity.src = PlayAudioList[realPlayArray[playIndex]].audioUrl;
+            cover_image.src = PlayAudioList[realPlayArray[playIndex]].coverUrl;
+
+            // 修改简易信息
+            single_audio_title.innerText =
+                PlayAudioList[realPlayArray[playIndex]].lyric.audio_info.title;
+
+            // 修改完需要检测是否overflow
+            isTitleOverflow();
+
+            single_audio_singer.innerText =
+                PlayAudioList[realPlayArray[playIndex]].lyric.audio_info.artist;
+
+            // 修改简易标题的文本
+            changeOriginalTitleText();
+
+            // 初始化封面以及歌词页面
+            detail_info_panel_init();
+
+            // 还有包括将歌词的事件队列进行替换
+            reloadLyricTimeQueue();
+        }
+
+        // 判断标题是否overflow
+
+        function isTitleOverflow() {
+            // 需要根据文本来进行检测
+            // 先进性文本重置
+            single_audio_title.innerText =
+                PlayAudioList[realPlayArray[playIndex]].lyric.audio_info.title;
+            if (
+                single_audio_title.getBoundingClientRect().width >
+                single_audio_info_display.getBoundingClientRect().width
+            ) {
+                // 要注意这个顺序
+                single_audio_title.innerHTML =
+                    single_audio_title.innerText + "&nbsp;&nbsp;";
+                single_audio_title.innerText += single_audio_title.innerText;
+                single_audio_info_display.dataset.titleoverflow = "true";
+                return true;
+            } else {
+                single_audio_info_display.dataset.titleoverflow = "false";
+                return false;
+            }
+        }
+
+        // 改变原来的title(简易面板部分的title)
+        function changeOriginalTitleText() {
+            original_title_text = single_audio_title.innerText;
+        }
+
+        // 定义一个tick函数，不断的进行帧循环
+        // 用来跟进歌词的函数
+        function tick(t: any) {
+            // 进行相关动画的处理
+            // 读取当前音频的currentTime
+            const curTime = audio_entity.currentTime;
+
+            // 当当前音频的时间大于事件队列的首个时间戳的时候，就需要进行歌词更新
+            while (
+                currentTimeScheduleIndex < timeMessageQueue.length &&
+                curTime >= timeMessageQueue[currentTimeScheduleIndex].timeFormat
+            ) {
+                // 更新歌词
+                currentVisualLyricIndex = currentTimeScheduleIndex;
+
+                // 得到离顶部的高度
+                const offsetTop = divList[currentVisualLyricIndex].offsetTop;
+                const LyricSelfHeight =
+                    divList[currentVisualLyricIndex].clientHeight;
+                // 滚动
+                lyric_real_panel.scrollTo({
+                    top: offsetTop - visualSightHeight / 2 - LyricSelfHeight,
+                    behavior: "smooth",
+                });
+
+                // 歌词高亮
+                // text-[#737d83]
+                divList[currentVisualLyricIndex].classList.remove(
+                    "text-[#737d83]",
+                );
+                divList[currentVisualLyricIndex].classList.add("text-[black]");
+
+                // 取消上一句歌词高亮
+                if (currentVisualLyricIndex !== 0) {
+                    divList[currentVisualLyricIndex - 1].classList.add(
+                        "text-[#737d83]",
+                    );
+                    divList[currentVisualLyricIndex - 1].classList.remove(
+                        "text-[black]",
+                    );
+                }
+                // 最后在+1
+                currentTimeScheduleIndex += 1;
+            }
+
+            // 然后再赋值
+            animationFramesId = requestAnimationFrame(tick);
+        }
+
+        // 开启循环帧数
+        function startTick() {
+            // 如果是正在运行的话，则不需要重复开启
+            if (running) return;
+            // 否则的话将running 设置为true，并且启动rAF
+            running = true;
+            animationFramesId = requestAnimationFrame(tick);
+        }
+
+        // 关闭循环帧数
+        function stopTick() {
+            // 实现互锁
+            running = false;
+            cancelAnimationFrame(animationFramesId);
+        }
+
+        // 重新随机打乱播放列表
+        // 当前播放的歌曲仍然放在第一位
+        function resetRandomPlayArray() {
+            // 拷贝当前的array
+            const tempArr = [playIndex];
+            const shuffleArr = FisherYatesShuffle(
+                realPlayArray
+                    .slice(0, playIndex)
+                    .concat(realPlayArray.slice(playIndex + 1)),
+            );
+            return tempArr.concat(shuffleArr);
+        }
+
+        // 定义页面初始化函数
+        function onceInitFn() {
+            // 重置playList
+            resetPlayArray();
+
+            // 播放列表显示重置
+            reloadPlayArrayItems();
+
+            // 颜色进度条需要初始化
+            sync(playback_bar, playback_bar.value);
+            sync(volume_slider, volume_slider.value);
+
+            // 音频加载需要初始化
+            audio_entity_init();
+
+            // 音量校准
+            audio_entity.volume = Number(volume_slider.value) / 100;
+        }
+
+        // 通过playArray来重新加载播放列表中的播放队列
+        /*
+    <li class="w-full flex gap-1 items-center">
+            <img src={HIMEHINA.src} class="min-w-8 max-h-8 w-8 aspect-square rounded-[5px] object-cover" alt="">
+            <div class="flex flex-col flex-1 text-[14px] overflow-hidden">
+                <span class="w-full truncate">爱派dancehall</span>
+                <span class="w-full truncate">HIMEHINA</span>
+            </div>
+            <span class="flex justify-center items-center text-[10px]">02:59</span>
+        </li>
+
+    */
+        function reloadPlayArrayItems() {
+            // 对于实际播放队列的元素
+            let tempHTML = "";
+            realPlayArray.forEach((realIndex, index) => {
+                // 每一个item才是真正的序列
+                // 拼接
+                // TODO 这里需要将时间戳进行修改
+                tempHTML += `<li class="w-full flex gap-1 items-center">
+                <img src=${PlayAudioList[realIndex].coverUrl} class="min-w-8 max-h-8 border border-[#black] w-8 aspect-square rounded-[5px] object-cover" alt="">
+                <div class="flex flex-col flex-1 text-[14px] overflow-hidden">
+                    <span class="w-full truncate">${PlayAudioList[realIndex].lyric.audio_info.title}</span>
+                    <span class="w-full truncate">${PlayAudioList[realIndex].lyric.audio_info.artist}</span>
+                </div>
+                <span class="flex justify-center items-center text-[10px]">02:30</span>
+            </li>`;
+            });
+
+            // 替换即可
+            play_array_container.innerHTML = tempHTML;
+
+            // 上滑
+
+            // 并且重新注册事件监听
+            const playArray = play_array_container.querySelectorAll("li");
+            playArray.forEach((item, index) => {
+                item.addEventListener("mouseenter", () => {
+                    item.classList.add("bg-[#ccc]", "opacity:0.1");
+                });
+                item.addEventListener("mouseleave", () => {
+                    item.classList.remove("bg-[#ccc]", "opacity:0.1");
+                });
+                item.addEventListener("dblclick", () => {
+                    // 暂停
+                    audio_entity.pause();
+
+                    // 光标切换
+                    if (prevPlayIndex !== null) {
+                        playArray[prevPlayIndex].classList.remove(
+                            "bg-[#ccc]",
+                            "text-[red]",
+                        );
+                    }
+
+                    // 修改index
+                    prevPlayIndex = playIndex;
+
+                    playIndex = index;
+
+                    item.classList.add("bg-[#ccc]", "opacity:0.1");
+
+                    // 开始装载
+                    // 包括封面和歌词以及音频
+                    audio_entity_init();
+                    audio_entity.load();
+                });
+            });
+            // 然后还要给当前播放的index加上对应的高亮
+            // 此时index也要发生对应的变化
+        }
+
+        /*****************************************************************************************/
+        /*****************************************************************************************/
+        /*****************************************************************************************/
+        // 定义事件处理函数
+
+        // 注册封面展开函数相关的事件处理函数
+        function coverImageMoveEvent() {
+            // 点击封面让封面动画更丰富
+            cover_image_container.classList.remove("ease-in-out");
+            cover_image_container.classList.add(
+                "ease-[cubic-bezier(0.78,-0.32,0.00,1.34)]",
+            );
+
+            if (audio_detail_info_panel.dataset.hidden === "false") {
+                // 设置成隐藏状态
+                audio_detail_info_panel.dataset.hidden = "true";
+                unfold_area.dataset.covermove = "false";
+                // 边框加上
+                audio_container.classList.add("unfold:rounded-tl-[5px]");
+
+                // 下一首,上一首和进度需要隐藏
+                // 在小于425px的情况下
+                if (window.innerWidth < 425) {
+                    forwardOne.dataset.hidden = "true";
+                    nextOne.dataset.hidden = "true";
+                    playTimeVisualizeBar.dataset.hidden = "true";
+                }
+
+                // 记录下当前位置（小面板上的歌名以及歌手）
+                let singleInfoContainerPos =
+                    single_audio_info_display.getBoundingClientRect();
+                let singleControlPanelPos =
+                    controlPanelContainer.getBoundingClientRect();
+                let singleInfoContainerPos_x = singleInfoContainerPos.x;
+                let singleControlPanelPos_x = singleControlPanelPos.x;
+
+                single_audio_info_display.classList.remove(
+                    "transition-all",
+                    "duration-1000",
+                    "ease-in-out",
+                );
+                controlPanelContainer.classList.remove(
+                    "transition-all",
+                    "duration-1000",
+                    "ease-in-out",
+                );
+
+                // 移除transform
+                cover_image_container.style.transform = `translateY(0) translateX(0) scale(1)`;
+
+                // 移除absolute
+                cover_image_container.classList.remove("absolute");
+
+                // 此时立刻计算transform
+                let new_singleInfoContainerPos =
+                    single_audio_info_display.getBoundingClientRect();
+                let new_singleControlPanelPos =
+                    controlPanelContainer.getBoundingClientRect();
+                let new_singleInfoContainerPos_x = new_singleInfoContainerPos.x;
+                let new_singleControlPanelPos_x = new_singleControlPanelPos.x;
+
+                // 然后再将transform立刻计算
+                single_audio_info_display.style.transform = `translateX(${singleInfoContainerPos_x - new_singleInfoContainerPos_x}px)`;
+                controlPanelContainer.style.transform = `translateX(${singleControlPanelPos_x - new_singleControlPanelPos_x}px)`;
+
+                // 这一步需要跨帧
+                // 跨两帧
+                // 一帧加过渡，零一帧加动画
+                requestAnimationFrame(() => {
+                    // 再添加transition
+                    single_audio_info_display.classList.add(
+                        "transition-all",
+                        "duration-1000",
+                        "ease-in-out",
+                    );
+                    controlPanelContainer.classList.add(
+                        "transition-all",
+                        "duration-1000",
+                        "ease-in-out",
+                    );
+
+                    requestAnimationFrame(() => {
+                        // 再移除transform
+                        single_audio_info_display.style.transform = `translateX(0px)`;
+                        controlPanelContainer.style.transform = `translateX(0px)`;
+
+                        // 1s以后再检查
+                        setTimeout(() => {
+                            isTitleOverflow();
+                        }, 1000);
+                    });
+                });
+            } else {
+                // 显示
+                audio_detail_info_panel.dataset.hidden = "false";
+                // 设置状态
+                unfold_area.dataset.covermove = "true";
+
+                // 下一首,上一首和进度可以显示(循环模式也解放吧)
+                if (window.innerWidth < 425) {
+                    forwardOne.dataset.hidden = "false";
+                    nextOne.dataset.hidden = "false";
+                    playTimeVisualizeBar.dataset.hidden = "false";
+                }
+
+                // 获取到大小
+                let larger_cover_size = larger_cover.clientWidth;
+
+                // 获取到原封面大小
+                let cover_size = cover_image.clientHeight;
+
+                // 边框取消
+                audio_container.classList.remove("unfold:rounded-tl-[5px]");
+
+                // 得到父容器的大小
+                let origin_cover_container_height =
+                    audio_container.clientHeight;
+
+                // 得到放大比例
+                let scale_ratio =
+                    ((larger_cover_size / cover_size) * 100).toFixed(2) + "%";
+
+                // 得到详细面板大小：
+                let detail_info_panel_height = 320;
+                let detail_info_panel_width =
+                    audio_detail_info_panel.clientWidth;
+
+                let translateX =
+                    (
+                        (detail_info_panel_width / 2) * 0.4 -
+                        15 -
+                        cover_size / 2 -
+                        0.667 * 2
+                    ).toString() + "px";
+                let translateY =
+                    (
+                        -(
+                            origin_cover_container_height +
+                            detail_info_panel_height
+                        ) * 0.5
+                    ).toString() + "px";
+
+                // 移动cover（的容器）
+                cover_image_container.style.transform = `translateY(${translateY}) translateX(${translateX}) scale(${scale_ratio})`;
+
+                // 记录下当前位置（小面板上的歌名以及歌手）
+                let singleInfoContainerPos =
+                    single_audio_info_display.getBoundingClientRect();
+                let singleControlPanelPos =
+                    controlPanelContainer.getBoundingClientRect();
+                let singleInfoContainerPos_x = singleInfoContainerPos.x;
+                let singleControlPanelPos_x = singleControlPanelPos.x;
+                let singleInfoContainerWidth =
+                    single_audio_info_display.clientWidth;
+                let singleControlPanelWidth = controlPanelContainer.clientWidth;
+
+                single_audio_info_display.classList.remove(
+                    "transition-all",
+                    "duration-1000",
+                    "ease-in-out",
+                );
+                controlPanelContainer.classList.remove(
+                    "transition-all",
+                    "duration-1000",
+                    "ease-in-out",
+                );
+                // 并且设置为absolute
+                cover_image_container.classList.add("absolute");
+
+                // 首先看一下是否可以隐藏
+                single_audio_title.innerText = original_title_text;
+
+                // 此时立刻计算transform
+                let new_singleInfoContainerPos =
+                    single_audio_info_display.getBoundingClientRect();
+                let new_singleControlPanelPos =
+                    controlPanelContainer.getBoundingClientRect();
+                let new_singleInfoContainerPos_x = new_singleInfoContainerPos.x;
+                let new_singleControlPanelPos_x = new_singleControlPanelPos.x;
+                let new_singleInfoContainerWidth =
+                    single_audio_info_display.clientWidth;
+                let new_singleControlPanelWidth =
+                    controlPanelContainer.clientWidth;
+
+                // 然后再将transform立刻计算
+                single_audio_info_display.style.transform = `translateX(${singleInfoContainerPos_x - new_singleInfoContainerPos_x}px)`;
+                controlPanelContainer.style.transform = `translateX(${singleControlPanelPos_x - new_singleControlPanelPos_x}px)`;
+                single_audio_info_display.style.clipPath = `inset(0 ${(((new_singleInfoContainerWidth - singleInfoContainerWidth) / new_singleInfoContainerWidth) * 100).toString() + "%"} 0 0)`;
+                controlPanelContainer.style.clipPath = `inset(0 ${(((new_singleControlPanelWidth - singleControlPanelWidth) / new_singleControlPanelWidth) * 100).toString() + "%"} 0 0)`;
+
+                // 这一步需要跨帧
+                // 跨两帧
+                // 一帧加过渡，零一帧加动画
+                requestAnimationFrame(() => {
+                    // 再添加transition
+                    single_audio_info_display.classList.add(
+                        "transition-all",
+                        "duration-1000",
+                        "ease-in-out",
+                    );
+                    controlPanelContainer.classList.add(
+                        "transition-all",
+                        "duration-1000",
+                        "ease-in-out",
+                    );
+
+                    requestAnimationFrame(() => {
+                        // 再移除transform
+                        single_audio_info_display.style.transform = `translateX(0px)`;
+
+                        controlPanelContainer.style.transform = `translateX(0px) scaleX(1)`;
+                        single_audio_info_display.style.clipPath =
+                            "inset(0 0 0 0)";
+                        controlPanelContainer.style.clipPath = "inset(0 0 0 0)";
+
+                        // 设置定时器
+                        setTimeout(() => {
+                            single_audio_info_display.style.clipPath = "";
+                            controlPanelContainer.style.clipPath = "";
+                            isTitleOverflow();
+                        }, 1000);
+                    });
+                });
+            }
+        }
+
+        /*****************************************************************************************/
+        /*****************************************************************************************/
+        /*****************************************************************************************/
+        // 定义事件监听
+        // 点击播放列表展开
+        audio_play_list_btn_container.addEventListener("click", () => {
+            // 展开即可
+            if (play_list_area.dataset.hidden === "true") {
+                // 展开
+                play_list_area.dataset.hidden = "false";
+            } else {
+                play_list_area.dataset.hidden = "true";
+            }
+        });
+
+        // 音量键悬停展开
+        volume_container.addEventListener("mouseenter", () => {
+            volume_control_bar.dataset.hidden = "false";
+            isInVolumeContainer = true;
+        });
+
+        // 音量键移出检测
+        volume_container.addEventListener("mouseleave", () => {
+            isInVolumeContainer = false;
+            // 如果0.2s内没进去另一个，就关闭
+            setTimeout(() => {
+                if (!isInVolumeAdjustBar) {
+                    volume_control_bar.dataset.hidden = "true";
+                }
+            }, 200);
+        });
+
+        // 音量键悬停展开
+        volume_control_bar.addEventListener("mouseenter", () => {
+            volume_control_bar.dataset.hidden = "false";
+            isInVolumeAdjustBar = true;
+        });
+
+        // 音量键移出检测，主要用于音量滑块的检测
+        volume_control_bar.addEventListener("mouseleave", () => {
+            isInVolumeAdjustBar = false;
+            // 如果0.2s内没进去另一个，就关闭
+            setTimeout(() => {
+                if (!isInVolumeContainer) {
+                    volume_control_bar.dataset.hidden = "true";
+                }
+            }, 200);
+        });
+
+        // 添加按钮监听展开，主要是侧边栏展开的按钮
+        aside_folder.addEventListener("click", () => {
+            // 点击展开和收起需要改变cover的过渡曲线为ease-in-out
+            // 修改动画过渡
+            cover_image_container.classList.remove(
+                "ease-[cubic-bezier(0.78,-0.32,0.00,1.34)]",
+            );
+            cover_image_container.classList.add("ease-in-out");
+
+            if (!audio_aside_bar_el.classList.contains("rotate-[-180deg]")) {
+                audio_aside_bar_el.classList.add("rotate-[-180deg]");
+                aside_container.dataset.unfold = "true";
+
+                // 设置定时器，1s后对title进行检测
+                setTimeout(isTitleOverflow, 1000);
+
+                // 展开之前先清除，再添加
+                single_audio_info_display.classList.remove(
+                    "max-[425px]:unfold:min-w-15",
+                );
+
+                setTimeout(() => {
+                    single_audio_info_display.classList.add(
+                        "max-[425px]:unfold:min-w-15",
+                    );
+                }, 1000);
+            } else {
+                aside_container.dataset.unfold = "false";
+                audio_aside_bar_el.classList.remove("rotate-[-180deg]");
+
+                // 并且还要将text恢复成原来的样子
+                single_audio_title.innerText = original_title_text;
+            }
+        });
+
+        // 点击暂停和播放按钮时的事件
+        audio_player_btn_container.addEventListener("click", () => {
+            // 如果不可用,还需要禁用掉该函数
+            if (audio_player_btn_container.dataset.disabled === "true") return;
+            if (audio_entity.paused) {
+                audio_player_btns[0].dataset.hidden = "true";
+                audio_player_btns[1].dataset.hidden = "false";
+                audio_entity.play();
+                // 然后开启歌词滚动
+                startTick();
+                cover_image.dataset.rotate = "true";
+            } else {
+                audio_player_btns[0].dataset.hidden = "false";
+                audio_player_btns[1].dataset.hidden = "true";
+                audio_entity.pause();
+                // 关闭歌词滚动
+                stopTick();
+                cover_image.dataset.rotate = "false";
+            }
+        });
+
+        // 调整播放模式
+        // 顺序->单曲循环->列表循环->随机播放
+        // 只有事件为随机播放的时候,才会修改playList
+        audio_play_mode_container.addEventListener("click", () => {
+            if (playMode === "wholeOnce") {
+                playMode = "singleCircle";
+                audio_play_mode_list[0].dataset.hidden = "true";
+                audio_play_mode_list[1].dataset.hidden = "false";
+                audio_entity.loop;
+            } else if (playMode === "singleCircle") {
+                playMode = "wholeCircle";
+                audio_play_mode_list[1].dataset.hidden = "true";
+                audio_play_mode_list[2].dataset.hidden = "false";
+            } else if (playMode === "wholeCircle") {
+                playMode = "random";
+                audio_play_mode_list[2].dataset.hidden = "true";
+                audio_play_mode_list[3].dataset.hidden = "false";
+
+                // 然后洗掉playArray
+                realPlayArray = resetRandomPlayArray();
+
+                // 默认播放的时候设置playIndex = 0
+                playIndex = 0;
+                prevPlayIndex = null;
+
+                // 重新注册list
+                reloadPlayArrayItems();
+            } else {
+                playMode = "wholeOnce";
+                audio_play_mode_list[3].dataset.hidden = "true";
+                audio_play_mode_list[0].dataset.hidden = "false";
+
+                // 重置realPlayArray
+                resetPlayArray();
+
+                // 重新注册list
+                reloadPlayArrayItems();
+            }
+        });
+
+        // 滑动音量块调节音量大小
+        volume_slider.addEventListener("input", (e: HTMLInputElement | any) => {
+            const volume_value = Number(e.target.value) / 100;
+
+            // 调整音量
+            audio_entity.volume = volume_value;
+
+            origin_volume = volume_value * 100;
+
+            // 改变数值
+            volume_font.innerText = (volume_value * 100).toFixed(0) + "%";
+
+            sync(volume_slider, volume_slider.value);
+
+            // 检测是否为0，为0则需要换图标
+            if (e.target.value === "0") {
+                volume_button_list[0].dataset.hidden = "true";
+                volume_button_list[1].dataset.hidden = "false";
+            } else {
+                volume_button_list[0].dataset.hidden = "false";
+                volume_button_list[1].dataset.hidden = "true";
+            }
+        });
+
+        // 调整静音与否
+        volume_container.addEventListener("click", () => {
+            audio_entity.muted = !audio_entity.muted;
+            if (volume_button_list[0].dataset.hidden === "true") {
+                // 音量键为hidden，那么此时就是静音
+                volume_button_list[0].dataset.hidden = "false";
+                volume_button_list[1].dataset.hidden = "true";
+
+                // 赋值
+                volume_slider.value = origin_volume.toString();
+                audio_entity.volume = origin_volume / 100;
+                volume_font.innerText = origin_volume + "%";
+
+                // 音量调节
+                sync(volume_slider, volume_slider.value);
+            } else {
+                volume_button_list[0].dataset.hidden = "true";
+                volume_button_list[1].dataset.hidden = "false";
+
+                // 记录下当前音量
+
+                origin_volume = Number(volume_slider.value);
+                volume_slider.value = "0";
+                audio_entity.volume = 0;
+                volume_font.innerText = 0 + "%";
+
+                // 静音
+                sync(volume_slider, volume_slider.value);
+            }
+        });
+
+        // 给封面注册函数
+        cover_image.addEventListener("click", coverImageMoveEvent);
+
+        // 给详细信息上的icon也加上
+        detailShutDownIcon.addEventListener("click", coverImageMoveEvent);
+
+        // 注册歌曲进度时间
+        // 滑块滑动只改变颜色和时间戳,因此颜色改变用input,但是松手才会真正改变歌曲进度
+        playback_bar.addEventListener("input", (e: HTMLInputElement | any) => {
+            // 开启用户锁
+            isUserControlPlayTimeSchedule = true;
+            // 只改变当前记录的值,不改变事件戳
+            const current_time = (e.target.value / 100) * total_played_time;
+
+            // 动态修改颜色
+            sync(playback_bar, playback_bar.value);
+
+            // 记录的时间
+            play_progress_text.innerText =
+                getPlayTimeProgressText(current_time);
+        });
+
+        // 歌曲进度滑动
+        playback_bar.addEventListener("change", (e: HTMLInputElement | any) => {
+            // 首先状态锁
+            isUserControlPlayTimeSchedule = true;
+
+            // 改变记录的值和当前时间戳
+            const current_time = (e.target.value / 100) * total_played_time;
+
+            // 改变进度
+            audio_entity.currentTime = current_time;
+
+            // 记录的时间
+            play_progress_text.innerText =
+                getPlayTimeProgressText(current_time);
+
+            // 修改index
+            // 找到这个value
+            let setIndex = 0;
+            for (
+                let index = 0;
+                index <
+                PlayAudioList[realPlayArray[playIndex]].lyric.lyrics.length;
+                index++
+            ) {
+                if (
+                    current_time >=
+                    PlayAudioList[realPlayArray[playIndex]].lyric.lyrics[index]
+                        .timeFormat
+                ) {
+                    setIndex = index;
+                } else {
+                    break;
+                }
+            }
+
+            // 找到后需要将当前index中的color修改
+            divList[currentVisualLyricIndex].classList.remove("text-[black]");
+            divList[currentVisualLyricIndex].classList.add("text-[#737d83]");
+
+            currentVisualLyricIndex = setIndex;
+            currentTimeScheduleIndex = setIndex;
+
+            // 动态修改颜色
+            sync(playback_bar, playback_bar.value);
+
+            // 修改完毕关闭状态锁
+            isUserControlPlayTimeSchedule = false;
+            // 需要查看当前是否播放
+            // 如果是正在播放，他会自动渲染，若是暂停，则需要开启再关闭
+            if (audio_entity.paused) {
+                // 然后这一帧开启动画渲染
+                startTick();
+                // 下一帧关闭渲染
+                requestAnimationFrame(stopTick);
+            }
+        });
+
+        // 动态修改数值
+        // 并且还要加上歌词滚动效果
+        audio_entity.addEventListener("timeupdate", () => {
+            picked_play_time = audio_entity.currentTime;
+            // 记录的时间
+            play_progress_text.innerText =
+                getPlayTimeProgressText(picked_play_time);
+
+            // 用户控制的话不能够滚动条
+            if (isUserControlPlayTimeSchedule) return;
+
+            // 调整滑动条的显示
+            playback_bar.value = (
+                (picked_play_time / total_played_time) *
+                100
+            ).toString();
+
+            // 动态修改滚动条
+            sync(playback_bar, playback_bar.value);
+        });
+
+        // 歌词页人为滚动
+        lyric_real_panel.addEventListener("wheel", () => {
+            // 取消定时器
+            clearTimeout(scrollEventId);
+            // 关闭tick
+            stopTick();
+
+            // TODO 添加想要的逻辑事件
+
+            // 3s不滚动则开启tick
+            scrollEventId = setTimeout(() => {
+                startTick();
+            }, 3000);
+        });
+
+        // 适配移动端的拖拽
+        lyric_real_panel.addEventListener("touchmove", () => {
+            // 取消定时器
+            clearTimeout(scrollEventId);
+            // 关闭tick
+            stopTick();
+
+            // TODO 添加想要的逻辑事件
+
+            // 3s不滚动则开启tick
+            scrollEventId = setTimeout(() => {
+                startTick();
+            }, 3000);
+        });
+
+        // 歌曲播放开始转动
+        // 按钮也要调整，还有色块
+        audio_entity.addEventListener("play", () => {
+            // 只要play,就设置帧开启
+            cover_image.dataset.rotate = "true";
+            audio_player_btns[0].dataset.hidden = "true";
+            audio_player_btns[1].dataset.hidden = "false";
+            startTick();
+        });
+
+        // 歌曲暂停封面停止转动
+        audio_entity.addEventListener("pause", () => {
+            // 只要暂停,就设置成stop
+            stopTick();
+            cover_image.dataset.rotate = "false";
+            audio_player_btns[0].dataset.hidden = "false";
+            audio_player_btns[1].dataset.hidden = "true";
+        });
+
+        // 初始化媒体
+        audio_entity.addEventListener("loadedmetadata", () => {
+            // TODO 加载完媒体只需要将 duration, currentTime, sampling, encoding
+            // TODO 但是当前只需要duration
+
+            // 加载完毕后才能注册对应的事件和变量
+            total_played_time = audio_entity.duration;
+            total_played_time_by_min =
+                Math.floor(total_played_time / 60).toString() +
+                ":" +
+                (total_played_time % 60).toFixed(0);
+        });
+
+        // 音频结束触发事件
+        audio_entity.addEventListener("ended", () => {
+            // 设置成autoPlay
+            audio_entity.autoplay = true;
+
+            // 根据当前状态判断
+            if (playMode === "wholeOnce") {
+                if (playIndex === PlayAudioList.length - 1) {
+                    audio_entity.autoplay = false;
+                    playIndex = 0;
+                } else {
+                    playIndex += 1;
+                }
+            } else if (playMode === "wholeCircle") {
+                if (playIndex === PlayAudioList.length - 1) {
+                    playIndex = 0;
+                } else {
+                    playIndex += 1;
+                }
+            } else if (playMode === "random") {
+                if (PlayAudioList.length <= 2) {
+                    playIndex = PlayAudioList.length - 1 - playIndex;
+                } else {
+                    playIndex += 1;
+                }
+            }
+
+            // 开始加载的时候需要将所有按钮禁用
+            audio_player_btn_container.dataset.disabled = "true";
+            forwardOne.dataset.disabled = "true";
+            nextOne.dataset.disabled = "true";
+
+            // 开始装载
+            // 包括封面和歌词以及音频
+            audio_entity_init();
+            audio_entity.load();
+        });
+
+        // 定义一个function,用来预加载并且针对初始化实体
+        // 上一首
+        forwardOne.addEventListener("click", () => {
+            if (forwardOne.dataset.disabled === "true") return;
+            // index +1 ,然后预装填
+            if (playIndex === 0) {
+                playIndex = PlayAudioList.length - 1;
+            } else {
+                playIndex -= 1;
+            }
+
+            // 开始加载的时候需要将所有按钮禁用
+            audio_player_btn_container.dataset.disabled = "true";
+            forwardOne.dataset.disabled = "true";
+            nextOne.dataset.disabled = "true";
+
+            // 开始装载
+            // 包括封面和歌词以及音频
+            audio_entity_init();
+            audio_entity.load();
+
+            // 装载完毕后默认对齐
+            startTick();
+            requestAnimationFrame(stopTick);
+        });
+
+        // 下一首
+        nextOne.addEventListener("click", () => {
+            // 如果不可用,点击无效
+            if (nextOne.dataset.disabled === "true") return;
+            // index +1 ,然后预装填
+            if (playIndex === PlayAudioList.length - 1) {
+                playIndex = 0;
+            } else {
+                playIndex += 1;
+            }
+
+            // 开始加载的时候需要将所有按钮禁用
+            audio_player_btn_container.dataset.disabled = "true";
+            forwardOne.dataset.disabled = "true";
+            nextOne.dataset.disabled = "true";
+
+            // 开始装载
+            // 包括封面和歌词以及音频
+            audio_entity_init();
+            audio_entity.load();
+
+            // 装载完毕后默认对齐
+            startTick();
+            requestAnimationFrame(stopTick);
+        });
+
+        // 定义装载好的事件
+        // 也就是音频可以播放的时候,再开始处理
+        audio_entity.addEventListener("canplaythrough", () => {
+            // // 加载完毕后所有按钮可用
+            audio_player_btn_container.dataset.disabled = "false";
+            forwardOne.dataset.disabled = "false";
+            nextOne.dataset.disabled = "false";
+
+            // 然后再判断是否播放
+            if (audio_player_btns[0].dataset.hidden === "false") {
+                // 暂停状态下,则不可进行播放
+                audio_entity.pause();
+            } else {
+                audio_entity.play();
+            }
+        });
+
+        // 初始化工作
+        onceInitFn();
+    }
+
+    document.addEventListener('astro:page-load', init)
+</script>
+<style></style>

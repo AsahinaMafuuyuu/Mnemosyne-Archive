@@ -1,6 +1,35 @@
 ---
-
+import GMAIL from "@/Icons/gmail.svg";
+import GITHUB from "@/Icons/github.svg";
+import EMMA from "@/images/emma-transparent.png"
 ---
-<div class="h-30 layout-basic-style">
 
-</div>
+<footer class="layout-basic-style py-6">
+    <div class="text-footer flex flex-col items-center justify-center gap-3">
+        <p class="text-lg flex text-[rgba(89,89,89)] items-end gap-2">© 2025 - 2026 
+            <span class="text-rainbow">HexCss's Blog</span> 
+            <img src={EMMA.src} class="rounded-[50%] w-8 h-8 animate-pulse" alt="">
+            All rights reserved.</p>
+        <p >许可：除非另有声明，本站内容与代码均采用
+            <a class="footer-link" href="https://github.com/AsahinaMafuuyuu/Mnemosyne-Archive/blob/master/LICENSE" target="_blank"> MIT License</a>发布。</p>
+        <p>
+            免责声明：本站内容仅供学习交流，不构成任何形式的专业建议；使用本站内容造成的损失本站不承担责任。
+        </p>
+        <p class="flex items-center gap-2">
+            联系我：
+            <a href="mailto:3366203917@qq.com" class="link-container p-2 mb-1"> <GMAIL class="md-icon-basic-style"/></a> 
+            <a href="https://github.com/AsahinaMafuuyuu" class="link-container p-2"> <GITHUB class="md-icon-basic-style"/></a>
+        </p>
+        <p>
+            本站可能使用第三方服务（如评论、统计、CDN）以改善体验；详情见
+            <a href="https://github.com/AsahinaMafuuyuu/Mnemosyne-Archive/blob/master/privacy.md" class="footer-link" target="_blank">《隐私政策》。</a>
+        </p>
+        <p>链接：
+            <a class="footer-link" href="/about" >关于</a>
+            <a class="footer-link" href="" >归档</a>
+            <a class="footer-link" href="/label">标签</a>
+            <a class="footer-link" href="" target="_blank">RSS</a>
+            <a class="footer-link" href="">站点地图</a>
+        </p>
+
+</footer>

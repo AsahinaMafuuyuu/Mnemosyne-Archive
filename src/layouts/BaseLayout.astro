@@ -3,11 +3,12 @@ import AiPai from "../images/AiPai.webp";
 import Header from "@/components/HeaderComponents/Header.astro";
 import AsideInfo from "@/components/AsideComponents/AsideInfo.astro";
 import Footer from "@/components/FooterComponents/Footer.astro";
-import AudioPlayerAside from "@/components/AudioPlayerAside.astro";
+import AudioPlayerAside from "@/components/AudioPlayerComponents/AudioPlayerAside.astro";
 import { slide } from "astro:transitions";
 import { ClientRouter } from "astro:transitions";
 import "../output.css";
 const url: string = Astro.url.toString();
+const params = Astro.props?.params;
 ---
 
 <html lang="zh-CN">
@@ -16,11 +17,16 @@ const url: string = Astro.url.toString();
     <link rel="icon" type="image/svg+xml" href="/Icons/WebIcon.ico" />
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
-    <meta property="og:type" content="website"> 
+    <meta property="og:type" content="website" />
     <meta name="description" content="你好呀陌生人，欢迎来到我的博客！" />
-    <meta property="og:site_name" content="HexCss's Blog"/>
-    <meta property="og:description" content="你好呀陌生人，欢迎来到我的博客！"> 
-    <title>AsahinaMafuyu</title>
+    <meta property="og:site_name" content="HexCss's Blog" />
+    <meta
+      property="og:description"
+      content="你好呀陌生人，欢迎来到我的博客！"
+    />
+    <title>
+      {params?.title ? params.title + " --HexCss's blog" : "HexCss's blog"}
+    </title>
     <ClientRouter />
   </head>
   <body transition:animate="none">
@@ -33,70 +39,117 @@ const url: string = Astro.url.toString();
       <!-- 覆盖一层毛玻璃 -->
       <div
         data-ui="real-visual-container"
-        class="h-full w-full bg-[rgba(255,255,255,.36)] backdrop-blur-(--blur-val) flex justify-center overflow-auto base-scroll-bar scroll-smooth"
+        class="h-full w-full bg-[rgba(255,255,255,.36)] backdrop-blur-(--blur-val)"
       >
-        <!-- 内容容器 -->
-        <!-- 要规定尺寸，大小，展示方式等等 -->
+        <!-- 设置一层div，用来帮助滚动 -->
         <div
-          data-ui="visual-content-area"
-          class="w-full h-full min-w-[320px] max-w-350 px-4 pb-5 grid gap-3 grid-cols-[240px_1fr] grid-rows-[auto_1fr_auto] max-[768px]:grid-cols-[1fr]"
+          data-ui="real-content-container"
+          class="h-full w-full flex justify-center overflow-auto base-scroll-bar scroll-smooth"
         >
-          <!-- 导航栏 -->
-
-          <div class="col-span-1 md:col-span-2 z-999">
-            <Header />
-          </div>
-
-          <!-- 左侧个人信息栏 -->
-          <div class="max-[768px]:hidden">
-            <AsideInfo />
-          </div>
-
-          <!-- 正文博客内容展示 -->
+          <!-- 内容容器 -->
+          <!-- 要规定尺寸，大小，展示方式等等 -->
           <div
-            transition:name="mainContent"
-            transition:animate="fade"
-            class="min-w-0"
+            data-ui="visual-content-area"
+            class="w-full h-full min-w-[320px] max-w-350 px-4 pb-5 grid gap-3 grid-cols-[240px_1fr] grid-rows-[auto_1fr_auto] max-[768px]:grid-cols-[1fr]"
           >
-            <slot name="mainContent" />
+            <!-- 导航栏 -->
+            <div class="col-span-1 md:col-span-2 z-999">
+              <Header />
+            </div>
+
+            <!-- 左侧个人信息栏 -->
+            <div class="max-[768px]:hidden">
+              <AsideInfo />
+            </div>
+
+            <!-- 正文博客内容展示 -->
+            <div
+              transition:name="mainContent"
+              transition:animate="fade"
+              class="min-w-0"
+            >
+              <slot name="mainContent" />
+            </div>
+
+            <!-- 底部内容 -->
+            <div class="col-span-1 md:col-span-2 mt-5">
+              <Footer />
+            </div>
           </div>
 
-          <!-- 底部内容 -->
-          <div class="col-span-1 md:col-span-2 mt-5">
-            <Footer />
-          </div>
+          <!-- 右侧侧边栏 -->
+          <button
+            data-ui="to-top-btn"
+            class="fixed bg-amber-200 right-4 bottom-4 w-10 h-10">向上</button
+          >
         </div>
       </div>
     </div>
     <!-- 小插件 -->
-    <AudioPlayerAside transition:persist/>
+    <AudioPlayerAside transition:persist />
 
     <script>
       import { fetchBackgroundImage } from "@/function";
-      import { undefined } from "astro:schema";
+
       //  记录url
       let bgUrl: string;
-      function init() {
-        // 获取背景图片的容器
-        // const bgContainer = document.querySelector(
-        //   '[data-ui="html-container"]',
-        // ) as HTMLElement;
 
-        async function initBackground() {
-          // 如果设置了背景图片，就直接使用，否则就去获取一个随机背景图
-          if (
-            getComputedStyle(document.documentElement).getPropertyValue(
-              "--background-src",
-            ) === "none"
-          ) {
-            bgUrl = await fetchBackgroundImage();
-            document.documentElement.style.setProperty(
-              "--background-src",
-              `url(${bgUrl})`,
-            );
-          }
+      // 初始化滚动容器
+      function initScroll() {
+        // 获取实际滚动容器
+        const scrollContainer = document.querySelector(
+          '[data-ui="real-content-container"]',
+        );
+        // 获取滚动btn
+        const toTopBtn = scrollContainer?.querySelector(
+          '[data-ui="to-top-btn"]',
+        );
+        // 滚动到视口顶部
+        function scrollTop() {
+          scrollContainer?.scrollTo({ top: 0, behavior: "smooth" });
         }
-        initBackground();
+        // 监听向上btn
+        toTopBtn?.addEventListener("click", scrollTop);
+      }
+
+      // 初始化标题设置脚本
+      function initTitleScript() {
+        let titleTimeoutId: number | undefined;
+        // 如果页面失去聚焦，则修改title
+        document.addEventListener("visibilitychange", () => {
+          if (document.visibilityState === "hidden") {
+            // 清空titleTimeout
+            clearTimeout(titleTimeoutId);
+            document.title = "¯﹃¯大脑宕机ing...";
+          } else {
+            document.title = "๑´ڡ`๑欢迎回来，狗修金SAMA~";
+            titleTimeoutId = setTimeout(() => {
+              document.title = originTitle;
+            }, 1500);
+          }
+        });
+      }
+
+      // 初始化背景图片
+      async function initBackground() {
+        // 如果设置了背景图片，就直接使用，否则就去获取一个随机背景图
+        if (
+          getComputedStyle(document.documentElement).getPropertyValue(
+            "--background-src",
+          ) === "none"
+        ) {
+          bgUrl = await fetchBackgroundImage();
+          document.documentElement.style.setProperty(
+            "--background-src",
+            `url(${bgUrl})`,
+          );
+        }
+      }
+      
+      // 普通页面进来就需要做的初始化
+      function init() {
+        initScroll();
+        initTitleScript();
       }
 
       // 切换路由前需要将Url取出来
@@ -115,34 +168,18 @@ const url: string = Astro.url.toString();
           `url(${bgUrl})`,
         );
 
-        // 初始化initTitle
-        initTitleScript()
+        // 初始化其他应当进行初始化的script
+        init();
       });
 
       const originTitle = document.title;
       // 改变title标题
-      function initTitleScript() {
-        let titleTimeoutId: number | undefined;
-        // 如果页面失去聚焦，则修改title
-        document.addEventListener("visibilitychange", () => {
-          if (document.visibilityState === "hidden") {
-            // 清空titleTimeout
-            clearTimeout(titleTimeoutId);
-            document.title = "¯﹃¯大脑宕机ing...";
-          } else {
-            document.title = "๑´ڡ`๑欢迎回来，狗修金SAMA~";
-            titleTimeoutId = setTimeout(() => {
-              document.title = originTitle;
-            }, 1500);
-          }
-        });
-      }
 
       // 如果刷新页面，直接执行 init 函数
       document.addEventListener("DOMContentLoaded", () => {
         init()
-        initTitleScript()
-        });
+        initBackground()
+      });
     </script>
   </body>
 </html>
