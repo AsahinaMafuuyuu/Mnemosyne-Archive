@@ -13,10 +13,13 @@ const url: string = Astro.url.toString();
 <html lang="zh-CN">
   <head>
     <meta charset="utf-8" />
-    <link rel="icon" type="image/svg+xml" href="/Icons/WebIcon.ico  " />
+    <link rel="icon" type="image/svg+xml" href="/Icons/WebIcon.ico" />
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
-    <meta name="" />
+    <meta property="og:type" content="website"> 
+    <meta name="description" content="你好呀陌生人，欢迎来到我的博客！" />
+    <meta property="og:site_name" content="HexCss's Blog"/>
+    <meta property="og:description" content="你好呀陌生人，欢迎来到我的博客！"> 
     <title>AsahinaMafuyu</title>
     <ClientRouter />
   </head>
@@ -66,10 +69,11 @@ const url: string = Astro.url.toString();
       </div>
     </div>
     <!-- 小插件 -->
-    <AudioPlayerAside />
+    <AudioPlayerAside transition:persist/>
 
     <script>
       import { fetchBackgroundImage } from "@/function";
+      import { undefined } from "astro:schema";
       //  记录url
       let bgUrl: string;
       function init() {
@@ -97,9 +101,10 @@ const url: string = Astro.url.toString();
 
       // 切换路由前需要将Url取出来
       document.addEventListener("astro:before-swap", () => {
-        bgUrl = getComputedStyle(document.documentElement).getPropertyValue(
-          "--background-src",
-        ).slice(4, -1).replace(/"/g, "");
+        bgUrl = getComputedStyle(document.documentElement)
+          .getPropertyValue("--background-src")
+          .slice(4, -1)
+          .replace(/"/g, "");
       });
 
       // 路由切换后将之前的Url设置回去
@@ -109,10 +114,35 @@ const url: string = Astro.url.toString();
           "--background-src",
           `url(${bgUrl})`,
         );
+
+        // 初始化initTitle
+        initTitleScript()
       });
 
+      const originTitle = document.title;
+      // 改变title标题
+      function initTitleScript() {
+        let titleTimeoutId: number | undefined;
+        // 如果页面失去聚焦，则修改title
+        document.addEventListener("visibilitychange", () => {
+          if (document.visibilityState === "hidden") {
+            // 清空titleTimeout
+            clearTimeout(titleTimeoutId);
+            document.title = "¯﹃¯大脑宕机ing...";
+          } else {
+            document.title = "๑´ڡ`๑欢迎回来，狗修金SAMA~";
+            titleTimeoutId = setTimeout(() => {
+              document.title = originTitle;
+            }, 1500);
+          }
+        });
+      }
+
       // 如果刷新页面，直接执行 init 函数
-      document.addEventListener("DOMContentLoaded", init);
+      document.addEventListener("DOMContentLoaded", () => {
+        init()
+        initTitleScript()
+        });
     </script>
   </body>
 </html>
