@@ -6,6 +6,7 @@ import Footer from "@/components/FooterComponents/Footer.astro";
 import AudioPlayerAside from "@/components/AudioPlayerComponents/AudioPlayerAside.astro";
 import { slide } from "astro:transitions";
 import { ClientRouter } from "astro:transitions";
+import ToTopIcon from "@/assets/Icons/to-top.svg";
 import "../output.css";
 const url: string = Astro.url.toString();
 const params = Astro.props?.params;
@@ -80,7 +81,8 @@ const params = Astro.props?.params;
           <!-- 右侧侧边栏 -->
           <button
             data-ui="to-top-btn"
-            class="fixed bg-amber-200 right-4 bottom-4 w-10 h-10">向上</button
+            class="fixed right-4 bottom-4 w-10 h-10 transition-all ease-in-out duration-300 hover:text-[purple] hover:-translate-y-1"
+            ><ToTopIcon/></button
           >
         </div>
       </div>
@@ -145,7 +147,7 @@ const params = Astro.props?.params;
           );
         }
       }
-      
+
       // 普通页面进来就需要做的初始化
       function init() {
         initScroll();
@@ -177,8 +179,8 @@ const params = Astro.props?.params;
 
       // 如果刷新页面，直接执行 init 函数
       document.addEventListener("DOMContentLoaded", () => {
-        init()
-        initBackground()
+        init();
+        initBackground();
       });
     </script>
   </body>
