@@ -1,7 +1,7 @@
 ---
 import BaseLayout from "./BaseLayout.astro";
 import ArticleDetailDisplay from "@/components/BlogContent/ArticleDetailDisplay.astro";
-import { fade, slide } from "astro:transitions";
+import { computedTotalWords } from "@/scripts/totalCount"
 import "../output.css";
 type ImageInfo = {
     url: string;
@@ -15,9 +15,10 @@ interface FrontMatter {
     images?: Array<ImageInfo> | ImageInfo;
     tags: string[];
 }
-const { frontmatter, compiledContent } = Astro.props as {
+const { frontmatter, compiledContent, rawContent } = Astro.props as {
     frontmatter: FrontMatter;
     compiledContent: () => string;
+    rawContent: () => string
 };
 ---
 
@@ -27,5 +28,6 @@ const { frontmatter, compiledContent } = Astro.props as {
         slot="mainContent"
         params={frontmatter}
         content={compiledContent()}
+        totalCounts={computedTotalWords(rawContent())}
     />
 </BaseLayout>

@@ -17,9 +17,10 @@ interface FrontMatter {
     cover?: ImageInfo;
     tags: string[];
 }
-const { params, content } = Astro.props as {
+const { params, content, totalCounts } = Astro.props as {
     params: FrontMatter;
     content: string;
+    totalCounts: number;
 };
 ---
 
@@ -49,7 +50,13 @@ const { params, content } = Astro.props as {
         <!-- 字数 -->
         <div data-ui="view-count-display" class="flex items-center gap-1">
             <WingPencil class="md-icon-basic-style" />
-            <span class="text-blog-info">1.2k</span>
+            <span class="text-blog-info">{
+                        totalCounts / 1000 > 1
+                            ? totalCounts / 10000 > 1
+                                ? (totalCounts / 10000).toFixed(1) + "w"
+                                : (totalCounts / 1000).toFixed(1) + "k"
+                            : totalCounts
+                    }</span>
         </div>
         <!-- 预计浏览时长 -->
         <div data-ui="view-count-display" class="flex items-center gap-1">
