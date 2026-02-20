@@ -3,7 +3,7 @@ Mnemosyne-Archive README
 ===================================================== -->
 
 <p align="center">
-  <img src="src/images/kanade.png" width="128" alt="Kanade" />
+  <img src="src/assets/images/kanade.png" width="128" alt="Kanade" />
 </p>
 
 <h1 align="center">Mnemosyne-Archive</h1>
@@ -36,7 +36,7 @@ Mnemosyne-Archive README
 </p>
 
 <p align="center">
-  <img src="src/images/AiPai.webp" alt="Banner" width="100%"/>
+  <img src="src/assets/images/AiPai.webp" alt="Banner" width="100%"/>
 </p>
 
 ---
