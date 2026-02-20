@@ -1,19 +1,26 @@
 ---
-const PaperCount = 10
-const totalCount = '1.9w'
-const requestCount = '114514'
+import { computedTotalWords } from "@/scripts/totalCount"
+let paperCount = 0
+let totalCount = 0
+let requestCount = 0
 const nowaDays = Date.now()
 const originDays = Date.parse('2026-01-05')
 const maintainDays = Math.floor((nowaDays - originDays) / 1000 / 3600 / 24)
+
+const allPosts = Object.values(import.meta.glob('@/pages/posts/*.md', {eager: true}))
+allPosts.forEach((item:any, index) => {
+    paperCount += 1;
+    totalCount += computedTotalWords(item.rawContent());
+})
 ---
 <div class="grid grid-cols-2 grid-rows-2 gap-3 items-center">
     <div>
         <div class="text-caption text-center">文章数</div>
-        <div class="text-body text-center">{PaperCount}</div>
+        <div class="text-body text-center">{paperCount}</div>
     </div>
     <div>
         <div class="text-caption text-center">总字数</div>
-        <div class="text-body text-center">{totalCount}</div>
+        <div class="text-body text-center">{(totalCount / 10000).toFixed(1)}w</div>
     </div>
     
     <div>

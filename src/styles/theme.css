@@ -23,7 +23,7 @@
 
 /* 创建整个基本容器的相关样式 */
 @utility layout-basic-style {
-    @apply rounded-lg border border-[rgba(0,0,0,0.05)] shadow-sm bg-(--background-color)
+    @apply rounded-lg border border-[rgba(0,0,0,0.05)] shadow-sm bg-(--background-color);
 }
 
 /* 可悬停控件样式 */
@@ -120,7 +120,7 @@
 
 /* 设置常用图标的具体样式 */
 @utility md-icon-basic-style {
-    @apply w-5 h-5 
+    @apply w-5 h-5;
 }
 
 /* 设置翻页条的相关导航样式 */
@@ -138,5 +138,16 @@
 }
 /* 设置翻页条的span样式 */
 @utility span-eli {
-    @apply w-8 h-8 inline-block leading-8
+    @apply w-8 h-8 inline-block leading-8;
+}
+
+/* 设置动态按钮的样式 */
+@utility dynamic-btn {
+    @apply relative w-12 h-6 rounded-xl bg-[#ccc] transition-all ease-in-out duration-300 
+    before:w-4.5 before:h-4.5 before:absolute before:bg-[oklch(0.95_0.025_349)] before:rounded-[50%] before:top-[50%] before:left-[5%] before:transition-all
+    before:ease-in-out before:duration-300 before:-translate-y-[50%]
+    activated:bg-[#f34cbb9a] activated:before:bg-[white] activated:before:left-[55%];
+    &::before {
+        content: ''
+    }
 }

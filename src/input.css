@@ -22,6 +22,8 @@
 
 @custom-variant disabled (&:where(&[data-disabled="true"]));
 
+@custom-variant activated (&:where(&[data-activated="true"]));
+
 @theme {
     /* 定义动画token，到时候直接调用cover-rotate即可 */
     --animate-cover-rotate: cover-images-rotate 6s linear infinite forwards;

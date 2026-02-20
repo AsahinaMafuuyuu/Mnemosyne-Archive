@@ -8,7 +8,6 @@
     --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
       "Courier New", monospace;
     --color-red-500: oklch(63.7% 0.237 25.331);
-    --color-amber-200: oklch(92.4% 0.12 95.746);
     --color-yellow-400: oklch(85.2% 0.199 91.936);
     --color-blue-500: oklch(62.3% 0.214 259.815);
     --color-blue-700: oklch(48.8% 0.243 264.376);
@@ -430,6 +429,87 @@
       z-index: 1;
     }
   }
+  .dynamic-btn {
+    position: relative;
+    height: calc(var(--spacing) * 6);
+    width: calc(var(--spacing) * 12);
+    border-radius: var(--radius-xl);
+    background-color: #ccc;
+    transition-property: all;
+    transition-timing-function: var(--tw-ease, var(--default-transition-timing-function));
+    transition-duration: var(--tw-duration, var(--default-transition-duration));
+    --tw-duration: 300ms;
+    transition-duration: 300ms;
+    --tw-ease: var(--ease-in-out);
+    transition-timing-function: var(--ease-in-out);
+    &::before {
+      content: var(--tw-content);
+      position: absolute;
+    }
+    &::before {
+      content: var(--tw-content);
+      top: 50%;
+    }
+    &::before {
+      content: var(--tw-content);
+      left: 5%;
+    }
+    &::before {
+      content: var(--tw-content);
+      height: calc(var(--spacing) * 4.5);
+    }
+    &::before {
+      content: var(--tw-content);
+      width: calc(var(--spacing) * 4.5);
+    }
+    &::before {
+      content: var(--tw-content);
+      --tw-translate-y: calc(50% * -1);
+      translate: var(--tw-translate-x) var(--tw-translate-y);
+    }
+    &::before {
+      content: var(--tw-content);
+      border-radius: 50%;
+    }
+    &::before {
+      content: var(--tw-content);
+      background-color: oklch(0.95 0.025 349);
+    }
+    &::before {
+      content: var(--tw-content);
+      transition-property: all;
+      transition-timing-function: var(--tw-ease, var(--default-transition-timing-function));
+      transition-duration: var(--tw-duration, var(--default-transition-duration));
+    }
+    &::before {
+      content: var(--tw-content);
+      --tw-duration: 300ms;
+      transition-duration: 300ms;
+    }
+    &::before {
+      content: var(--tw-content);
+      --tw-ease: var(--ease-in-out);
+      transition-timing-function: var(--ease-in-out);
+    }
+    &:where(&[data-activated="true"]) {
+      background-color: #f34cbb9a;
+    }
+    &:where(&[data-activated="true"]) {
+      &::before {
+        content: var(--tw-content);
+        left: 55%;
+      }
+    }
+    &:where(&[data-activated="true"]) {
+      &::before {
+        content: var(--tw-content);
+        background-color: white;
+      }
+    }
+    &::before {
+      content: '';
+    }
+  }
   .footer-link {
     display: inline-block;
     position: relative;
@@ -483,6 +563,9 @@
   .right-4 {
     right: calc(var(--spacing) * 4);
   }
+  .bottom-0 {
+    bottom: calc(var(--spacing) * 0);
+  }
   .bottom-1 {
     bottom: calc(var(--spacing) * 1);
   }
@@ -491,9 +574,6 @@
   }
   .bottom-15 {
     bottom: calc(var(--spacing) * 15);
-  }
-  .bottom-35 {
-    bottom: calc(var(--spacing) * 35);
   }
   .bottom-full {
     bottom: 100%;
@@ -1016,9 +1096,6 @@
   .bg-\[rgba\(255\,255\,255\,0\.85\)\] {
     background-color: rgba(255,255,255,0.85);
   }
-  .bg-amber-200 {
-    background-color: var(--color-amber-200);
-  }
   .bg-gray-200 {
     background-color: var(--color-gray-200);
   }
@@ -1360,26 +1437,10 @@
       }
     }
   }
-  .hover\:translate-x-1 {
-    &:hover {
-      @media (hover: hover) {
-        --tw-translate-x: calc(var(--spacing) * 1);
-        translate: var(--tw-translate-x) var(--tw-translate-y);
-      }
-    }
-  }
   .hover\:-translate-y-1 {
     &:hover {
       @media (hover: hover) {
         --tw-translate-y: calc(var(--spacing) * -1);
-        translate: var(--tw-translate-x) var(--tw-translate-y);
-      }
-    }
-  }
-  .hover\:translate-y-1 {
-    &:hover {
-      @media (hover: hover) {
-        --tw-translate-y: calc(var(--spacing) * 1);
         translate: var(--tw-translate-x) var(--tw-translate-y);
       }
     }
@@ -2263,6 +2324,11 @@ body {
   syntax: "*";
   inherits: false;
 }
+@property --tw-content {
+  syntax: "*";
+  initial-value: "";
+  inherits: false;
+}
 @property --tw-translate-x {
   syntax: "*";
   inherits: false;
@@ -2550,6 +2616,7 @@ body {
       --tw-border-style: solid;
       --tw-duration: initial;
       --tw-ease: initial;
+      --tw-content: "";
       --tw-translate-x: 0;
       --tw-translate-y: 0;
       --tw-translate-z: 0;

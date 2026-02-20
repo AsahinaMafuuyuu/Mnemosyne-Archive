@@ -3,6 +3,7 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
 import Main from "@/components/MainContentComponents/Main.astro";
 import type { Page } from "astro";
 import type {ScrollPageParams} from '@/types/posts';
+import { computedTotalWords } from "@/scripts/totalCount"
 export function getStaticPaths({ paginate }: {paginate:Function}) {
   let postsList: Array<any> = [];
   const allPosts = import.meta.glob("@/pages/posts/*.md", { eager: true });
@@ -11,6 +12,7 @@ export function getStaticPaths({ paginate }: {paginate:Function}) {
     const params = {
       url: mdUrl,
       frontmatter: mod.frontmatter,
+      totalCounts: computedTotalWords(mod.rawContent())
     };
     postsList.push(params);
   });
@@ -37,9 +39,6 @@ export function getStaticPaths({ paginate }: {paginate:Function}) {
 }
 // 所有分页数据都在 "page" 参数中传递
 const { page } = Astro.props as { page:Page};
-// if (page.currentPage === 1){
-//    return Astro.rewrite("/404NotFound");
-// }
 
 // 滚动条数据
 const scrollPageParams:ScrollPageParams = {

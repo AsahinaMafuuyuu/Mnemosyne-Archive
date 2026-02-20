@@ -52,6 +52,10 @@ import Rss from "@/assets/Icons/rss.svg";
                 <span class="truncate">下载背景图</span>
             </button>
 
+            <div class="flex items-center justify-between">禁用背景图
+                <button data-activated="false" data-ui="disabled-btn" class="dynamic-btn"></button>
+            </div>
+
             <div
                 data-ui="scroll-bar-setting"
                 class="flex flex-col items-center justify-between gap-3"
@@ -82,7 +86,11 @@ import Rss from "@/assets/Icons/rss.svg";
 <style></style>
 
 <script>
-    import { fetchBackgroundImage } from "@/function";
+    import { fetchBackgroundImage } from "@/function/index";
+    // 首先需要将背景图存放起来
+    let bgUrl:null | string = null;
+    let disabledBtnIsActived = false;
+
     function init() {
         const SettingBtn: HTMLElement = document.querySelector(
             '[data-ui="setting-btn"]',
@@ -130,6 +138,7 @@ import Rss from "@/assets/Icons/rss.svg";
                 controlPanel.dataset.hidden = "true";
             }
         });
+        
 
         // 获取到下载背景图按钮
         const downloadBgBtn: HTMLElement = controlPanel.querySelector(
@@ -149,6 +158,17 @@ import Rss from "@/assets/Icons/rss.svg";
             document.body.removeChild(link);    
         });
 
+        // 获取到禁用背景按钮
+         const diasbledBgBtn: HTMLElement = controlPanel.querySelector(
+            '[data-ui="disabled-btn"]',
+        ) as HTMLElement;
+        
+        // 从本地读取相关状态
+        if(localStorage.getItem('disabled-background') === 'true') {
+            // 读取是禁用状态的话，则需要激活禁用状态
+            diasbledBgBtn.dataset.activated = 'true'
+        }
+        
         // 切换背景
         switchBackgroundBtn.addEventListener("click", async () => {
             // --background-src: url(../assets/bg-2.jpg);
@@ -160,6 +180,28 @@ import Rss from "@/assets/Icons/rss.svg";
           );
         });
 
+        // 禁用背景
+        diasbledBgBtn.addEventListener('click', async () => {
+            if(!disabledBtnIsActived) {
+                // 开始禁用
+                bgUrl = document.documentElement.style.getPropertyValue('--background-src')
+                document.documentElement.style.setProperty('--background-src', 'none')
+                diasbledBgBtn.dataset.activated = 'true'
+                disabledBtnIsActived = true
+                localStorage.setItem('disabled-background', 'true')
+            }else {
+                // 需要重新fetch
+                if (!bgUrl) {
+                    document.documentElement.style.setProperty('--background-src', await fetchBackgroundImage())
+                } else {
+                    document.documentElement.style.setProperty('--background-src', bgUrl)
+                }
+                diasbledBgBtn.dataset.activated = 'false'
+                disabledBtnIsActived = false
+                localStorage.setItem('disabled-background', 'false')
+            }
+        })
+
         // 添加模糊滚动条滚动设计
         scrollBar.addEventListener("input", () => {
             scrollBar.style.setProperty("--val", scrollBar.value);
@@ -170,5 +212,6 @@ import Rss from "@/assets/Icons/rss.svg";
             );
         });
     }
+
     document.addEventListener("astro:page-load", init);
 </script>

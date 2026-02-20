@@ -1,5 +1,4 @@
 ---
-import AiPai from "../images/AiPai.webp";
 import Header from "@/components/HeaderComponents/Header.astro";
 import AsideInfo from "@/components/AsideComponents/AsideInfo.astro";
 import Footer from "@/components/FooterComponents/Footer.astro";
@@ -14,8 +13,29 @@ const params = Astro.props?.params;
 
 <html lang="zh-CN">
   <head>
+    <!-- 引入google analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-E4E7YKZK0H"
+    ></script>
+    <script is:inline>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+      gtag("config", "G-XXXX");
+    </script>
+
+    <!-- 下面就是正常构建 -->
     <meta charset="utf-8" />
-    <link rel="icon" type="image/svg+xml" href="/Icons/WebIcon.ico" />
+    <link rel="icon" href="/Icons/favicon.ico" sizes="any" />
+    <link rel="icon" type="image/x-icon" href="/Icons/favicon.ico" />
+    <link
+      rel="icon"
+      type="image/x-icon"
+      sizes="32x32"
+      href="/Icons/favicon-32x32.ico"
+    />
+    <link rel="apple-touch-icon" href="/Icons/favicon-32x32.ico" />
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
     <meta property="og:type" content="website" />
@@ -82,7 +102,7 @@ const params = Astro.props?.params;
           <button
             data-ui="to-top-btn"
             class="fixed right-4 bottom-4 w-10 h-10 transition-all ease-in-out duration-300 hover:text-[purple] hover:-translate-y-1"
-            ><ToTopIcon/></button
+            ><ToTopIcon /></button
           >
         </div>
       </div>

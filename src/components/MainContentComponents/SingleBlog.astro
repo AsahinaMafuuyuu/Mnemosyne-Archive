@@ -3,7 +3,8 @@ import ViewCount from "@/assets/Icons/view-count.svg";
 import Date from "@/assets/Icons/date.svg";
 import WingPencil from "@/assets/Icons/wing.svg";
 import Time from "@/assets/Icons/time.svg";
-import DefaultCover from "@/assets/images/no-cover.png"
+import DefaultCover from "@/assets/images/no-cover.png";
+import { computedTotalWords } from "@/scripts/totalCount";
 
 // 传递过来相关的参数
 type ImageInfo = {
@@ -19,31 +20,41 @@ interface FrontMatter {
     tags: string[];
 }
 type Params = {
-    url:string,
-    frontmatter:FrontMatter
-}
-const { params } = Astro.props as {params:Params}
+    url: string;
+    frontmatter: FrontMatter;
+    totalCounts: number;
+};
+const { params } = Astro.props as { params: Params };
 
 // 检查是否有cover图，如果有则展示，没有则展示默认图
-let displayCover:ImageInfo = {
+let displayCover: ImageInfo = {
     url: DefaultCover.src,
-    alt: "默认封面"
-}
+    alt: "默认封面",
+};
 
 // 如果有封面，那就赋值url
 if (params.frontmatter.cover && params.frontmatter.cover.url) {
-    displayCover.url = params.frontmatter.cover.url
-    displayCover.alt = params.frontmatter.cover.alt
+    displayCover.url = params.frontmatter.cover.url;
+    displayCover.alt = params.frontmatter.cover.alt;
 }
 ---
 
-<article class="single-blog-card-decoration layout-basic-style flex justify-between group transition-all duration-500 ease-in-out hover:scale-101">
-    <div data-ui="blog-content-area" class="min-w-50 max-w-150 flex-1 flex flex-col justify-between">
+<article
+    class="single-blog-card-decoration layout-basic-style flex justify-between group transition-all duration-500 ease-in-out hover:scale-101"
+>
+    <div
+        data-ui="blog-content-area"
+        class="min-w-50 max-w-150 flex-1 flex flex-col justify-between"
+    >
         <a href={`/posts/${params.url}`}>
-            <h1 class="text-blog-title-light hover:text-pink-400 cursor-pointer">{params.frontmatter.title}</h1>
+            <h1
+                class="text-blog-title-light hover:text-pink-400 cursor-pointer"
+            >
+                {params.frontmatter.title}
+            </h1>
         </a>
         <div class="text-body line-clamp-3 transition-all h-fit">
-           {params.frontmatter.description}
+            {params.frontmatter.description}
         </div>
         <!-- 信息展示 -->
         <div class="text-caption flex gap-6">
@@ -55,27 +66,37 @@ if (params.frontmatter.cover && params.frontmatter.cover.url) {
             <!-- 日期 -->
             <div data-ui="view-count-display" class="flex items-center gap-1">
                 <Date class="md-icon-basic-style" />
-                <span>{params.frontmatter.pubDate.split('T')[0]}</span>
+                <span>{params.frontmatter.pubDate.split("T")[0]}</span>
             </div>
             <!-- 字数 -->
             <div data-ui="view-count-display" class="flex items-center gap-1">
                 <WingPencil class="md-icon-basic-style" />
-                <span>1.2k</span>
+                <span
+                    >{
+                        params.totalCounts / 1000 > 1
+                            ? params.totalCounts / 10000 > 1
+                                ? (params.totalCounts / 10000).toFixed(1) + "w"
+                                : (params.totalCounts / 1000).toFixed(1) + "k"
+                            : params.totalCounts
+                    }</span
+                >
             </div>
             <!-- 预计浏览时长 -->
             <div data-ui="view-count-display" class="flex items-center gap-1">
                 <Time class="md-icon-basic-style" />
-                <span>6min</span>
+                <span>{(params.totalCounts / 300).toFixed(1)} min</span>
             </div>
         </div>
     </div>
 
     <!-- 图片部分 -->
-     <div data-ui="blog-pic-area" class="w-40 h-40 rounded-xl overflow-hidden">
-        <a href={`/posts/${params.url}`} >
-            <img class="w-full h-full cursor-pointer object-cover group-hover:scale-110 group-hover:rotate-z-8 transition-transform duration-500 ease-in-out" 
-            src={displayCover.url} alt={displayCover.alt} />
+    <div data-ui="blog-pic-area" class="w-40 h-40 rounded-xl overflow-hidden">
+        <a href={`/posts/${params.url}`}>
+            <img
+                class="w-full h-full cursor-pointer object-cover group-hover:scale-110 group-hover:rotate-z-8 transition-transform duration-500 ease-in-out"
+                src={displayCover.url}
+                alt={displayCover.alt}
+            />
         </a>
-     </div>
-     
+    </div>
 </article>
