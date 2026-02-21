@@ -2,7 +2,7 @@
 Mnemosyne-Archive README
 ===================================================== -->
 
-<p align="center">
+<p align="center">0-
   <img src="src/assets/images/kanade.png" width="128" alt="Kanade" />
 </p>
 
