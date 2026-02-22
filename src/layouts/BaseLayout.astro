@@ -40,6 +40,9 @@ const params = Astro.props?.params;
     />
     <link rel="apple-touch-icon" href="/Icons/favicon-32x32.ico" />
     <meta name="viewport" content="width=device-width" />
+
+    <!-- 添加sitemaps -->
+     <link rel="sitemap" href="/sitemap-index.xml">
     <meta name="generator" content={Astro.generator} />
     <meta property="og:type" content="website" />
     <meta name="description" content="你好呀陌生人，欢迎来到我的博客！" />
@@ -139,7 +142,7 @@ const params = Astro.props?.params;
 
       // 初始化标题设置脚本
       function initTitleScript() {
-        let titleTimeoutId: number | undefined;
+        let titleTimeoutId: ReturnType<typeof setTimeout> | undefined;
         // 如果页面失去聚焦，则修改title
         document.addEventListener("visibilitychange", () => {
           if (document.visibilityState === "hidden") {

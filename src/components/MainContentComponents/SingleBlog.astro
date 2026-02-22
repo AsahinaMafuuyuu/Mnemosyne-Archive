@@ -20,7 +20,7 @@ interface FrontMatter {
     tags: string[];
 }
 type Params = {
-    url: string;
+    url: string; // url其实就是文件名，需要加上posts
     frontmatter: FrontMatter;
     totalCounts: number;
 };
@@ -40,28 +40,34 @@ if (params.frontmatter.cover && params.frontmatter.cover.url) {
 ---
 
 <article
-    class="single-blog-card-decoration layout-basic-style flex justify-between group transition-all duration-500 ease-in-out hover:scale-101"
+    class="single-blog-card-decoration layout-basic-style flex justify-between gap-4 group transition-all duration-500 ease-in-out hover:scale-101"
 >
+
+    <!-- 左侧 -->
     <div
         data-ui="blog-content-area"
         class="min-w-50 max-w-150 flex-1 flex flex-col justify-between"
     >
-        <a href={`/posts/${params.url}`}>
+        <!-- 标题 -->
+        <a data-ui="post-url" href={`/posts/${params.url}`}>
             <h1
-                class="text-blog-title-light hover:text-pink-400 cursor-pointer"
+                class="text-blog-title-light hover:text-pink-400 cursor-pointer truncate"
             >
                 {params.frontmatter.title}
             </h1>
         </a>
-        <div class="text-body line-clamp-3 transition-all h-fit">
+
+        <!-- 描述 -->
+        <div class="text-body transition-all h-fit line-clamp-3">
             {params.frontmatter.description}
         </div>
+
         <!-- 信息展示 -->
         <div class="text-caption flex gap-6">
             <!-- 浏览量 -->
-            <div data-ui="view-count-display" class="flex items-center gap-1">
+            <div class="flex items-center gap-1">
                 <ViewCount class="md-icon-basic-style" />
-                <span>1</span>
+                <span data-ui="view-count-display">1</span>
             </div>
             <!-- 日期 -->
             <div data-ui="view-count-display" class="flex items-center gap-1">
@@ -100,3 +106,31 @@ if (params.frontmatter.cover && params.frontmatter.cover.url) {
         </a>
     </div>
 </article>
+
+<!-- 每一单独的预加载的时候都要进行对应的重新fetch -->
+ <!-- TODO 需要将每一个博客的浏览量全部装填上 -->
+ <script>
+    // import { getUmamiStats } from "@/scripts/Umami_statistics"
+    // import type{ UmamiStats } from "@/scripts/Umami_statistics"
+    // // 通过data-ui='post-url'来获取到post的url
+    // const postUlrElement:HTMLAnchorElement = document.querySelector('[data-ui="post-url"]') as HTMLAnchorElement
+
+    // // 对获取到的blog进行查询
+    // const totalPreviews:UmamiStats = await getUmamiStats(new URL(postUlrElement.href).pathname)
+
+    // // 记录浏览量
+    // let totalViews:HTMLElement | undefined;
+    // function initTotalViews () {
+    //     // 获取到对应的元素
+    //     totalViews = document.querySelector('[data-ui="view-count-display"]') as HTMLElement
+    //     totalViews.textContent = totalPreviews.pageviews.toString()
+    // }
+
+    // // 每次切换页面，就需要进行组装
+    // document.addEventListener('astro:after-swap', () => {
+    //     initTotalViews()
+    // })
+
+    // // 脚本注入就得执行
+    // initTotalViews ()
+ </script>

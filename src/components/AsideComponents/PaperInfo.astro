@@ -1,18 +1,21 @@
 ---
-import { computedTotalWords } from "@/scripts/totalCount"
-let paperCount = 0
-let totalCount = 0
-let requestCount = 0
-const nowaDays = Date.now()
-const originDays = Date.parse('2026-01-05')
-const maintainDays = Math.floor((nowaDays - originDays) / 1000 / 3600 / 24)
+import { computedTotalWords } from "@/scripts/totalCount";
+let paperCount = 0;
+let totalCount = 0;
+let requestCount = 0;
+const nowaDays = Date.now();
+const originDays = Date.parse("2026-01-05");
+const maintainDays = Math.floor((nowaDays - originDays) / 1000 / 3600 / 24);
 
-const allPosts = Object.values(import.meta.glob('@/pages/posts/*.md', {eager: true}))
-allPosts.forEach((item:any, index) => {
+const allPosts = Object.values(
+    import.meta.glob("@/pages/posts/*.md", { eager: true }),
+);
+allPosts.forEach((item: any, index) => {
     paperCount += 1;
     totalCount += computedTotalWords(item.rawContent());
-})
+});
 ---
+
 <div class="grid grid-cols-2 grid-rows-2 gap-3 items-center">
     <div>
         <div class="text-caption text-center">文章数</div>
@@ -20,17 +23,47 @@ allPosts.forEach((item:any, index) => {
     </div>
     <div>
         <div class="text-caption text-center">总字数</div>
-        <div class="text-body text-center">{(totalCount / 10000).toFixed(1)}w</div>
+        <div class="text-body text-center">
+            {(totalCount / 10000).toFixed(1)}w
+        </div>
     </div>
-    
+
     <div>
         <div class="text-caption text-center">访客量</div>
-        <div class="text-body text-center">{requestCount}</div>
+        <div data-ui="total-visitors" class="text-body text-center">
+            {requestCount}
+        </div>
     </div>
-    
-    <div >
+
+    <div>
         <div class="text-caption text-center">维护时长</div>
         <div class="text-body text-center">{maintainDays}天</div>
     </div>
-
 </div>
+
+<!-- 要写在scripts当中，如果写在"--- ---"中的话，那么只会在构建期起作用 -->
+<script>
+    import { getUmamiStats } from "@/scripts/Umami_statistics";
+    import type { UmamiStats } from "@/scripts/Umami_statistics";
+
+    const msgJson: UmamiStats = await getUmamiStats();
+
+    // 只需要在每次页面重新新时获取一次访客量就好，没必要每次都获取
+    function updateRequestCount() {
+        const totalViewsDisplay: HTMLElement = document.querySelector(
+            '[data-ui="total-visitors"]',
+        ) as HTMLElement;
+        totalViewsDisplay.textContent = msgJson.visitors.toString();
+    }
+    const totalViewsDisplay: HTMLElement = document.querySelector(
+        '[data-ui="total-visitors"]',
+    ) as HTMLElement;
+
+    // 进页面就进行一次修改
+    totalViewsDisplay.textContent = msgJson.visitors.toString();
+
+    // 每次切换路由都需要进行修改
+    document.addEventListener("astro:after-swap", (e) => {
+        updateRequestCount();
+    });
+</script>

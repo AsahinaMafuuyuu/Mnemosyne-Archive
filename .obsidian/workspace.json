@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "src/pages/posts/UniApp.md",
+                "file": "src/pages/posts/AboutUmamiData.md",
                 "mode": "source",
                 "source": false,
                 "backlinks": true,
@@ -28,22 +28,59 @@
                 }
               },
               "icon": "lucide-file",
-              "title": "UniApp"
+              "title": "AboutUmamiData"
             }
           },
           {
-            "id": "dc314d41db877294",
+            "id": "9a099f585b9f0c1d",
             "type": "leaf",
             "state": {
-              "type": "image",
+              "type": "markdown",
               "state": {
-                "file": "public/images/posts/Pasted image 20260214161804.png"
+                "file": "src/pages/posts/TailwindAddCustomClass.md",
+                "mode": "source",
+                "source": false,
+                "backlinks": true,
+                "backlinkOpts": {
+                  "collapseAll": false,
+                  "extraContext": false,
+                  "sortOrder": "alphabetical",
+                  "showSearch": false,
+                  "searchQuery": "",
+                  "backlinkCollapsed": false,
+                  "unlinkedCollapsed": true
+                }
               },
-              "icon": "lucide-image",
-              "title": "Pasted image 20260214161804"
+              "icon": "lucide-file",
+              "title": "TailwindAddCustomClass"
+            }
+          },
+          {
+            "id": "e5fc8bc753d38f39",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "src/pages/posts/AstroSitemap.md",
+                "mode": "source",
+                "source": false,
+                "backlinks": true,
+                "backlinkOpts": {
+                  "collapseAll": false,
+                  "extraContext": false,
+                  "sortOrder": "alphabetical",
+                  "showSearch": false,
+                  "searchQuery": "",
+                  "backlinkCollapsed": false,
+                  "unlinkedCollapsed": true
+                }
+              },
+              "icon": "lucide-file",
+              "title": "AstroSitemap"
             }
           }
-        ]
+        ],
+        "currentTab": 2
       }
     ],
     "direction": "vertical"
@@ -205,49 +242,54 @@
       "bases:新建数据库": false
     }
   },
-  "active": "57ae9dafbe6b572e",
+  "active": "e5fc8bc753d38f39",
   "lastOpenFiles": [
-    "src/pages/404.astro",
-    "src/Icons/mihoyo.svg",
-    "src/Icons/mihoyo (1).svg",
-    "src/Icons/lol.svg",
-    "src/Icons/league_of_legends.svg",
-    "src/Icons/twitter.svg",
-    "src/images/twitter.svg",
-    "src/images/emma-transparent.png",
-    "src/components/WaitToDeveloping/WaitToDeveloping.astro",
-    "src/pages/developing.astro",
-    "src/components/WaitToDeveloping/Developing.astro",
-    "src/components/WaitToDeveloping",
-    "src/components/FooterComponents/Footer.astro",
-    "src/images/emma.png",
-    "src/components/HeaderComponents/Footer.astro",
-    "src/Icons/gmail.svg",
-    "src/components/AudioPlayerComponents/AudioPlayerAside.astro",
-    "src/components/AudioPlayerComponents",
-    "src/layouts/Scripts/MarkdownPostLayout",
-    "src/layouts/Scripts/BaseLayout",
-    "public/images/posts/Pasted image 20260214161804.png",
-    "images/posts/20260211135612.png.md",
-    "src/pages/posts/ComputerInternetBasicKnowledge.md",
+    "src/pages/robots.txt.ts",
+    "src/assets/images/posts/Pasted image 20260222102936.png",
+    "src/assets/images/posts/AstroSitemap.png",
+    "node_modules/@types/node/util/types.d.ts",
+    "node_modules/@types/node/util",
+    "node_modules/@types/node/inspector/promises.d.ts",
+    "node_modules/@types/node/inspector",
+    "node_modules/@types/node/fs/promises.d.ts",
+    "node_modules/@types/node/fs",
+    "node_modules/@types/node/dns/promises.d.ts",
+    "node_modules/@types/node/dns",
+    "node_modules/@types/node/compatibility/iterators.d.ts",
+    "node_modules/@types/node/compatibility",
+    "node_modules/sitemap/README.md",
+    "node_modules/sitemap/CODE_OF_CONDUCT.md",
+    "node_modules/sitemap/CHANGELOG.md",
+    "node_modules/sitemap/api.md",
+    "node_modules/@astrojs/sitemap/README.md",
+    "node_modules/undici-types/README.md",
+    "node_modules/@types/node/README.md",
+    "src/pages/posts/TailwindAddCustomClass.md",
+    "src/pages/posts/AstroSitemap.md",
+    "src/pages/posts/TalkAboutSPAAndNoFrameWork.md",
+    "src/assets/images/posts/TalkAboutSPAAndNoFrameWork-13.png",
+    "src/assets/images/posts/TalkAboutSPAAndNoFrameWork-12.png",
+    "src/assets/images/posts/TalkAboutSPAAndNoFrameWork-11.png",
+    "src/assets/images/posts/TalkAboutSPAAndNoFrameWork-10.png",
+    "src/assets/images/posts/TalkAboutSPAAndNoFrameWork-9.png",
+    "src/assets/images/posts/TalkAboutSPAAndNoFrameWork-8.png",
+    "src/assets/images/posts/TalkAboutSPAAndNoFrameWork-7.png",
+    "src/assets/images/posts/TalkAboutSPAAndNoFrameWork-6.png",
+    "src/pages/posts/AboutUmamiData.md",
+    "src/pages/posts/UniApp.md",
+    "src/pages/posts/test.md",
+    "src/pages/posts/fontdesignproject.md",
+    "src/pages/posts/DynamicRouterInAstro.md",
+    "src/template/index.md.md",
+    "src/pages/posts/CustomYourScrollbar.md",
+    "src/pages/posts/GameRegret.md",
     "src/pages/posts/AstroTransitionAnimation.md",
+    "src/pages/posts/AstroMdInfo.md",
     "src/pages/posts/AstroLayout.md",
     "src/pages/posts/astro-frontmatter-vs-script.md",
     "src/pages/posts/Alabel.md",
-    "src/pages/posts/PicGo Alist.md",
-    "src/pages/posts/UniApp.md",
-    "public/images/posts/OSI.md",
-    "src/pages/posts/CustomYourScrollbar.md",
-    "src/pages/posts/DynamicRouterInAstro.md",
-    "src/pages/posts/GameRegret.md",
-    "src/pages/posts/fontdesignproject.md",
-    "src/pages/posts/TailwindAddCustomClass.md",
-    "src/pages/posts/AstroMdInfo.md",
-    "public/images/posts/FristContact.md",
-    "src/pages/posts/WebGl_Fundamentation.md",
-    "src/template/index.md.md",
-    "2026-01-25.md",
-    "未命名.canvas",
-    "node_modules/prismjs/_headers.md"
+    "images/posts/20260211135612.png.md",
+    "src/pages/posts/ComputerInternetBasicKnowledge.md",
+    "未命名.canvas"
   ]
 }

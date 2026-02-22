@@ -1,11 +1,12 @@
 {
   "defaultViewMode": "source",
   "newFileLocation": "folder",
-  "newLinkFormat": "shortest",
+  "newLinkFormat": "relative",
   "alwaysUpdateLinks": true,
   "useMarkdownLinks": true,
-  "attachmentFolderPath": "public/images/posts",
+  "attachmentFolderPath": "src/assets/images/posts",
   "newFileFolderPath": "src/pages/posts",
   "showUnsupportedFiles": true,
-  "spellcheck": false
+  "spellcheck": false,
+  "promptDelete": false
 }

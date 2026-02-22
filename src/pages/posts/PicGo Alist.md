@@ -1,11 +1,11 @@
 ---
 layout: ../../layouts/MarkdownPostLayout.astro
-title: ""
+title: 使用PicGo或者AList上传图片
 pubDate: 2026-02-16T17:20:00
 author: AsahinaMafuyu
 description: 这篇博客主要用来介绍PicGo和AList的用处，笔者曾经很容易弄混淆这两种不同的东西
 cover:
-  src:
+  url:
   alt:
 tags: []
 ---

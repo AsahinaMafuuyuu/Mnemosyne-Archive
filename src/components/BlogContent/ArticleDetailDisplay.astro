@@ -5,8 +5,9 @@ import Date from "@/assets/Icons/date.svg";
 import ViewCount from "@/assets/Icons/view-count.svg";
 import WingPencil from "@/assets/Icons/wing.svg";
 import Time from "@/assets/Icons/time.svg";
+import DefaultCover from "@/assets/images/no-cover.png"
 type ImageInfo = {
-    url: string | null ;
+    url: string | null | undefined;
     alt: string | null;
 };
 interface FrontMatter {
@@ -22,6 +23,18 @@ const { params, content, totalCounts } = Astro.props as {
     content: string;
     totalCounts: number;
 };
+
+// 检查是否有cover图，如果有则展示，没有则展示默认图
+let displayCover: ImageInfo = {
+    url: DefaultCover.src,
+    alt: "默认封面",
+};
+
+// 如果有封面，那就赋值url
+if (params.cover && params.cover.url) {
+    displayCover.url = params.cover.url;
+    displayCover.alt = params.cover.alt;
+}
 ---
 
 <div class="layout-basic-style py-6 px-6">
@@ -50,18 +63,31 @@ const { params, content, totalCounts } = Astro.props as {
         <!-- 字数 -->
         <div data-ui="view-count-display" class="flex items-center gap-1">
             <WingPencil class="md-icon-basic-style" />
-            <span class="text-blog-info">{
-                        totalCounts / 1000 > 1
-                            ? totalCounts / 10000 > 1
-                                ? (totalCounts / 10000).toFixed(1) + "w"
-                                : (totalCounts / 1000).toFixed(1) + "k"
-                            : totalCounts
-                    }</span>
+            <span class="text-blog-info"
+                >{
+                    totalCounts / 1000 > 1
+                        ? totalCounts / 10000 > 1
+                            ? (totalCounts / 10000).toFixed(1) + "w"
+                            : (totalCounts / 1000).toFixed(1) + "k"
+                        : totalCounts
+                }</span
+            >
         </div>
         <!-- 预计浏览时长 -->
         <div data-ui="view-count-display" class="flex items-center gap-1">
             <Time class="md-icon-basic-style" />
             <span class="text-blog-info">6min</span>
+        </div>
+    </div>
+
+    <!-- 封面展示 -->
+    <div class="w-full flex items-center justify-center">
+        <div class="w-fit max-w-[70%] aspect-square overflow-hidden rounded-xl">
+            <img
+                class="hover:scale-105 transition-all ease-in-out duration-500"
+                src={displayCover.url}
+                alt={displayCover.alt}
+            />
         </div>
     </div>
 

@@ -47,7 +47,9 @@ const scrollPageParams:ScrollPageParams = {
 }
 ---
 
-<!-- 显示当前页面。也可以使用 `Astro.params.page`！--><!-- 得到page的数据，并进行渲染 -->
+<!-- 显示当前页面。也可以使用 `Astro.params.page`！-->
+ <!-- 得到page的数据，并进行渲染 -->
 <BaseLayout>
   <Main slot="mainContent" params={page.data}  pageScrollParams={scrollPageParams}/>
 </BaseLayout>
+

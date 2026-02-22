@@ -115,7 +115,7 @@
         box-shadow: 0 5px 16px rgba(0, 0, 0, 0.2),
      0 12px 40px rgba(0, 0, 0, 0.08);
     }
-    @apply py-3 px-5  rounded-lg shadow-[rgba(0,0,0,.15)];
+    @apply py-3 px-5 rounded-lg shadow-[rgba(0,0,0,.15)];
 }
 
 /* 设置常用图标的具体样式 */

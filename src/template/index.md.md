@@ -5,7 +5,7 @@ pubDate: 2026-02-10T11:19:00
 author: AsahinaMafuyu
 description: ""
 cover:
-  src:
+  url:
   alt:
 tags: []
 ---
