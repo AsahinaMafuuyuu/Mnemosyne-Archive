@@ -61,7 +61,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "src/pages/posts/AstroSitemap.md",
+                "file": "src/pages/posts/PicGo Alist.md",
                 "mode": "source",
                 "source": false,
                 "backlinks": true,
@@ -76,7 +76,43 @@
                 }
               },
               "icon": "lucide-file",
-              "title": "AstroSitemap"
+              "title": "PicGo Alist"
+            }
+          },
+          {
+            "id": "c1f59e7acf0b75e0",
+            "type": "leaf",
+            "state": {
+              "type": "image",
+              "state": {
+                "file": "src/assets/images/posts/PicGo Alist-8.png"
+              },
+              "icon": "lucide-image",
+              "title": "PicGo Alist-8"
+            }
+          },
+          {
+            "id": "888adea6d3d2351b",
+            "type": "leaf",
+            "state": {
+              "type": "image",
+              "state": {
+                "file": "src/assets/images/posts/PicGo Alist-7.png"
+              },
+              "icon": "lucide-image",
+              "title": "PicGo Alist-7"
+            }
+          },
+          {
+            "id": "2b2a2da90eeb7f5a",
+            "type": "leaf",
+            "state": {
+              "type": "image",
+              "state": {
+                "file": "src/assets/images/posts/PicGo Alist-4.png"
+              },
+              "icon": "lucide-image",
+              "title": "PicGo Alist-4"
             }
           }
         ],
@@ -244,19 +280,29 @@
   },
   "active": "e5fc8bc753d38f39",
   "lastOpenFiles": [
+    "src/assets/images/posts/PicGo Alist-8.png",
+    "src/assets/images/posts/PicGo Alist-8.png.~tmp",
+    "src/pages/posts/PicGo Alist.md",
+    "src/assets/images/posts/PicGo Alist-7.png",
+    "src/assets/images/posts/PicGo Alist-7.png.~tmp",
+    "src/assets/images/posts/PicGo Alist-6.png",
+    "src/assets/images/posts/PicGo Alist-5.png",
+    "src/assets/images/posts/PicGo Alist-4.png",
+    "src/assets/images/posts/PicGo Alist-4.png.~tmp",
+    "src/assets/images/posts/PicGo Alist-3.png",
+    "src/assets/images/posts/PicGo Alist-2.png",
+    "src/assets/images/posts/PicGo Alist-1.png",
+    "src/assets/images/posts/PicGo Alist.png",
+    "src/pages/posts/AstroSitemap.md",
+    "src/pages/posts/未命名.md",
     "src/pages/robots.txt.ts",
     "src/assets/images/posts/Pasted image 20260222102936.png",
-    "src/assets/images/posts/AstroSitemap.png",
     "node_modules/@types/node/util/types.d.ts",
     "node_modules/@types/node/util",
     "node_modules/@types/node/inspector/promises.d.ts",
     "node_modules/@types/node/inspector",
     "node_modules/@types/node/fs/promises.d.ts",
     "node_modules/@types/node/fs",
-    "node_modules/@types/node/dns/promises.d.ts",
-    "node_modules/@types/node/dns",
-    "node_modules/@types/node/compatibility/iterators.d.ts",
-    "node_modules/@types/node/compatibility",
     "node_modules/sitemap/README.md",
     "node_modules/sitemap/CODE_OF_CONDUCT.md",
     "node_modules/sitemap/CHANGELOG.md",
@@ -265,16 +311,7 @@
     "node_modules/undici-types/README.md",
     "node_modules/@types/node/README.md",
     "src/pages/posts/TailwindAddCustomClass.md",
-    "src/pages/posts/AstroSitemap.md",
     "src/pages/posts/TalkAboutSPAAndNoFrameWork.md",
-    "src/assets/images/posts/TalkAboutSPAAndNoFrameWork-13.png",
-    "src/assets/images/posts/TalkAboutSPAAndNoFrameWork-12.png",
-    "src/assets/images/posts/TalkAboutSPAAndNoFrameWork-11.png",
-    "src/assets/images/posts/TalkAboutSPAAndNoFrameWork-10.png",
-    "src/assets/images/posts/TalkAboutSPAAndNoFrameWork-9.png",
-    "src/assets/images/posts/TalkAboutSPAAndNoFrameWork-8.png",
-    "src/assets/images/posts/TalkAboutSPAAndNoFrameWork-7.png",
-    "src/assets/images/posts/TalkAboutSPAAndNoFrameWork-6.png",
     "src/pages/posts/AboutUmamiData.md",
     "src/pages/posts/UniApp.md",
     "src/pages/posts/test.md",
@@ -288,8 +325,6 @@
     "src/pages/posts/AstroLayout.md",
     "src/pages/posts/astro-frontmatter-vs-script.md",
     "src/pages/posts/Alabel.md",
-    "images/posts/20260211135612.png.md",
-    "src/pages/posts/ComputerInternetBasicKnowledge.md",
     "未命名.canvas"
   ]
 }
