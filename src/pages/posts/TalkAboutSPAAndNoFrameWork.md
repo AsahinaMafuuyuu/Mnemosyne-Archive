@@ -127,7 +127,7 @@ CSSOM很像DOM，但针对的是CSS而不是HTML：
 
 `<script src="***.js" charset="utf-8" defer></script>`
 
-`defer`脚本的解析通常在结束HTML解析之后再进行异步执行，但是`defer`脚本的下载是**边解析边进行下载**，而且`defer`的解析顺序和`defer`脚本在文档中的顺序（说白了，由于是异步的，放入到微任务的顺序也不一样），过程如下图;
+`defer`脚本的解析通常在结束HTML解析之后再进行异步执行，但是`defer`脚本的下载是**边解析边进行下载**，而且`defer`的解析顺序依赖于`defer`脚本在文档中的顺序（说白了，由于是异步的，放入到微任务的顺序也不一样），过程如下图;
 
 ![](../../assets/images/posts/TalkAboutSPAAndNoFrameWork-10.png)
 
