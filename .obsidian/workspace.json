@@ -364,6 +364,10 @@
   },
   "active": "08f9eb726bfa450c",
   "lastOpenFiles": [
+    "src/assets/images/posts/RestartToLearnPromise-3.png",
+    "src/assets/images/posts/RestartToLearnPromise-2.png",
+    "src/assets/images/posts/RestartToLearnPromise-1.png",
+    "src/assets/images/posts/RestartToLearnPromise.png",
     "src/pages/posts/LearnAstro-ProjectStrcture.md",
     "src/pages/posts/RestartToLearnPromise.md",
     "src/pages/posts/LearnAstro-island.md",
@@ -392,7 +396,6 @@
     "src/assets/images/posts/LearnAstro-1-3.png",
     "src/assets/images/posts/LearnAstro-1-2.png",
     "src/assets/images/posts/LearnAstro-1-1.png",
-    "src/assets/images/posts/LearnAstro-1.png",
     "src/components/Vue/test.vue",
     "src/components/Vue/Test.vue",
     "node_modules/execa/index.d.ts",
@@ -407,9 +410,6 @@
     "node_modules/fs-extra/README.md",
     "node_modules/@vue/runtime-dom/README.md",
     "node_modules/signal-exit/README.md",
-    "node_modules/superjson/README.md",
-    "node_modules/vite-plugin-vue-devtools/client/logo.svg",
-    "node_modules/vite-plugin-inspect/dist/client/favicon.svg",
     "未命名.canvas"
   ]
 }
