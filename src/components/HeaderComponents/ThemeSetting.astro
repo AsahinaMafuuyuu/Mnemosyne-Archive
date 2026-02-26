@@ -44,16 +44,26 @@ import Rss from "@/assets/Icons/rss.svg";
                 </div>
             </div>
 
-            <button id="switchBackground" class="w-full flex link-container items-start py-2">
+            <button
+                id="switchBackground"
+                class="w-full flex link-container items-start py-2"
+            >
                 <span class="truncate">背景图片切换</span>
             </button>
 
-            <button data-ui="downloadBg" class="w-full flex link-container items-start py-2">
+            <button
+                data-ui="downloadBg"
+                class="w-full flex link-container items-start py-2"
+            >
                 <span class="truncate">下载背景图</span>
             </button>
 
-            <div class="flex items-center justify-between">禁用背景图
-                <button data-activated="false" data-ui="disabled-btn" class="dynamic-btn"></button>
+            <div class="flex items-center justify-between">
+                禁用背景图
+                <button
+                    data-activated="false"
+                    data-ui="disabled-btn"
+                    class="dynamic-btn"></button>
             </div>
 
             <div
@@ -87,10 +97,14 @@ import Rss from "@/assets/Icons/rss.svg";
 
 <script>
     import { fetchBackgroundImage } from "@/function/index";
-    // 首先需要将背景图存放起来
-    let bgUrl:null | string = null;
-    let disabledBtnIsActived = false;
-
+    // 导入背景图片url和是否禁用背景图片
+    import {
+        bgState,
+        setBgUrl,
+        initBgStateFromStorage,
+        setDisabledBackground,
+        setBgBlur,
+    } from "@/stores/theme";
     function init() {
         const SettingBtn: HTMLElement = document.querySelector(
             '[data-ui="setting-btn"]',
@@ -120,6 +134,16 @@ import Rss from "@/assets/Icons/rss.svg";
             ".blur-setting-scroll-bar",
         ) as HTMLInputElement;
 
+        // 获取到下载背景图按钮
+        const downloadBgBtn: HTMLElement = controlPanel.querySelector(
+            '[data-ui="downloadBg"]',
+        ) as HTMLElement;
+
+        // 获取到禁用背景按钮
+        const disabledBgBtn: HTMLElement = controlPanel.querySelector(
+            '[data-ui="disabled-btn"]',
+        ) as HTMLElement;
+
         // 设置按钮点击事件，切换控制面板显示状态
         SettingBtn.addEventListener("click", () => {
             if (controlPanel.dataset.hidden === "false") {
@@ -138,69 +162,76 @@ import Rss from "@/assets/Icons/rss.svg";
                 controlPanel.dataset.hidden = "true";
             }
         });
-        
-
-        // 获取到下载背景图按钮
-        const downloadBgBtn: HTMLElement = controlPanel.querySelector(
-            '[data-ui="downloadBg"]',
-        ) as HTMLElement;
 
         // 下载背景图
         downloadBgBtn.addEventListener("click", async () => {
-            const url = getComputedStyle(document.documentElement).getPropertyValue(
-                "--background-src",
-            ).slice(4, -1).replace(/"/g, "");
+            const url = getComputedStyle(document.documentElement)
+                .getPropertyValue("--background-src")
+                .slice(4, -1)
+                .replace(/"/g, "");
             const link = document.createElement("a");
             link.href = url;
             link.download = new Date().getTime().toString(); // 设置下载的文件名，可以根据需要修改
             document.body.appendChild(link);
             link.click();
-            document.body.removeChild(link);    
+            document.body.removeChild(link);
         });
 
-        // 获取到禁用背景按钮
-         const diasbledBgBtn: HTMLElement = controlPanel.querySelector(
-            '[data-ui="disabled-btn"]',
-        ) as HTMLElement;
-        
-        // 从本地读取相关状态
-        if(localStorage.getItem('disabled-background') === 'true') {
-            // 读取是禁用状态的话，则需要激活禁用状态
-            diasbledBgBtn.dataset.activated = 'true'
+        // 通过bgState.disabledBtnIsActived来修改btn的样式
+        function initDisabledBtnStyle() {
+            if (bgState.disabledBtnIsActived) {
+                disabledBgBtn.dataset.activated = "true";
+            } else {
+                disabledBgBtn.dataset.activated = "false";
+            }
         }
-        
+
         // 切换背景
         switchBackgroundBtn.addEventListener("click", async () => {
             // --background-src: url(../assets/bg-2.jpg);
             // 返回的content-type是image/jpeg或者image/png
-          const url = await fetchBackgroundImage()
-          document.documentElement.style.setProperty(
-            "--background-src",
-            `url(${url})`,
-          );
+            const url = await fetchBackgroundImage();
+            document.documentElement.style.setProperty(
+                "--background-src",
+                `url(${url})`,
+            );
         });
 
-        // 禁用背景
-        diasbledBgBtn.addEventListener('click', async () => {
-            if(!disabledBtnIsActived) {
+        // 定义函数
+        async function settingBg() {
+            if (!bgState.disabledBtnIsActived) {
                 // 开始禁用
-                bgUrl = document.documentElement.style.getPropertyValue('--background-src')
-                document.documentElement.style.setProperty('--background-src', 'none')
-                diasbledBgBtn.dataset.activated = 'true'
-                disabledBtnIsActived = true
-                localStorage.setItem('disabled-background', 'true')
-            }else {
+                setBgUrl(
+                    document.documentElement.style.getPropertyValue(
+                        "--background-src",
+                    ),
+                );
+
+                document.documentElement.style.setProperty(
+                    "--background-src",
+                    "none",
+                );
+                disabledBgBtn.dataset.activated = "true";
+                setDisabledBackground(true);
+            } else {
                 // 需要重新fetch
-                if (!bgUrl) {
-                    document.documentElement.style.setProperty('--background-src', await fetchBackgroundImage())
+                if (!bgState.bgUrl) {
+                    document.documentElement.style.setProperty(
+                        "--background-src",
+                        await fetchBackgroundImage(),
+                    );
                 } else {
-                    document.documentElement.style.setProperty('--background-src', bgUrl)
+                    document.documentElement.style.setProperty(
+                        "--background-src",
+                        bgState.bgUrl,
+                    );
                 }
-                diasbledBgBtn.dataset.activated = 'false'
-                disabledBtnIsActived = false
-                localStorage.setItem('disabled-background', 'false')
+                disabledBgBtn.dataset.activated = "false";
+                setDisabledBackground(false);
             }
-        })
+        }
+        // 禁用背景
+        disabledBgBtn.addEventListener("click", settingBg);
 
         // 添加模糊滚动条滚动设计
         scrollBar.addEventListener("input", () => {
@@ -210,8 +241,19 @@ import Rss from "@/assets/Icons/rss.svg";
                 "--blur-val",
                 `${scrollBar.value}px`,
             );
+
+            // 设置模糊度
+           setBgBlur(Number(scrollBar.value))
         });
+
+        // 初始化的时候需要先读取是否禁用背景
+        settingBg();
     }
 
+    // 每次after-swap以后重新挂载内容
+    document.addEventListener("astro:after-swap", () => {
+        // 初始化
+        init();
+    });
     document.addEventListener("astro:page-load", init);
 </script>

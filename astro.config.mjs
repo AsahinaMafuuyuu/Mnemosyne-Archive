@@ -9,10 +9,14 @@ import sitemap from "@astrojs/sitemap";
 
 // https://astro.build/config
 export default defineConfig({
+   
   site: "https://asahinamafuyu.top/",
   integrations: [preact(), sitemap()],
 
   vite: {
     plugins: [tailwindcss()]
+  },
+  devToolbar: {
+    enabled: false
   }
 });

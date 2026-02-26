@@ -198,9 +198,57 @@
               "icon": "lucide-file",
               "title": "RestartToLearnPromise"
             }
+          },
+          {
+            "id": "07a723f9e35f94b8",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "src/pages/posts/socketIO.md",
+                "mode": "source",
+                "source": false,
+                "backlinks": true,
+                "backlinkOpts": {
+                  "collapseAll": false,
+                  "extraContext": false,
+                  "sortOrder": "alphabetical",
+                  "showSearch": false,
+                  "searchQuery": "",
+                  "backlinkCollapsed": false,
+                  "unlinkedCollapsed": true
+                }
+              },
+              "icon": "lucide-file",
+              "title": "socketIO"
+            }
+          },
+          {
+            "id": "3a55bbd6036b45ad",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "src/pages/posts/LearnAstro-Configuration.md",
+                "mode": "source",
+                "source": false,
+                "backlinks": true,
+                "backlinkOpts": {
+                  "collapseAll": false,
+                  "extraContext": false,
+                  "sortOrder": "alphabetical",
+                  "showSearch": false,
+                  "searchQuery": "",
+                  "backlinkCollapsed": false,
+                  "unlinkedCollapsed": true
+                }
+              },
+              "icon": "lucide-file",
+              "title": "LearnAstro-Configuration"
+            }
           }
         ],
-        "currentTab": 7
+        "currentTab": 9
       }
     ],
     "direction": "vertical"
@@ -362,15 +410,17 @@
       "bases:新建数据库": false
     }
   },
-  "active": "08f9eb726bfa450c",
+  "active": "3a55bbd6036b45ad",
   "lastOpenFiles": [
+    "src/pages/posts/LearnAstro-island.md",
+    "src/pages/posts/nodejs-crawler.md",
+    "src/pages/posts/socketIO.md",
+    "src/pages/posts/RestartToLearnPromise.md",
     "src/assets/images/posts/RestartToLearnPromise-3.png",
     "src/assets/images/posts/RestartToLearnPromise-2.png",
     "src/assets/images/posts/RestartToLearnPromise-1.png",
     "src/assets/images/posts/RestartToLearnPromise.png",
     "src/pages/posts/LearnAstro-ProjectStrcture.md",
-    "src/pages/posts/RestartToLearnPromise.md",
-    "src/pages/posts/LearnAstro-island.md",
     "src/pages/posts/LearnAstro-Configuration.md",
     "posts/AstroSitemap.md",
     "posts",
@@ -395,7 +445,6 @@
     "src/pages/posts/AstroMdInfo.md",
     "src/assets/images/posts/LearnAstro-1-3.png",
     "src/assets/images/posts/LearnAstro-1-2.png",
-    "src/assets/images/posts/LearnAstro-1-1.png",
     "src/components/Vue/test.vue",
     "src/components/Vue/Test.vue",
     "node_modules/execa/index.d.ts",
@@ -409,7 +458,6 @@
     "node_modules/@vue/compiler-sfc/README.md",
     "node_modules/fs-extra/README.md",
     "node_modules/@vue/runtime-dom/README.md",
-    "node_modules/signal-exit/README.md",
     "未命名.canvas"
   ]
 }

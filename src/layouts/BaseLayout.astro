@@ -26,8 +26,11 @@ const params = Astro.props?.params;
     </script>
 
     <!-- 引入umami -->
-    <script defer src="https://cloud.umami.is/script.js" data-website-id="87c95ac3-3d77-4b6b-9f73-1cc473f30bb5"></script>
-    
+    <script
+      defer
+      src="https://cloud.umami.is/script.js"
+      data-website-id="87c95ac3-3d77-4b6b-9f73-1cc473f30bb5"></script>
+
     <!-- 下面就是正常构建 -->
     <meta charset="utf-8" />
     <link rel="icon" href="/Icons/favicon.ico" sizes="any" />
@@ -42,7 +45,7 @@ const params = Astro.props?.params;
     <meta name="viewport" content="width=device-width" />
 
     <!-- 添加sitemaps -->
-     <link rel="sitemap" href="/sitemap-index.xml">
+    <link rel="sitemap" href="/sitemap-index.xml" />
     <meta name="generator" content={Astro.generator} />
     <meta property="og:type" content="website" />
     <meta name="description" content="你好呀陌生人，欢迎来到我的博客！" />
@@ -118,6 +121,7 @@ const params = Astro.props?.params;
 
     <script>
       import { fetchBackgroundImage } from "@/function";
+      import { initBgStateFromStorage } from "@/stores/theme";
 
       //  记录url
       let bgUrl: string;
@@ -206,8 +210,11 @@ const params = Astro.props?.params;
       // 如果刷新页面，直接执行 init 函数
       document.addEventListener("DOMContentLoaded", () => {
         init();
+        initBgStateFromStorage();
         initBackground();
       });
+
+      // 路由切换也得读取背景图片
     </script>
   </body>
 </html>
