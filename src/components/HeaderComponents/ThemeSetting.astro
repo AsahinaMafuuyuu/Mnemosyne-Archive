@@ -101,7 +101,6 @@ import Rss from "@/assets/Icons/rss.svg";
     import {
         bgState,
         setBgUrl,
-        initBgStateFromStorage,
         setDisabledBackground,
         setBgBlur,
     } from "@/stores/theme";
@@ -179,6 +178,7 @@ import Rss from "@/assets/Icons/rss.svg";
 
         // 通过bgState.disabledBtnIsActived来修改btn的样式
         function initDisabledBtnStyle() {
+            console.log('在themesetting中查看bgState:', bgState)
             if (bgState.disabledBtnIsActived) {
                 disabledBgBtn.dataset.activated = "true";
             } else {
@@ -187,6 +187,7 @@ import Rss from "@/assets/Icons/rss.svg";
         }
 
         // 切换背景
+        // 需要同时切换掉bgUrl
         switchBackgroundBtn.addEventListener("click", async () => {
             // --background-src: url(../assets/bg-2.jpg);
             // 返回的content-type是image/jpeg或者image/png
@@ -195,9 +196,11 @@ import Rss from "@/assets/Icons/rss.svg";
                 "--background-src",
                 `url(${url})`,
             );
+            setBgUrl(url)
         });
 
         // 定义函数
+        // 该函数主要是用来对禁用背景图按钮事件发生的回调函数
         async function settingBg() {
             if (!bgState.disabledBtnIsActived) {
                 // 开始禁用
@@ -214,12 +217,15 @@ import Rss from "@/assets/Icons/rss.svg";
                 disabledBgBtn.dataset.activated = "true";
                 setDisabledBackground(true);
             } else {
+                // 如果用户一开始进入网站就是禁用图片的话，则默认不获取url
                 // 需要重新fetch
                 if (!bgState.bgUrl) {
+                    const bgurl = await fetchBackgroundImage()
                     document.documentElement.style.setProperty(
                         "--background-src",
-                        await fetchBackgroundImage(),
+                        `url(${bgurl})`,
                     );
+                    setBgUrl(bgurl)
                 } else {
                     document.documentElement.style.setProperty(
                         "--background-src",
@@ -247,7 +253,8 @@ import Rss from "@/assets/Icons/rss.svg";
         });
 
         // 初始化的时候需要先读取是否禁用背景
-        settingBg();
+        // 通过禁用背景来判断button的样式
+        initDisabledBtnStyle()
     }
 
     // 每次after-swap以后重新挂载内容
@@ -255,5 +262,10 @@ import Rss from "@/assets/Icons/rss.svg";
         // 初始化
         init();
     });
-    document.addEventListener("astro:page-load", init);
+    
+    // 重新挂载也要init
+    document.addEventListener("DOMContentLoaded", () => {
+        // 初始化
+        init();
+    });
 </script>

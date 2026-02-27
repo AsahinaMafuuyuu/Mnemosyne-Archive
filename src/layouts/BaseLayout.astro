@@ -58,6 +58,13 @@ const params = Astro.props?.params;
       {params?.title ? params.title + " --HexCss's blog" : "HexCss's blog"}
     </title>
     <ClientRouter />
+
+    <!-- DOM还未加载的时候就需要读取的一些元素信息 -->
+    <script>
+      import { initBgStateFromStorage } from "@/stores/theme";
+      initBgStateFromStorage()
+
+    </script>
   </head>
   <body transition:animate="none">
     <!-- 页面整体布局 -->
@@ -121,7 +128,7 @@ const params = Astro.props?.params;
 
     <script>
       import { fetchBackgroundImage } from "@/function";
-      import { initBgStateFromStorage } from "@/stores/theme";
+      import { bgState, setBgUrl } from "@/stores/theme";
 
       //  记录url
       let bgUrl: string;
@@ -164,6 +171,10 @@ const params = Astro.props?.params;
 
       // 初始化背景图片
       async function initBackground() {
+        // 如果禁用图片，就跳过
+        if (bgState.disabledBtnIsActived) {
+          return ;
+        }
         // 如果设置了背景图片，就直接使用，否则就去获取一个随机背景图
         if (
           getComputedStyle(document.documentElement).getPropertyValue(
@@ -175,6 +186,15 @@ const params = Astro.props?.params;
             "--background-src",
             `url(${bgUrl})`,
           );
+
+          // 存放到全局状态当中
+          setBgUrl(bgUrl)
+        }else {
+          // 使用保存的bgUrl
+           document.documentElement.style.setProperty(
+            "--background-src",
+            `url(${bgState.bgUrl})`,
+          );
         }
       }
 
@@ -184,22 +204,13 @@ const params = Astro.props?.params;
         initTitleScript();
       }
 
-      // 切换路由前需要将Url取出来
-      document.addEventListener("astro:before-swap", () => {
-        bgUrl = getComputedStyle(document.documentElement)
-          .getPropertyValue("--background-src")
-          .slice(4, -1)
-          .replace(/"/g, "");
-      });
-
-      // 路由切换后将之前的Url设置回去
+      // 路由切换(站内切换，不更新图片)后将之前的Url设置回去
       document.addEventListener("astro:after-swap", () => {
         // 设置background-src的url
         document.documentElement.style.setProperty(
           "--background-src",
-          `url(${bgUrl})`,
+          `url(${bgState.bgUrl})`,
         );
-
         // 初始化其他应当进行初始化的script
         init();
       });
@@ -210,7 +221,6 @@ const params = Astro.props?.params;
       // 如果刷新页面，直接执行 init 函数
       document.addEventListener("DOMContentLoaded", () => {
         init();
-        initBgStateFromStorage();
         initBackground();
       });
 
