@@ -1,6 +1,6 @@
 ---
 layout: ../../layouts/MarkdownPostLayout.astro
-title: ""
+title: 学习SocketIo
 pubDate: 2026-02-26T10:41:00
 author: AsahinaMafuyu
 description: socket io可以用来进行服务器和客户端的通讯的第三方库，由于实际开发并不需要一直使用websocket进行原生态的开发，因为这样也很复杂

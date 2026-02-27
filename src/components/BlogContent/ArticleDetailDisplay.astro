@@ -5,7 +5,7 @@ import Date from "@/assets/Icons/date.svg";
 import ViewCount from "@/assets/Icons/view-count.svg";
 import WingPencil from "@/assets/Icons/wing.svg";
 import Time from "@/assets/Icons/time.svg";
-import DefaultCover from "@/assets/images/no-cover.png"
+import DefaultCover from "@/assets/images/no-cover.png";
 type ImageInfo = {
     url: string | null | undefined;
     alt: string | null;
@@ -18,6 +18,7 @@ interface FrontMatter {
     cover?: ImageInfo;
     tags: string[];
 }
+
 const { params, content, totalCounts } = Astro.props as {
     params: FrontMatter;
     content: string;
@@ -93,6 +94,7 @@ if (params.cover && params.cover.url) {
 
     <!-- 正文内容 -->
     <div class="md-content" set:html={content} />
+
 </div>
 
 <script>
@@ -100,7 +102,7 @@ if (params.cover && params.cover.url) {
         const contentItem = document.querySelector(
             ".md-content",
         ) as HTMLElement;
-        // 获取到h1
+        // 获取到h2
         const h1List = contentItem.getElementsByTagName("h1");
         for (let i = 0; i < h1List.length; i++) {
             let nav = document.createElement("a");
@@ -119,5 +121,6 @@ if (params.cover && params.cover.url) {
             h2List[i].appendChild(nav);
         }
     }
+    // 我觉得写一个算法更好，构建期完成是最好的
     init();
 </script>

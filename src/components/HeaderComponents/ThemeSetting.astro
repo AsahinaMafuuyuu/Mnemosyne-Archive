@@ -45,15 +45,17 @@ import Rss from "@/assets/Icons/rss.svg";
             </div>
 
             <button
+                data-forbidden="false"
                 id="switchBackground"
-                class="w-full flex link-container items-start py-2"
+                class="w-full link-container py-2"
             >
                 <span class="truncate">背景图片切换</span>
             </button>
 
             <button
+                data-forbidden="false"
                 data-ui="downloadBg"
-                class="w-full flex link-container items-start py-2"
+                class="w-full link-container py-2"
             >
                 <span class="truncate">下载背景图</span>
             </button>
@@ -178,11 +180,14 @@ import Rss from "@/assets/Icons/rss.svg";
 
         // 通过bgState.disabledBtnIsActived来修改btn的样式
         function initDisabledBtnStyle() {
-            console.log('在themesetting中查看bgState:', bgState)
             if (bgState.disabledBtnIsActived) {
                 disabledBgBtn.dataset.activated = "true";
+                switchBackgroundBtn.dataset.forbidden = 'true'
+                downloadBgBtn.dataset.forbidden = 'true'
             } else {
                 disabledBgBtn.dataset.activated = "false";
+                switchBackgroundBtn.dataset.forbidden = 'false'
+                downloadBgBtn.dataset.forbidden = 'false'
             }
         }
 
@@ -196,8 +201,9 @@ import Rss from "@/assets/Icons/rss.svg";
                 "--background-src",
                 `url(${url})`,
             );
-            setBgUrl(url)
+            setBgUrl(url);
         });
+
 
         // 定义函数
         // 该函数主要是用来对禁用背景图按钮事件发生的回调函数
@@ -205,9 +211,9 @@ import Rss from "@/assets/Icons/rss.svg";
             if (!bgState.disabledBtnIsActived) {
                 // 开始禁用
                 setBgUrl(
-                    document.documentElement.style.getPropertyValue(
-                        "--background-src",
-                    ),
+                    document.documentElement.style
+                        .getPropertyValue("--background-src")
+                        .slice(4, -1),
                 );
 
                 document.documentElement.style.setProperty(
@@ -215,24 +221,28 @@ import Rss from "@/assets/Icons/rss.svg";
                     "none",
                 );
                 disabledBgBtn.dataset.activated = "true";
+                 switchBackgroundBtn.dataset.forbidden = 'true'
+                downloadBgBtn.dataset.forbidden = 'true'
                 setDisabledBackground(true);
             } else {
                 // 如果用户一开始进入网站就是禁用图片的话，则默认不获取url
                 // 需要重新fetch
                 if (!bgState.bgUrl) {
-                    const bgurl = await fetchBackgroundImage()
+                    const bgurl = await fetchBackgroundImage();
                     document.documentElement.style.setProperty(
                         "--background-src",
                         `url(${bgurl})`,
                     );
-                    setBgUrl(bgurl)
+                    setBgUrl(bgurl);
                 } else {
                     document.documentElement.style.setProperty(
                         "--background-src",
-                        bgState.bgUrl,
+                        `url(${bgState.bgUrl})`,
                     );
                 }
                 disabledBgBtn.dataset.activated = "false";
+                switchBackgroundBtn.dataset.forbidden = 'false'
+                downloadBgBtn.dataset.forbidden = 'false'
                 setDisabledBackground(false);
             }
         }
@@ -249,12 +259,12 @@ import Rss from "@/assets/Icons/rss.svg";
             );
 
             // 设置模糊度
-           setBgBlur(Number(scrollBar.value))
+            setBgBlur(Number(scrollBar.value));
         });
 
         // 初始化的时候需要先读取是否禁用背景
         // 通过禁用背景来判断button的样式
-        initDisabledBtnStyle()
+        initDisabledBtnStyle();
     }
 
     // 每次after-swap以后重新挂载内容
@@ -262,7 +272,7 @@ import Rss from "@/assets/Icons/rss.svg";
         // 初始化
         init();
     });
-    
+
     // 重新挂载也要init
     document.addEventListener("DOMContentLoaded", () => {
         // 初始化

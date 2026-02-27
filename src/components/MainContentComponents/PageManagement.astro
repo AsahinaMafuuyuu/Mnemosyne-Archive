@@ -48,7 +48,7 @@ const pageItems = buildPager(totalPage, currentPage);
 ---
 
 <div class="flex items-center justify-center gap-8">
-    <div class="flex items-center justify-center gap-8 bg-[rgba(0,0,0,.2)]">
+    <div class="flex items-center justify-center gap-8 bg-[rgba(0,0,0,.2)] rounded-md">
         <!-- 后退 -->
         <a
             href={`/${params.currentPage - 1}`}
@@ -98,11 +98,3 @@ const pageItems = buildPager(totalPage, currentPage);
     </div>
 </div>
 
-<style>
-    .span-eli {
-        display: inline-block;
-        height: 32px;
-        width: 32px;
-        text-align: center;
-    }
-</style>

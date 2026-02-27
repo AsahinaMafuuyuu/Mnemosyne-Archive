@@ -1,6 +1,6 @@
 
 export type BgState = {
-    bgUrl: null | string;
+    bgUrl: null | string; 
     disabledBtnIsActived: boolean;
     bgBlur: number;
 }
@@ -30,6 +30,7 @@ export function setDisabledBackground(val: boolean) {
 
 // 修改背景图片的 URL
 export function setBgUrl(url: string | null) {
+    // 接收一个url
     bgState.bgUrl = url;
 }
 

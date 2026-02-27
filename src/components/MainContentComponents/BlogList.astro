@@ -9,10 +9,6 @@ const { params } = Astro.props as { params:any }
     {params.map((item:any)=>{
         return <SingleBlog params={item}/>
     })}
-
-    <!-- <div>{params.forEach((item)=> {
-        return {item}
-    })}</div> -->
 </div>
 <script>
     const blogListContainer: HTMLElement = document.querySelector(

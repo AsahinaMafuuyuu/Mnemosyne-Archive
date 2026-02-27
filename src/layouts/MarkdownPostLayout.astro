@@ -2,7 +2,9 @@
 import BaseLayout from "./BaseLayout.astro";
 import ArticleDetailDisplay from "@/components/BlogContent/ArticleDetailDisplay.astro";
 import { computedTotalWords } from "@/scripts/totalCount"
+import HeadingsNav from "@/components/ArticleHeadingsNavComponents/HeadingsNav.astro";
 import "../output.css";
+
 type ImageInfo = {
     url: string;
     alt: string;
@@ -16,18 +18,81 @@ interface FrontMatter {
     tags: string[];
 }
 const { frontmatter, compiledContent, rawContent } = Astro.props as {
-    frontmatter: FrontMatter;
-    compiledContent: () => string;
-    rawContent: () => string
+    frontmatter: FrontMatter,
+    compiledContent: () => string,
+    rawContent: () => string,
+    
 };
+
+const content = await compiledContent()
+type headingInfo = {
+    level: number;
+    id: string;
+    children: Array<undefined | headingInfo>;
+};
+type headingsNoChild = {
+    level: number;
+    id: string;
+};
+// 生成嵌套的
+function createHeadingsCategory(htmlString: string): Array<headingInfo> {
+    // 只用解析2-4即可，不然的话太多了不好生成目录
+    const regex = /<h([2-4])[^>]*id="([^"]+)"[^>]*>([\s\S]*?)<\/h\1>/g;
+
+    const list: Array<headingInfo> = [];
+    let match;
+    while ((match = regex.exec(htmlString)) !== null) {
+        if (list.length === 0) {
+            list.push({
+                level: Number(match[1]),
+                id: match[2],
+                children: [],
+            });
+        } else {
+            let compare: headingInfo | undefined = list[list.length - 1];
+            let nowPointer: Array<headingInfo | undefined> = list;
+            while (compare && compare.level < Number(match[1])) {
+                // 此时才能往深处递归寻找
+                nowPointer = compare.children;
+                compare = compare.children[compare.children.length - 1];
+            }
+            // 否则就在当前pointer处添加
+            nowPointer.push({
+                level: Number(match[1]),
+                id: match[2],
+                children: [],
+            });
+        }
+    }
+    return list;
+}
+
+// 生成自然排序的（推荐，因为暂时用不到嵌套，我们只需要css写相关样式即可）
+function createHeadingsContents(htmlString: string): Array<headingsNoChild> {
+    const regex = /<h([2-4])[^>]*id="([^"]+)"[^>]*>([\s\S]*?)<\/h\1>/g;
+    const list: Array<headingsNoChild> = [];
+    let match;
+    while ((match = regex.exec(htmlString)) !== null) {
+        list.push({
+            level: Number(match[1]),
+            id: match[2],
+        });
+    }
+    return list
+}
+const headingContents = createHeadingsContents(content);
 ---
 
 <BaseLayout params={frontmatter}>
+    <HeadingsNav 
+        slot="asidePanel"
+        contents={headingContents}
+    />    
     <!-- <ArticleDetailDisplay params={frontmatter} name="mainContent"></ArticleDetailDisplay> -->
     <ArticleDetailDisplay
         slot="mainContent"
         params={frontmatter}
-        content={compiledContent()}
+        content={content}
         totalCounts={computedTotalWords(rawContent())}
     />
 </BaseLayout>

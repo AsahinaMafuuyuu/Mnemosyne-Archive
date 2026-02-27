@@ -42,11 +42,10 @@ if (params.frontmatter.cover && params.frontmatter.cover.url) {
 <article
     class="single-blog-card-decoration layout-basic-style flex justify-between gap-4 group transition-all duration-500 ease-in-out hover:scale-101"
 >
-
     <!-- 左侧 -->
     <div
         data-ui="blog-content-area"
-        class="min-w-50 max-w-150 flex-1 flex flex-col justify-between"
+        class="min-w-50 max-w-150 flex-1 flex flex-col justify-between gap-2"
     >
         <!-- 标题 -->
         <a data-ui="post-url" href={`/posts/${params.url}`}>
@@ -60,6 +59,20 @@ if (params.frontmatter.cover && params.frontmatter.cover.url) {
         <!-- 描述 -->
         <div class="text-body transition-all h-fit line-clamp-3">
             {params.frontmatter.description}
+        </div>
+
+        <!-- 当小于500px的时候，这里展示图片 -->
+        <div
+            data-ui="blog-pic-area"
+            class="w-40 h-40 min-[500px]:hidden rounded-xl overflow-hidden"
+        >
+            <a href={`/posts/${params.url}`}>
+                <img
+                    class="w-full h-full cursor-pointer object-cover group-hover:scale-110 group-hover:rotate-z-8 transition-transform duration-500 ease-in-out"
+                    src={displayCover.url}
+                    alt={displayCover.alt}
+                />
+            </a>
         </div>
 
         <!-- 信息展示 -->
@@ -95,8 +108,11 @@ if (params.frontmatter.cover && params.frontmatter.cover.url) {
         </div>
     </div>
 
-    <!-- 图片部分 -->
-    <div data-ui="blog-pic-area" class="w-40 h-40 rounded-xl overflow-hidden">
+    <!-- 图片部分，当大于500px的时候这里展示图片 -->
+    <div
+        data-ui="blog-pic-area"
+        class="w-40 h-40 max-[500px]:hidden rounded-xl overflow-hidden"
+    >
         <a href={`/posts/${params.url}`}>
             <img
                 class="w-full h-full cursor-pointer object-cover group-hover:scale-110 group-hover:rotate-z-8 transition-transform duration-500 ease-in-out"
@@ -108,8 +124,8 @@ if (params.frontmatter.cover && params.frontmatter.cover.url) {
 </article>
 
 <!-- 每一单独的预加载的时候都要进行对应的重新fetch -->
- <!-- TODO 需要将每一个博客的浏览量全部装填上 -->
- <script>
+<!-- TODO 需要将每一个博客的浏览量全部装填上 -->
+<script>
     // import { getUmamiStats } from "@/scripts/Umami_statistics"
     // import type{ UmamiStats } from "@/scripts/Umami_statistics"
     // // 通过data-ui='post-url'来获取到post的url
@@ -133,4 +149,4 @@ if (params.frontmatter.cover && params.frontmatter.cover.url) {
 
     // // 脚本注入就得执行
     // initTotalViews ()
- </script>
+</script>
