@@ -4,7 +4,7 @@
   "newLinkFormat": "relative",
   "alwaysUpdateLinks": true,
   "useMarkdownLinks": true,
-  "attachmentFolderPath": "src/assets/images/posts",
+  "attachmentFolderPath": "src/assets/images/posts/{fileName}",
   "newFileFolderPath": "src/pages/posts",
   "showUnsupportedFiles": true,
   "spellcheck": false,
