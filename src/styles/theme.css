@@ -116,7 +116,7 @@
 }
 
 @utility lg-icon-basic-style {
-    @apply w-10 h-10;
+    @apply w-7 h-7;
 }
 
 /* 设置翻页条的相关导航样式 */
@@ -142,8 +142,25 @@
 
 /* 设置文章相关样式 */
 @utility basic-article-nav {
-    @apply w-fit h-fit bg-amber-200;
-}
+    @apply inline-block w-full p-2 truncate transition-all ease-in-out duration-500 border-b border-transparent
+    hover:border-blue-300 hover:bg-amber-200 rounded-2xl
+    selected:bg-pink-100;
+};
+
+/* 设置其他样式 */
+@utility h2-nav {
+    @apply p-2;
+};
+
+/* 设置其他样式 */
+@utility h3-nav {
+    @apply p-4;
+};
+
+/* 设置其他样式 */
+@utility h4-nav {
+    @apply p-6;
+};
 
 /* 设置侧边栏相关 */
 @custom-variant selected (:is(

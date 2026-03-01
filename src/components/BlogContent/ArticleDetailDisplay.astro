@@ -83,9 +83,9 @@ if (params.cover && params.cover.url) {
 
     <!-- 封面展示 -->
     <div class="w-full flex items-center justify-center">
-        <div class="w-fit max-w-[70%] aspect-square overflow-hidden rounded-xl">
+        <div class="inline-block w-fit h-fit overflow-hidden rounded-xl">
             <img
-                class="hover:scale-105 transition-all ease-in-out duration-500"
+                class="w-fit max-w-[70%] aspect-square hover:scale-105 transition-all ease-in-out duration-500 object-center object-cover rounded-xl"
                 src={displayCover.url}
                 alt={displayCover.alt}
             />

@@ -4,16 +4,16 @@
     "type": "split",
     "children": [
       {
-        "id": "87a2c38a2e52ab27",
+        "id": "fccae15311c9a2e9",
         "type": "tabs",
         "children": [
           {
-            "id": "32f7e0402f4faa48",
+            "id": "d6710d5d435e2d0c",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "src/pages/posts/HelloAlgorithm-Day1.md",
+                "file": "src/pages/posts/LearnNuxtJs-day1.md",
                 "mode": "source",
                 "source": false,
                 "backlinks": true,
@@ -28,35 +28,10 @@
                 }
               },
               "icon": "lucide-file",
-              "title": "HelloAlgorithm-Day1"
-            }
-          },
-          {
-            "id": "291334d4ade8c74d",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "src/pages/posts/未命名.md",
-                "mode": "source",
-                "source": false,
-                "backlinks": true,
-                "backlinkOpts": {
-                  "collapseAll": false,
-                  "extraContext": false,
-                  "sortOrder": "alphabetical",
-                  "showSearch": false,
-                  "searchQuery": "",
-                  "backlinkCollapsed": false,
-                  "unlinkedCollapsed": true
-                }
-              },
-              "icon": "lucide-file",
-              "title": "未命名"
+              "title": "LearnNuxtJs-day1"
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "vertical"
@@ -218,36 +193,41 @@
       "bases:新建数据库": false
     }
   },
-  "active": "291334d4ade8c74d",
+  "active": "d6710d5d435e2d0c",
   "lastOpenFiles": [
+    "src/assets/images/posts/LearnNuxtJs-day1-6.png",
+    "src/assets/images/posts/LearnNuxtJs-day1-5.png",
+    "src/pages/posts/DynamicRouterInAstro.md",
+    "src/pages/posts/LearnAstro-Configuration.md",
+    "src/pages/posts/LearnAstro-island.md",
+    "src/pages/posts/LearnAstro-ProjectStrcture.md",
+    "src/pages/posts/LearnNuxtJs-day1.md",
+    "src/assets/images/posts/LearnNuxtJs-day1-4.png",
+    "src/assets/images/posts/LearnNuxtJs-day1-3.png",
+    "src/assets/images/posts/LearnNuxtJs-day1-2.png",
+    "src/LearnNuxtJs-day1.png",
+    "src/assets/images/posts/LearnNuxtJs-day1-1.png",
+    "src/assets/images/posts/{fileName}/LearnNuxtJs-day1-1.png.~tmp",
+    "src/assets/images/posts/LearnNuxtJs-day1.png",
+    "src/assets/images/posts/{fileName}/LearnNuxtJs-day1-1.png",
+    "src/assets/images/posts/{fileName}",
+    "src/template/NuxtJs.md",
+    "src/template/hello-algorithm.md",
     "src/pages/posts/HelloAlgorithm-Day1.md",
-    "src/pages/posts/未命名.md",
     "src/pages/posts/image-3.png",
     "src/pages/posts/image-2.png",
-    "src/pages/posts/image-4.png",
-    "src/assets/images/posts/HelloAlgorithm-Day1-3.png",
-    "src/assets/images/posts/HelloAlgorithm-Day1-2.png",
-    "src/assets/images/posts/HelloAlgorithm-Day1-1.png",
-    "src/assets/images/posts/HelloAlgorithm-Day1.png",
     "src/pages/posts/HowToCreateArticleNavInAstro.md",
     "src/pages/posts/WebGl_Fundamentation.md",
     "src/pages/posts/TailwindAddCustomClass.md",
     "src/pages/posts/nodejs-crawler.md",
-    "src/pages/posts/LearnAstro-ProjectStrcture.md",
-    "src/pages/posts/LearnAstro-Configuration.md",
     "src/pages/posts/TalkAboutSPAAndNoFrameWork.md",
-    "src/template/hello-algorithm.md",
     "src/template/index.md",
     "src/components/ArticleHeadingsNavComponents/NavContents.astro",
-    "src/assets/Icons/cater.svg",
-    "src/assets/Icons/sword.svg",
-    "src/assets/Icons/contents.svg",
     "src/components/ArticleHeadingsNavComponents/HeadingsNav.astro",
     "src/components/ArticleHeadingsNavComponents",
     "src/pages/posts/LearnCFWorkers-API.md",
     "src/pages/posts/socketIO.md",
     "src/pages/posts/AboutUmamiData.md",
-    "src/pages/posts/LearnAstro-island.md",
     "src/pages/posts/RestartToLearnPromise.md",
     "posts/AstroSitemap.md",
     "posts",
@@ -257,14 +237,10 @@
     "src/pages/posts/SSRvsCSR.md",
     "src/pages/posts/Alabel.md",
     "src/pages/posts/PicGo Alist.md",
-    "src/pages/posts/AstroLayout.md",
-    "src/pages/posts/UniApp.md",
     "src/components/Vue/test.vue",
     "src/components/Vue/Test.vue",
     "node_modules/execa/index.d.ts",
     "node_modules/@vue/compiler-core/node_modules/entities/dist/esm/index.d.ts",
-    "node_modules/@vue/compiler-core/node_modules/entities/dist/commonjs/index.d.ts",
-    "node_modules/@vue/compiler-core/node_modules/entities/escape.d.ts",
     "未命名.canvas"
   ]
 }

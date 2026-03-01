@@ -27,7 +27,7 @@ const { contents } = Astro.props as {
             data-ui="show-aside-personal"
             class="link-container selected:bg-amber-200 transition-all ease-in-out duration-500 p-2"
         >
-            <CaterIcon class="md-icon-basic-style" />
+            <CaterIcon class="lg-icon-basic-style" />
             <span class="hidden selected:display-block">文章目录</span>
         </button>
         <!-- 目录 -->
@@ -36,7 +36,7 @@ const { contents } = Astro.props as {
             data-ui="show-aside-personal"
             class="link-container selected:bg-amber-200 transition-all ease-in-out duration-500 p-2"
         >
-            <ContentsIcon class="md-icon-basic-style" />
+            <ContentsIcon class="lg-icon-basic-style" />
             <span class="hidden selected:block">文章目录</span>
         </button>
         <!-- 相关文章推荐 -->
@@ -45,20 +45,22 @@ const { contents } = Astro.props as {
             data-ui="show-aside-personal"
             class="link-container selected:bg-amber-200 transition-all ease-in-out duration-500 p-2"
         >
-            <MagicBookIcon class="md-icon-basic-style" />
+            <MagicBookIcon class="lg-icon-basic-style" />
         </button>
     </div>
 
     <!-- 然后就是展示区域 -->
-    <div class="">
+    <div class="w-full">
         <!-- <AsideInfo /> -->
-        <div data-ui="contents-nav" class="w-full overflow-auto p-2">
+        <div data-ui="contents-nav" class="w-full overflow-hidden p-3 flex flex-col">
             {
                 contents.map((item) => {
                     return (
-                        <a
+                        <a  
+                            data-selected="false"
                             href={"#" + item.id}
-                            class={"h" + item.level + "-nav basic-article-nav"}
+                            class={"basic-article-nav h" + item.level + "-nav"}
+                            onclick="this.dataset.selected='true'"
                         >
                             {item.id}
                         </a>
