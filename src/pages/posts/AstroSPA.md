@@ -20,4 +20,6 @@ SPA动画可以让用户能够访问不同的URL但是却只用更新某一部�
 >
 
 在mdn上也有类似的教程：
-![alt text](image-11.png)
+
+![](../../assets/images/posts/AstroSPA.png)
+

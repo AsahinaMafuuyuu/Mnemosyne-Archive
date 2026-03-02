@@ -3,7 +3,7 @@ layout: ../../layouts/MarkdownPostLayout.astro
 title: 学习NuxtJs-day1
 pubDate: 2026-03-01T15:44:00
 author: AsahinaMafuyu
-description: 学习NuxtJs，本文主要学习
+description: 学习NuxtJs，本文主要学习Nuxt基本概念，以及文件路由和动态路由、SPA导航等思想
 cover:
   url: https://image-bucket.asahinamafuyu.top/astro-covers/NuxtJs-Cover.png
   alt: NuxtJs Cover

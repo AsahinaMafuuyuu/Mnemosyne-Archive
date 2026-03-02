@@ -12,10 +12,15 @@ tags: ["Astro", "组件化", "前端"]
 它的 class / style 不会天然作用到内部 DOM，
 除非框架“刻意帮你做了透传或合并”。
 例如我在实际中写的：
-![alt text](image-17.png)
+
+![](../../assets/images/posts/UnderstandingComponents.png)
+
 但事实上就是：
-![alt text](image-18.png)
+
+![](../../assets/images/posts/UnderstandingComponents-1.png)
+
 如果是Astro这种的话，则需要通过props进行传参才行：
+
 ```html
 ---
 import Profile from "./Profile.astro";

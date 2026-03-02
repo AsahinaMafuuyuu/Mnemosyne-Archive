@@ -24,7 +24,7 @@ Flip就是：
 # 3. 滑动歌词处理
 方法1. 制作一个大的容器，每次滑动一些在视口显示，形成最简单的滚动歌词的逻辑
 方法2. 做一个list，只显示要展示的部分，每次只展示部分：
-![image-20260209174524492](D:\web_project\Mnemosyne-Archive\src\pages\posts\public\images\posts\AudioPlayerLearn\image-20260209174524492.png)
+![image-20260209174524492|230](D:\web_project\Mnemosyne-Archive\src\pages\posts\public\images\posts\AudioPlayerLearn\image-20260209174524492.png)
 当下一次播放插入的时候，利用FLIP动画来实现过渡效果：
 ![image-20260209174607487](D:\web_project\Mnemosyne-Archive\src\pages\posts\public\images\posts\AudioPlayerLearn\image-20260209174607487.png)
 
@@ -50,7 +50,9 @@ const lines: LyricLine[] = [
 # 4. 关于flex突变要添加FLIP过于麻烦
 如果盒子里有一个flex和一个固定尺寸的元素,那么还是用calc来计算方便
 然后还有动画:当出现这种结构的时候:
-![alt text](image-2.png)
+
+![](../../assets/images/posts/AudioPlayerLearn.png)
+
 此时蓝色盒子和紫色盒子都设置了动画的话,那么在使用响应式计算的时候,很容易形成紫色盒子也要渲染过渡动画,蓝色盒子也要渲染过渡动画,导致的是**最右边的蓝色盒子只用渲染一个动画**,这样的话最右边的蓝色盒子跑的最快,因此**需要将紫色盒子不设置动画,蓝色盒子设置动画的话只用渲染自身的尺寸**,假设紫色盒子中有需要动画渲染的元素,那么就在紫色盒子的最外层套上一层div,**用来平滑蓝色盒子**.
 # 5. 要注意逻辑顺序：
 ```typescript
@@ -74,7 +76,7 @@ const lines: LyricLine[] = [
 # 6. 关于歌词更新：
 如果是播放器自动更新的话，完全没有必要来索引json文件通过对比currentTime和歌词的时间，不然每一次更新都要进行对比，时间开销非常大，**直接记录下当前歌词的索引值**，然后每一次进行timeUpdate的时候看当前时间是否进入到下一个time，如果大于下一个time，意味着要播放下一句歌词了
 > 但是上述逻辑有一个很明显的漏洞：那就是当timeupdate达不到我所更新的时间的时候，就会发生歌词错位：也就是说**歌词实际上已经唱了2-3句，但是timupdate在这个时间段内还没有更新或者只更新了一次**
-> ![alt text](image-3.png)
+> ![](../../assets/images/posts/AudioPlayerLearn-1.png)
 
 用rAF在每一帧对事件头进行判定即可
 所以答案总结成两句话
@@ -96,16 +98,27 @@ const lines: LyricLine[] = [
 > ```
 其实也只是通过url来进行解析，并不能够进行预加载
 然后关于Audio，它单纯就是一个字符串，指向的就是url
-![alt text](image-4.png)
+
+![](../../assets/images/posts/AudioPlayerLearn-2.png)
+
 # 8. Audio的相关事件
-![alt text](image-5.png)
+
+![](../../assets/images/posts/AudioPlayerLearn-3.png)
+
 对于js开发div的禁止效果：例如当加载音频期间，不允许进行播放等操作
-![alt text](image-6.png)
-![alt text](image-7.png)
+
+![](../../assets/images/posts/AudioPlayerLearn-4.png)
+
+
+![](../../assets/images/posts/AudioPlayerLearn-5.png)
+
+
 也就是说需要用js来设置disabled，样式也是设置成disabled（hover:cursor-not-allowed）
 然后div的js逻辑中click需要进行处理（如果el.dataset.disabled，则不执行）
 以及js绑定技术：事件监听只绑定一次，但是内部需要进行判别：
-![alt text](image-8.png)
+
+![](../../assets/images/posts/AudioPlayerLearn-6.png)
+
 
 # 9. Fisher–Yates shuffle算法
 原理大致就是:每次抽一个数,然后与最前面或者最后面的互换,然后取出最后的一个数(也就是当前抽取的数),重复上述过程,直到剩余数组大小为1
@@ -129,8 +142,11 @@ const lines: LyricLine[] = [
 我的建议（默认）：**metadata**
 既能让你拿到`duration`、进度条初始化，也不会把整首歌先下了。
 # 11. 关于import的相关知识
-![alt text](image-9.png)
-![alt text](image-10.png)
+
+![](../../assets/images/posts/AudioPlayerLearn-7.png)
+
+![](../../assets/images/posts/AudioPlayerLearn-8.png)
+
 浏览器只认识 URL
 构建工具只认识 import
 glob 是让你“按需触发构建工具”
