@@ -4,28 +4,16 @@
     "type": "split",
     "children": [
       {
-        "id": "fccae15311c9a2e9",
+        "id": "6e4b42431d4404a3",
         "type": "tabs",
         "children": [
           {
-            "id": "d6710d5d435e2d0c",
-            "type": "leaf",
-            "state": {
-              "type": "image",
-              "state": {
-                "file": "public/images/posts/AudioPlayerLearn/image-20260209174909893.png"
-              },
-              "icon": "lucide-image",
-              "title": "image-20260209174909893"
-            }
-          },
-          {
-            "id": "8f461a5c07733253",
+            "id": "43bdc59922d2dfef",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "src/pages/posts/RestartToLearnPromise.md",
+                "file": "src/pages/posts/NodeJs-ShortLink.md",
                 "mode": "source",
                 "source": false,
                 "backlinks": true,
@@ -40,16 +28,16 @@
                 }
               },
               "icon": "lucide-file",
-              "title": "RestartToLearnPromise"
+              "title": "NodeJs-ShortLink"
             }
           },
           {
-            "id": "8512edb708d73b00",
+            "id": "6a637e4e2401d058",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "src/pages/posts/ElectronNotes-Day1.md",
+                "file": "src/pages/posts/Alabel.md",
                 "mode": "source",
                 "source": false,
                 "backlinks": true,
@@ -64,11 +52,11 @@
                 }
               },
               "icon": "lucide-file",
-              "title": "ElectronNotes-Day1"
+              "title": "Alabel"
             }
           },
           {
-            "id": "d683cae177a72462",
+            "id": "2b82f8e245a975e7",
             "type": "leaf",
             "state": {
               "type": "markdown",
@@ -89,6 +77,30 @@
               },
               "icon": "lucide-file",
               "title": "LearnNuxtJs-Day2"
+            }
+          },
+          {
+            "id": "2c74f5b96513fd6c",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "src/pages/posts/LearnNuxtJs-Day3.md",
+                "mode": "source",
+                "source": false,
+                "backlinks": true,
+                "backlinkOpts": {
+                  "collapseAll": false,
+                  "extraContext": false,
+                  "sortOrder": "alphabetical",
+                  "showSearch": false,
+                  "searchQuery": "",
+                  "backlinkCollapsed": false,
+                  "unlinkedCollapsed": true
+                }
+              },
+              "icon": "lucide-file",
+              "title": "LearnNuxtJs-Day3"
             }
           }
         ],
@@ -254,44 +266,44 @@
       "bases:新建数据库": false
     }
   },
-  "active": "d683cae177a72462",
+  "active": "2c74f5b96513fd6c",
   "lastOpenFiles": [
-    "src/assets/images/posts/LearnNuxtJs-Day2-5.png",
-    "src/assets/images/posts/LearnNuxtJs-Day2-4.png",
-    "src/assets/images/posts/LearnNuxtJs-Day2-3.png",
-    "src/assets/images/posts/LearnNuxtJs-Day2-2.png",
-    "src/assets/images/posts/LearnNuxtJs-Day2-1.png",
-    "src/assets/images/posts/LearnNuxtJs-Day2.png",
-    "src/pages/posts/LearnNuxtJs-day1.md",
-    "src/pages/posts/nodejs-crawler.md",
+    "src/assets/images/posts/LearnNuxtJs-Day3.png",
     "src/pages/posts/LearnNuxtJs-Day2.md",
+    "src/pages/posts/LearnNuxtJs-Day3.md",
+    "src/pages/posts/LearnNuxtJs-Day1.md",
+    "src/pages/posts/LearnCFWorkers-API.md",
+    "src/pages/posts/LearnAstro-ProjectStrcture.md",
+    "src/pages/posts/LearnAstro-Configuration.md",
+    "src/pages/posts/socketIO.md",
+    "src/pages/posts/ComputerInternetBasicKnowledge.md",
+    "src/pages/posts/NodeJs-SDL.md",
+    "src/pages/posts/Alabel.md",
+    "src/pages/posts/NodeJs-SSO.md",
+    "src/pages/posts/NodeJs-ShortLink.md",
+    "src/assets/images/posts/NodeJs-ShortLink-3.png",
+    "src/assets/images/posts/NodeJs-ShortLink-2.png",
+    "src/pages/posts/NodeJs-UploadFile.md",
+    "src/assets/images/posts/NodeJs-ShortLink-1.png",
+    "src/pages/posts/UniApp.md",
+    "src/assets/images/posts/NodeJs-ShortLink-2.png",
+    "src/assets/images/posts/NodeJs-ShortLink.png",
+    "src/pages/posts/NodeJs-HTTPCache.md",
+    "src/assets/images/posts/NodeJs-HTTPCache-4.png",
+    "src/assets/images/posts/NodeJs-HTTPCache-3.png",
+    "src/assets/images/posts/NodeJs-HTTPCache-2.png",
+    "src/assets/images/posts/NodeJs-HTTPCache-1.png",
+    "src/assets/images/posts/NodeJs-HTTPCache.png",
+    "src/pages/posts/NodeJs-DownloadFile.md",
+    "src/pages/posts/nodejs-crawler.md",
+    "src/pages/posts/RestartToLearnPromise.md",
+    "src/template/NodeJs.md",
     "src/pages/posts/ElectronNotes-Day1.md",
-    "src/assets/images/posts/ElectronNotes-Day1-10.png",
-    "src/assets/images/posts/ElectronNotes-Day1-9.png",
-    "src/assets/images/posts/ElectronNotes-Day1-8.png",
-    "src/assets/images/posts/ElectronNotes-Day1-7.png",
-    "src/assets/images/posts/ElectronNotes-Day1-6.png",
     "src/pages/posts/astro-frontmatter-vs-script.md",
     "src/template/ElectronNotes.md",
     "src/template/hello-algorithm.md",
-    "src/pages/posts/RestartToLearnPromise.md",
     "src/pages/posts/GameRegret.md",
     "src/pages/posts/DynamicRouterInAstro.md",
-    "src/pages/posts/AstroMdInfo.md",
-    "src/pages/posts/AstroTransitionAnimation.md",
-    "src/pages/posts/UnderstandingComponents.md",
-    "src/pages/posts/TailwindAddCustomClass.md",
-    "src/pages/posts/Alabel.md",
-    "src/pages/posts/AstroLayout.md",
-    "src/pages/posts/SVGKnowledge.md",
-    "src/pages/posts/AstroSPA.md",
-    "src/pages/posts/BrowserPaint.md",
-    "src/pages/posts/ComputerInternetBasicKnowledge.md",
-    "src/pages/posts/CustomYourScrollbar.md",
-    "src/pages/posts/AudioPlayerLearn.md",
-    "src/pages/posts/AstroSitemap.md",
-    "src/pages/posts/AboutUmamiData.md",
-    "src/pages/posts/LearnAstro-island.md",
     "src/assets/images/posts/{fileName}/LearnNuxtJs-day1-1.png.~tmp",
     "src/assets/images/posts/{fileName}",
     "src/components/ArticleHeadingsNavComponents/NavContents.astro",

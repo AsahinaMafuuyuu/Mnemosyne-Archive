@@ -638,14 +638,13 @@ app.get('/api/sse', (req, res) => {
 });
 ```
 
-注意：```
-```res.write(`event: lol\n`)就会将type改成lol，因此在前端就需要使用
+注意：
+`res.write(event: lol\n)`就会将type改成lol，因此在前端就需要使用
+
 ```ts
 sse.addEventListener('lol', (e) => {
-
-                    messageDiv.innerText += e.data
-
-                })
+	messageDiv.innerText += e.data
+})
 ```
 
 来进行接收
@@ -961,6 +960,7 @@ https.createServer({
 1. 头部（Header）：头部通常由两部分组成：令牌的类型（即 “JWT”）和所使用的签名算法。头部通常采用 JSON 对象表示，并进行 Base64 URL 编码。
 	- alg：代表所使用的签名算法，例如 [HMAC](https://so.csdn.net/so/search?q=HMAC&spm=1001.2101.3001.7020) SHA256（HS256）或 RSA 等。  
 	- typ：代表令牌的类型，一般为 “JWT”。
+
 ```JSON
 {
   "alg": "HS256",
