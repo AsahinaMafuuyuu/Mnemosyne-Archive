@@ -144,22 +144,22 @@
 @utility basic-article-nav {
     @apply inline-block w-full p-2 truncate transition-all ease-in-out duration-500 border-b border-transparent
     hover:border-blue-300 hover:bg-amber-200 rounded-2xl
-    selected:bg-pink-100;
+    selected:bg-pink-100 selected:text-blue-400;
 };
 
 /* 设置其他样式 */
 @utility h2-nav {
-    @apply p-2;
+    @apply text-base font-bold pl-2;
 };
 
 /* 设置其他样式 */
 @utility h3-nav {
-    @apply p-4;
+    @apply text-sm font-medium pl-5;
 };
 
 /* 设置其他样式 */
 @utility h4-nav {
-    @apply p-6;
+    @apply text-sm font-normal pl-8 text-neutral-500;
 };
 
 /* 设置侧边栏相关 */

@@ -17,6 +17,7 @@
     --color-yellow-400: oklch(85.2% 0.199 91.936);
     --color-sky-300: oklch(82.8% 0.111 230.318);
     --color-blue-300: oklch(80.9% 0.105 251.813);
+    --color-blue-400: oklch(70.7% 0.165 254.624);
     --color-blue-500: oklch(62.3% 0.214 259.815);
     --color-blue-700: oklch(48.8% 0.243 264.376);
     --color-violet-600: oklch(54.1% 0.281 293.009);
@@ -26,13 +27,18 @@
     --color-pink-500: oklch(65.6% 0.241 354.308);
     --color-gray-200: oklch(92.8% 0.006 264.531);
     --color-gray-400: oklch(70.7% 0.022 261.325);
+    --color-neutral-500: oklch(55.6% 0 0);
     --spacing: 0.25rem;
+    --text-sm: 0.875rem;
+    --text-sm--line-height: calc(1.25 / 0.875);
     --text-base: 1rem;
     --text-base--line-height: calc(1.5 / 1);
     --text-lg: 1.125rem;
     --text-lg--line-height: calc(1.75 / 1.125);
     --text-2xl: 1.5rem;
     --text-2xl--line-height: calc(2 / 1.5);
+    --font-weight-normal: 400;
+    --font-weight-medium: 500;
     --font-weight-semibold: 600;
     --font-weight-bold: 700;
     --tracking-wide: 0.025em;
@@ -808,6 +814,9 @@
     :is( &[data-selected="true"], [data-selected="true"] & ) {
       background-color: var(--color-pink-100);
     }
+    :is( &[data-selected="true"], [data-selected="true"] & ) {
+      color: var(--color-blue-400);
+    }
   }
   .line-clamp-3 {
     overflow: hidden;
@@ -932,6 +941,9 @@
   }
   .h-\[70\%\] {
     height: 70%;
+  }
+  .h-\[70vh\] {
+    height: 70vh;
   }
   .h-fit {
     height: fit-content;
@@ -1380,6 +1392,28 @@
   }
   .pb-\[50\%\] {
     padding-bottom: 50%;
+  }
+  .h4-nav {
+    padding-left: calc(var(--spacing) * 8);
+    font-size: var(--text-sm);
+    line-height: var(--tw-leading, var(--text-sm--line-height));
+    --tw-font-weight: var(--font-weight-normal);
+    font-weight: var(--font-weight-normal);
+    color: var(--color-neutral-500);
+  }
+  .h2-nav {
+    padding-left: calc(var(--spacing) * 2);
+    font-size: var(--text-base);
+    line-height: var(--tw-leading, var(--text-base--line-height));
+    --tw-font-weight: var(--font-weight-bold);
+    font-weight: var(--font-weight-bold);
+  }
+  .h3-nav {
+    padding-left: calc(var(--spacing) * 5);
+    font-size: var(--text-sm);
+    line-height: var(--tw-leading, var(--text-sm--line-height));
+    --tw-font-weight: var(--font-weight-medium);
+    font-weight: var(--font-weight-medium);
   }
   .pl-1 {
     padding-left: calc(var(--spacing) * 1);

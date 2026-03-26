@@ -33,6 +33,7 @@ type headingInfo = {
 type headingsNoChild = {
     level: number;
     id: string;
+    title: string;
 };
 // 生成嵌套的
 function createHeadingsCategory(htmlString: string): Array<headingInfo> {
@@ -45,7 +46,7 @@ function createHeadingsCategory(htmlString: string): Array<headingInfo> {
         if (list.length === 0) {
             list.push({
                 level: Number(match[1]),
-                id: match[2],
+                id: match[3],
                 children: [],
             });
         } else {
@@ -59,7 +60,7 @@ function createHeadingsCategory(htmlString: string): Array<headingInfo> {
             // 否则就在当前pointer处添加
             nowPointer.push({
                 level: Number(match[1]),
-                id: match[2],
+                id: match[3],
                 children: [],
             });
         }
@@ -76,6 +77,7 @@ function createHeadingsContents(htmlString: string): Array<headingsNoChild> {
         list.push({
             level: Number(match[1]),
             id: match[2],
+            title: match[3],
         });
     }
     return list
@@ -88,6 +90,7 @@ const headingContents = createHeadingsContents(content);
         slot="asidePanel"
         contents={headingContents}
     />    
+
     <!-- <ArticleDetailDisplay params={frontmatter} name="mainContent"></ArticleDetailDisplay> -->
     <ArticleDetailDisplay
         slot="mainContent"

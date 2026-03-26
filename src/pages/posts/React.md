@@ -314,33 +314,20 @@ const React = {
             props: {
                 ...props,
                 children: children.map(child => {
-
                     if (typeof child === 'object') {
-
                         return child;
-
                     } else {
-
                         return React.createTextElement(child);
-
                     }
-
                 }
 
                 )
-
             },
-
-  
-
         };
-
     },
 
     createTextElement(text) {
-
         return {
-
             type: 'TEXT_ELEMENT',
 
             props: {
