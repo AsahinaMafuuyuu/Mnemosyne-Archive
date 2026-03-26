@@ -4,16 +4,16 @@
     "type": "split",
     "children": [
       {
-        "id": "6e4b42431d4404a3",
+        "id": "8e8733483f3545c4",
         "type": "tabs",
         "children": [
           {
-            "id": "43bdc59922d2dfef",
+            "id": "0ff9822a2eca9414",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "src/pages/posts/NodeJs-ShortLink.md",
+                "file": "src/pages/posts/LearnFastify.md",
                 "mode": "source",
                 "source": false,
                 "backlinks": true,
@@ -28,16 +28,16 @@
                 }
               },
               "icon": "lucide-file",
-              "title": "NodeJs-ShortLink"
+              "title": "LearnFastify"
             }
           },
           {
-            "id": "6a637e4e2401d058",
+            "id": "3cd6c0070efe38d0",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "src/pages/posts/Alabel.md",
+                "file": "src/pages/posts/React.md",
                 "mode": "source",
                 "source": false,
                 "backlinks": true,
@@ -52,16 +52,16 @@
                 }
               },
               "icon": "lucide-file",
-              "title": "Alabel"
+              "title": "React"
             }
           },
           {
-            "id": "2b82f8e245a975e7",
+            "id": "bc1752e55667af6d",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "src/pages/posts/LearnNuxtJs-Day2.md",
+                "file": "src/pages/posts/NodeJs-DownloadFile.md",
                 "mode": "source",
                 "source": false,
                 "backlinks": true,
@@ -76,35 +76,11 @@
                 }
               },
               "icon": "lucide-file",
-              "title": "LearnNuxtJs-Day2"
-            }
-          },
-          {
-            "id": "2c74f5b96513fd6c",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "src/pages/posts/LearnNuxtJs-Day3.md",
-                "mode": "source",
-                "source": false,
-                "backlinks": true,
-                "backlinkOpts": {
-                  "collapseAll": false,
-                  "extraContext": false,
-                  "sortOrder": "alphabetical",
-                  "showSearch": false,
-                  "searchQuery": "",
-                  "backlinkCollapsed": false,
-                  "unlinkedCollapsed": true
-                }
-              },
-              "icon": "lucide-file",
-              "title": "LearnNuxtJs-Day3"
+              "title": "NodeJs-DownloadFile"
             }
           }
         ],
-        "currentTab": 3
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -239,21 +215,21 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "src/pages/posts/WebGl_Fundamentation.md",
-                "followCursor": false,
+                "file": "src/pages/posts/React.md",
+                "followCursor": true,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "WebGl_Fundamentation 的大纲"
+              "title": "React 的大纲"
             }
           }
-        ]
+        ],
+        "currentTab": 4
       }
     ],
     "direction": "horizontal",
-    "width": 300,
-    "collapsed": true
+    "width": 238.5
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -266,44 +242,46 @@
       "bases:新建数据库": false
     }
   },
-  "active": "2c74f5b96513fd6c",
+  "active": "7dea5e2d38dc9c45",
   "lastOpenFiles": [
-    "src/assets/images/posts/LearnNuxtJs-Day3.png",
-    "src/pages/posts/LearnNuxtJs-Day2.md",
-    "src/pages/posts/LearnNuxtJs-Day3.md",
-    "src/pages/posts/LearnNuxtJs-Day1.md",
-    "src/pages/posts/LearnCFWorkers-API.md",
-    "src/pages/posts/LearnAstro-ProjectStrcture.md",
-    "src/pages/posts/LearnAstro-Configuration.md",
-    "src/pages/posts/socketIO.md",
-    "src/pages/posts/ComputerInternetBasicKnowledge.md",
-    "src/pages/posts/NodeJs-SDL.md",
-    "src/pages/posts/Alabel.md",
-    "src/pages/posts/NodeJs-SSO.md",
-    "src/pages/posts/NodeJs-ShortLink.md",
-    "src/assets/images/posts/NodeJs-ShortLink-3.png",
-    "src/assets/images/posts/NodeJs-ShortLink-2.png",
-    "src/pages/posts/NodeJs-UploadFile.md",
-    "src/assets/images/posts/NodeJs-ShortLink-1.png",
-    "src/pages/posts/UniApp.md",
-    "src/assets/images/posts/NodeJs-ShortLink-2.png",
-    "src/assets/images/posts/NodeJs-ShortLink.png",
-    "src/pages/posts/NodeJs-HTTPCache.md",
-    "src/assets/images/posts/NodeJs-HTTPCache-4.png",
-    "src/assets/images/posts/NodeJs-HTTPCache-3.png",
-    "src/assets/images/posts/NodeJs-HTTPCache-2.png",
-    "src/assets/images/posts/NodeJs-HTTPCache-1.png",
-    "src/assets/images/posts/NodeJs-HTTPCache.png",
-    "src/pages/posts/NodeJs-DownloadFile.md",
-    "src/pages/posts/nodejs-crawler.md",
+    "src/assets/images/posts/React-17.png",
     "src/pages/posts/RestartToLearnPromise.md",
-    "src/template/NodeJs.md",
-    "src/pages/posts/ElectronNotes-Day1.md",
-    "src/pages/posts/astro-frontmatter-vs-script.md",
-    "src/template/ElectronNotes.md",
-    "src/template/hello-algorithm.md",
-    "src/pages/posts/GameRegret.md",
-    "src/pages/posts/DynamicRouterInAstro.md",
+    "src/pages/posts/LearnAstro-ProjectStrcture.md",
+    "src/pages/posts/TailwindAddCustomClass.md",
+    "src/pages/posts/LearnAstro-Configuration.md",
+    "src/pages/posts/LearnCFWorkers-API.md",
+    "src/pages/posts/React.md",
+    "src/assets/images/posts/React-16.png",
+    "src/assets/images/posts/React-15.png",
+    "src/assets/images/posts/React-14.png",
+    "src/assets/images/posts/React-13.png",
+    "src/assets/images/posts/React-12.png",
+    "src/assets/images/posts/React-11.png",
+    "src/assets/images/posts/React-10.png",
+    "src/assets/images/posts/React-9.png",
+    "src/assets/images/posts/React-8.png",
+    "src/assets/images/posts/React-7.png",
+    "src/pages/posts/LearnFastify.md",
+    "src/pages/posts/NodeJs-DownloadFile.md",
+    "posts/AstroSitemap.md",
+    "posts/NodeJs-DownloadFile.md",
+    "src/assets/images/posts/HelloAlgorithm-Day2-13.png.~tmp",
+    "src/pages/posts/HelloAlgorithm-Day2.md",
+    "src/pages/posts/HelloAlgorithm-Day1.md",
+    "src/pages/posts/blob_arraybuffer_media_playback_guide.md",
+    "src/pages/posts/LearnNuxtJs-Day1.md",
+    "src/pages/posts/LearnNuxtJs-Day6.md",
+    "src/pages/posts/LearnNuxtJs-Day5.md",
+    "src/pages/posts/LearnNuxtJs-Day3.md",
+    "src/pages/posts/LearnNuxtJs-Day4.md",
+    "src/pages/posts/LearnNuxtJs-Day2.md",
+    "src/pages/posts/NodeJs-AliOss.md",
+    "src/assets/images/posts/NodeJs-AliOss-2.png.~tmp",
+    "src/pages/posts/NodeJs-ShortLink.md",
+    "src/pages/posts/NodeJs-HTTPCache.md",
+    "src/pages/posts/AstroTransitionAnimation.md",
+    "src/pages/posts/AstroLayout.md",
+    "src/pages/posts/SomeReleventResource.md",
     "src/assets/images/posts/{fileName}/LearnNuxtJs-day1-1.png.~tmp",
     "src/assets/images/posts/{fileName}",
     "src/components/ArticleHeadingsNavComponents/NavContents.astro",
@@ -312,8 +290,6 @@
     "posts",
     "src/components/Vue/test.vue",
     "src/components/Vue/Test.vue",
-    "node_modules/execa/index.d.ts",
-    "node_modules/@vue/compiler-core/node_modules/entities/dist/esm/index.d.ts",
     "未命名.canvas"
   ]
 }

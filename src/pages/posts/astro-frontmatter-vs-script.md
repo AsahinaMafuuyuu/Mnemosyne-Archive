@@ -3,8 +3,10 @@ layout: ../../layouts/MarkdownPostLayout.astro
 title: astro中---与script的对比
 pubDate: 2026-01-11
 author: Asahina Mafuyu
-description: "我遇到了一些问题，但是在社区里面提问真的很有帮助！"
-tags: ["astro"]
+description: astro中的---与script本质上的对比
+tags:
+  - astro
+  - AI文章
 ---
 
 # Astro 中 `---` 与 `<script>` 的本质区别（核心知识点）

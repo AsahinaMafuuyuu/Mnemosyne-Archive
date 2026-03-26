@@ -45,7 +45,7 @@ Content-Disposition: form-data; name="fieldName"; filename="filename.jpg"
 
 > 拓展：前端实现下载某一个文件：
 >```js
- function downloadUrl(url, filename) {
+>function downloadUrl(url, filename) {
 	 const a = document.createElement('a')
 	  a.href = url
 	  a.download = filename || ''
@@ -53,10 +53,10 @@ Content-Disposition: form-data; name="fieldName"; filename="filename.jpg"
 	  document.body.appendChild(a)
 	  a.click()
 	  a.remove()
-}
-// 用法
-downloadUrl('/files/report.pdf', 'report.pdf')
-> ```
+	}
+	// 用法
+	downloadUrl('/files/report.pdf', 'report.pdf')
+>```
 
 ## 实例
 

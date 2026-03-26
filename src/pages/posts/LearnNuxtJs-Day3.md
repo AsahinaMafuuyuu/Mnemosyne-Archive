@@ -3,7 +3,9 @@ layout: ../../layouts/MarkdownPostLayout.astro
 title: 学习NuxtJs
 pubDate: 2026-03-05T20:44:00
 author: AsahinaMafuyu
-description: 学习NuxtJs，本文主要学习...
+description: |-
+  学习NuxtJs，本篇介绍了 Nuxt 的 composables 与 plugins 机制，说明如何在 app/composables 中封装可复用的状态逻辑并通过 useState 实现跨组件共享且 SSR 安全的全局响应式状态。
+  同时讲解了 plugins 插件系统 的使用方式，通过 defineNuxtPlugin 在应用初始化时注册全局功能或工具函数。
 cover:
   url: https://image-bucket.asahinamafuyu.top/astro-covers/NuxtJs-Cover.png
   alt: NuxtJs Cover

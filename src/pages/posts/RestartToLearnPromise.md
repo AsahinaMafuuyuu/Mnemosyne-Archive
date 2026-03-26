@@ -16,6 +16,7 @@ tags: []
 > 也就是说，Promise对象本身是**同步**的，真正异步主要是**回调函数被安排在微任务队列当中**
 
 例如：
+
 ```js
 new Promise((resolve) => {  
 	console.log('A'); // 立刻打印  
@@ -216,27 +217,27 @@ async function asyncFn () {
 可以看个例子：
 
 ```ts
-  function returnPromise5S () {
-           return new Promise((resolve, reject) => {
-                setTimeout(() => {
-                    resolve(1000)
-                }, 5000)
-            })
-        }
-        async function asyncFn () {
-            let timer = await returnPromise5S()
-            console.log("5s后看见我吧，我是async里的")
-            timer = await returnPromise5S()
-            console.log("10s后看见我吧，我是async里的")
-        }
-        asyncFn()
-        console.log("立刻可以看见我")
-        setTimeout(()=> {
-        console.log("5s后看见我吧，我是定时器里的")
-        }, 5000)
-         setTimeout(()=> {
-        console.log("10s后看见我吧，我是定时器里的")
-        }, 10000)
+function returnPromise5S () {
+	return new Promise((resolve, reject) => {
+		setTimeout(() => {
+			resolve(1000)
+		}, 5000)
+	})
+}
+async function asyncFn () {
+	let timer = await returnPromise5S()
+	console.log("5s后看见我吧，我是async里的")
+	timer = await returnPromise5S()
+	console.log("10s后看见我吧，我是async里的")
+}
+asyncFn()
+console.log("立刻可以看见我")
+setTimeout(()=> {
+console.log("5s后看见我吧，我是定时器里的")
+}, 5000)
+ setTimeout(()=> {
+console.log("10s后看见我吧，我是定时器里的")
+}, 10000)
 ```
 
 想一下这个例子应该会打印什么
@@ -248,6 +249,8 @@ async function asyncFn () {
 ## await表达式
 
 await表达式右侧为Promise对象，也可以是其他值，如果为Promise对象，一般需要等到Promise成功或者reject以后，才会输出（不然的话就会一直等待右侧的Promise对象，这个等待是放到微任务当中去的）
+
+> 一个async函数中如果有await的话，那么这个函数执行的时候如果碰到await，就会将这个函数挂起，直到await返回结果（再找时机从宏任务队列中取出）,然后恢复函数执行
 
 > await表达式返回的就是右侧Promise对象当中的值
 

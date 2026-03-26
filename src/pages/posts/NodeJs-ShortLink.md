@@ -1,6 +1,6 @@
 ---
 layout: ../../layouts/MarkdownPostLayout.astro
-title: NodeJs
+title: NodeJs短链技术
 pubDate: 2026-03-04T10:44:00
 author: AsahinaMafuyu
 description: 学习NodeJs短链技术（本文均摘自小满zs的NodeJs文章，侵权删）
