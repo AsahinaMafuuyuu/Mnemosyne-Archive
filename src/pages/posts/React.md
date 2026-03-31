@@ -226,20 +226,20 @@ function App() {
 
 ![](../../assets/images/posts/React-9.png)
 
-### 工具
+## 工具
 
-#### babel
+### babel
 
 详细可见[Babel | react docs](https://message163.github.io/react-docs/react/tools/babel.html)
 
-#### swc
+### swc
 
 SWC 既可用于编译，也可用于打包。对于编译，它使用现代 JavaScript 功能获取 JavaScript / TypeScript 文件并输出所有主流浏览器支持的有效代码。
 **`SWC在单线程上比 Babel 快 20 倍，在四核上快 70 倍。`**
 
-### 虚拟DOM
+## 虚拟DOM
 
-#### fiber
+### fiber
 
 为了解决React15在大组件更新时产生的卡顿现象，React团队提出了 Fiber 架构，并在 React16 发布，将 同步递归无法中断的更新 重构为 异步的可中断更新
 
@@ -841,7 +841,7 @@ setTimeout(() => {
 }, 3000);
 ```
 
-#### requestIdleCallback
+### requestIdleCallback
 
 requestidlecallback 执行阶段如下：
 
@@ -932,7 +932,7 @@ port2.postMessage('Message from port2');
 
 并且消息处理均是宏任务，且延迟为0ms
 
-#### React版简易调度器
+### React版简易调度器
 
 React调度器给每一个任务分配了优先级
 
@@ -1071,11 +1071,11 @@ ssr.scheduleCallback(ImmediatePriority, () => {
 });
 ```
 
-### Hooks
+## Hooks
 
 > **所有的hook必须要在组件的最顶层使用
 
-#### useState
+### useState
 
 vue中使用ref变成响应式，而react则使用useState，用法如下：
 
@@ -1185,7 +1185,7 @@ export default App
 
 关于useState的异步更新机制，可以查看：[useState | react docs](https://message163.github.io/react-docs/react/hooks/useState.html#usestate%E6%9B%B4%E6%96%B0%E6%9C%BA%E5%88%B6)
 
-#### useReducer
+### useReducer
 
 使用方法如下：
 
@@ -1294,7 +1294,7 @@ export default App
 ```
 
 
-#### useImmer
+### useImmer
 
 `useImmer` 是基于 [immer](https://immerjs.github.io/immer/) 库实现的一个 React Hook，它让你可以像修改可变数据一样来修改不可变数据。immer 是一个不可变的数据结构库，完全符合 React 的不可变性原则。
 
@@ -1465,7 +1465,7 @@ export default function AdvancedCounter() {
 }
 ```
 
-#### useSyncExternalStore
+### useSyncExternalStore
 
 useSyncExternalStore 是 React 18 引入的一个 Hook，用于从外部存储（例如状态管理库、浏览器 API 等）获取状态并在组件中同步显示。这对于需要跟踪外部状态的应用非常有用。
 
@@ -1584,7 +1584,7 @@ const res = useSyncExternalStore(subscribe, getSnapshot)
 
 这里的 `res`，**本质上就是 `getSnapshot()` 当前返回的那个值**。
 
-#### useTransition
+### useTransition
 
 `useTransition` 是 React 18 中引入的一个 Hook，**用于管理 UI 中的过渡状态，特别是在处理长时间运行的状态更新时**。它允许你将某些更新标记为“过渡”状态，这样 React 可以优先处理更重要的更新，比如用户输入，同时延迟处理过渡更新。
 
@@ -1601,7 +1601,7 @@ const [isPending, startTransition] = useTransition();
 
 详见[useTransition | react docs](https://message163.github.io/react-docs/react/hooks/useTransition.html)
 
-#### useDeferredValue
+### useDeferredValue
 
 useDeferredValue 用于延迟某些状态的更新，直到主渲染任务完成。这对于高频更新的内容（如输入框、滚动等）非常有用，可以让 UI 更加流畅，避免由于频繁更新而导致的性能问题。
 
@@ -1612,7 +1612,7 @@ useDeferredValue 用于延迟某些状态的更新，直到主渲染任务完成
 - useTransition主要关注点是`状态的过渡`。它允许开发者控制某个更新的延迟更新，还提供了过渡标识，让开发者能够添加过渡反馈。
 - useDeferredValue主要关注点是`单个值`的延迟更新。它允许你把特定状态的更新标记为低优先级。
 
-#### useEffect
+### useEffect
 
 需要纠正一个观念，纯函数具有以下特征：
 
@@ -1664,7 +1664,7 @@ useEffect(() => {
 
 有什么用？防抖！比如文本框输入，用useEffect来监听输入的变化，**每一次变化的时候都会加载一个定时器的fetch请求，清理函数为卸载掉这个定时器，** 因此连续输入的话就不会有那么多请求了，只有在最后一次输入的时候才会真正发送请求，搜索之类的特好用
 
-#### useLayoutEffect
+### useLayoutEffect
 
 `useLayoutEffect` 是 React 中的一个 Hook，用于在浏览器重新绘制屏幕之前触发。与 useEffect 类似。
 
@@ -1812,7 +1812,7 @@ function App() {
 export default App;
 ```
 
-#### useRef
+### useRef
 
 当你在React中需要处理**DOM元素或需要在组件渲染之间保持持久性数据时**，便可以使用useRef。使用如下：
 
@@ -2006,4 +2006,2066 @@ const stop = () => {
 	}
 }     
 ```
+
+### useImperativeHandle
+
+可以在子组件内部暴露给父组件`句柄`，那么说人话就是，**父组件可以调用子组件的方法，或者访问子组件的属性**。 如果你学过Vue，就类似于Vue的`defineExpose`。
+
+用法：
+
+```tsx
+useImperativeHandle(ref, ()=>{
+    return {
+        // 暴露给父组件的方法或属性
+    }
+}, [deps])
+```
+
+- ref: 父组件传递的ref对象
+- createHandle: 返回值，返回一个对象，对象的属性就是子组件暴露给父组件的方法或属性
+- deps?:[可选] 依赖项，当依赖项发生变化时，会重新调用createHandle函数，类似于`useEffect`的依赖项
+
+示例代码如下：
+
+```tsx
+import React, { useLayoutEffect, useEffect, useRef, useState, useImperativeHandle } from 'react';
+
+interface ChildRef {
+    name: string
+    count: number
+    addCount: () => void
+    subCount: () => void
+}
+
+const Child = ({ ref }: { ref: React.Ref<ChildRef> }) => {
+    const [count, setCount] = useState(0);
+    // 这里可以暴露一些方法和属性给父组件
+    useImperativeHandle(ref, () => {
+        return {
+            name: 'child',
+            count,
+            addCount: () => setCount(count + 1),
+            subCount: () => setCount(count - 1)
+        }
+    });
+    return <div><h2>Child</h2></div>
+}
+
+function App() {
+    const childRef = useRef<ChildRef>(null);
+    const showRefInfo = () => {
+        console.log(childRef.current)
+    }
+    return (
+        <div>
+            <h3>APP</h3>
+            <button onClick={showRefInfo}>获取子组件信息</button>
+            <button onClick={() => childRef.current?.addCount()}>操作子组件+1</button>
+            <button onClick={() => childRef.current?.subCount()}>操作子组件-1</button>
+            <hr />
+            <Child ref={childRef} />
+        </div>
+    )
+}
+
+export default App;
+```
+
+> 回到函数本身，依赖项这里如果什么都不传，**那么子组件中的任意一个状态发生变化都会触发`useImperativeHandle`中返回属性的更新**，若传一个空数组，则只会在初始化的时候渲染一次，若传依赖项，则只对依赖元素发生更新的时候触发`useImperativeHandle`中返回属性的更新.
+
+### useContext
+
+![](../../assets/images/posts/React-18.png)
+很显然，useContext实现了祖孙级别的通讯
+
+用法：
+
+```tsx
+const MyThemeContext = React.createContext({theme: 'light'}); // 创建一个上下文
+function App () {
+   return (
+      <MyThemeContext.Provider value={{theme: 'light'}}>
+         <MyComponent />
+      </MyThemeContext.Provider>
+   )
+}
+function MyComponent() {
+    const themeContext = useContext(MyThemeContext); // 使用上下文
+    return (<div>{themeContext.theme}</div>);
+}
+```
+
+> ![](../../assets/images/posts/React-19.png)
+
+
+> react18 版本使用的是这种语法：`<ThemeContext.Provider value={{ theme, setTheme }}>`
+> react19 版本使用的是这种语法：`<ThemeContext value={{ theme, setTheme }}>`
+> 也就是去掉了Provider的包裹
+
+示例代码如下：
+
+```tsx
+import React, { useLayoutEffect, useEffect, useRef, useState, useImperativeHandle, useContext, createContext } from 'react';
+
+interface ChildRef {
+    name: string
+    validate: () => string | true
+    reset: () => void
+}
+interface ThemeType {
+    theme: string
+}
+
+const ThemeContent = createContext<ThemeType>({} as ThemeType)
+const Child = () => {
+    const themeCLS = useContext(ThemeContent)
+    return (
+        <div style={{
+            color: themeCLS.theme === "dark" ? "white" : "black",
+            backgroundColor: themeCLS.theme === "dark" ? "black" : "white",
+            width: '100px',
+            height: '100px',
+        }}>
+            hello, I'm Child
+        </div >
+   )
+}
+
+const Parent = () => {
+    const themeCLS = useContext(ThemeContent)
+    return (
+        <div>
+            <div style={{
+                color: themeCLS.theme === "dark" ? "white" : "black",
+                backgroundColor: themeCLS.theme === "dark" ? "black" : "white",
+                width: '100px',
+                height: '100px',
+            }}>
+                hello, I'm Parent
+            </div >
+            <Child />
+        </div>
+    )
+}
+
+function App() {
+    const [theme, setTheme] = useState({theme: 'light'})
+    return (
+        <>
+            <div>
+                <ThemeContent value={theme}>
+                    <Parent />
+                </ThemeContent>
+            </div>
+            <button onClick={() => setTheme({theme: theme.theme === 'light'? 'dark' : 'light'})}>切换主题</button>
+        </>
+    )
+}
+export default App;
+```
+
+### useMemo
+
+`useMemo` 是 React 提供的一个性能优化 Hook。它的主要功能是避免在每次渲染时执行复杂的计算和对象重建。通过记忆上一次的计算结果，仅当依赖项变化时才会重新计算，提高了性能，有点类似于Vue的`computed`。
+
+用法：
+
+使用 `React.memo` 包裹组件`[一般用于子组件]`，可以避免组件重新渲染。
+
+```tsx
+import React, { memo } from 'react';
+const MyComponent = React.memo(({ prop1, prop2 }) => {
+  // 组件逻辑
+});
+const App = () => {
+  return <MyComponent prop1="value1" prop2="value2" />;
+};
+```
+
+比如下面这段代码：
+
+```tsx
+import React, { useLayoutEffect, useEffect, useRef, useState, useImperativeHandle, useContext, createContext } from 'react';
+
+interface User {
+    name:string;
+    age:number;
+    phone:string;
+}
+
+// 子组件
+const UserCard = (props: { user: User }) => {
+    console.log('UserCard render');
+    const { user } = props;
+    return (
+        <div>
+            <p>{user.name}</p>
+            <p>{user.age}</p>
+            <p>{user.phone}</p>
+        </div>
+    )
+}
+
+const App = () => {
+    const [input, setInput] = useState<string>('');
+    const [user, setUser] = useState<User | null>({
+	    name: '中华第一剑',
+	    age: 18,
+	    phone: '1234567890'
+  });
+
+  return (
+    <div>
+        <input type="text" value={input} onChange={(e) => {
+            setInput(e.target.value);
+        }}/>
+        <UserCard user={user!} />
+    </div>
+  )
+}
+
+export default App;
+```
+
+此时若改变input，也会触发重新渲染，导致子组件一直重复渲染，这显然是没有必要的，因此需要将子组件用`React.memo`包裹起来：
+
+```tsx
+// 子组件
+const UserCard = React.memo((props: { user: User }) => {
+    console.log('UserCard render');
+    const { user } = props;
+    return (
+        <div>
+            <p>{user.name}</p>
+            <p>{user.age}</p>
+            <p>{user.phone}</p>
+        </div>
+    )
+})
+```
+
+也就是说：只有props中的依赖发生改变的时候，才会重新去渲染我们的这个子组件
+useMemo实际上就类似于watch，里面的依赖项发生改变的时候才会执行回调函数，否则沿用之前的缓存值
+
+用法如下：
+
+```tsx
+import React, { useMemo, useState } from 'react';
+const App = () => {
+   const [count, setCount] = useState(0);
+   const memoizedValue = useMemo(() => count, [count]);
+   return <div>{memoizedValue}</div>;
+}
+```
+
+执行时机：
+
+1. 如果依赖项是个空数组，那么 `useMemo` 的回调函数会执行一次
+2. 指定依赖项，当依赖项发生变化时， `useMemo` 的回调函数会执行
+3. 不指定依赖项，不推荐这么用，因为每次渲染和更新都会执行
+
+### useCallback
+
+用法如下：
+
+```tsx
+import React, { useLayoutEffect, useEffect, useRef, useState, useImperativeHandle, useContext, createContext, useCallback } from 'react';
+
+const App: React.FC = () => {
+    console.log('render')
+    const [input, setInput] = useState<string>('');
+    const changeInput = useCallback((value: string) => {
+        setInput(value);
+    }, []); // useCallback能够缓存函数，只有当依赖项发生变化时才会重新创建函数，这样可以避免在每次渲染时都创建一个新的函数，从而提高性能。
+    return (
+        <>
+            <input type="text" value={input} onChange={(e) => changeInput(e.target.value)} />
+        </>
+    )
+}
+
+export default App;
+```
+
+如果不使用useCallback的话每次更新state都会更新组件，使得函数重新渲染，这样看来是没有必要的
+
+### 父传子
+
+父传子在使用中特别模糊，其实父传子非常简单：
+
+```tsx
+function Parent() {
+  const [count, setCount] = useState(0);
+
+  return <Child count={count} setCount={setCount} />;
+}
+
+function Child(props: { count: number; setCount: React.Dispatch<React.SetStateAction<number>> }) {
+  return (
+    <button onClick={() => props.setCount(props.count + 1)}>
+      {props.count}
+    </button>
+  );
+}
+```
+
+直接用props进行接收即可。
+
+然后如果传递的是函数，则需要使用useCallback，如果传递的是变量，则需要用React.memo来监控变量，按需进行重新渲染更新。
+
+### useDebugValue
+
+这一个hook主要给开发人员使用，详见： [useDebugValue | react docs](https://message163.github.io/react-docs/react/hooks/useDebugValue.html)
+
+### useId
+
+```tsx
+const id = useId()
+// 返回值: :r0: 多次调用值递增
+```
+
+主要用于：
+
+- 为组件生成唯一 ID
+- 解决 SSR 场景下的 ID 不一致问题
+- 无障碍交互唯一ID
+
+```tsx
+export const App = () => {
+  const id = useId()
+  return <>
+  <label htmlFor={id}>Name</label>
+  <input id={id} type="text" />
+  </>
+}
+```
+
+此时点击label也能够触发input
+
+第二就是SSR场景下的id，在服务端渲染（SSR）场景下，组件会在服务端和客户端分别渲染一次。如果使用随机生成的 ID，可能会导致两端渲染结果不一致，引发 hydration 错误。useId 可以确保生成确定性的 ID。
+
+```tsx
+// 一个常见的 SSR 场景：带有工具提示的导航栏组件
+const NavItem = ({ text, tooltip }) => {
+  // ❌ 错误做法：使用随机值或递增值
+  const randomId = `tooltip-${Math.random()}`
+  // 在 SSR 时服务端可能生成 tooltip-0.123
+  // 在客户端可能生成 tooltip-0.456
+  // 导致 hydration 不匹配
+
+  return (
+    <li>
+      <a 
+        aria-describedby={randomId}
+        href="#"
+      >
+        {text}
+      </a>
+      <div id={randomId} role="tooltip">
+        {tooltip}
+      </div>
+    </li>
+  )
+}
+
+// ✅ 正确做法：使用 useId
+const NavItemWithId = ({ text, tooltip }) => {
+  const id = useId()
+  const tooltipId = `${id}-tooltip`
+  
+  return (
+    <li>
+      <a 
+        href="#"
+        aria-describedby={tooltipId}
+        className="nav-link"
+      >
+        {text}
+      </a>
+      <div 
+        id={tooltipId}
+        role="tooltip"
+        className="tooltip"
+      >
+        {tooltip}
+      </div>
+    </li>
+  )
+}
+
+// 使用示例
+const Navigation = () => {
+  return (
+    <nav>
+      <ul>
+        <NavItemWithId 
+          text="首页" 
+          tooltip="返回首页"
+        />
+        <NavItemWithId 
+          text="设置" 
+          tooltip="系统设置"
+        />
+        <NavItemWithId 
+          text="个人中心" 
+          tooltip="查看个人信息"
+        />
+      </ul>
+    </nav>
+  )
+}
+```
+
+## 组件
+
+### 定义
+
+App是一个单体，我们在真正做项目的时候，我们需要把它分解成可管理的，可描述的组件。 React 对于什么是组件和什么不是组件并没有任何硬性规定，这完全取决于你！
+
+react中没有全局和局部组件之类的概念，所有组件均为局部组件，在哪里用，就在哪里引入即可！
+
+关于全局组件，详见：[组件 | react docs](https://message163.github.io/react-docs/react/components/base.html#%E5%85%A8%E5%B1%80%E7%BB%84%E4%BB%B6)
+
+### 组件通信
+
+React 组件使用 `props` 来互相通信。每个父组件都可以提供 props 给它的子组件，从而将一些信息传递给它。Props 可能会让你想起 HTML 属性，但你可以通过它们传递任何 JavaScript 值，包括对象、数组和函数 以及html 元素，这样可以使我们的组件更加灵活。
+
+```tsx
+import Card from "./components/Card";
+import TestChild from "./components/Information";
+
+function App() {
+    return (
+        <div>
+            <TestChild name="John" age={30} description="A software engineer" />
+        </div>
+    )
+}
+
+export default App
+```
+
+```tsx
+import React from "react";
+
+interface Props {
+    name: string
+    age: number
+    description: string
+}
+
+const TestChild: React.FC<Props> = (props: Props) => {
+    return (
+        <div>
+            <div>name: {props.name}</div>
+            <div>age: {props.age}</div>
+            <div>description: {props.description}</div>
+        </div>
+    )
+}
+
+export default TestChild
+```
+
+默认值的话可以用defaultProps进行解构：
+
+```tsx
+interface Props {
+    name?: string
+    age?: number
+    description?: string
+}
+
+const defaultProps = {
+    name: '中华第一剑',
+    age: 20,
+    description: '我的剑准备好了'
+}
+
+const TestChild: React.FC<Props> = (props) => {
+    props = { ...defaultProps, ...props };
+    return (
+        <div>
+            <div>name: {props.name}</div>
+            <div>age: {props.age}</div>
+            <div>description: {props.description}</div>
+        </div>
+    )
+}
+```
+
+如果要给子组件传入slot（类似于vue中插槽的内容的话），就需要用到`props.children`：
+
+父组件：
+
+```tsx
+function App() {
+    return (
+        <div>
+            <TestChild>
+                <div>这个是传入到插槽中的内容哦</div>
+            </TestChild>
+        </div>
+    )
+}
+```
+
+子组件：
+
+```tsx
+interface Props {
+    name?: string
+    age?: number
+    description?: string
+    children?: React.ReactNode // 这里就是用来当作插槽的
+}
+
+const TestChild: React.FC<Props> = (props) => {
+    props = { ...defaultProps, ...props };
+    return (
+        <div>
+            <div>name: {props.name}</div>
+            <div>age: {props.age}</div>
+            <div>description: {props.description}</div>
+            {props.children} // 装载html，如果是数组一样也能够渲染
+        </div>
+    )
+}
+```
+
+> 那vue中的具名插槽该怎么做呢？
+
+直接把 JSX 当成不同 prop 传进去
+这是最常见、最像“具名插槽”的做法。
+
+父组件
+
+```tsx
+<MyCard
+  header={<div>头部</div>}
+  footer={<div>底部</div>}
+>
+  <div>正文</div>
+</MyCard>
+```
+
+ 子组件
+
+```tsx
+interface MyCardProps {
+  header?: React.ReactNode
+  footer?: React.ReactNode
+  children?: React.ReactNode
+}
+
+function MyCard(props: MyCardProps) {
+  return (
+    <div className="card">
+      <div className="card-header">{props.header}</div>
+      <div className="card-body">{props.children}</div>
+      <div className="card-footer">{props.footer}</div>
+    </div>
+  )
+}
+```
+
+可以把它理解成：
+
+- `children` = 默认插槽
+- `header` = 具名插槽 header
+- `footer` = 具名插槽 footer
+
+这是 React 里最直接的“具名插槽替代方案”。
+
+**子传父也是类推**
+
+> 记住一点，子传父传函数的话传递的是函数的调用，函数的执行仍然是在父组件中（这个其实就是编程的底层逻辑思维，仔细想想就能想明白了），这样的话我们可以在函数中编写对应的逻辑
+
+父组件：
+
+```tsx
+function App() {
+    const [storagedContent, setStoragedContent] = useState('')
+    const fn = useCallback((param: string) => {
+    //  这里的content就是子组件传入的内容
+    setStoragedContent(param);
+}, []);
+
+    return (
+        <div>
+            <TestChild fn={fn}>
+                <div>这个是传入到插槽中的内容哦</div>
+            </TestChild>
+            <div>存储在父组件中的内容：{storagedContent}</div>
+        </div>
+    )
+}
+```
+
+子组件：
+
+```tsx
+const TestChild: React.FC<Props> = (props) => {
+    props = { ...defaultProps, ...props };
+    return (
+        <div>
+            <div>name: {props.name}</div>
+            <div>age: {props.age}</div>
+            <div>description: {props.description}</div>
+            {props.children}
+            <button onClick={() => props.fn('Hello from child!')}>Click me</button>
+        </div>
+    )
+}
+```
+
+### 受控组件
+
+```tsx
+function App() {
+const [input, setInput] = useState('');
+
+    return (
+        <div>
+           <input type="text" value={input}  />
+        </div>
+    )
+}
+```
+
+由于react当中的useState必须要通过setInput进行修改才能触发重新渲染，否则的话如果不绑定onChange的话，该组件就不知道是否受控
+
+![](../../assets/images/posts/React-20.png)
+
+当用户输入内容的时候，value并不会自动更新，这时候就需要我们手动实现一个onChange事件来更新value。
+
+```tsx
+function App() {
+    const [input, setInput] = useState('');
+    const handleChangeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setInput(e.target.value);
+    }
+    return (
+        <div>
+            <input type="text" value={input} onChange={handleChangeInput} />
+        </div>
+    )
+}
+```
+
+其实就是实现了一个类似Vue的v-model的机制，通过onChange事件来更新value，这样就实现了受控组件。
+
+> 受控组件适用于所有表单元素，包括input、textarea、select等。但是除了input type="file" 外，其他表单元素都推荐使用受控组件。
+
+非受控组件的话，就直接操纵原生：
+
+```tsx
+function App() {
+    let value = ''
+    const inputRef = useRef<HTMLInputElement>(null)
+    const handleChangeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+        console.log(inputRef.current?.value)
+        value = inputRef.current?.value || ''
+        console.log("value: ", value)
+    }
+
+    return (
+        <div>
+            <input type="text" ref={inputRef} onChange={ handleChangeInput} />
+        </div>
+    )
+}
+```
+
+> 注意：这里为什么不能写成`<input value={value} type="text" ref={inputRef} onChange={ handleChangeInput} />`是因为有一条法则：如果子组件中的属性发生变化，就会重新渲染组件，不过更新机制一直都是有问题，所以建议如果是非受控组件，就绑定Ref进行原生DOM操作即可，而不绑定任何相关的State
+
+### 异步组件
+
+Suspense 是一种异步渲染机制，其核心理念是在组件加载或数据获取过程中，先展示一个占位符（loading state），从而实现更自然流畅的用户界面更新体验。
+
+**应用场景**
+
+- **异步组件加载**：通过代码分包实现组件的按需加载，有效减少首屏加载时的资源体积，提升应用性能。
+    
+- **异步数据加载**：在数据请求过程中展示优雅的过渡状态（如 loading 动画、骨架屏等），为用户提供更流畅的交互体验。
+    
+- **异步图片资源加载**：智能管理图片资源的加载状态，在图片完全加载前显示占位内容，确保页面布局稳定，提升用户体验。
+
+这样子：
+
+```tsx
+import React, { lazy, Suspense } from 'react'
+const AsyncComponent = lazy(() => import('./components/Async'))
+
+const App:React.FC = () => {
+    return (
+        <div>
+            <Suspense fallback={<div>Loading...</div>}>
+                <AsyncComponent></AsyncComponent>
+            </Suspense>
+        </div>
+    )
+}
+
+export default App
+```
+
+就可以让我们能够进行懒加载了
+
+**异步数据加载**
+
+尤其是多媒体平台（例如b站），播放一个视频，视频和用户信息等是分开加载的 
+
+**异步组件**
+
+解决的是：
+
+- 减少首屏包体积
+- 按需加载代码
+- 路由级拆包
+- 某些大组件延迟下载
+
+这是 **代码分割/code splitting** 的问题。
+
+**异步数据** 
+
+解决的是：
+
+- 接口没回来
+- 数据依赖还没准备好
+- 组件虽然已经有了，但内容还不能渲染
+
+这是 **数据获取/data fetching** 的问题。
+
+**案例如下**
+
+首先在`public`目录下创建一个`data.json`的文件：
+
+```json data.json
+{
+    "data":{
+        "id":1,
+        "address":"福州市第十六中学",
+        "name":"序号聋",
+        "age":26,
+        "avatar":"https://api.dicebear.com/7.x/avataaars/svg?seed=小满"
+    }
+}
+```
+
+然后做好骨架屏(在`components`下面创建`Skeleton`文件夹，存放`index.tsx`和`index.css`)：
+
+```css index.css
+.skeleton {
+    width: 300px;
+    height: 150px;
+    border: 1px solid #d6d3d3;
+    margin: 30px;
+    border-radius: 2px;
+}
+
+.skeleton-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #d6d3d3;
+    padding: 10px;
+}
+
+.skeleton-name {
+    width: 100px;
+    height: 20px;
+    background-color: #d6d3d3;
+    animation: skeleton-loading 1.5s ease-in-out infinite;
+}
+
+.skeleton-age {
+    width: 50px;
+    height: 20px;
+    background-color: #d6d3d3;
+    animation: skeleton-loading 1.5s ease-in-out infinite;
+}
+
+.skeleton-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+}
+
+.skeleton-address {
+    width: 100px;
+    height: 20px;
+    background-color: #d6d3d3;
+    animation: skeleton-loading 1.5s ease-in-out infinite;
+}
+
+.skeleton-avatar {
+    width: 50px;
+    height: 50px;
+    background-color: #d6d3d3;
+    animation: skeleton-loading 1.5s ease-in-out infinite;
+}
+
+@keyframes skeleton-loading {
+    0% {
+        opacity: 0.6;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0.6;
+    }
+}
+```
+
+```tsx index.tsx
+import './index.css'
+export const Skeleton = () => {
+    return <div className="skeleton">
+        <header className="skeleton-header">
+            <div className="skeleton-name"></div>
+            <div className="skeleton-age"></div>
+        </header>
+        <section className="skeleton-content">
+            <div className="skeleton-address"></div>
+            <div className="skeleton-avatar"></div>
+        </section>
+    </div>
+}
+```
+
+然后Card组件的样式和tsx也写进去(`components/Card/index.tsx`, `components/Card/index.tsx`)：
+
+```tsx index.tsx
+import { use } from 'react'
+import './index.css'
+interface Data {
+   name: string
+   age: number
+   address: string
+   avatar: string
+}
+
+const getData = async () => {
+   await new Promise(resolve => setTimeout(resolve, 2000))
+   return await fetch('http://localhost:5173/data.json').then(res => res.json()) as { data: Data }
+};
+
+const dataPromise = getData();
+
+const Card: React.FC = () => {
+   const { data } = use(dataPromise);
+   return <div className="card">
+      <header className="card-header">
+         <div className="card-name">{data.name}</div>
+         <div className="card-age">{data.age}</div>
+      </header>
+      <section className="card-content">
+         <div className="card-address">{data.address}</div>
+         <div className="card-avatar">
+            <img width={50} height={50} src={data.avatar} alt="" />
+         </div>
+      </section>
+   </div>;
+};
+
+export default Card;
+```
+
+> `use` API 用于获取组件内部的Promise,或者Context的内容，该案例使用了use获取Promise返回的数据并且故意延迟2秒返回，模拟网络请求。
+
+`use`
+
+```tsx
+const data = use(fetchDataPromise)  
+return <div>{data.name}</div>
+```
+
+意思也是：
+
+- 我要这里的结果
+- 没结果就先别继续正常渲染
+
+所以它有点像 `await`
+
+```css index.css
+.card {
+    width: 300px;
+    height: 150px;
+    border: 1px solid #d6d3d3;
+    margin: 30px;
+    border-radius: 2px;
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #d6d3d3;
+    padding: 10px;
+}
+
+.card-age {
+    font-size: 12px;
+    color: #999;
+}
+
+.card-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+}
+```
+
+App.tsx代码可以这样写：
+
+```tsx App.tsx
+import React, { lazy, Suspense } from 'react'
+import Card from './components/Card';
+import { Skeleton } from './components/Skeleton';
+
+const App:React.FC = () => {
+    return (
+        <div>
+            <Suspense fallback={<Skeleton></Skeleton>}>
+                <Card></Card>
+            </Suspense>
+        </div>
+    )
+}
+
+export default App
+```
+
+### 传送组件
+
+`createPortal`是一个API，不是组件，他的作用是：将一个组件渲染到DOM的任意位置，跟Vue的Teleport组件类似。
+
+用法：
+
+```tsx
+import { createPortal } from 'react-dom';
+
+const App = () => {
+  return createPortal(<div>小满zs</div>, document.body);
+};
+
+export default App;
+```
+
+入参
+
+- children：要渲染的组件
+- domNode：要渲染到的DOM位置
+- key?：可选，用于唯一标识要渲染的组件
+
+返回值
+
+- 返回一个React元素(即jsx)，这个元素可以被React渲染到DOM的任意位置
+
+譬如我们将弹窗挂载到整体页面上去：
+
+```tsx App.tsx
+import React, { lazy, Suspense } from 'react';
+import { createPortal } from 'react-dom';
+import { Modal } from './components/Modal';
+
+const App: React.FC = () => {
+    return (
+        <div>
+            {createPortal(<Modal></Modal>, document.body)}
+        </div>
+    );
+}
+
+export default App
+```
+
+![](../../assets/images/posts/React-21.png)
+
+> 来自小满的谏言：
+> 我更推荐使用`createPortal`因为他更灵活，可以挂载到任意位置，而`position: fixed`,会有很多问题，在默认的情况下他是根据浏览器视口进行定位的，**但是如果父级设置了`transform、perspective、filter 或 backdrop-filter` 属性非 none 时，他就会相对于父级进行定位**，这样就会导致Modal组件定位不准确`(他不是一定按照浏览器视口进行定位)`，所以不推荐使用。
+
+### 工程化组件
+
+```
+project-root/
+├─ dist/                      # 打包文件
+├─ docs/                      # 文档
+├─ packages/                  # 组件目录
+│  ├─ Tree/
+│  │  ├─ index.ts             # 入口
+│  │  ├─ tree.tsx             # 组件
+│  │  ├─ styles.css           # 样式
+│  │  └─ type.ts              # 类型
+│  ├─ Button/
+│  │  ├─ index.ts             # 入口
+│  │  ├─ button.tsx           # 组件
+│  │  ├─ styles.css           # 样式
+│  │  └─ type.ts              # 类型
+│  └─ index.ts                # 组件汇总
+├─ example/
+│  ├─ index.html              # 示例
+│  ├─ App.tsx                 # 示例
+│  └─ main.tsx                # 示例入口
+├─ vite.d.ts                  # 类型声明
+├─ package.json               # 包管理
+├─ vite.config.ts             # vite 配置
+├─ tsconfig.json              # ts 配置
+└─ README.md                  # README
+```
+
+> package.json 可以通过 `npm init -y` 生成
+> tsconfig.json 可以通过 `tsc --init` 生成
+
+#### 1. 依赖安装
+
+```bash
+npm install vite -D # vite 构建工具
+npm install @vitejs/plugin-react-swc -D # 插件编译React
+npm install vite-plugin-dts -D #生成d.ts文件 声明文件
+npm install react #react依赖
+npm install react-dom #react依赖
+npm install @types/react -D # 类型
+npm install @types/react-dom -D # 类型
+npm install @types/node -D # 类型
+```
+
+#### 2. 初始化html文件
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="root"></div>
+    <script type="module" src="./main.tsx"></script>
+</body>
+</html>
+```
+
+#### 3. 配置vite.config.ts文件
+
+```ts vite.config.ts
+import { defineConfig } from 'vite';
+import react from '@vitejs/plugin-react-swc';
+import { resolve } from 'path';
+
+// https://vitejs.dev/config/
+export default defineConfig({
+  plugins: [react()],
+  root: resolve(__dirname, 'example'), // 设置项目根目录为 example 文件夹
+  server: {
+    port: 3000,
+    open: true, // 自动打开浏览器
+  },
+  resolve: {
+    alias: {
+      '@': resolve(__dirname, 'example'), // 设置 @ 别名指向 example 文件夹
+    },
+  },
+});
+```
+
+然后在`package.json`中修改`scripts`为以下属性：
+
+```json package.json
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build"
+  },
+```
+
+初始化一下`example/App.tsx`:
+
+```tsx example/App.tsx
+export default function App() {
+  return <div>Hello Sekai</div>
+}
+```
+
+顺便也得初始化一下`example/main.tsx`:
+
+```tsx example/main.tsx
+import React from 'react'
+import ReactDOM from 'react-dom/client'
+import App from './App'
+ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
+    <App />
+)
+```
+
+ 创建`vite.d.ts`并写入以下代码：
+
+```ts vite.d.ts
+/// <reference types="vite/client" />
+```
+
+> tsconfig.json中：
+> - `target`：**我要把 TS/新语法编译到什么 JS 年代**
+> - `module`：**我要用什么模块规范**
+> - `moduleResolution`：**导入路径到底按什么规则找文件**
+> 其中：
+> 如果是前端/Vite项目
+> 改成：
+> "module": "ESNext",  
+> "moduleResolution": "bundler"
+> 
+> 如果是 Node 项目，不靠 bundler
+> 那就别用 `bundler`，改成：
+> "module": "NodeNext",  
+> "moduleResolution": "NodeNext"
+> 或者：
+> "module": "Node16", 
+> "moduleResolution": "Node16"
+
+至此，初始化工作已准备就绪，剩下的就是编写核心组件代码
+
+代码逻辑部分直接查看：[组件实战 | react docs](https://message163.github.io/react-docs/react/components/practice.html#%E6%A0%B8%E5%BF%83%E9%80%BB%E8%BE%91%E7%BC%96%E5%86%99)
+
+#### 4. 代码打包
+
+配置`vite.config.ts`文件
+
+```ts
+import { defineConfig } from 'vite';
+import react from '@vitejs/plugin-react-swc';
+import { resolve } from 'path';
+import dts from 'vite-plugin-dts'; // 生成 .d.ts 文件的插件
+
+// https://vitejs.dev/config/
+export default defineConfig({
+    plugins: [react(), dts({
+        include: ['packages/**/*.ts', 'packages/**/*.tsx'], // 指定需要生成 .d.ts 文件的源文件路径
+        entryRoot: resolve(__dirname, 'packages'), // 入口文件所在目录
+        insertTypesEntry: true, // 在 package.json 中插入 types 字段，指向生成的 .d.ts 文件
+        rollupTypes: true, // 使用 Rollup 来处理类型文件，支持 tree-shaking
+        tsconfigPath: resolve(__dirname, 'tsconfig.json'), // 指定 tsconfig.json 的路径
+        outDir: resolve(__dirname, 'dist/types'), // 输出 .d.ts 文件的目录
+    })],
+    root: resolve(__dirname, 'example'), // 设置项目根目录为 example 文件夹
+    server: {
+        port: 3000,
+        open: true, // 自动打开浏览器
+    },
+
+    resolve: {
+        alias: {
+            '@': resolve(__dirname, 'example'), // 设置 @ 别名指向 example 文件夹
+        },
+    },
+    build: {
+        outDir: resolve(__dirname, 'dist'), // 设置构建输出目录为 dist 文件夹
+        lib: {
+            entry: resolve(__dirname, 'packages/index.ts'), // 设置库的入口文件
+            name: 'MyComponentLibrary', // 设置库的全局变量名称
+            formats: ['es', 'umd', 'cjs', 'iife'], // 设置库的输出格式: es模块、UMD、CommonJS 和 IIFE
+            fileName: (format) => `my-component-library.${format}.js`, // 设置输出文件名
+        },
+        rollupOptions: {
+            // 确保外部化处理那些你不想打包进库的依赖
+            external: ['react', 'react-dom'],
+            output: {
+                // 在 UMD 和 IIFE 格式中为这些外部化的依赖提供一个全局变量
+                globals: {
+                    react: 'React', // 这里的 React 是 React 的全局变量名称，UMD 和 IIFE 格式会使用这个名称来访问外部化的 react 模块
+                    'react-dom': 'ReactDOM', // 这里的 ReactDOM 是 ReactDOM 的全局变量名称，UMD 和 IIFE 格式会使用这个名称来访问外部化的 react-dom 模块
+                }
+            }
+        }
+    }  
+});
+```
+
+## CSS
+
+### CSS Module
+
+因为 `React` 没有Vue的Scoped，但是React又是SPA(单页面应用)，所以需要一种方式来解决css的样式冲突问题，也就是把每个组件的样式做成单独的作用域，实现样式隔离，而css modules就是一种解决方案，但是我们需要借助一些工具来实现，比如`webpack`，`postcss`，`css-loader`，`vite`等。
+
+```bash
+npm install less -D # 安装less 任选其一
+npm install sass -D # 安装sass 任选其一
+npm install stylus -D # 安装stylus 任选其一
+```
+
+`src/components/Button/index.module.scss` :
+
+```scss
+.button {
+  color: red;
+}
+```
+
+`src/components/Button/index.tsx`
+
+```tsx
+//使用方法，直接引入即可
+import styles from './index.module.scss';
+
+export default function Button() {
+  return <button className={styles.button}>按钮</button>;
+}
+```
+
+编译结果, 可以看到`button`类名被编译成了`button_pmkzx_6`，这就是css modules的实现原理，通过在类名前添加一个唯一的哈希值，来实现样式隔离。
+
+
+```html
+<button class="button_pmkzx_6">按钮</button>
+```
+
+修改css modules的具体规则详见：[css modules | react docs](https://message163.github.io/react-docs/react/css/css-modules.html#%E4%BF%AE%E6%94%B9css-modules-%E8%A7%84%E5%88%99)
+
+### css-in-js
+
+优点：
+
+- 可以让 CSS 拥有独立的作用域，阻止 CSS 泄露到组件外部，防止冲突。
+- 可以动态的生成 CSS 样式，根据组件的状态来动态的生成 CSS 样式。
+- CSS-in-JS 可以方便地实现主题切换功能，只需更改主题变量即可改变整个应用的样式。
+
+缺点：
+
+- css-in-js 是基于运行时，所以会损耗一些性能(电脑性能高可以忽略)
+- 调试困难，CSS-in-JS 的样式难以调试，因为它们是动态生成的，而不是在 CSS 文件中定义的。
+
+css-in-js 库有很多，比如 `styled-components`、`emotion`、等等，因为它只是思想，所以很多库都实现了它，但是这些库的实现方式都不一样，所以使用的时候需要根据实际情况选择合适的库，所以 `Antd` 选择了自研。
+
+```bash
+npm install styled-components
+```
+
+直接在App.tsx里调用：
+
+```tsx
+import React from 'react';
+import styled from 'styled-components';
+
+const Button = styled.button`
+    background-color: #007bff;
+    color: white;
+    border: 1px solid #ffc107; 
+    padding: 10px 20px;
+    margin: 20px;
+    border-radius: 4px;
+    cursor: pointer;
+`
+
+const App: React.FC = () => {
+    return (
+        <div>
+           <Button onClick={() => alert('恶作剧的对象，是你哦')}>你好伙计</Button>
+        </div>
+    );
+}
+
+export default App
+```
+
+![](../../assets/images/posts/React-22.png)
+
+同样的，这个组件支持传参：
+
+```tsx
+import React, { lazy, Suspense } from 'react';
+
+import styled from 'styled-components';
+
+  
+
+const Button = styled.button<{primary?: boolean}>`
+    ${props => props.primary ? `
+        background-color: #007bff;
+        color: white;
+        border: 1px solid #ffc107;
+    ` : `
+        background-color: red;
+        color: #333;
+        border: 1px solid #ffc107;
+    `}
+    padding: 10px 20px;
+    margin: 20px;
+    border-radius: 4px;
+    cursor: pointer;
+`
+
+const App: React.FC = () => {
+    return (
+        <div>
+           <Button primary={false} onClick={() => alert('恶作剧的对象，是你哦')}>你好伙计</Button>
+        </div>
+    );
+}
+
+export default App
+```
+
+传入的是false，因此是红色：
+
+![](../../assets/images/posts/React-23.png)
+如果需要复用的话，直接`styled(Button)`即可，后面同样跟模板字符串，用来覆盖原来的样式：
+
+```tsx
+const ErrorButton = styled(Button)`
+    background-color: red;
+    color: white;  
+`
+```
+
+
+**属性**
+
+我们可以通过 `attrs` 来给组件添加属性，比如 `placeholder`，然后通过 `props` 来获取属性值。
+
+```tsx
+interface DivComponentProps {
+    placeholder: string
+}
+
+const InputComponent = styled.input.attrs<DivComponentProps>((props) => ({
+    type: 'text',
+    placeholder: props.placeholder
+
+}))`
+    border:1px solid blue;
+    margin:20px;
+`
+const App: React.FC = () => {
+    return (
+        <div>
+            <Button primary={false} onClick={() => alert('恶作剧的对象，是你哦')}>你好伙计</Button>
+            <ErrorButton primary={true} onClick={() => alert('这是一个错误按钮')}>错误按钮</ErrorButton>
+            <InputComponent placeholder='请输入内容' />
+        </div>
+    );
+}
+
+export default App
+```
+
+![](../../assets/images/posts/React-24.png)
+
+**动画**
+
+```tsx
+import styled, { keyframes } from 'styled-components';
+
+// 创建动画
+const move = keyframes`
+    from {
+        transform: translateX(0);
+    }
+    to {
+        transform: translateX(100px);
+    }
+`
+
+// 直接组件中引用即可
+const AnimatedDiv = styled.div`
+    width: 100px;  
+    height: 100px;
+    background-color: green;
+    animation: ${move} 2s infinite alternate;
+`
+```
+
+#### 底层原理
+
+类似于其实就是调用函数：
+
+```tsx
+// 1. 第一个参数就是模板字符串数组，第二个参数就是占位符的值：${}
+const div = function (strArr:TemplateStringsArray, ...args: any[]) {
+    console.log(strArr, args)
+}
+
+div`Hello ${'World'}! This is a ${'test'}.`
+```
+
+### CSS原子化
+
+原子化 CSS 是一种现代 CSS 开发方法，它将 CSS 样式拆分成最小的、单一功能的类。比如一个类只负责设置颜色，另一个类只负责设置边距。这种方式让样式更容易维护和复用，能提高开发效率，减少代码冗余。通过组合这些小型样式类，我们可以构建出复杂的界面组件。
+
+vite项目
+
+```bash
+npm install tailwindcss @tailwindcss/vite
+```
+
+具体操作可以查看：[原子化 css | react docs](https://message163.github.io/react-docs/react/css/css-atomic.html#%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8-tailwind-css-4-0-1-%E6%9C%80%E6%96%B0%E7%89%88)
+
+## Router
+
+### 概念
+
+React-router 是 React的路由库，跟Vue的Router很相似。它的作用就是，根据不同的`URL`，匹配不同的组件，然后进行渲染。这样就可以实现在单页面应用中跳转页面。
+
+官方文档:[https://reactrouter.com/home](https://reactrouter.com/home)
+
+安装
+
+1. 数据模式
+
+```bash
+npm i react-router #V7不在需要 react-router-dom
+```
+
+```ts
+export const router = createBrowserRouter([
+  {
+    path: '/',
+    Component: Home,
+  },
+  {
+    path: '/about',
+    Component: About,
+  },
+]);
+```
+
+2. 声明模式
+
+```bash
+npm i react-router #V7不在需要 react-router-dom
+```
+
+```tsx
+import React from "react";
+import ReactDOM from "react-dom/client";
+import { BrowserRouter, Routes, Route } from "react-router";
+import App from "./app";
+import About from '../about'
+const root = document.getElementById("root");
+
+ReactDOM.createRoot(root).render(
+  <BrowserRouter>
+    <Routes>
+      <Route path="/" element={<App />} />
+      <Route path="about" element={<About />} />
+    </Routes>
+  </BrowserRouter>
+);
+```
+
+**本文主要以数据模式展开**
+
+首先需要创建`src/router/index.ts`来注册对应的路由：
+
+```ts
+import { createBrowserRouter } from "react-router";
+import Home from "../pages/Home";
+import About from "../pages/About";
+
+const router = createBrowserRouter([
+    {
+        path: "/",
+        Component: Home
+    },
+    {  
+        path: "/about",
+        Component: About
+    }
+])
+
+export default router;
+```
+
+比如这里注册了两个组件，此时访问路由肯定是无效的，因为还没有将路由规则全局注册，要在App.tsx中进行注册：
+
+```tsx
+import React from 'react';
+import { RouterProvider } from 'react-router';
+import router from './router';
+
+const App: React.FC = () => {
+    return (
+        <>
+            <RouterProvider router={router} />
+        </>
+    );
+}
+
+export default App
+```
+
+这样的话进行了一个全局的路由注册
+
+![](../../assets/images/posts/React-25.png)
+
+![](../../assets/images/posts/React-26.png)
+
+而在vue中则是通过`<router-view></router-view>`来进行的
+
+### 路由模式
+
+在React RouterV7 中，是拥有不同的路由模式，路由模式的选择将直接影响你的整个项目。React Router 提供了四种核心路由创建函数： `createBrowserRouter`、`createHashRouter`、`createMemoryRouter` 和 `createStaticRouter`
+
+#### 1. `createBrowserRouter(推荐)`
+
+核心特点：
+
+- 使用HTML5的history API (pushState, replaceState, popState)
+- 浏览器URL比较纯净 (/search, /about, /user/123)
+- 需要服务器端支持(nginx, apache,等)否则会刷新404
+
+使用场景：
+
+- 大多数现代浏览器环境
+- 需要服务器端支持
+- 需要URL美观
+
+> `replaceState`也就是跳转页面且不留下历史记录
+
+#### 2. `createHashRouter`
+
+核心特点：
+
+- 使用URL的hash部分(#/search, #/about, #/user/123)
+- 不需要服务器端支持
+- 刷新页面不会丢失
+
+使用场景：
+
+- 静态站点托管例如(github pages, netlify, vercel)
+- 不需要服务器端支持
+
+#### 3. `createMemoryRouter`
+
+核心特点：
+
+- 使用内存中的路由表
+- 刷新页面会丢失状态
+- 切换页面路由不显示URL
+
+使用场景：
+
+- 非浏览器环境例如(React Native, Electron)
+- 单元测试或者组件测试(Jest, Vitest)
+
+![](../../assets/images/posts/React-27.png)
+
+#### 4. `createStaticRouter`
+
+ 核心特点：
+
+- 专为服务端渲染（SSR）设计
+- 在服务器端匹配请求路径，生成静态 HTML
+- 需与客户端路由器（如 createBrowserRouter）配合使用
+
+使用场景：
+
+- 服务端渲染应用（如 Next.js 的兼容方案）
+- 需要SEO优化的页面
+
+#### 404问题
+
+ **问题表现**
+
+比如React / Vue Router：
+
+http://localhost:8080/user
+
+- 浏览器直接访问：✅ 正常
+- 页面刷新：❌ 404
+
+**原因本质**
+
+SPA 路由是：
+
+ **前端控制路由（浏览器 history API）**
+
+但 nginx 是：
+
+ **服务器按“文件路径”找资源**
+
+所以：
+
+```
+/user  → nginx 认为你要找 /user 这个文件  
+        → 找不到 → 404
+```
+
+**正确解决方案（必须配置）**
+
+```
+location / {  
+	try_files $uri $uri/ /index.html;  
+}
+```
+
+如果找不到真实文件 → 返回 index.html → 交给前端路由
+
+### 路由种类
+
+React-Router V7 的路由种类是非常多的，有`嵌套路由` `布局路由` `索引路由` `前缀路由` `动态路由`，大致上是分为这五种的，下面我们一一介绍
+
+> 使用NavLink可以进行类似于a标签的路由跳转，相当于`router-link`
+
+```tsx
+import { NavLink } from 'react-router'; 
+const Home: React.FC = () => { 
+	return ( 
+		<div> 
+			<NavLink to="/about">About</NavLink> 
+		</div> 
+	); 
+}; 
+
+export default Home;
+```
+
+编程式导航useNavigate（类似于vue中的useRouter）进行js的跳转：
+
+vue中的写法：
+
+```ts
+import { useRouter } from 'vue-router'  
+const router = useRouter()  
+router.push('/user')
+```
+
+react中的写法：
+
+```tsx
+import { Menu as AntdMenu } from 'antd';
+
+import type { MenuProps } from 'antd';
+
+import { AppstoreOutlined } from '@ant-design/icons';
+import { useNavigate } from 'react-router';
+export default function Menu() {
+    const navigate = useNavigate(); // 获取 navigate 函数
+    const handleClick: MenuProps['onClick'] = (e: any) => {
+        navigate(e.key); // 使用 navigate 函数进行跳转
+    }
+     const menuItems = [
+        {
+            key: '/home',
+            label: 'Home',
+            icon: <AppstoreOutlined />,
+        },
+        {
+            key: '/about',
+            label: 'About',
+            icon: <AppstoreOutlined />,
+        },
+    ];
+    return (
+        <AntdMenu items={menuItems} onClick={handleClick}></AntdMenu>
+    )
+}
+```
+
+#### 嵌套路由
+
+和vue一样，可以在路由中添加children
+
+注意事项：
+
+- 父路由的path 是 `index`开始，所以访问子路由的时候需要加上父路由的path例如 `/index/home` `/index/about`
+- **子路由不需要增加`/`了直接写子路由的path即可**
+- 子路由默认是不显示的，**需要父路由通过 `Outlet` 组件来显示子路由 outlet 就是类似于Vue的`<router-view>`展示子路由的一个容器**
+- 子路由的层级可以无限嵌套，但是要注意的是，一般实际工作中就是2-3层
+
+比如Content组件：
+
+```tsx
+import { Outlet } from "react-router"
+
+export default function Content() {
+    return (
+        <div>
+            <Outlet />
+        </div>
+    )
+}
+```
+
+我定义一份这个路由：
+
+```ts
+import { createBrowserRouter } from "react-router";
+import About from "../components/About";
+import Layout from "../layout";
+import Home from "../components/Home";
+
+const router = createBrowserRouter([
+    {
+        path: "/",
+        Component: Layout,
+        children: [
+            {
+                path: "home",
+                Component: Home
+            },
+            {
+                path: "/about",
+                Component: About
+            }
+        ]
+    },
+])
+```
+
+![](../../assets/images/posts/React-28.png)
+
+访问/home，将`Home`组件传递给`Content`中的`Outlet`
+
+#### 布局路由
+
+布局路由是一种特殊的嵌套路由，父路由可以省略 `path`，这样不会向 URL 添加额外的路径段：
+
+```tsx
+const router = createBrowserRouter([
+    {
+        // path: "/",
+        Component: Layout,
+        children: [
+            {
+                path: "index/home",
+                Component: Home
+            },
+            {
+                path: "index/about",
+                Component: About
+            }
+        ]
+    },
+])
+```
+
+![](../../assets/images/posts/React-29.png)
+
+#### 索引路由
+
+索引路由使用 `index: true` 来定义，作为父路由的默认子路由：
+
+```tsx
+const router = createBrowserRouter([
+    {
+        path: "/",
+        Component: Layout,
+        children: [
+            {
+                // path: "index/home",
+                index: true,
+                Component: Home
+            },
+            {
+                path: "about",
+                Component: About
+            }
+        ]
+    },
+])
+```
+
+![](../../assets/images/posts/React-30.png)
+
+#### 动态路由
+
+动态路由通过 `:参数名` 语法来定义动态段：
+
+访问规则如下 `http://localhost:5174/home/123`:
+
+```tsx
+const router = createBrowserRouter([
+    {
+        path: "/",
+        Component: Layout,
+        children: [
+            {
+                path: "home/:id",
+                // index: true,
+                Component: Home
+            },
+            {
+                path: "about",
+                Component: About
+            }
+        ]
+    },
+])
+```
+
+其实和vue的一样，页面中获取可以使用`useParams`这个函数：
+
+```tsx
+import { Outlet } from "react-router"
+import { useParams } from "react-router"
+
+export default function Content() {
+    const { id } = useParams()
+    return (
+        <div>
+            Content {id}
+            <Outlet />
+        </div>
+    )
+}
+```
+
+![](../../assets/images/posts/React-31.png)
+
+### 传参
+
+```tsx
+import { NavLink } from "react-router"
+
+export default function Home() {
+    return (
+        <div>
+            Home
+            <NavLink to="about">About</NavLink>
+        </div>
+    )
+}
+```
+
+获取参数
+
+```tsx
+//1. 获取参数
+import { useSearchParams } from 'react-router'
+const [searchParams, setSearchParams] = useSearchParams()
+console.log(searchParams.get('id')) //获取id参数
+
+//2. 获取参数
+import { useLocation } from 'react-router'
+const { search } = useLocation()
+console.log(search) //获取search参数 ?id=123
+```
+
+params方式可以看上面的[动态路由](#动态路由)
+
+**state在URL中不显示，但是可以传递参数，例如**：
+
+
+```bash
+/user
+```
+
+跳转方式：
+
+```tsx
+<Link to="/user" state={{ name: '小满zs', age: 18 }}>User</Link> //1. Link 跳转
+<NavLink to="/user" state={{ name: '小满zs', age: 18 }}>User</NavLink> //2. NavLink 跳转
+import { useNavigate } from 'react-router'
+const navigate = useNavigate()
+navigate('/user', { state: { name: '小满zs', age: 18 } }) //3. useNavigate 跳转
+```
+
+获取参数：
+useLocation用法查看[useLocation](https://message163.github.io/react-docs/react/router/hooks/useLocation.html)
+
+```tsx
+import { useLocation } from 'react-router'
+const { state } = useLocation()
+console.log(state) //获取state参数
+console.log(state.name) //获取name参数
+console.log(state.age) //获取age参数
+```
+
+> 但是这种传参方式有一个缺点：仅在当前会话生效，如果关闭掉，或者给别人分享该页面都会报错。
+
+#### 总结
+
+React Router 提供了三种参数传递方式，各有特点：
+
+1. Params 方式 (`/user/:id`)
+
+- 适用于：传递必要的路径参数（如ID）
+- 特点：符合 RESTful 规范，刷新不丢失
+- 限制：只能传字符串，参数显示在URL中
+
+2. Query 方式 (`/user?name=xiaoman`)
+
+- 适用于：传递可选的查询参数
+- 特点：灵活多变，支持多参数
+- 限制：URL可能较长，参数公开可见
+
+3. State 方式
+
+- 适用于：传递复杂数据结构
+- 特点：支持任意类型数据，参数不显示在URL
+- 限制：刷新可能丢失，不利于分享
+
+> 选择建议：必要参数用 Params，筛选条件用 Query，临时数据用 State。
+> 一般来说：业务参数（比如id等等）通常用Params，而筛选条件（例如分页，日期，年龄这种筛选条件）则用Query
+
+### 懒加载
+
+懒加载是一种优化技术，用于延迟加载组件，直到需要时才加载。这样可以减少初始加载时间，提高页面性能。
+
+#### 懒加载的实现
+
+通过在路由对象中使用 `lazy` 属性来实现懒加载。例如在router.ts中编写
+
+```ts
+import { createBrowserRouter } from "react-router";
+import Layout from "../layout";
+import Home from "../components/Home";
+
+const sleep = (ms: number) => new Promise(resolve => setTimeout(resolve, ms))
+
+const router = createBrowserRouter([
+    {
+        path: "/",
+        Component: Layout,
+        children: [
+            {
+                path: "home",
+                Component: Home
+            },
+            {
+                path: "about",
+                lazy: async () => {
+                    await sleep(2000) // 模拟网络请求的延迟
+                    const about = await import('../components/About')
+                    return {
+                        Component: about.default, // 使用的时候需要加上 default，因为我们是使用 export default 导出的
+                    }
+                }
+            }
+        ]
+    },
+])
+
+export default router;
+```
+
+此时跳转到About页面才会重新加载about的相关组件，因此About组件会有延迟，就会出现访问卡顿2秒，这样体验非常不好
+
+#### 使用状态优化`useNavigation`
+
+速查文档[useNavigation](https://message163.github.io/react-docs/react/router/hooks/useNavigation.html)
+
+对我们的Content组件进行编辑：
+
+```tsx
+import { Outlet, useNavigation } from "react-router"
+
+export default function Content() {
+    const navigation = useNavigation()
+    console.log('Content navigation state:', navigation.state);
+    return (
+        <div>
+            <Outlet />
+        </div>
+    )
+}
+```
+
+![](../../assets/images/posts/React-32.png)
+
+可以看到从/home跳转到/about的时候会出现loading
+
+那么就可以用loading来做一个过渡效果:
+
+```tsx
+import { Outlet, useNavigation } from "react-router"
+import { Spin, Alert } from "antd";
+
+export default function Content() {
+    const navigation = useNavigation()
+    const isLoading = navigation.state === 'loading';
+    return (
+        <div>
+            {isLoading ? <Spin>
+                <Alert
+                    description="正在加载页面，请稍候..."
+                    type="info"
+                />
+            </Spin>
+                :
+                <Outlet />}
+        </div>
+    )
+}
+```
+
+![](../../assets/images/posts/React-33.png)
+
+### 路由操作
+
+路由的操作是由两个部分组成的:
+
+- loader
+- action
+
+在平时工作中大部分都是在做`增刪查改(CRUD)`的操作，所以一个界面的接口过多之后就会使逻辑臃肿复杂，难以维护，所以需要使用路由的高级操作来优化代码。
+
+#### loader
+
+在之前的话我们是 `RenderComponent(渲染组件)`-> `Fetch(获取数据)`-> `RenderView(渲染视图)`
+
+有了loader之后是 `loader(通过fetch获取数据)` -> `useLoaderData(获取数据)` -> `RenderComponent(渲染组件)`
+
+直接在路由当中配置：
+
+```tsx
+import { createBrowserRouter } from "react-router";
+import Layout from "../layout";
+import Home from "../components/Home";
+import About from "../components/About";
+
+const sleep = (ms: number) => new Promise(resolve => setTimeout(resolve, ms))
+const data = {
+    name: '中华第一剑',
+    age: 25,
+    description: '我的剑准备好了'
+}
+
+const router = createBrowserRouter([
+    {
+        path: "/",
+        Component: Layout,
+        children: [
+            {
+                path: "home",
+                Component: Home
+            },
+            {
+                path: "about",
+                Component: About,
+                loader: async () => {
+                    await sleep(2000)
+                    return {
+	                    data: data,
+	                    success: true
+                    }
+                }
+            }
+        ]
+    },
+])
+
+export default router;
+```
+
+然后在About组件中进行接收即可(使用useLoaderData)：
+
+```tsx
+import { useLoaderData } from "react-router"
+
+export default function About() {
+    const { data, success } = useLoaderData();
+    console.log(data, success)
+    return (
+        <div>
+            About
+        </div>
+    )
+}
+```
+
+![](../../assets/images/posts/React-34.png)
 
