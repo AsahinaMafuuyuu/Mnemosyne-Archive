@@ -32,30 +32,6 @@
             }
           },
           {
-            "id": "025485bd79b12957",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "src/pages/posts/C#.md",
-                "mode": "source",
-                "source": false,
-                "backlinks": true,
-                "backlinkOpts": {
-                  "collapseAll": false,
-                  "extraContext": false,
-                  "sortOrder": "alphabetical",
-                  "showSearch": false,
-                  "searchQuery": "",
-                  "backlinkCollapsed": false,
-                  "unlinkedCollapsed": true
-                }
-              },
-              "icon": "lucide-file",
-              "title": "C#"
-            }
-          },
-          {
             "id": "90f49d85a349db9f",
             "type": "leaf",
             "state": {
@@ -243,6 +219,7 @@
   },
   "active": "3cd6c0070efe38d0",
   "lastOpenFiles": [
+    "src/pages/posts/CSharp.md",
     "src/assets/images/posts/React-34.png",
     "src/assets/images/posts/React-33.png",
     "src/assets/images/posts/React-32.png",
@@ -255,7 +232,6 @@
     "src/assets/images/posts/React-27.png",
     "src/assets/images/posts/React-26.png",
     "src/assets/images/posts/React-25.png",
-    "src/assets/images/posts/React-24.png",
     "src/pages/posts/TmodLoader-Module.md",
     "未命名",
     "src/pages/posts/RestartToLearnPromise.md",
