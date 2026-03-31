@@ -3,10 +3,9 @@ import Header from "@/components/HeaderComponents/Header.astro";
 import AsideInfo from "@/components/AsideComponents/AsideInfo.astro";
 import Footer from "@/components/FooterComponents/Footer.astro";
 import AudioPlayerAside from "@/components/AudioPlayerComponents/AudioPlayerAside.astro";
-import { slide } from "astro:transitions";
 import { ClientRouter } from "astro:transitions";
 import ToTopIcon from "@/assets/Icons/to-top.svg";
-import "../output.css";
+import "../styles/global.css";
 const url: string = Astro.url.toString();
 const params = Astro.props?.params;
 ---
@@ -66,17 +65,17 @@ const params = Astro.props?.params;
 
     </script>
   </head>
-  <body transition:animate="none">
+  <body data-theme="light" transition:animate="none">
     <!-- 页面整体布局 -->
     <div
       data-ui="html-container"
-      class="w-screen h-screen bg-cover bg-center bg-no-repeat transition-background-image duration-1000 ease-in-out"
+      class="dark:bg-black w-screen h-screen bg-cover bg-center bg-no-repeat transition-background-image duration-1000 ease-in-out"
       style="background-image: var(--background-src);"
     >
       <!-- 覆盖一层毛玻璃 -->
       <div
         data-ui="real-visual-container"
-        class="h-full w-full bg-[rgba(255,255,255,.36)] backdrop-blur-(--blur-val)"
+        class="h-full w-full backdrop-blur-(--blur-val)"
       >
         <!-- 设置一层div，用来帮助滚动 -->
         <div
@@ -120,7 +119,7 @@ const params = Astro.props?.params;
           <!-- 右侧侧边栏 -->
           <button
             data-ui="to-top-btn"
-            class="fixed right-4 bottom-4 w-10 h-10 transition-all ease-in-out duration-300 hover:text-[purple] hover:-translate-y-1"
+            class="text-body fixed right-4 bottom-4 w-10 h-10 transition-all ease-in-out duration-300 hover:text-[purple] hover:-translate-y-1"
             ><ToTopIcon /></button
           >
         </div>
@@ -172,6 +171,11 @@ const params = Astro.props?.params;
         });
       }
 
+      // 初始化主题色彩
+      function initTheme () {
+        window.document.documentElement.dataset.theme = (localStorage.getItem('theme') ? localStorage.getItem('theme') : 'light')!
+      }
+
       // 初始化背景图片
       async function initBackground() {
         // 如果禁用图片，就跳过
@@ -203,6 +207,7 @@ const params = Astro.props?.params;
 
       // 普通页面进来就需要做的初始化
       function init() {
+        initTheme ()
         initScroll();
         initTitleScript();
       }

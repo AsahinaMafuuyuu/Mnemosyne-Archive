@@ -1,100 +1,202 @@
+@import "tailwindcss";
+/* 导入字体相关 */
+@import "./theme.token.css";
+
+/* 导入全局样式css */
+@import "./component-style.css";
+
+@custom-variant unfold (&:where([data-unfold="true"] &));
+
+@custom-variant rotate (&:where(&[data-rotate="true"]));
+
+@custom-variant hidden (&:where(&[data-hidden="true"]));
+
+@custom-variant covermove (&:where([data-covermove="true"] &));
+
+@custom-variant titleoverflow (&:where([data-titleoverflow="true"] &));
+
+@custom-variant disabled (&:where(&[data-disabled="true"]));
+
+@custom-variant activated (&:where(&[data-activated="true"]));
+
 html {
-  background-color: #f1f5f9;
-  font-family: sans-serif;
+    width: 100vw;
+    height: 100vh;
 }
 
 body {
-  margin: 0 auto;
-  width: 100%;
-  max-width: 80ch;
-  padding: 1rem;
-  line-height: 1.5;
+    width: 100vw;
+    height: 100vh;
 }
 
-* {
-  box-sizing: border-box;
+@media screen and (max-width: 768px) {
+    :root {
+        --font-size: 14px;
+    }
 }
 
-h1 {
-  margin: 1rem 0;
-  font-size: 2.5rem;
+@theme {
+    /* 定义动画token，到时候直接调用cover-rotate即可 */
+    --animate-cover-rotate: cover-images-rotate 6s linear infinite forwards;
+    --animate-title-scroll: audio-title-scroll 6s linear infinite;
+
+    /* 定义keyframes */
+    @keyframes cover-images-rotate {
+        0% {
+            transform: rotate(0deg);
+        }
+
+        100% {
+            transform: rotate(360deg);
+        }
+    }
+
+    @keyframes audio-title-scroll {
+        from {
+            transform: translateX(0px);
+        }
+
+        to {
+            transform: translateX(-50%);
+        }
+    }
 }
 
-/* 导航样式 */
+@layer base, components, utilities;
 
-.menu {
-  background-color: #0d0950;
-  border: none;
-  color: #fff;
-  font-size: 1.2rem;
-  font-weight: bold;
-  padding: 5px 10px;
+@layer components {
+    .svg-size {
+        @apply w-6.25 h-6.25
+    }
+
+    @media (max-width: 768px) {
+        .svg-size-small {
+            @apply w-5 h-5
+        }
+    }
 }
 
-.nav-links {
-  width: 100%;
-  display: none;
-  margin: 0;
+@layer utilities {
+
+    /* 播放列表的样式 */
+    .play-array-scrollbar {}
+
+    .play-array-scrollbar::-webkit-scrollbar {
+        width: 6px;
+    }
+
+    .play-array-scrollbar::-webkit-scrollbar-track {
+        background: #888;
+        border-radius: 3px;
+    }
+
+    .play-array-scrollbar::-webkit-scrollbar-thumb {
+        background: #f1f1f1;
+        border-radius: 3px;
+    }
+
+    .scrollbar-hidden {
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+    }
+
+    .scrollbar-hidden::-webkit-scrollbar {
+        display: none;
+    }
+
+    .fade-vertical {
+        -webkit-mask-image: linear-gradient(to top,
+                transparent 0%,
+                rgba(255, 255, 255, .55) 25%,
+                rgba(255, 255, 255, .55) 75%,
+                transparent 100%);
+        mask-image: linear-gradient(to top,
+                transparent 0%,
+                rgba(255, 255, 255, .55) 25%,
+                rgba(255, 255, 255, .55) 75%,
+                transparent 100%);
+    }
+
+    /* 设置初始值 */
+    .volume-range-style {
+        --min: 0;
+        --max: 100;
+        --val: 50;
+    }
+
+    /* 轨道部分 */
+    .volume-range-style::-webkit-slider-runnable-track {
+        height: 5px;
+        background: #ddd;
+        border-radius: 999px;
+        background: linear-gradient(to right,
+                red 0%,
+                red calc((var(--val) - var(--min)) / (var(--max) - var(--min)) * 100%),
+                #ddd calc((var(--val) - var(--min)) / (var(--max) - var(--min)) * 100%),
+                #ddd 100%);
+    }
+
+    /* 滑块部分 */
+    .volume-range-style::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        width: 16px;
+        height: 16px;
+        border-radius: 50%;
+        background-color: white;
+        border: 1px solid black;
+        margin-top: -5.6px;
+    }
+
+    /**
+        设置进度条
+    **/
+    .play-time-schedule-range-style {
+        --min: 0;
+        --max: 100;
+        --val: 50;
+    }
+
+    .play-time-schedule-range-style::-webkit-slider-runnable-track {
+        height: 5px;
+        border-radius: 999px;
+        background: linear-gradient(to right,
+                aqua 0%,
+                aqua calc((var(--val) - var(--min)) / (var(--max) - var(--min)) * 100%),
+                #f0e7e7 calc((var(--val) - var(--min)) / (var(--max) - var(--min)) * 100%),
+                #f0e7e7 100%);
+    }
+
+    /* 滑块部分 */
+    .play-time-schedule-range-style::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        width: 16px;
+        height: 16px;
+        border-radius: 50%;
+        background-color: #ccc;
+        border: 1px solid white;
+        margin-top: -5.6px;
+    }
+
 }
 
-.nav-links a {
-  display: block;
-  text-align: center;
-  padding: 10px 0;
-  text-decoration: none;
-  font-size: 1.2rem;
-  font-weight: bold;
-  text-transform: uppercase;
-  color: #0d0950;
-  transition: all 0.3s ease-in-out;
-}
+@layer base {
 
-.nav-links a:hover,
-.nav-links a:focus {
-  background-color: #ff9776;
-}
+    /* input[type="range"] {
+        -webkit-appearance: none;
+        appearance: none;
+        background: transparent;
+        outline: none;
+    } */
+    input {
+        -webkit-appearance: none;
+        appearance: none;
+        background: transparent;
+        outline: none;
 
-:has(.menu[aria-expanded="true"]) .nav-links {
-  display: unset;
-}
-@media screen and (min-width: 636px) {
-  .nav-links {
-    margin-left: 5em;
-    display: block;
-    position: static;
-    width: auto;
-    background: none;
-  }
+        &::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+        }
 
-  .nav-links a {
-    display: inline-block;
-    padding: 15px 20px;
-  }
-
-  .menu {
-    display: none;
-  }
-}
-
-html.dark {
-  background-color: #0d0950;
-  color: #fff;
-}
-
-.dark .menu {
-  background-color: #fff;
-  color: #000;
-}
-
-.dark .nav-links a:hover,
-.dark .nav-links a:focus {
-  color: #0d0950;
-}
-
-.dark .nav-links a {
-  color: #fff;
-}
-
-.dark a {
-  color: #ff9776;
+    }
 }

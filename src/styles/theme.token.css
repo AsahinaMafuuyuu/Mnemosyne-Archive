@@ -1,65 +1,112 @@
-/* 该文件主要用于变量名映射注册 */
+/* 定义暗色主题的相关元素 */
+@custom-variant dark (&:where([data-theme="dark"] *));
+
+:root {
+    --font-color: rgba(0, 0, 0, 0.75);
+    --background-color: rgba(255, 255, 255, 0.8);
+    --hover-color: #ccc;
+    --font-size: 16px;
+    --scrollbar-width: 4px;
+    --blur-val: 0px;
+    --background-src: none;
+    --border-color: rgba(0, 0, 0, 0.05);
+}
+
+/* 切换成黑夜模式 */
+[data-theme="dark"] {
+    --font-color: rgba(246, 246, 246, 0.9);
+    --background-color: rgba(20, 20, 20, 0.8);
+    --hover-color: rgba(255, 255, 255, 0.25);
+    --border-color: rgb(229, 231, 235);
+}
+
 @theme {
     /* 首先定义字体大小 */
-    /* displayHero / 首页大标题 */
-    --text-display: calc(1.95*var(--font-size));
-    /* headline页面主标题 */
-    --text-headline: calc(1.56*var(--font-size));
-    /* title卡片 / 模块标题 */
-    --text-title: calc(1.25*var(--font-size));
-    /* meta时间 / 作者 / 次要信息 */
-    --text-meta: calc(0.875*var(--font-size));
-
-    /* 其次定义字体权重（font weight） */
-    --font-weight-display: 700;
-    --font-weight-title: 500;
-    --font-weight-meta: 400;
+    --text-base: var(--font-size);
 
     /* 定义颜色 */
     --color-background: var(--background-color);
     --color-hover-color: var(--hover-color);
+
+}
+
+/* 定义头部主题类 */
+@utility text-header {
+    font-size: calc(1.1 * var(--font-size));
+    font-weight: 700;
+    color: var(--font-color);
+}
+
+/* 定义头部侧边栏的相关样式 */
+@utility text-theme-setting {
+    font-size: var(--font-size);
+    font-weight: 400;
+    color: var(--font-color);
 }
 
 /* 定义body正文内容主题类 */
 @utility text-body {
-    font-size: var(--font-size);;
+    font-size: var(--font-size);
     font-weight: 400;
     color: var(--font-color);
 }
 
+/* 定义左侧侧边栏相关字体样式 */
 /* 定义字幕专用主题类 */
-@utility text-caption {
-    font-size: calc(0.75*var(--font-size));
-    font-weight: 300;
-    color: rgb(163, 163, 163);
+@utility text-aside-name {
+    font-size: calc(1.15*var(--font-size));
+    font-weight: 600;
+    color: var(--font-color);
 }
 
-/* 定义加粗个人信息 */
-@utility text-bold-body {
-    @apply text-body;
+/* 定义个性签名*/
+@utility text-aside-description {
+    font-size: calc(0.95*var(--font-size));
+    font-weight: 400;
+    text-align: center;
+    color: rgba(0, 0, 0, 0.75);
+
+    @variant dark {
+        color: rgba(246, 246, 246, 0.65);
+    }
+}
+
+/* 定义侧边paper展示信息样式 */
+@utility text-aside-caption {
+    font-size: calc(0.95*var(--font-size));
     font-weight: 700;
+    color: var(--font-color);
 }
 
-/* 定义博客样式 */
-@utility text-blog-title-light {
-    font-family: system-ui ;
+/* 定义文章列表中的各种样式 */
+@utility text-paperList-title {
+    font-family: system-ui;
     font-size: calc(1.75*var(--font-size));
     font-weight: 700;
-    color: rgba(0,0,0,0.75)
-}
-@utility text-blog-title-dark {
-    color: rgba(246,246,246,0.75)
-}
-@utility text-blog-subtract-light {
-    font-size: calc(0.9*var(--font-size));
-    font-weight: 400;
     color: var(--font-color);
 }
-@utility text-blog-info {
-    font-size: calc(0.9*var(--font-size));
-    font-weight: 500;
-    color: #00000080;
+
+/* 定义正文中的标题，此处沿用文章列表的样式 */
+@utility text-blog-title {
+    @apply text-paperList-title;
 }
+
+@utility text-blog-subtract {
+    font-size: calc(0.95 * var(--font-size));
+    font-weight: 500;
+    color: rgba(0, 0, 0, 0.75);
+
+    @variant dark {
+        color: rgba(246, 246, 246, 0.65);
+    }
+}
+
+@utility text-blog-label {
+    font-size: calc(0.95*var(--font-size));
+    font-weight: 700;
+    color: var(--font-color);
+}
+
 @utility text-footer {
     font-size: calc(0.95*var(--font-size));
     font-weight: 500;
@@ -71,29 +118,33 @@
     display: inline-block;
     position: relative;
     color: purple;
+
     &::before {
         position: absolute;
         bottom: 0px;
         content: "";
         width: 0;
-        height:1px;
+        height: 1px;
         background-color: red;
         transition: width ease-in-out 300ms;
     }
+
     &:hover::before {
         width: 100%;
     }
 }
+
 /* 彩虹字体色 */
-@utility text-rainbow{
-    @apply bg-linear-to-r
-  from-pink-500 via-yellow-400 to-violet-600
-  bg-size-[200%_100%]
-  bg-clip-text text-transparent
-  animate-[rainbow_3s_linear_infinite]
-}
-@keyframes rainbow{
-  0%{ background-position: 0% 100%; }
-  100%{ background-position: 200% 100%; }
+@utility text-rainbow {
+    @apply bg-linear-to-r from-pink-500 via-yellow-400 to-violet-600 bg-size-[200%_100%] bg-clip-text text-transparent animate-[rainbow_3s_linear_infinite]
 }
 
+@keyframes rainbow {
+    0% {
+        background-position: 0% 100%;
+    }
+
+    100% {
+        background-position: 200% 100%;
+    }
+}

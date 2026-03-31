@@ -50,7 +50,7 @@ if (params.frontmatter.cover && params.frontmatter.cover.url) {
         <!-- 标题 -->
         <a data-ui="post-url" href={`/posts/${params.url}`}>
             <h1
-                class="text-blog-title-light hover:text-pink-400 cursor-pointer truncate"
+                class="text-paperList-title hover:text-pink-400 cursor-pointer truncate"
             >
                 {params.frontmatter.title}
             </h1>
@@ -76,21 +76,23 @@ if (params.frontmatter.cover && params.frontmatter.cover.url) {
         </div>
 
         <!-- 信息展示 -->
-        <div class="text-caption flex gap-6">
+        <div class="text-aside-caption flex gap-6">
             <!-- 浏览量 -->
             <div class="flex items-center gap-1">
                 <ViewCount class="md-icon-basic-style" />
-                <span data-ui="view-count-display">1</span>
+                <span data-ui="view-count-display" class="text-body">1</span>
             </div>
             <!-- 日期 -->
             <div data-ui="view-count-display" class="flex items-center gap-1">
                 <Date class="md-icon-basic-style" />
-                <span>{params.frontmatter.pubDate.split("T")[0]}</span>
+                <span class="text-body"
+                    >{params.frontmatter.pubDate.split("T")[0]}</span
+                >
             </div>
             <!-- 字数 -->
             <div data-ui="view-count-display" class="flex items-center gap-1">
                 <WingPencil class="md-icon-basic-style" />
-                <span
+                <span class="text-body"
                     >{
                         params.totalCounts / 1000 > 1
                             ? params.totalCounts / 10000 > 1
@@ -103,7 +105,7 @@ if (params.frontmatter.cover && params.frontmatter.cover.url) {
             <!-- 预计浏览时长 -->
             <div data-ui="view-count-display" class="flex items-center gap-1">
                 <Time class="md-icon-basic-style" />
-                <span>{(params.totalCounts / 300).toFixed(1)} min</span>
+                <span class="text-body">{(params.totalCounts / 300).toFixed(1)} min</span>
             </div>
         </div>
     </div>

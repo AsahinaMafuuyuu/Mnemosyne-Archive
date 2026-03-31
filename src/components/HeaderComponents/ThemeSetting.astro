@@ -9,7 +9,7 @@ import Rss from "@/assets/Icons/rss.svg";
 <div class="relative">
     <div
         data-ui="setting-btn"
-        class="text-(--font-color) simp-control-interact"
+        class="text-header simp-control-interact"
     >
         <!-- 后面需要动态展示功能列表以及搜索框 -->
 
@@ -19,19 +19,25 @@ import Rss from "@/assets/Icons/rss.svg";
     <div
         data-hidden="true"
         data-ui="web-theme-control-panel"
-        class="hidden:invisible w-fit h-fit opacity-100 transition-all ease-in-out duration-1000 hidden:opacity-0 absolute top-[calc(100%+15px)] -right-3 p-3 layout-basic-style"
+        class="text-theme-setting hidden:invisible w-fit h-fit opacity-100 transition-all ease-in-out duration-1000 hidden:opacity-0 absolute top-[calc(100%+15px)] -right-3 p-3 layout-basic-style"
     >
         <div class="w-full flex flex-col gap-3">
             <!-- 主题设置 背景图片切换 模糊设置 保存当前背景图片 订阅RSS -->
             <div class="flex justify-center items-center gap-3">
                 <span class="truncate">主题设置</span>
                 <div class="flex gap-2">
-                    <button class="link-container p-2">
+                    <button
+                        data-ui="switch-light-theme"
+                        class="link-container p-2"
+                    >
                         <Light
                             class="w-5 h-5 flex items-center justify-center"
                         />
                     </button>
-                    <button class="link-container p-2">
+                    <button
+                        data-ui="switch-dark-theme"
+                        class="link-container p-2"
+                    >
                         <Dark
                             class="w-5 h-5 flex items-center justify-center"
                         />
@@ -115,6 +121,16 @@ import Rss from "@/assets/Icons/rss.svg";
             '[data-ui="web-theme-control-panel"]',
         ) as HTMLElement;
 
+        // 获取切换日光模式按钮
+        const switchLightThemeBtn: HTMLElement = controlPanel.querySelector(
+            '[data-ui="switch-light-theme"]',
+        ) as HTMLElement;
+
+        // 获取切换黑夜模式按钮
+        const switchDarkThemeBtn: HTMLElement = controlPanel.querySelector(
+            '[data-ui="switch-dark-theme"]',
+        ) as HTMLElement;
+
         // 获取到scrollbar容器
         const scrollBarDiv: HTMLElement = controlPanel.querySelector(
             '[data-ui="scroll-bar-setting"]',
@@ -164,6 +180,17 @@ import Rss from "@/assets/Icons/rss.svg";
             }
         });
 
+        // 切换主题色
+        switchDarkThemeBtn.addEventListener('click', () => {
+            window.document.documentElement.dataset.theme = 'dark'
+            localStorage.setItem('theme', 'dark')
+        })
+
+        switchLightThemeBtn.addEventListener('click', () => {
+            window.document.documentElement.dataset.theme = 'light'
+            localStorage.setItem('theme', 'light')
+        })
+
         // 下载背景图
         downloadBgBtn.addEventListener("click", async () => {
             const url = getComputedStyle(document.documentElement)
@@ -182,12 +209,12 @@ import Rss from "@/assets/Icons/rss.svg";
         function initDisabledBtnStyle() {
             if (bgState.disabledBtnIsActived) {
                 disabledBgBtn.dataset.activated = "true";
-                switchBackgroundBtn.dataset.forbidden = 'true'
-                downloadBgBtn.dataset.forbidden = 'true'
+                switchBackgroundBtn.dataset.forbidden = "true";
+                downloadBgBtn.dataset.forbidden = "true";
             } else {
                 disabledBgBtn.dataset.activated = "false";
-                switchBackgroundBtn.dataset.forbidden = 'false'
-                downloadBgBtn.dataset.forbidden = 'false'
+                switchBackgroundBtn.dataset.forbidden = "false";
+                downloadBgBtn.dataset.forbidden = "false";
             }
         }
 
@@ -203,7 +230,6 @@ import Rss from "@/assets/Icons/rss.svg";
             );
             setBgUrl(url);
         });
-
 
         // 定义函数
         // 该函数主要是用来对禁用背景图按钮事件发生的回调函数
@@ -221,8 +247,8 @@ import Rss from "@/assets/Icons/rss.svg";
                     "none",
                 );
                 disabledBgBtn.dataset.activated = "true";
-                 switchBackgroundBtn.dataset.forbidden = 'true'
-                downloadBgBtn.dataset.forbidden = 'true'
+                switchBackgroundBtn.dataset.forbidden = "true";
+                downloadBgBtn.dataset.forbidden = "true";
                 setDisabledBackground(true);
             } else {
                 // 如果用户一开始进入网站就是禁用图片的话，则默认不获取url
@@ -241,8 +267,8 @@ import Rss from "@/assets/Icons/rss.svg";
                     );
                 }
                 disabledBgBtn.dataset.activated = "false";
-                switchBackgroundBtn.dataset.forbidden = 'false'
-                downloadBgBtn.dataset.forbidden = 'false'
+                switchBackgroundBtn.dataset.forbidden = "false";
+                downloadBgBtn.dataset.forbidden = "false";
                 setDisabledBackground(false);
             }
         }

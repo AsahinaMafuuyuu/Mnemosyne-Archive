@@ -18,25 +18,25 @@ allPosts.forEach((item: any, index) => {
 
 <div class="grid grid-cols-2 grid-rows-2 gap-3 items-center">
     <div>
-        <div class="text-caption text-center">文章数</div>
+        <div class="text-aside-caption text-center">文章数</div>
         <div class="text-body text-center">{paperCount}</div>
     </div>
     <div>
-        <div class="text-caption text-center">总字数</div>
+        <div class="text-aside-caption text-center">总字数</div>
         <div class="text-body text-center">
             {(totalCount / 10000).toFixed(1)}w
         </div>
     </div>
 
     <div>
-        <div class="text-caption text-center">访客量</div>
+        <div class="text-aside-caption text-center">访客量</div>
         <div data-ui="total-visitors" class="text-body text-center">
             {requestCount}
         </div>
     </div>
 
     <div>
-        <div class="text-caption text-center">维护时长</div>
+        <div class="text-aside-caption text-center">维护时长</div>
         <div class="text-body text-center">{maintainDays}天</div>
     </div>
 </div>

@@ -89,7 +89,6 @@ const { contents } = Astro.props as {
         elms.forEach((dom) => {
             dom.addEventListener("click", () => {
                 cleanOtherItem();
-                console.log('dom.id: ', dom)
                 navItemId = dom.id;
                 setItemSelected();
             });
@@ -104,9 +103,7 @@ const { contents } = Astro.props as {
         const setItemSelected = () => {
             if (navItemId) {
                 const item = document.getElementById(navItemId!);
-                console.log(item)
                 item!.dataset!.selected = "true";
-                console.log(navItemId);
             }
         };
     }

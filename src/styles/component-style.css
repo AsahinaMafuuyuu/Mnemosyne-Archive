@@ -1,10 +1,7 @@
-/* 定义暗色主题的相关元素 */
-@custom-variant dark (&:where(.dark, .dark *));
-
 @custom-variant forbidden (&:where(&[data-forbidden="true"]));
 
 @utility link-container {
-    @apply relative rounded-lg flex justify-center items-center gap-1 transition-all ease-in-out duration-300 hover:text-body
+    @apply relative rounded-lg flex justify-center items-center gap-1 transition-all ease-in-out duration-300
     hover:bg-(--hover-color)
     before:[content:''] before:rounded-md before:absolute before:bg-transparent before:w-full before:h-full before:top-0 before:left-0
     before:cursor-pointer before:z-1 
@@ -15,7 +12,7 @@
 
 /* 创建整个基本容器的相关样式 */
 @utility layout-basic-style {
-    @apply rounded-lg border border-[rgba(0,0,0,0.05)] shadow-sm bg-(--background-color);
+    @apply rounded-lg border border-(--border-color) shadow-sm bg-(--background-color);
 }
 
 /* 可悬停控件样式 */
@@ -32,7 +29,7 @@
 
     /* 定义简易控件的交互逻辑 */
     .simp-control-interact {
-        @apply relative p-2 rounded-lg transition-colors ease-in-out duration-300 hover:bg-hover-color hover:text-body
+        @apply relative p-2 rounded-lg transition-colors ease-in-out duration-300 hover:bg-(--hover-color);
     }
 
     .simp-control-interact::before {
