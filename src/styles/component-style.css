@@ -146,17 +146,17 @@
 
 /* 设置其他样式 */
 @utility h2-nav {
-    @apply text-base font-bold pl-2;
+    @apply text-base text-(--font-color) font-bold pl-2;
 };
 
 /* 设置其他样式 */
 @utility h3-nav {
-    @apply text-sm font-medium pl-5;
+    @apply text-sm dark:text-amber-50 font-medium pl-5;
 };
 
 /* 设置其他样式 */
 @utility h4-nav {
-    @apply text-sm font-normal pl-8 text-neutral-500;
+    @apply text-sm dark:text-gray-400 font-normal pl-8 text-neutral-500;
 };
 
 /* 设置侧边栏相关 */
