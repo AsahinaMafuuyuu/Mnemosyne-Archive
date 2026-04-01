@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "src/pages/posts/React.md",
+                "file": "src/pages/posts/SSRvsCSR.md",
                 "mode": "source",
                 "source": false,
                 "backlinks": true,
@@ -28,7 +28,7 @@
                 }
               },
               "icon": "lucide-file",
-              "title": "React"
+              "title": "SSRvsCSR"
             }
           },
           {
@@ -55,7 +55,8 @@
               "title": "TmodLoader-Module"
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -190,13 +191,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "src/pages/posts/React.md",
+                "file": "src/pages/posts/TmodLoader-Module.md",
                 "followCursor": true,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "React 的大纲"
+              "title": "TmodLoader-Module 的大纲"
             }
           }
         ],
@@ -217,8 +218,13 @@
       "bases:新建数据库": false
     }
   },
-  "active": "3cd6c0070efe38d0",
+  "active": "90f49d85a349db9f",
   "lastOpenFiles": [
+    "src/pages/posts/TailwindInAstro.md",
+    "src/pages/posts/SSRvsCSR.md",
+    "src/pages/posts/SomeReleventResource.md",
+    "src/pages/posts/React.md",
+    "src/pages/posts/RestartToLearnPromise.md",
     "src/styles/markdownStyle copy.css",
     "dist/_astro/UnderstandingComponents-1.rMaATpae_1U99MI.webp",
     "dist/_astro/TmodLoader-Module-4.Dk8oWQRY_6T3UE.webp",
@@ -239,12 +245,9 @@
     "dist/posts/TmodLoader-Module/index.html",
     "dist/posts/TmodLoader-Module",
     "dist/posts/RestartToLearnPromise/index.html",
-    "dist/posts/RestartToLearnPromise",
     "src/pages/posts/CSharp.md",
     "src/pages/posts/C#.md",
-    "src/pages/posts/React.md",
     "src/pages/posts/TmodLoader-Module.md",
-    "src/pages/posts/RestartToLearnPromise.md",
     "src/pages/posts/LearnAstro-ProjectStrcture.md",
     "src/pages/posts/TailwindAddCustomClass.md",
     "src/pages/posts/LearnAstro-Configuration.md",
@@ -263,8 +266,6 @@
     "src/pages/posts/LearnNuxtJs-Day4.md",
     "src/pages/posts/LearnNuxtJs-Day2.md",
     "src/pages/posts/NodeJs-AliOss.md",
-    "src/pages/posts/NodeJs-ShortLink.md",
-    "src/pages/posts/NodeJs-HTTPCache.md",
     "未命名.canvas"
   ]
 }

@@ -7,10 +7,7 @@ import Rss from "@/assets/Icons/rss.svg";
 ---
 
 <div class="relative">
-    <div
-        data-ui="setting-btn"
-        class="text-header simp-control-interact"
-    >
+    <div data-ui="setting-btn" class="text-header simp-control-interact">
         <!-- 后面需要动态展示功能列表以及搜索框 -->
 
         <SettingIcon class="w-6 h-6" />
@@ -42,7 +39,10 @@ import Rss from "@/assets/Icons/rss.svg";
                             class="w-5 h-5 flex items-center justify-center"
                         />
                     </button>
-                    <button class="link-container p-2">
+                    <button
+                        data-ui="switch-matchMedia-theme"
+                        class="link-container p-2"
+                    >
                         <System
                             class="w-5 h-5 flex items-center justify-center"
                         />
@@ -131,6 +131,11 @@ import Rss from "@/assets/Icons/rss.svg";
             '[data-ui="switch-dark-theme"]',
         ) as HTMLElement;
 
+        // 获取切换跟随系统按钮
+        const switchMatchMediaThemeBtn: HTMLElement = controlPanel.querySelector(
+            '[data-ui="switch-matchMedia-theme"]',
+        ) as HTMLElement;
+
         // 获取到scrollbar容器
         const scrollBarDiv: HTMLElement = controlPanel.querySelector(
             '[data-ui="scroll-bar-setting"]',
@@ -181,14 +186,20 @@ import Rss from "@/assets/Icons/rss.svg";
         });
 
         // 切换主题色
-        switchDarkThemeBtn.addEventListener('click', () => {
-            window.document.documentElement.dataset.theme = 'dark'
-            localStorage.setItem('theme', 'dark')
-        })
+        switchDarkThemeBtn.addEventListener("click", () => {
+            window.document.documentElement.dataset.theme = "dark";
+            localStorage.setItem("theme", "dark");
+        });
 
-        switchLightThemeBtn.addEventListener('click', () => {
-            window.document.documentElement.dataset.theme = 'light'
-            localStorage.setItem('theme', 'light')
+        switchLightThemeBtn.addEventListener("click", () => {
+            window.document.documentElement.dataset.theme = "light";
+            localStorage.setItem("theme", "light");
+        });
+
+        switchMatchMediaThemeBtn.addEventListener('click', () => {
+            const theme = window.matchMedia('(prefers-color-scheme: light)').matches;
+            window.document.documentElement.dataset.theme = theme? 'light' : 'dark';
+            localStorage.setItem("theme", "match-media");
         })
 
         // 下载背景图

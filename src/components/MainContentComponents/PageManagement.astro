@@ -47,15 +47,15 @@ const totalPage = params.lastPage;
 const pageItems = buildPager(totalPage, currentPage);
 ---
 
-<div class="flex items-center justify-center gap-8">
-    <div class="flex items-center justify-center gap-8 bg-[rgba(0,0,0,.2)] rounded-md">
+<div class="text-body flex items-center justify-center gap-8">
+    <div class="flex items-center justify-center gap-8 bg-[rgba(0,0,0,.2)] dark:bg-[#898787d4] rounded-md">
         <!-- 后退 -->
         <a
             href={`/${params.currentPage - 1}`}
             class={`blog-nav-icon
         ${
             currentPage === 1
-                ? "pointer-events-none cursor-not-allowed text-[#ccc]"
+                ? "pointer-events-none cursor-not-allowed text-[#8a6d6d65] dark:text-[#b8a6a69e]"
                 : ""
         }`}
         >
@@ -89,7 +89,7 @@ const pageItems = buildPager(totalPage, currentPage);
             class={`blog-nav-icon
         ${
             currentPage === totalPage
-                ? "pointer-events-none cursor-not-allowed text-[#ccc]"
+                ? "pointer-events-none cursor-not-allowed text-[#8a6d6d65] dark:text-[#b8a6a69e]"
                 : ""
         }`}
         >

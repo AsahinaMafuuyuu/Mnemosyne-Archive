@@ -173,7 +173,11 @@ const params = Astro.props?.params;
 
       // 初始化主题色彩
       function initTheme () {
-        window.document.documentElement.dataset.theme = (localStorage.getItem('theme') ? localStorage.getItem('theme') : 'light')!
+        let theme = localStorage.getItem('theme')? localStorage.getItem('theme') : 'light';
+        if (theme === 'match-media') {
+          theme = window.matchMedia('(prefers-color-scheme: light)').matches? 'light' : 'dark'
+        }
+        window.document.documentElement.dataset.theme = theme!
       }
 
       // 初始化背景图片
