@@ -4157,4 +4157,353 @@ npm install zustand
 
 创建一个`store`文件夹在文件下下面创建对应的业务模块比如全局管理`price.ts`
 
+```ts
+import { create } from "zustand";
+
+interface PriceState {
+    price: number;
+    state: number;
+    incrementPrice: () => void;  
+    decrementPrice: () => void;
+    resetPrice: () => void;
+    getPrice: () => number;
+}
+
+const usePriceStore = create<PriceState>((set, get) => ({
+    // state也就是这个对象本身
+    // zustand设置属性的时候不会像useState中那样覆盖整个state对象，而是会进行合并
+    // 所以我们只需要传入需要更新的属性即可
+    price: 0,
+    state: 0,
+    incrementPrice: () => set((state) => ({ price: state.price + 1 })),
+    decrementPrice: () => set((state) => ({ price: state.price - 1 })),
+    resetPrice: () => set({ price: 0 }), // 可以直接传入一个对象来更新state，不需要使用函数形式
+    getPrice: () => get().price  // 通过get函数获取当前的state对象，然后访问price属性
+
+}))
+
+export default usePriceStore;
+```
+
+在App中使用：
+
+```tsx
+import React from 'react';
+import  usePriceStore  from './stores/price';
+import './App.css';
+
+const App: React.FC = () => {
+    const { price, incrementPrice, decrementPrice, resetPrice } = usePriceStore();
+    return (
+        <>
+            <button className='app-btn' onClick={incrementPrice}> + </button>
+            <p>{price}</p>
+            <button className='app-btn' onClick={decrementPrice}> - </button>
+            <button className='app-btn' onClick={resetPrice}> Reset </button>
+        </>
+    );
+}
+
+export default App
+```
+
+写一个App.css好看一点：
+
+```css
+.app-btn {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin: 5px;
+}
+```
+![](../../assets/images/posts/React-35.png)
+
+操作什么的，木得问题哦
+
+### 深层次状态
+
+如果上述中`PriceState`中还有对象的话，那么更新的话就不能只更新对象中的属性：
+
+比如这个：
+
+```ts
+import { create } from 'zustand'
+
+interface User {
+    gourd: {
+        oneChild: string,
+        twoChild: string,
+        threeChild: string,
+        fourChild: string,
+        fiveChild: string,
+        sixChild: string,
+        sevenChild: string,
+    },
+    updateGourd: () => void
+}
+
+// 创建 store
+const useUserStore = create<User>(((set) => ({
+    // 初始化葫芦娃状态
+    gourd: {
+        oneChild: '大娃',
+        twoChild: '二娃',
+        threeChild: '三娃',
+        fourChild: '四娃',
+        fiveChild: '五娃',
+        sixChild: '六娃',
+        sevenChild: '七娃',
+    },
+    // 更新方法
+    updateGourd: () => set((state) => ({
+        gourd: {
+            // ...state.gourd,  // 需要手动合并状态
+            oneChild: '大娃-超进化',
+        }
+    }))
+})))
+
+export default useUserStore;
+```
+
+这里的：
+
+```ts
+updateGourd: () => set((state) => ({
+        gourd: {
+            // ...state.gourd,  // 需要手动合并状态
+            oneChild: '大娃-超进化',
+        }
+    }))
+```
+
+不能和上面一样只赋值给oneChild了
+
+#### 解决方案
+
+就用之前的immer中间库就行了
+
+```bash
+npm install immer
+```
+
+```ts
+import { produce } from 'immer'
+
+const data = {
+  user: {
+    name: '张三',
+    age: 18
+  }
+}
+
+// 使用 produce 创建新状态
+const newData = produce(data, draft => {
+  draft.user.age = 20  // 直接修改 draft
+})
+
+console.log(newData, data) 
+// 输出:
+// { user: { name: '张三', age: 20 } } 
+// { user: { name: '张三', age: 18 } }
+```
+
+#### 在Zustand中使用
+
+引入的话就需要：
+
+```ts
+import { immer } from "zustand/middleware/immer";
+```
+
+修改我们原来的price.ts:
+
+```ts
+import { create } from "zustand";
+import { immer } from "zustand/middleware/immer";
+
+interface PriceState {
+    price: number;
+    state: number;
+    user: {
+        name: string;
+        age: number;
+        email: string;
+    };
+    incrementPrice: () => void;
+    decrementPrice: () => void;
+    resetPrice: () => void;
+    getPrice: () => number;
+    updateUser: () => void;
+}
+
+const usePriceStore = create<PriceState>()(immer((set, get) => ({
+    // state也就是这个对象本身
+    // zustand设置属性的时候不会像useState中那样覆盖整个state对象，而是会进行合并
+    // 所以我们只需要传入需要更新的属性即可
+    price: 0,
+    state: 0,
+    user: {
+        name: '中华第一剑',
+        age: 25,
+        email: 'black survival 2@email.com'
+    },
+    incrementPrice: () => set((state) => ({ price: state.price + 1 })),
+    decrementPrice: () => set((state) => ({ price: state.price - 1 })),
+    resetPrice: () => set({ price: 0 }), // 可以直接传入一个对象来更新state，不需要使用函数形式
+    getPrice: () => get().price,  // 通过get函数获取当前的state对象，然后访问price属性
+    updateUser: () => set((state) => {
+        state.user.age = 30;
+    })
+})))
+
+export default usePriceStore;
+```
+
+然后在App.tsx里直接调用即可：
+
+```tsx
+import React from 'react';
+import  usePriceStore  from './stores/price';
+import './App.css';
+
+const App: React.FC = () => {
+    const { price, incrementPrice, decrementPrice, resetPrice, user, updateUser } = usePriceStore();
+    return (
+        <>
+            <button className='app-btn' onClick={incrementPrice}> + </button>
+            <p>{price}</p>
+            <button className='app-btn' onClick={decrementPrice}> - </button>
+            <button className='app-btn' onClick={resetPrice}> Reset </button>
+            <p>name:{user.name}</p>
+            <p>age:{user.age}</p>
+            <p>email:{user.email}</p>
+            <button className='app-btn' onClick={updateUser}> Update User </button>
+        </>
+    );
+}
+
+export default App
+```
+
+#### 原理剖析
+
+immer.js 通过 Proxy 代理对象的所有操作，实现不可变数据的更新。当对数据进行修改时，immer 会创建一个被修改对象的副本，并在副本上进行修改，最后返回修改后的新对象，而原始对象保持不变。这种机制确保了数据的不可变性，同时提供了直观的修改方式。
+
+immer 的核心原理基于以下两个概念：
+
+1. 写时复制 (Copy-on-Write)
+    
+    - 无修改时：直接返回原对象
+    - 有修改时：创建新对象
+2. 惰性代理 (Lazy Proxy)
+    
+    - 按需创建代理
+    - 通过 Proxy 拦截操作
+    - 延迟代理创建
+
+### 状态简化
+
+这一章详情请看：[状态简化 | react docs](https://message163.github.io/react-docs/react/zustand/simplify.html)
+
+这里如果用解构的话，就会出现性能问题：比如组件B解构出了price，组件A解构但没有用price，一旦price发生变化，组件A也会重新渲染，这样会对性能产生一些影响
+
+所以为了规避这个问题，我们可以使用状态选择器，状态选择器可以让我们只选择我们需要的部分状态，这样就不会引发不必要的重渲染，此时我们需要修改我们的App.tsx:
+
+```tsx
+const price = usePriceStore( state => state.price);
+const user = usePriceStore(state => state.user);
+const incrementPrice = usePriceStore(state => state.incrementPrice);
+const decrementPrice = usePriceStore(state => state.decrementPrice);
+const resetPrice = usePriceStore(state => state.resetPrice);
+const updateUser = usePriceStore(state => state.updateUser);
+```
+
+这种解构方式才是正确的，但是属性多了又该怎么办呢？
+因此衍生出了`useShallow`:
+
+```tsx
+import { useShallow } from 'zustand/react/shallow';
+const { price, user, incrementPrice, decrementPrice, resetPrice, updateUser } = usePriceStore(useShallow((state) => ({
+	price: state.price,
+	user: state.user,
+	incrementPrice: state.incrementPrice,
+	decrementPrice: state.decrementPrice,
+	resetPrice: state.resetPrice,
+	updateUser: state.updateUser
+})))
+```
+
+这样只针对导入的属性来针对性的渲染组件即可
+
+### 中间件
+
+zustand的中间件的用法，其实就是不停的用中间件包裹，比如这种：
+
+```ts
+const usePriceStore = create<PriceState>()(
+    immer(
+        middleware1(
+            middleware2(
+                (set, get) => ({
+                    // state也就是这个对象本身
+                    // zustand设置属性的时候不会像useState中那样覆盖整个state对象，而是会进行合并
+                    // 所以我们只需要传入需要更新的属性即可
+                    price: 0,
+                    state: 0,
+                    user: {
+                        name: '中华第一剑',
+                        age: 25,
+                        email: 'black survival 2@email.com'
+                    },
+                    incrementPrice: () => set((state) => ({ price: state.price + 1 })),
+                    decrementPrice: () => set((state) => ({ price: state.price - 1 })),
+                    resetPrice: () => set({ price: 0 }), // 可以直接传入一个对象来更新state，不需要使用函数形式
+                    getPrice: () => get().price,  // 通过get函数获取当前的state对象，然后访问price属性
+                    updateUser: () => set((state) => {
+                        state.user.age = 30;
+                    })
+                })
+            )
+        )
+    )
+)
+```
+
+可以自定义实现一个中间件，比如实现一个简易的日志中间件，了解其中间件的实现原理,：
+
+```tsx
+const logger = (config) => (set, get, api) => config((...args) => {
+    console.log(api)
+    console.log('before', get())
+    set(...args)
+    console.log('after', get())
+}, get, api)
+```
+
+参数解释：
+
+1. config (外层函数参数)
+    
+    - 类型：函数 (set, get, api) => StoreApi
+    - 作用：原始创建 store 的配置函数，由用户传入。中间件需要包装这个函数。
+2. set (内层函数参数)
+    
+    - 类型：函数 (partialState) => void
+    - 作用：原始的状态更新函数，用于修改 store 的状态。
+3. get (内层函数参数)
+    
+    - 类型：函数 () => State
+    - 作用：获取当前 store 的状态值。
+4. api (内层函数参数)
+    
+    - 类型：对象 StoreApi
+    - 作用：包含 store 的完整 API（如 setState, getState, subscribe, destroy 等方法）。
+
+一些官方中间件请参考：[中间件 | react docs](https://message163.github.io/react-docs/react/zustand/middleware.html#devtools)
+
 

@@ -41,4 +41,13 @@ export function setBgBlur(blur: number) {
     localStorage.setItem('background-blur', String(blur))
 }
 
+// 媒体状态
+export let mediaDevice: 'desktop' | 'mobile' | null = null;
 
+export function setMediaDevice() {
+    if (window.innerWidth / window.innerHeight > 1) {
+        mediaDevice = 'desktop';
+    } else {
+        mediaDevice = 'mobile';
+    }
+}

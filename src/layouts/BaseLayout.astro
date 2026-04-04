@@ -63,7 +63,6 @@ const params = Astro.props?.params;
       import { initBgStateFromStorage } from "@/stores/theme";
       initBgStateFromStorage();
     </script>
-
   </head>
   <body data-theme="light" transition:animate="fade" class="h-fit">
     <!-- 这里应该用fixed来当作固定在视口的背景 -->
@@ -121,14 +120,18 @@ const params = Astro.props?.params;
         class="text-body fixed right-4 bottom-4 w-10 h-10 transition-all ease-in-out duration-300 hover:text-[purple] hover:-translate-y-1"
         ><ToTopIcon /></button
       >
-
     </div>
     <!-- 小插件 -->
     <AudioPlayerAside transition:persist />
 
     <script>
       import { fetchBackgroundImage } from "@/function";
-      import { bgState, setBgUrl } from "@/stores/theme";
+      import {
+        bgState,
+        setBgUrl,
+        setMediaDevice,
+        mediaDevice,
+      } from "@/stores/theme";
 
       //  记录url
       let bgUrl: string;
@@ -136,9 +139,7 @@ const params = Astro.props?.params;
       // 初始化滚动容器
       function initScroll() {
         // 获取滚动btn
-        const toTopBtn = document.querySelector(
-          '[data-ui="to-top-btn"]',
-        );
+        const toTopBtn = document.querySelector('[data-ui="to-top-btn"]');
         // 滚动到视口顶部
         function scrollTop() {
           window.scrollTo({ top: 0, behavior: "smooth" });
@@ -180,6 +181,24 @@ const params = Astro.props?.params;
 
       // 初始化背景图片
       async function initBackground() {
+        // 首先需要设置mediaDevice
+        setMediaDevice();
+        // 并且还要给网站注册对应的事件
+        window.addEventListener("resize", async () => {
+          const oldMediaDevice = mediaDevice;
+          setMediaDevice();
+          if (mediaDevice !== oldMediaDevice) {
+            // 修改类型，则需要修改背景
+            bgUrl = await fetchBackgroundImage();
+            document.documentElement.style.setProperty(
+              "--background-src",
+              `url(${bgUrl})`,
+            );
+          }
+
+          // 存放到全局状态当中
+          setBgUrl(bgUrl);
+        });
         // 如果禁用图片，就跳过
         if (bgState.disabledBtnIsActived) {
           return;

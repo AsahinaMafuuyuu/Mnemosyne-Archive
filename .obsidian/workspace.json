@@ -243,6 +243,7 @@
   },
   "active": "230ef4622ca37c87",
   "lastOpenFiles": [
+    "src/assets/images/posts/React-35.png",
     "src/pages/posts/TmodLoader-Module.md",
     "src/pages/posts/TalkAboutSPAAndNoFrameWork.md",
     "src/pages/posts/CSharp.md",
@@ -288,7 +289,6 @@
     "src/pages/posts/LearnNuxtJs-Day5.md",
     "src/pages/posts/LearnNuxtJs-Day3.md",
     "src/pages/posts/LearnNuxtJs-Day4.md",
-    "src/pages/posts/LearnNuxtJs-Day2.md",
     "未命名.canvas"
   ]
 }
