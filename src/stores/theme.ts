@@ -15,7 +15,8 @@ export const bgState: BgState = {
 export function initBgStateFromStorage() {
     if (typeof window === "undefined") return;
     //   从本地取出disabled-background
-    bgState.disabledBtnIsActived = localStorage.getItem("disabled-background") === "true";
+    // 等于undefined或者true都表示禁用背景，否则启用背景
+    bgState.disabledBtnIsActived = !(localStorage.getItem("disabled-background") === "false");
     //  从本地取出blur
     bgState.bgBlur = Number(localStorage.getItem("background-blur")) || 0;
 }
