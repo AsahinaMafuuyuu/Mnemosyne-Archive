@@ -10,7 +10,7 @@ const url: string = Astro.url.toString();
 const params = Astro.props?.params;
 ---
 
-<html lang="zh-CN">
+<html lang="zh-CN" class="base-scroll-bar scroll-smooth">
   <head>
     <!-- 引入google analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-E4E7YKZK0H"
@@ -61,15 +61,14 @@ const params = Astro.props?.params;
     <!-- DOM还未加载的时候就需要读取的一些元素信息 -->
     <script>
       import { initBgStateFromStorage } from "@/stores/theme";
-      initBgStateFromStorage()
-
+      initBgStateFromStorage();
     </script>
+
   </head>
-  <body data-theme="light" transition:animate="none">
-    <!-- 页面整体布局 -->
+  <body data-theme="light" transition:animate="fade" class="h-fit">
+    <!-- 这里应该用fixed来当作固定在视口的背景 -->
     <div
-      data-ui="html-container"
-      class="dark:bg-black w-screen h-screen bg-cover bg-center bg-no-repeat transition-background-image duration-1000 ease-in-out"
+      class="fixed w-screen h-screen dark:bg-black bg-cover bg-center bg-no-repeat transition-background-image duration-1000 ease-in-out"
       style="background-image: var(--background-src);"
     >
       <!-- 覆盖一层毛玻璃 -->
@@ -77,53 +76,52 @@ const params = Astro.props?.params;
         data-ui="real-visual-container"
         class="h-full w-full backdrop-blur-(--blur-val)"
       >
-        <!-- 设置一层div，用来帮助滚动 -->
+      </div>
+    </div>
+
+    <!-- 内容容器 -->
+    <div class="w-full flex flex-col items-center">
+      <!-- 内容容器 -->
+      <!-- 要规定尺寸，大小，展示方式等等 -->
+      <div
+        data-ui="visual-content-area"
+        class="w-full min-w-[320px] max-w-350 px-4 pb-5 grid gap-3 grid-cols-[300px_1fr] max-[1024px]:grid-cols-[240px_1fr] grid-rows-[auto_1fr_auto] max-[768px]:grid-cols-[1fr]"
+      >
+        <!-- 导航栏 -->
+        <div class="col-span-1 md:col-span-2 z-999">
+          <Header />
+        </div>
+
+        <!-- 左侧个人信息栏 -->
+        <!-- 这里也可以替换成导航栏 -->
+        <div class="max-[768px]:hidden">
+          <slot name="asidePanel">
+            <AsideInfo />
+          </slot>
+        </div>
+
+        <!-- 正文博客内容展示 -->
         <div
-          data-ui="real-content-container"
-          class="h-full w-full flex justify-center overflow-auto base-scroll-bar scroll-smooth"
+          transition:name="mainContent"
+          transition:animate="fade"
+          class="min-w-0"
         >
-          <!-- 内容容器 -->
-          <!-- 要规定尺寸，大小，展示方式等等 -->
-          <div
-            data-ui="visual-content-area"
-            class="w-full h-full min-w-[320px] max-w-350 px-4 pb-5 grid gap-3 grid-cols-[300px_1fr] max-[1024px]:grid-cols-[240px_1fr] grid-rows-[auto_1fr_auto] max-[768px]:grid-cols-[1fr]"
-          >
-            <!-- 导航栏 -->
-            <div class="col-span-1 md:col-span-2 z-999">
-              <Header />
-            </div>
+          <slot name="mainContent" />
+        </div>
 
-            <!-- 左侧个人信息栏 -->
-             <!-- 这里也可以替换成导航栏 -->
-            <div class="max-[768px]:hidden">
-              <slot name="asidePanel">
-                <AsideInfo />
-              </slot>
-            </div>
-
-            <!-- 正文博客内容展示 -->
-            <div
-              transition:name="mainContent"
-              transition:animate="fade"
-              class="min-w-0"
-            >
-              <slot name="mainContent" />
-            </div>
-
-            <!-- 底部内容 -->
-            <div class="col-span-1 md:col-span-2 mt-5">
-              <Footer />
-            </div>
-          </div>
-
-          <!-- 右侧侧边栏 -->
-          <button
-            data-ui="to-top-btn"
-            class="text-body fixed right-4 bottom-4 w-10 h-10 transition-all ease-in-out duration-300 hover:text-[purple] hover:-translate-y-1"
-            ><ToTopIcon /></button
-          >
+        <!-- 底部内容 -->
+        <div class="col-span-1 md:col-span-2 mt-5">
+          <Footer />
         </div>
       </div>
+
+      <!-- 右侧侧边栏,用于回到页面顶部 -->
+      <button
+        data-ui="to-top-btn"
+        class="text-body fixed right-4 bottom-4 w-10 h-10 transition-all ease-in-out duration-300 hover:text-[purple] hover:-translate-y-1"
+        ><ToTopIcon /></button
+      >
+
     </div>
     <!-- 小插件 -->
     <AudioPlayerAside transition:persist />
@@ -137,17 +135,13 @@ const params = Astro.props?.params;
 
       // 初始化滚动容器
       function initScroll() {
-        // 获取实际滚动容器
-        const scrollContainer = document.querySelector(
-          '[data-ui="real-content-container"]',
-        );
         // 获取滚动btn
-        const toTopBtn = scrollContainer?.querySelector(
+        const toTopBtn = document.querySelector(
           '[data-ui="to-top-btn"]',
         );
         // 滚动到视口顶部
         function scrollTop() {
-          scrollContainer?.scrollTo({ top: 0, behavior: "smooth" });
+          window.scrollTo({ top: 0, behavior: "smooth" });
         }
         // 监听向上btn
         toTopBtn?.addEventListener("click", scrollTop);
@@ -172,19 +166,23 @@ const params = Astro.props?.params;
       }
 
       // 初始化主题色彩
-      function initTheme () {
-        let theme = localStorage.getItem('theme')? localStorage.getItem('theme') : 'light';
-        if (theme === 'match-media') {
-          theme = window.matchMedia('(prefers-color-scheme: light)').matches? 'light' : 'dark'
+      function initTheme() {
+        let theme = localStorage.getItem("theme")
+          ? localStorage.getItem("theme")
+          : "light";
+        if (theme === "match-media") {
+          theme = window.matchMedia("(prefers-color-scheme: light)").matches
+            ? "light"
+            : "dark";
         }
-        window.document.documentElement.dataset.theme = theme!
+        window.document.documentElement.dataset.theme = theme!;
       }
 
       // 初始化背景图片
       async function initBackground() {
         // 如果禁用图片，就跳过
         if (bgState.disabledBtnIsActived) {
-          return ;
+          return;
         }
         // 如果设置了背景图片，就直接使用，否则就去获取一个随机背景图
         if (
@@ -199,10 +197,10 @@ const params = Astro.props?.params;
           );
 
           // 存放到全局状态当中
-          setBgUrl(bgUrl)
-        }else {
+          setBgUrl(bgUrl);
+        } else {
           // 使用保存的bgUrl
-           document.documentElement.style.setProperty(
+          document.documentElement.style.setProperty(
             "--background-src",
             `url(${bgState.bgUrl})`,
           );
@@ -211,7 +209,7 @@ const params = Astro.props?.params;
 
       // 普通页面进来就需要做的初始化
       function init() {
-        initTheme ()
+        initTheme();
         initScroll();
         initTitleScript();
       }
@@ -222,7 +220,7 @@ const params = Astro.props?.params;
         init();
 
         if (bgState.disabledBtnIsActived) {
-          return ;
+          return;
         }
         // 设置background-src的url
         document.documentElement.style.setProperty(

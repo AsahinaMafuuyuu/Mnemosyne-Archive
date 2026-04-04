@@ -4,16 +4,16 @@
     "type": "split",
     "children": [
       {
-        "id": "8e8733483f3545c4",
+        "id": "21b939e52102fd9b",
         "type": "tabs",
         "children": [
           {
-            "id": "3cd6c0070efe38d0",
+            "id": "230ef4622ca37c87",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "src/pages/posts/SSRvsCSR.md",
+                "file": "src/pages/posts/React.md",
                 "mode": "source",
                 "source": false,
                 "backlinks": true,
@@ -28,11 +28,35 @@
                 }
               },
               "icon": "lucide-file",
-              "title": "SSRvsCSR"
+              "title": "React"
             }
           },
           {
-            "id": "90f49d85a349db9f",
+            "id": "063d1b864c22abf7",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "src/pages/posts/CSharp.md",
+                "mode": "source",
+                "source": false,
+                "backlinks": true,
+                "backlinkOpts": {
+                  "collapseAll": false,
+                  "extraContext": false,
+                  "sortOrder": "alphabetical",
+                  "showSearch": false,
+                  "searchQuery": "",
+                  "backlinkCollapsed": false,
+                  "unlinkedCollapsed": true
+                }
+              },
+              "icon": "lucide-file",
+              "title": "CSharp"
+            }
+          },
+          {
+            "id": "8ab2e5f6191f7b26",
             "type": "leaf",
             "state": {
               "type": "markdown",
@@ -55,8 +79,7 @@
               "title": "TmodLoader-Module"
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "vertical"
@@ -191,13 +214,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "src/pages/posts/TmodLoader-Module.md",
+                "file": "src/pages/posts/React.md",
                 "followCursor": true,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "TmodLoader-Module 的大纲"
+              "title": "React 的大纲"
             }
           }
         ],
@@ -218,12 +241,15 @@
       "bases:新建数据库": false
     }
   },
-  "active": "90f49d85a349db9f",
+  "active": "230ef4622ca37c87",
   "lastOpenFiles": [
-    "src/pages/posts/TailwindInAstro.md",
-    "src/pages/posts/SSRvsCSR.md",
-    "src/pages/posts/SomeReleventResource.md",
+    "src/pages/posts/TmodLoader-Module.md",
+    "src/pages/posts/TalkAboutSPAAndNoFrameWork.md",
+    "src/pages/posts/CSharp.md",
     "src/pages/posts/React.md",
+    "src/pages/posts/SSRvsCSR.md",
+    "src/pages/posts/TailwindInAstro.md",
+    "src/pages/posts/SomeReleventResource.md",
     "src/pages/posts/RestartToLearnPromise.md",
     "src/styles/markdownStyle copy.css",
     "dist/_astro/UnderstandingComponents-1.rMaATpae_1U99MI.webp",
@@ -245,9 +271,7 @@
     "dist/posts/TmodLoader-Module/index.html",
     "dist/posts/TmodLoader-Module",
     "dist/posts/RestartToLearnPromise/index.html",
-    "src/pages/posts/CSharp.md",
     "src/pages/posts/C#.md",
-    "src/pages/posts/TmodLoader-Module.md",
     "src/pages/posts/LearnAstro-ProjectStrcture.md",
     "src/pages/posts/TailwindAddCustomClass.md",
     "src/pages/posts/LearnAstro-Configuration.md",
@@ -265,7 +289,6 @@
     "src/pages/posts/LearnNuxtJs-Day3.md",
     "src/pages/posts/LearnNuxtJs-Day4.md",
     "src/pages/posts/LearnNuxtJs-Day2.md",
-    "src/pages/posts/NodeJs-AliOss.md",
     "未命名.canvas"
   ]
 }

@@ -4069,3 +4069,92 @@ export default function About() {
 
 ![](../../assets/images/posts/React-34.png)
 
+### 导航
+
+这一栏具体可以去看小满zs专栏：[导航 | react docs](https://message163.github.io/react-docs/react/router/nav.html)
+
+### ErrorBoundary
+
+ErrorBoundary是用于捕获路由loader或action的错误，并进行处理
+
+如果loader或action抛出错误，会调用ErrorBoundary组件。
+比如在router/index.ts路由配置文件中：
+
+```ts
+import { createBrowserRouter } from "react-router";
+import Layout from "../layout";
+import Home from "../components/Home";
+import About from "../components/About";
+import Error from '../layout/Error'; // 错误处理组件
+import { message } from "antd";
+const sleep = (ms: number) => new Promise(resolve => setTimeout(resolve, ms))
+const data = {
+    name: '中华第一剑',
+    age: 25,
+    description: '我的剑准备好了'
+}
+
+const router = createBrowserRouter([
+    {
+        path: "/",
+        Component: Layout,
+        children: [
+            {
+                path: "home",
+                Component: Home
+            },
+            {
+                path: "about",
+                Component: About,
+                loader: async () => {
+                    throw {
+                        message: '加载数据失败',
+                        status: 500
+                    }
+                },
+                ErrorBoundary: Error, //如果loader或action抛出错误，会调用ErrorBoundary组件
+            }
+        ]
+    },
+])
+
+export default router;
+```
+
+编写我们的Error组件（layout/Error/index.tsx）:
+
+```tsx
+import { useRouteError } from 'react-router'
+
+interface Error {
+    message: string;
+    status: number;
+}
+
+export default function Error() {
+    const error = useRouteError() as Error;
+    return <div>{error.message}</div>
+}
+```
+
+## 状态管理
+
+Zustand作为状态管理，有以下优点：
+
+1. `轻量级` Zustand 的体积非常小，只有 1kb 左右。
+2. `简单易用` Zustand 不需要像Redux，去通过`Provider`包裹组件，Zustand提供了简洁的API，能够快速上手。
+3. `易于集成` Zustand 可以轻松的与React 和 Vue 等框架集成。(Zustand也有Vue版本)
+4. `扩拓展性` Zustand 提供了中间件的概念，可以通过插件的方式扩展功能，例如(持久化,异步操作，日志记录)等。
+5. `无副作用` Zustand 推荐使用 `immer`库处理不可变性， 避免不必要的副作用。
+
+### 安装
+
+```bash
+npm install zustand
+```
+
+### 使用
+
+创建一个`store`文件夹在文件下下面创建对应的业务模块比如全局管理`price.ts`
+
+

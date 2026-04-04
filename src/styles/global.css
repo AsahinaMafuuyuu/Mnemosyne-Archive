@@ -19,14 +19,11 @@
 
 @custom-variant activated (&:where(&[data-activated="true"]));
 
-html {
-    width: 100vw;
-    height: 100vh;
-}
 
-body {
-    width: 100vw;
-    height: 100vh;
+
+html, body {
+    width: 100%;
+    height: 100%;
 }
 
 @media screen and (max-width: 768px) {
