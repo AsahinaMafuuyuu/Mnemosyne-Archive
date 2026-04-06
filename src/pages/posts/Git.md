@@ -149,3 +149,9 @@ revert: remove experimental caching strategy
 而是：
 
 - “让 Git 以后不要把这些**未跟踪文件**纳入跟踪”
+
+修复方法非常简单：
+
+1. 首先使用`git rm -r --cached < 文件名 >`来放弃对某个文件的追踪，然后进行提交
+2. 提交完毕后再将该文件添加进.gitignore中，这样的话就可以放弃对该文件的管理了
+

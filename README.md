@@ -18,9 +18,9 @@ Mnemosyne-Archive README
   ·
   <a href="#-功能">Features</a>
   ·
-  <a href="#-快速开始">Quick Start</a>
+  <a href="#-待完善的功能">Waiting for Implementation</a>
   ·
-  <a href="#-写作指南">Writing</a>
+  <a href="#-写作模板">Writing</a>
   ·
   <a href="#-部署">Deploy</a>
 </p>
@@ -41,20 +41,20 @@ Mnemosyne-Archive README
 
 ---
 
-## ✨ 功能
+## 功能
 
-- **Markdown 文章驱动**：文章放在 `src/pages/posts/*.md`，自动参与构建与展示  
-- **分页首页**：`src/pages/[page].astro` 做分页与排序（按 `pubDate` 倒序）  
+- **Markdown 文章驱动**：文章放在 `src/pages/posts/*.md`，自动参与构建与展示，并且我的博客文章会持续更新在这里。  
+- **分页首页**：`src/pages/[page].astro` 做分页与排序（按 `pubDate` 倒序），分页构建的话就会让首页保持简洁，适合长期积累。  
 - **主题与观感设置**：暗色模式、背景图切换、模糊强度（CSS 变量驱动）  
-- **RSS**：已集成 `@astrojs/rss`，默认路由通常为 `/rss.xml`  
-- **侧边栏音乐播放器**：沉浸式播放（项目内含 Aside 播放器组件）  
+- **RSS**：已集成 `@astrojs/rss`，默认路由通常为 `/rss.xml` ，或者点击右上角的图标打开仪表盘，里面会有RSS订阅，点击即可复制链接
+- **侧边栏音乐播放器**：沉浸式播放（项目内含 Aside 播放器组件），不过该功能有一个bug，那就是拖动进度条会导致播放进度直接重置，计划未来修复这个问题。
 - **轻量但细节控的 UI**：Tailwind v4 + 自定义 utilities / tokens，让样式更“像一个作品”
 
-> 目标：把博客做成「可持续维护的知识仓库」，同时保留一点 ACG 的浪漫感。
+> 目标：把博客做成「可持续维护的知识仓库」，同时保留一点 ACG 的浪漫感，再加上这个博客是我自己亲手搭建的，基本上99的代码都是自己写的，当然，很多思路也会参考别人的博客，我尽量在上面加一些小的改动，而且对于博客搭建方面也能够对前端技术栈做一个非常好的练习，尤其是本博客后期用到SSR，Astro也是一个不错的框架，未来顺便出相关的教程。
 
 ---
 
-## 🧱 技术栈
+## 技术栈
 
 - **Astro 5**（站点框架）
 - **Tailwind CSS v4**（含 Vite 插件；项目内有 `watchTailwind` 输出 CSS）
@@ -63,7 +63,7 @@ Mnemosyne-Archive README
 
 ---
 
-## 📁 目录结构（核心）
+## 目录结构（核心）
 
 ```text
 .
@@ -80,45 +80,10 @@ Mnemosyne-Archive README
 ├─ dist/                       # astro build 输出
 └─ wrangler.jsonc              # Cloudflare Workers 静态资源部署入口
 ```
-## 🚀 快速开始
-
-> Astro 5.x 对 Node.js 有最低版本要求；实际开发建议使用较新的 Node LTS（例如 20 / 22）。  
-> 不同小版本可能提高最低 Node 要求，升级时请留意官方说明。
-
-### 1) 安装依赖
-
-```bash
-npm install
-```
-
-### 2) 开发模式
-
-```bash
-npm run dev
-```
-
-默认启动在：`http://localhost:4321`
-
-### 3) Tailwind 监听（重要）
-
-本项目使用 `watchTailwind` 将 `src/input.css` 编译到 `src/output.css`，布局会引用该输出文件。
-
-```bash
-npm run watchTailwind
-```
-
-> 建议：开两个终端，一个跑 `dev`，一个跑 `watchTailwind`。
-
-### 4) 构建与预览
-
-```bash
-npm run build
-npm run preview
-```
 
 ---
 
-## ✍️ 写作指南
+## 写作模板
 
 ### 新建文章
 
@@ -150,29 +115,20 @@ tags:
 ![](/images/posts/your-image.png)
 ```
 
-> 小提示：如果你从 Obsidian 迁移，可能会出现 `/public/...` 这种路径，建议统一替换成以 `/` 开头的站点路径。
+> 如果对于obsidian中插入图片有不懂的部分，我的建议是做成相对路径，然后存放到src/assets/images当中，astro在构建的时候通过编译器会把这些图片复制到dist目录下的相应位置。
 
 ---
 
-## 🎨 主题与样式
+## 主题与样式
 
 - 主题基于 CSS 变量（如 `--font-color`、`--background-color`、`--blur-val`）
 - Tailwind v4 的 token / utility 也在 `src/styles/` 中做了封装
 
-你可以从这两处入手改“气质”：
-
-- `src/styles/theme.runtime.css`：运行时变量（亮/暗色）
-- `src/styles/theme.token.css`：语义化 token（字号、权重、颜色映射）
+本博客支持暗色和亮色的主题切换，未来打算增加更多的主题设置，包括博客的边框特效，装饰等等
 
 ---
 
-## 📦 部署
-
-### Vercel（最省心）
-
-- 直接导入仓库
-- Build Command：`npm run build`
-- Output：`dist`
+## 部署
 
 ### Cloudflare Workers（静态资源）
 
@@ -183,28 +139,22 @@ npm run build
 wrangler deploy
 ```
 
+本博客是直接部署在 Cloudflare Workers 上的，利用其静态资源托管功能，部署后会得到一个 Workers 的 URL，访问这个 URL 就能看到博客了，未来可能会打算做一篇关于部署的教程。
+
 ---
 
-## 🗺️ Roadmap（想做/可做）
+## Roadmap（想做/可做）
 
-- [ ] 文章字数 / 阅读时长自动计算
+- [x] 文章字数 / 阅读时长自动计算
 - [ ] 文章搜索与标签聚合页
-- [ ] 访问量 / 统计接入（可选：Cloudflare Analytics / 自建 API）
+- [x] 访问量 / 统计接入（可选：Cloudflare Analytics / 自建 API）
 - [ ] 更完善的封面与社交分享图（OG Image）
+- [ ] 标签云 / 相关文章推荐
+- [ ] 更丰富的主题设置（边框特效、装饰元素等）
+- [ ] 文章内的评论功能以及站点的留言板
 
 ---
 
-## 🤝 Contributing
+## License
 
-欢迎提 Issue / PR：
-
-- Bug / 样式建议 / 交互改进
-- 组件抽象与工程化优化
-- 文档与写作体验增强
-
----
-
-## 📝 License
-
-当前仓库未放置 LICENSE 文件。  
-如果你准备开源复用 / 接受外部贡献，建议补一个（如 MIT / Apache-2.0 / GPL 等）。
+[MIT](https://github.com/AsahinaMafuuyuu/Mnemosyne-Archive?tab=MIT-1-ov-file#readme) © AsahinaMafuyu
