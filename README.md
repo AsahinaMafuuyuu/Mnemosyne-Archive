@@ -16,13 +16,13 @@ Mnemosyne-Archive README
 <p align="center">
   <a href="https://asahinamafuyu.top">Live Demo</a>
   ·
-  <a href="#-功能">Features</a>
+  <a href="#功能">Features</a>
   ·
-  <a href="#-待完善的功能">Waiting for Implementation</a>
+  <a href="#待完善的功能">Waiting for Implementation</a>
   ·
-  <a href="#-写作模板">Writing</a>
+  <a href="#写作模板">Writing</a>
   ·
-  <a href="#-部署">Deploy</a>
+  <a href="#部署">Deploy</a>
 </p>
 
 <p align="center">
