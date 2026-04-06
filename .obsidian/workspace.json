@@ -78,8 +78,57 @@
               "icon": "lucide-file",
               "title": "TmodLoader-Module"
             }
+          },
+          {
+            "id": "9948184301248b57",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "src/pages/posts/ReactKnowledgeAdd.md",
+                "mode": "source",
+                "source": true,
+                "backlinks": true,
+                "backlinkOpts": {
+                  "collapseAll": false,
+                  "extraContext": false,
+                  "sortOrder": "alphabetical",
+                  "showSearch": false,
+                  "searchQuery": "",
+                  "backlinkCollapsed": false,
+                  "unlinkedCollapsed": true
+                }
+              },
+              "icon": "lucide-file",
+              "title": "ReactKnowledgeAdd"
+            }
+          },
+          {
+            "id": "edf1926a314797fd",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "src/pages/posts/Git.md",
+                "mode": "source",
+                "source": true,
+                "backlinks": true,
+                "backlinkOpts": {
+                  "collapseAll": false,
+                  "extraContext": false,
+                  "sortOrder": "alphabetical",
+                  "showSearch": false,
+                  "searchQuery": "",
+                  "backlinkCollapsed": false,
+                  "unlinkedCollapsed": true
+                }
+              },
+              "icon": "lucide-file",
+              "title": "Git"
+            }
           }
-        ]
+        ],
+        "currentTab": 4
       }
     ],
     "direction": "vertical"
@@ -214,13 +263,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "src/pages/posts/React.md",
+                "file": "src/pages/posts/Git.md",
                 "followCursor": true,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "React 的大纲"
+              "title": "Git 的大纲"
             }
           }
         ],
@@ -241,13 +290,15 @@
       "bases:新建数据库": false
     }
   },
-  "active": "230ef4622ca37c87",
+  "active": "edf1926a314797fd",
   "lastOpenFiles": [
-    "src/assets/images/posts/React-35.png",
-    "src/pages/posts/TmodLoader-Module.md",
-    "src/pages/posts/TalkAboutSPAAndNoFrameWork.md",
-    "src/pages/posts/CSharp.md",
+    "src/pages/posts/ReactKnowledgeAdd.md",
+    "src/pages/posts/Git.md",
     "src/pages/posts/React.md",
+    "src/pages/posts/CSharp.md",
+    "src/pages/posts/TmodLoader-Module.md",
+    "src/assets/images/posts/React-35.png",
+    "src/pages/posts/TalkAboutSPAAndNoFrameWork.md",
     "src/pages/posts/SSRvsCSR.md",
     "src/pages/posts/TailwindInAstro.md",
     "src/pages/posts/SomeReleventResource.md",
@@ -262,7 +313,6 @@
     "dist/_astro/React-21.s8Fsxbrf_Z2i6CET.webp",
     "dist/_astro/React-31.B5rOLmgI_A7HdC.webp",
     "dist/_astro/React-30.DfuPoD_b_ZpyDR7.webp",
-    "dist/_astro/React-29.DJtw_YeO_ZQ8kKo.webp",
     "dist/posts/socketIO/index.html",
     "dist/posts/socketIO",
     "dist/posts/nodejs-crawler/index.html",
@@ -288,7 +338,6 @@
     "src/pages/posts/LearnNuxtJs-Day6.md",
     "src/pages/posts/LearnNuxtJs-Day5.md",
     "src/pages/posts/LearnNuxtJs-Day3.md",
-    "src/pages/posts/LearnNuxtJs-Day4.md",
     "未命名.canvas"
   ]
 }

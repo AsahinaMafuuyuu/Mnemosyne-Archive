@@ -80,9 +80,18 @@
         background: linear-gradient(to right,
                 pink 0%,
                 pink calc((var(--val) - var(--min)) / (var(--max) - var(--min)) * 100%),
-                rgba(0,0,0,.05) calc((var(--val) - var(--min)) / (var(--max) - var(--min)) * 100%),
-                rgba(0,0,0,.05) 100%);
+                rgba(0,0,0,.15) calc((var(--val) - var(--min)) / (var(--max) - var(--min)) * 100%),
+                rgba(0,0,0,.15) 100%);
         border-radius: 5px;
+    }
+    [data-theme="dark"] &::-webkit-slider-runnable-track {
+        background: linear-gradient(
+            to right,
+            pink 0%,
+            pink calc((var(--val) - var(--min)) / (var(--max) - var(--min)) * 100%),
+            rgba(255,255,255,.25) calc((var(--val) - var(--min)) / (var(--max) - var(--min)) * 100%),
+            rgba(255,255,255,.25) 100%
+        );
     }
 
     /* 滑块样式设置 */

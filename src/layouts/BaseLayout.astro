@@ -127,12 +127,13 @@ const params = Astro.props?.params;
     <AudioPlayerAside transition:persist />
 
     <script>
-      import { fetchBackgroundImage } from "@/function";
       import {
         bgState,
         setBgUrl,
         setMediaDevice,
         mediaDevice,
+        fetchBackgroundImage,
+        revokeBackgroundImage,
       } from "@/stores/theme";
 
       //  记录url
@@ -191,15 +192,16 @@ const params = Astro.props?.params;
           setMediaDevice();
           if (mediaDevice !== oldMediaDevice) {
             // 修改类型，则需要修改背景
-            bgUrl = await fetchBackgroundImage();
+            const bgUrl = await fetchBackgroundImage();
+
+            // 设置bgUrl作为dom中的背景
             document.documentElement.style.setProperty(
               "--background-src",
               `url(${bgUrl})`,
             );
+            // 销毁掉原来的bgUrl对象
+            revokeBackgroundImage()
           }
-
-          // 存放到全局状态当中
-          setBgUrl(bgUrl);
         });
         // 如果禁用图片，就跳过
         if (bgState.disabledBtnIsActived) {
@@ -211,7 +213,7 @@ const params = Astro.props?.params;
             "--background-src",
           ) === "none"
         ) {
-          bgUrl = await fetchBackgroundImage();
+          const bgUrl = await fetchBackgroundImage();
           document.documentElement.style.setProperty(
             "--background-src",
             `url(${bgUrl})`,

@@ -104,13 +104,14 @@ import Rss from "@/assets/Icons/rss.svg";
 <style></style>
 
 <script>
-    import { fetchBackgroundImage } from "@/function/index";
     // 导入背景图片url和是否禁用背景图片
     import {
         bgState,
         setBgUrl,
         setDisabledBackground,
         setBgBlur,
+        fetchBackgroundImage,
+        revokeBackgroundImage
     } from "@/stores/theme";
     function init() {
         const SettingBtn: HTMLElement = document.querySelector(
@@ -239,7 +240,8 @@ import Rss from "@/assets/Icons/rss.svg";
                 "--background-src",
                 `url(${url})`,
             );
-            setBgUrl(url);
+            // 销毁掉原来的bgUrl对象
+            revokeBackgroundImage()
         });
 
         // 定义函数
