@@ -309,13 +309,13 @@ Fixes #12
 
 作用：分类。
 
-![](../../assets/images/posts/Git&Hub.png)
+![](../../assets/images/posts/GitHub.png)
 
 **Assignees**
 
 指派给谁处理。
 
-![](../../assets/images/posts/Git&Hub-1.png)
+![](../../assets/images/posts/GitHub-1.png)
 
 **Milestone**
 
@@ -360,24 +360,24 @@ Fixes #12
 
 如果是copilot的话，原分支已经有了：
 
-![](../../assets/images/posts/Git&Hub-2.png)
+![](../../assets/images/posts/GitHub-2.png)
 此时进行批准：
 
-![](../../assets/images/posts/Git&Hub-3.png)
+![](../../assets/images/posts/GitHub-3.png)
 
 再在下面补充相关信息：
 
-![](../../assets/images/posts/Git&Hub-4.png)
+![](../../assets/images/posts/GitHub-4.png)
 
 就可以进行合并了
 
 然后输入此次合并提交的commit message：
 
-![](../../assets/images/posts/Git&Hub-5.png)
+![](../../assets/images/posts/GitHub-5.png)
 
 如果某次提交需要提到issue，则直接找对应的编号：
 
-![](../../assets/images/posts/Git&Hub-6.png)
+![](../../assets/images/posts/GitHub-6.png)
 
 可以看到：我这里的issue是5，因此提交以后自动关闭
 
@@ -407,7 +407,7 @@ Resolves #15
 
 首先fork 是一个新的仓库，它与原始上游仓库共享代码和可见性设置。可以选择只fork`master`分支或者全部fork
 
-![](../../assets/images/posts/Git&Hub-7.png)
+![](../../assets/images/posts/GitHub-7.png)
 
 #### upstream 
 
@@ -444,7 +444,7 @@ ssh-keygen -t rsa -C "2821594004@qq.com" -f C:/Users/SishuoXie/.ssh/id_rsa_alter
 
 然后她会要求你设置密码（这个密码是用来确认身份的密码），输入完毕后就可以看到.ssh文件夹下有一个`id_rsa_alternate`的文件（这个是私钥，而.pub对应的公钥）:
 
-![](../../assets/images/posts/Git&Hub-9.png)
+![](../../assets/images/posts/GitHub-9.png)
 
 然后我们可以使用`config`来配置多个SSH：
 
@@ -467,7 +467,7 @@ Host github-alt
 
 如果多账号配置了`config`文件的话，从远程`clone`到本地的时候，需要初始化账号,而且建议使用SSH克隆：
 
-![](../../assets/images/posts/Git&Hub-11.png)
+![](../../assets/images/posts/GitHub-11.png)
 
 那么在本地就需要用以下命令进行拉取：
 
@@ -493,11 +493,11 @@ Are you sure you want to continue connecting (yes/no/[fingerprint])?
 
 随便添加一些东西，然后进行推送：
 
-![](../../assets/images/posts/Git&Hub-12.png)
+![](../../assets/images/posts/GitHub-12.png)
 
 可以发现：完全没问题：
 
-![](../../assets/images/posts/Git&Hub-13.png)
+![](../../assets/images/posts/GitHub-13.png)
 
 > 如果之前已经克隆过了的话，则直接在仓库中设置：
 > `git remote set-url origin git@<SSH账户名>:<远程仓库地址>`
@@ -507,9 +507,9 @@ Are you sure you want to continue connecting (yes/no/[fingerprint])?
 
 我们通常使用公钥绑定Github中的账号：
 
-![](../../assets/images/posts/Git&Hub-8.png)
+![](../../assets/images/posts/GitHub-8.png)
 
 由于是需要输入公钥，则直接用.pub文件中的内容填进去就行了，就绑定成功了：
 
-![](../../assets/images/posts/Git&Hub-10.png)
+![](../../assets/images/posts/GitHub-10.png)
 
