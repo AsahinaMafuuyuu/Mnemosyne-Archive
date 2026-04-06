@@ -106,7 +106,7 @@ import Rss from "@/assets/Icons/rss.svg";
         position: relative;
     }
     [data-ui="rss-btn"][data-copied="true"]::after {
-        content: "RSS订阅链接已复制";
+        content: "已复制!";
         position: absolute;
         right: calc(100% + 6px);
         top: 50%;
@@ -310,6 +310,24 @@ import Rss from "@/assets/Icons/rss.svg";
         }
         // 禁用背景
         disabledBgBtn.addEventListener("click", settingBg);
+
+        // 订阅RSS：复制RSS链接到剪贴板
+        const rssFeedBtn: HTMLElement = controlPanel.querySelector(
+            '[data-ui="rss-btn"]',
+        ) as HTMLElement;
+
+        rssFeedBtn.addEventListener("click", async () => {
+            const rssUrl = new URL("/rss.xml", window.location.origin).href;
+            try {
+                await navigator.clipboard.writeText(rssUrl);
+                rssFeedBtn.dataset.copied = "true";
+                setTimeout(() => {
+                    rssFeedBtn.removeAttribute("data-copied");
+                }, 2000);
+            } catch {
+                window.open(rssUrl, "_blank");
+            }
+        });
 
         // 添加模糊滚动条滚动设计
         scrollBar.addEventListener("input", () => {
