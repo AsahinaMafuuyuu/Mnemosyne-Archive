@@ -93,7 +93,7 @@ import Rss from "@/assets/Icons/rss.svg";
 
             <div class="flex justify-between items-center">
                 <span class="truncate">订阅RSS</span>
-                <button class="link-container p-2">
+                <button data-ui="rss-btn" class="link-container p-2">
                     <Rss class="w-5 h-5 flex items-center justify-center" />
                 </button>
             </div>
@@ -101,7 +101,25 @@ import Rss from "@/assets/Icons/rss.svg";
     </div>
 </div>
 
-<style></style>
+<style>
+    [data-ui="rss-btn"][data-copied="true"] {
+        position: relative;
+    }
+    [data-ui="rss-btn"][data-copied="true"]::after {
+        content: "RSS订阅链接已复制";
+        position: absolute;
+        right: calc(100% + 6px);
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 0.75rem;
+        white-space: nowrap;
+        padding: 2px 6px;
+        border-radius: 4px;
+        background-color: var(--color-accent, #4f46e5);
+        color: white;
+        pointer-events: none;
+    }
+</style>
 
 <script>
     // 导入背景图片url和是否禁用背景图片
@@ -167,6 +185,11 @@ import Rss from "@/assets/Icons/rss.svg";
             '[data-ui="disabled-btn"]',
         ) as HTMLElement;
 
+        // 获取到订阅RSS按钮
+        const subscribeRssBtn: HTMLElement = controlPanel.querySelector(
+            '[data-ui="rss-btn"]'
+        ) as HTMLElement
+        
         // 设置按钮点击事件，切换控制面板显示状态
         SettingBtn.addEventListener("click", () => {
             if (controlPanel.dataset.hidden === "false") {
@@ -300,6 +323,20 @@ import Rss from "@/assets/Icons/rss.svg";
             // 设置模糊度
             setBgBlur(Number(scrollBar.value));
         });
+
+        // 订阅RSS
+        subscribeRssBtn.addEventListener('click', async () => {
+            const rssUrl = new URL('/rss.xml', window.location.origin).href
+             try {
+                await navigator.clipboard.writeText(rssUrl);
+                subscribeRssBtn.dataset.copied = "true";
+                setTimeout(() => {
+                    subscribeRssBtn.removeAttribute("data-copied");
+                }, 2000);
+            } catch {
+                window.open(rssUrl, "_blank");
+            }
+        })
 
         // 初始化的时候需要先读取是否禁用背景
         // 通过禁用背景来判断button的样式
