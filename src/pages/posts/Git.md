@@ -140,3 +140,12 @@ revert: remove experimental caching strategy
 
 更多功能详见[GitLens 支持与文档 --- GitLens Support & Documentation](https://help.gitkraken.com/gitlens/gitlens-home/)
 
+## Gitignore
+
+`.gitignore` 的作用不是：
+
+- “让 Git 停止跟踪已经提交过的文件”
+
+而是：
+
+- “让 Git 以后不要把这些**未跟踪文件**纳入跟踪”
