@@ -1,13 +1,16 @@
 ---
 layout: ../../layouts/MarkdownPostLayout.astro
-title: '论label<a>为什么是最头疼的元素'
+title: label<a>是一个头疼的元素
 pubDate: 2026-01-25
-author: 'AsahinaMafuyu'
-description: 'a链接标签的样式是我调整起来最头疼的，没有之一！！！'
+author: AsahinaMafuyu
+description: a链接标签的样式调试起来非常头疼
 cover:
   url: https://s2.loli.net/2025/12/28/TU3SW1Fu5Rsiqrv.jpg
   alt: 洛琪希
-tags: ["前端", "html", "debug"]
+tags:
+  - 前端
+  - html
+  - debug
 ---
 
 # 1. \<a\>为什么头疼

@@ -1,10 +1,15 @@
 ---
 layout: ../../layouts/MarkdownPostLayout.astro
-title: "Astro中如何制作过渡动画"
-pubDate: "2026-02-01"
+title: Astro中如何制作过渡动画
+pubDate: 2026-02-01
 author: AsahinaMafuyu
-description: "想要构建单页面应用，Astro的过渡动画是不得不品的一个环节"
-tags: ["astro", "blog", "animation", "前端", "css"]
+description: 想要构建单页面应用，Astro中就得使用到ClientRouter这个API
+tags:
+  - astro
+  - blog
+  - animation
+  - 前端
+  - css
 ---
 直接大白话讲清楚：首先需要在每一个布局的`<head>`标签当中添加`<ClientRouter>`:
 

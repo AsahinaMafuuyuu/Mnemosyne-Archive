@@ -7,7 +7,10 @@ description: 学习浏览器渲染原理，能够对于浏览器的认知有一�
 cover:
   url:
   alt:
-tags: []
+tags:
+  - 前端
+  - 学习笔记
+  - web术语
 ---
 ## 渲染页面机制
 

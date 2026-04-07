@@ -6,6 +6,7 @@ author: AsahinaMafuyu
 description: "当你想做炫酷的主题的时候但苦恼于滚动条丑陋，可以看看这篇文章"
 tags: ["前端", "html", "scrollbar"]
 ---
+
 这篇文章很短，简而言之吧，介绍一下滚动条的相关属性：
 > ::-webkit-scrollbar    //滚动条整体部分
 ::-webkit-scrollbar-button   //滚动条两端的按钮

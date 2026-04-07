@@ -6,7 +6,9 @@ author: AsahinaMafuyu
 description: "对于astro中的md来说，可以自定义任何信息，绝对没错"
 tags: ["astro", "blog", "markdown"]
 ---
+## frontmatter属性
 首先我们的md可以通过frontmatter中的属性`layout`来指定该md所要渲染到哪个页面当中去，当我们在写类似的属性时，比如：
+
 ```md
 ---
 layout: ../../layouts/MarkdownPostLayout.astro
@@ -17,6 +19,7 @@ description: ...
 ...
 ---
 ```
+
 此时在`MarkdownPostLayout.astro`中可以通过`const { frontmatter } = Astro.props as { frontmatter: Frontmatter };`来接收，然后用`frontmatter.title`来获取到对应的信息
 
 而且还需要注意一点（非常重要也容易忽略）: **属性的冒号后面需要加一个空格！**
