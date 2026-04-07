@@ -291,7 +291,7 @@ const logo = "/src/assets/logo.png"
 > - `submitting` 提交状态
 > - `loading` 加载状态
 
-案例：实现一个路由切换级别的加载动画，加载条也行，过场图也行：
+案例：实现一个路由切换级别的加载动画，加载条也行，过场图也行
 
 ## useSyncExternalStore补充
 
