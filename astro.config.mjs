@@ -7,11 +7,14 @@ import tailwindcss from "@tailwindcss/vite";
 
 import sitemap from "@astrojs/sitemap";
 
+// 导入react
+import react from '@astrojs/react';
+
 // https://astro.build/config
 export default defineConfig({
    
   site: "https://asahinamafuyu.top/",
-  integrations: [preact(), sitemap()],
+  integrations: [preact(), sitemap(), react()],
 
   vite: {
     plugins: [tailwindcss()]

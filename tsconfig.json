@@ -8,8 +8,8 @@
     "dist"
   ],
   "compilerOptions": {
-    "jsx": "preserve",
-    "jsxImportSource": "preact",
+    "jsx": "react-jsx",
+    "jsxImportSource": "react",
     "baseUrl": ".",
     "paths": {
       "@/*": [
