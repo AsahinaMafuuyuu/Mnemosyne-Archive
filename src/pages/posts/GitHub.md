@@ -12,7 +12,7 @@ tags:
   - 学习笔记
 ---
 
-## Git分支命名规范：
+## Git分支命名规范
 
 1. 主分支（main/master）
 	- 名称：main或master。
@@ -48,6 +48,7 @@ tags:
 	- 规则：从 main 分支创建。
 	- 示例： support/v1.0.x。
 
+当然，上面这些是约定俗成的，同样也可以按照规范自定义：比如新增博客推文，可以用`blog`分支。
 ## Git提交的批准规范
 
 最常用的是这些：
@@ -101,7 +102,7 @@ test(auth): cover invalid token cases
 chore: upgrade TypeScript to 5.8  
 chore(ci): update GitHub Actions workflow
 
-	### 8. perf
+### 8. perf
 
 性能优化
 
@@ -403,6 +404,84 @@ Resolves #15
 
 #### 提交者提交PR
 
+首先需要区分一个概念：origin和upstream是不一样的，
+
+- **origin**：自己的 fork 仓库
+- **upstream**：原作者的仓库
+
+本地开发时，一般默认推送到 `origin`，同时保留 `upstream` 用来接收原仓库更新。GitHub 官方也明确建议给 fork 配置一个指向原仓库的 remote。
+
+具体流程这么做：
+
+1. 首先我们fork了一个项目，然后需要clone到本地：
+
+```bash
+# 1) 克隆你自己的 fork  
+git clone git@github.com:你的用户名/项目名.git
+```
+
+2. 可以通过remote来查看远程仓库：
+
+```bash
+# 2) 查看远程仓库  
+git remote -v
+```
+
+一般来说是这样的：
+
+![](../../assets/images/posts/GitHub-18.png)
+
+此时只有两个origin：负责拉取和推送
+
+3. 此时我们还需要将原作者的仓库添加到本地作为远程仓库：
+
+```bash
+# 3) 添加原仓库为 upstream  
+git remote add upstream git@github.com:原作者用户名/项目名.git
+```
+
+此时的话本地就有对应的upstream上游仓库了，一样用git remote -v来进行查看：
+
+![](../../assets/images/posts/GitHub-19.png)
+
+4. 日常开发的话，首先肯定要拉取对方的最新代码，然后才进行修改，并提出PR：
+
+```bash
+# 先同步原仓库最新内容  
+git fetch upstream
+```
+
+5. 拉取了对方的最新代码，但是和你本地分支中的master是不一样的（upstream/master），因此还需要进行合并分支，将upstream/main的分支合并到本地main：
+
+```bash
+# 切到你本地的主分支（main 或 master）  
+git checkout main  
+  
+# 把 upstream/main 合并到本地 main  
+git merge upstream/main
+```
+
+6. 此时本地的分支进行了更新，但是fork的仓库中的master并没有同步，于是还要推送到自己远程仓库中的fork仓库：
+
+```bash
+# 再把同步后的 main 推到你自己的 fork  
+git push origin master
+```
+
+这样就做到了同步代码，之后如果想要修改，就重新创建一个分支（如develop），修改好以后，将该分支按照对方的PR要求，提出PR，推送到别人的分支上：
+
+![](../../assets/images/posts/GitHub-20.png)
+
+然后出现这个表单，Head应当填你自己fork的仓库和想要合并过去的分支，base应当是原作者的仓库和原作者将要合并的分支（这里我作演示，就合并到对方的develop分支上）
+
+![](../../assets/images/posts/GitHub-21.png)
+
+查看相关commit和代码diff，如果没什么问题，可以创建PR了:
+
+![](../../assets/images/posts/GitHub-22.png)
+
+这份PR的规范内容完全可以问GPT，所以我也不过多赘述了，提交即可
+
 ### Fork
 
 首先fork 是一个新的仓库，它与原始上游仓库共享代码和可见性设置。可以选择只fork`master`分支或者全部fork
@@ -512,4 +591,39 @@ Are you sure you want to continue connecting (yes/no/[fingerprint])?
 由于是需要输入公钥，则直接用.pub文件中的内容填进去就行了，就绑定成功了：
 
 ![](../../assets/images/posts/GitHub-10.png)
+
+### HTTP
+
+有一个很奇怪的事情：为什么我们使用http格式的clone和push的时候不会像SSH那样需要公钥和私钥？因为在我们第一次进行pull或者push的时候，就需要填写个人的相关信息，而这个凭证因此就保存在的Windows内，下一次进行push或者pull的时候直接进行读取就行了，要想查看相关数据，点开`控制面板 -> 用户账户 -> 管理Windows凭据`就可以看到了：
+
+![](../../assets/images/posts/GitHub-14.png)
+
+翻到下面，可以看见有两条对应的：
+
+![](../../assets/images/posts/GitHub-15.png)
+
+这就是凭据，修改凭据也能够让我们下次推送的时候使用相关的身份资格进行推送
+
+而git中进行修改的user又是啥呢？
+
+### Git User
+
+git中的user其实就相当于是一个本机的用户，你在本机仓库中进行的任何commit都会用当下你所使用到的这个user(比如username以及email)，当推送到远程仓库中的时候，上面的commit就会显示user和相关的说明（注：如果绑定的email正好是GitHub中注册账户的email，那么就会显示对应的用户），比如我在本机上新建一个user
+
+```bash
+git config --global user.name "alternate user"
+git config --global user.email "2821594004@qq.com"
+```
+
+这个是我的小号的email，**当我用Git的小号用户进行push的时候，由于我这个项目是用的http进行的，而本机的token存储的GitHub的凭据是大号的，因此有资格（qualified）将这个分支推送到远程分支上去，因此
+
+![](../../assets/images/posts/GitHub-17.png)
+
+![](../../assets/images/posts/GitHub-16.png)
+
+而且由于我上面配置的Git的用户账号在GitHub上是有对应的email的，因此在GitHub上会优先显示该用户的name(LoveLetter-BE)而不是我之前配置的user.name(alternate user)，
+
+> 这里涉及到两个概念，非常绕，也就是说：**在本地进行开发commit的时候，标注的作者和email都是Git进行本地配置时候的，但是push到remote分支上的权限完全取决于你在本机中配置的凭据**
+
+因此对于开发管理，如果是多账号的话，我的建议是使用SSH进行拉取推送等等，具体就查看上面的[SSH](#SSH)
 
