@@ -89,6 +89,14 @@
   border-radius: 5px;
 }
 
+[data-theme='dark'] .md-content ol {
+  list-style: decimal;
+  padding: 10px;
+  padding-left: 27.97px;
+  background-color: rgba(25, 23, 49, 0.355);
+  border-radius: 5px;
+}
+
 .md-content ol li {
   word-break: break-all;
 }
@@ -151,7 +159,7 @@
 }
 
 .md-content a[href^="http"]::after {
-  content: " 鈫?";
+  content: "\2197";
   font-size: 0.8em;
   vertical-align: super;
 }

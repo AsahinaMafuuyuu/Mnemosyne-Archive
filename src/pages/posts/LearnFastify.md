@@ -1,7 +1,7 @@
 ---
 layout: ../../layouts/MarkdownPostLayout.astro
 title: Fastify全面知识点
-pubDate: 2026-02-10T11:19:00
+pubDate: 2026-03-12T10:24:00
 author: AsahinaMafuyu
 description: 本文主要学习Fastify（为什么学fastify呢？因为express的吞吐量和延迟性能远不及fastify，因此学习fastify是作为NodeJs后端服务最后的倔强）
 cover:
