@@ -25,6 +25,7 @@ pnpm-debug.log*
 
 # obsidian
 .obsidian/
+.trash/
 
 # vscode
 .vscode/
