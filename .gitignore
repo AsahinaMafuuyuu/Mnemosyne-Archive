@@ -30,3 +30,6 @@ pnpm-debug.log*
 # vscode
 .vscode/
 
+# tools
+tools/
+
