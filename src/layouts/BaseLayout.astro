@@ -2,10 +2,11 @@
 import Header from "@/components/HeaderComponents/Header.astro";
 import AsideInfo from "@/components/AsideComponents/AsideInfo.astro";
 import Footer from "@/components/FooterComponents/Footer.astro";
-import AudioPlayerAside from "@/components/AudioPlayerComponents/AudioPlayerAside.astro";
 import { ClientRouter, fade } from "astro:transitions";
 import ToTopIcon from "@/assets/Icons/to-top.svg";
 import "../styles/global.css";
+import AudioPlayerAside from "@/components/AudioPlayerComponents/AudioPlayerAside.astro"
+import ReactAudioPlayerAside from '@/components/AudioPlayerComponents/AudioPlayerAside'
 const url: string = Astro.url.toString();
 const params = Astro.props?.params;
 ---
@@ -80,7 +81,10 @@ const params = Astro.props?.params;
     </div>
 
     <!-- 小插件 -->
-    <AudioPlayerAside />
+    <!-- <AudioPlayerAside /> -->
+
+    <!-- react版本 -->
+     <ReactAudioPlayerAside client:only="react" />
 
     <!-- 内容容器 -->
     <div class="w-full flex flex-col items-center">
@@ -187,6 +191,7 @@ const params = Astro.props?.params;
         setMediaDevice();
         // 并且还要给网站注册对应的事件
         window.addEventListener("resize", async () => {
+          if (bgState.disabledBtnIsActived) return;
           const oldMediaDevice = mediaDevice;
           setMediaDevice();
           if (mediaDevice !== oldMediaDevice) {
