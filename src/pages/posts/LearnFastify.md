@@ -275,7 +275,7 @@ export class DemoController {
 @Get('')
 @Version('2')
 findAll() {
-return this.demoService.findAll();
+	return this.demoService.findAll();
 }
 ```
 
@@ -656,7 +656,7 @@ user呢，其实是对的：
 
 ![](../../assets/images/posts/HelloAlgorithm-Day2-10.png)
 
-### 测试文件
+### 自动生成目录
 
 由nestJs创建的一整个完整的目录当中，可以看到有.spec之类的文件，这些文件就是测试文件（后面再学习，先暂时可以扔下）
 
@@ -709,6 +709,7 @@ src
 │ └─ user.module.ts
 ```
 
+> 注：更多用法一定要收看这篇文章：[使用 - CLI |NestJS - 一个渐进式 Node.js 框架](https://docs.nestjs.com/cli/usages#nest-generate)
 ## 文件上传
 
 ```bash

@@ -1,0 +1,43 @@
+---
+const normalCursor = "/images/Cursor/Lqx/normal.gif";
+---
+
+<!-- 核心属性：让这个 div 具有“穿透”属性，否则你点击的所有东西都会点在这个 div 上，导致下方的按钮无法触发 */
+    pointer-events: none; -->
+<div
+    transition:persist="normal-cursor"
+    data-ui="normal-cursor"
+    class="fixed top-0 left-0 w-8 h-8 z-99999 pointer-events-none bg-cover will-change-transform"
+    style={`background-image: url(${normalCursor})`}
+>
+</div>
+
+<script>
+
+    let cursor: HTMLElement | null = null;
+    function init() {
+        cursor = document.querySelector(
+            '[data-ui="normal-cursor"]',
+        ) as HTMLDivElement;
+    }
+
+    document.addEventListener('mouseleave', () => {
+        cursor?.style.setProperty('opacity', '0')
+    })
+
+    document.addEventListener('mouseenter', (e) => {
+        cursor?.style.setProperty('opacity', '1')
+    })
+
+    window.addEventListener("mousemove", (e) => {
+        // 获取到鼠标的位置
+        cursor!.style.transform = `translate3d(${e.clientX}px, ${e.clientY}px, 0)`;
+    });
+
+    // 首先需要取消鼠标样式
+    // 每次跳转路由都需要切换
+    document.addEventListener('astro:page-load', () => {
+        init()
+        document.documentElement.style.setProperty("cursor", "none");
+    })  
+</script>

@@ -6,6 +6,7 @@ import { ClientRouter, fade } from "astro:transitions";
 import ToTopIcon from "@/assets/Icons/to-top.svg";
 import "../styles/global.css";
 import AudioPlayerAside from "@/components/AudioPlayerComponents/AudioPlayerAside.astro"
+import NormalCursor from "@/components/DynamicCursor/Normal/index.astro";
 import ReactAudioPlayerAside from '@/components/AudioPlayerComponents/AudioPlayerAside'
 const url: string = Astro.url.toString();
 const params = Astro.props?.params;
@@ -66,9 +67,12 @@ const params = Astro.props?.params;
     </script>
   </head>
   <body data-theme="light" transition:animate="fade" class="h-fit">
+    <!-- 光标 -->
+    <NormalCursor />
+    
     <!-- 这里应该用fixed来当作固定在视口的背景 -->
     <div
-      class="fixed w-screen h-screen dark:bg-black bg-cover bg-center bg-no-repeat transition-background-image duration-1000 ease-in-out
+      class="fixed w-screen h-screen dark:bg-black bg-cover bg-center bg-no-repeat transition-background-image duration-300 ease-in-out
       z-[-1]"
       style="background-image: var(--background-src);"
     >
@@ -81,10 +85,10 @@ const params = Astro.props?.params;
     </div>
 
     <!-- 小插件 -->
-    <!-- <AudioPlayerAside /> -->
+    <AudioPlayerAside />
 
     <!-- react版本 -->
-     <ReactAudioPlayerAside client:only="react" />
+     <!-- <ReactAudioPlayerAside client:only="react" /> -->
 
     <!-- 内容容器 -->
     <div class="w-full flex flex-col items-center">
@@ -124,11 +128,11 @@ const params = Astro.props?.params;
       <button
         data-ui="to-top-btn"
         class="text-body fixed right-4 bottom-4 w-10 h-10 transition-all ease-in-out duration-300 hover:text-[purple] hover:-translate-y-1"
-        ><ToTopIcon /></button
-      >
+        >
+        <ToTopIcon />
+        </button>
     </div>
     
-
     <script>
       import {
         bgState,
@@ -265,7 +269,6 @@ const params = Astro.props?.params;
         initBackground();
       });
 
-      // 路由切换也得读取背景图片
     </script>
   </body>
 </html>
