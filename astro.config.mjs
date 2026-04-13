@@ -14,7 +14,16 @@ import react from '@astrojs/react';
 export default defineConfig({
    
   site: "https://asahinamafuyu.top/",
-  integrations: [preact(), sitemap(), react()],
+  integrations: [
+    preact({
+      include: ["**/*.preact.{jsx,tsx}"],
+    }),
+    sitemap(),
+    react({
+      include: ["**/*.{jsx,tsx}"],
+      exclude: ["**/*.preact.{jsx,tsx}"],
+    }),
+  ],
 
   vite: {
     plugins: [tailwindcss()]

@@ -169,8 +169,11 @@
     @apply text-sm dark:text-gray-400 font-normal pl-10 text-neutral-500;
 };
 
+
 /* 设置侧边栏相关 */
 @custom-variant selected (:is(
     &[data-selected="true"],
     [data-selected="true"] &
-  ));
+));
+  
+
