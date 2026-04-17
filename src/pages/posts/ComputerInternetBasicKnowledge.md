@@ -12,21 +12,21 @@ tags:
   - 计算机网络
   - 前端
 ---
-# 1. 基础介绍
-## 1.1 七层模型
+## 1. 基础介绍
+### 1.1 七层模型
 ![](../../assets/images/posts/OSI%20seven%20layers%20model%2020260211120714.png)
 
-### 物理层
+#### 物理层
 
 主要用来传输010101这样的比特流，
 
-### 数据链路层
+#### 数据链路层
 
 这一层的话主要是将比特流来拼接起来，其中MAC地址在硬件层是唯一的
 
 ![](../../assets/images/posts/20260211121425.png)
 
-### 网络层
+#### 网络层
 
 网络层是最复杂的一层，在这一层就定义了我们的IP，220.xxx.xxx.xxx。
 
@@ -40,12 +40,12 @@ tags:
 
 > **网络地址帮助我们确定计算机所在的子网络，MAC地址则将数据包送到该子网络中的目标网卡**。因此，从逻辑上可以推断，必定是先处理网络地址，然后再处理MAC地址。
 
-### 传输层
+#### 传输层
 
 传输层主要是定义我们的端口号，一台计算机都有很多端口，并且拥有两个熟知的协议**TCP和UDP**
 ~~(这一块先跳过，不代表不重要，相反非常重要)~~
 
-### 会话层
+#### 会话层
 
 会话层，是在发送方和接收方之间进行通信时创建、维持、之后终止或断开连接的地方，与电话通话有点相似。
 
@@ -55,7 +55,7 @@ tags:
 
 这一层就开始叫做报文了
 
-### 表示层
+#### 表示层
 
 表示层主要做了几件重要的事情 安全，压缩，也是程序在网络中的一个翻译官。
 
@@ -64,14 +64,14 @@ tags:
 2. 表示层还会对图片文件等格式进行解码和编码 例如 JPEG、ASCll 图片是人类能读懂的计算机需要转换成计算机能读懂的编码。
 
 > 说白了，这一层的作用就是保护数据的安全以及对数据进行加密解密和编码解码等过程。
-### 应用层
+#### 应用层
 
 应用层就是我们使用最多的一层，例如ajax调用接口发送http请求，再比如域名系统DNS，邮件协议SMTP，webSocket长连接，SSH协议
 
 ![](../../assets/images/posts/20260211123125.png)
 
-# TCP UDP协议详解
-##  TCP三次握手
+## TCP UDP协议详解
+###  TCP三次握手
 
 TCP是面向`连接`的 什么是面向连接，**面向连接就是数据通讯的时候需要进行`三次握手`，断开通信的时候进行`四次挥手`**
 
@@ -88,7 +88,7 @@ TCP是面向`连接`的 什么是面向连接，**面向连接就是数据通讯
 - SYN（synchronous）发起新连接
 - FIN （FINISH）完成
 
-## 四次挥手
+### 四次挥手
 
 1.断开连接服务端和客户端都可以主动发起我们拿客户端举例，客户端进行断开操作先发送`FIN`包生成客户端的`seq`序列号随后进入`wait1状态` ,这是第一次挥手。
 
@@ -106,7 +106,7 @@ TCP是面向`连接`的 什么是面向连接，**面向连接就是数据通讯
 
 第三次挥手才是真正要结束的状态
 
-# URL
+## URL
 
 通常url由三部分组成：
 1. 访问协议：例如http,https
@@ -124,16 +124,16 @@ DNS查找规则就是：
 - 顶级域名：告诉你去找哪个权威服务器
 - 权威域名：真正告诉你IP地址
 
-# 缓存
+## 缓存
 
 缓存通常分为**强缓存和协商缓存**
-##### 强缓存
+### 强缓存
 
 ![Strong Cache](../../assets/images/posts/Strong%20cache%2020260211160059.png)
 
 其实判别强缓存特别简单，直接看是否有（from disk cache）或者（from memory cache）这两个即可
 
-##### 协商缓存
+### 协商缓存
 
 ![contact cache](../../assets/images/posts/contact%20cache%2020260211160924.png)
 
@@ -154,13 +154,13 @@ HTML解析
 经过这些变化后，就要经过Javascript
 ![](../../assets/images/posts/V8%20JS%2020260211162042.png)
 
-# CDN（内容分发网络）
+## CDN（内容分发网络）
 
 之前了解到DNS解析的时候，就有权威域名解析（也就是通过权威域名来得到真正的IP），如果配置了CDN的话，那么DNS的最终域名解析权都交给CNAME了
 
 ![](../../assets/images/posts/CDN%2020260211162631.png)
 
-# 跨域详解
+## 跨域详解
 
 1. jsonp解决跨域：jsonp的核心原理在于script中的资源请求不会受到CORS的限制问题，但是缺点在于script的src只能使用get请求，而无法使用post请求等等，更详细一点：
 >	
@@ -171,9 +171,6 @@ HTML解析
 	<body>
 
     <script>
-
-  
-
         const jsonp = (name) => {
 
             let script = document.createElement('script')
@@ -241,13 +238,13 @@ export default defineConfig({
 3. 纯后端解决跨域：非常非常非常简单，直接在`res.setHead('Access-Control-Allow-Origin', '\*')`即可
 4. nginx解决：nginx的话就用proxy_pass 来进行反向代理即可
 
-# AJAX
+## AJAX
 
-## 概念
+### 概念
 
 Ajax（Asynchronous JavaScript And XML）即异步 JavaScript 和 XML，是一组用于在网页上进行异步数据交换的Web开发技术，可以在不刷新整个页面的情况下向服务器发起请求并获取数据，然后将数据插入到网页中的某个位置。这种技术能够实现增量式更新页面，提高用户交互体验，减少响应时间和带宽的消耗。
 
-## 核心API
+### 核心API
 
 1.需要创建xhr实例 通过 `XMLHttpRequest` 使用 `XMLHttpRequest` 可以通过 JavaScript 发起HTTP请求，接收来自服务器的响应，并动态地更新网页中的内容。这种异步通信方式不会阻塞用户界面，有利于增强用户体验。
 
@@ -349,13 +346,13 @@ Ajax（Asynchronous JavaScript And XML）即异步 JavaScript 和 XML，是一�
 </body>
 ```
 
-# Fetch
+## Fetch
 
 `fetch`相对于`XMLHttpRequest(XHR)`而言，更加的直观且更加的简单
 `fetch`相比于`XHR`而言的话，没有超时时间，需要自己手动实现
 `fetch`只支持`get`和`post`请求，其他的一概不支持，而`XHR`支持所有标准`HTTP`请求方法
 
-##### fetch 返回格式
+### 返回格式
 
 1. `text()`: 将响应体解析为纯文本字符串并返回。
 2. `json()`: 将响应体解析为`JSON`格式并返回一个`JavaScript`对象。
@@ -477,7 +474,7 @@ const response = res.clone()
                 return response.text()
 ```
 
-##### 中断请求
+### 中断请求
 
 使用 `AbortController` 的 `abort`方法中断：
 
@@ -509,17 +506,17 @@ document.querySelector('#stop').addEventListener('click', () => {
 中断掉后会走reject
 
 
-##### 超时处理
+### 超时处理
 
 超时的话直接使用`setTimeout`配合，在`setTimeout`中将`abort.abort`调用即可
 
-# SSE
+## SSE
 
 ## 概述
 
 > SSE（Server-Sent Events）是一种用于实现服务器主动向客户端推送数据的技术，也被称为“事件流”（Event Stream）。它基于 HTTP 协议，利用了其长连接特性，在客户端与服务器之间建立一条持久化连接，并通过这条连接实现服务器向客户端的实时数据推送。
 
-## SSE 和 Socket 区别
+### SSE 和 Socket 区别
 
 SSE（Server-Sent Events）和 WebSocket 都是实现服务器向客户端实时推送数据的技术，但它们在某些方面还是有一定的区别。
 
@@ -540,11 +537,11 @@ SSE 的实现比较简单，都是基于 HTTP 协议的，与普通的 Web 应�
 
 总体来说，SSE 和 WebSocket 都有各自的优缺点，适用于不同的场景和需求。如果只需要服务器向客户端单向推送数据，并且应用在前端的浏览器环境中，则**SSE 是一个更加轻量级、易于实现和维护的选择。而如果需要双向传输数据、支持自定义协议、或者在更加复杂的网络环境中应用，则 WebSocket 可能更加适合**。
 
-## API 用法
+### API 用法
 
 `EventSource` 对象是 HTML5 新增的一个客户端 API，用于通过服务器推送实时更新的数据和通知。在使用 `EventSource` 对象时，可以通过以下方法进行配置和操作：
 
-### 1. 构造函数EventSource()：
+#### 1. 构造函数EventSource()：
 `const eventSource = new EventSource(url, options);`接收url与服务器进行连接，并开始接收服务器所发送过来的数据
 - `url`：String 类型，表示与服务器建立连接的 URL。**必填**，且这里只能够填入`GET`请求。
     
@@ -553,7 +550,7 @@ SSE 的实现比较简单，都是基于 HTTP 协议的，与普通的 Web 应�
     - `withCredentials`：Boolean 类型，表示是否允许发送 Cookie 和 HTTP 认证信息。默认为 false。
     - `headers`：Object 类型，表示要发送的请求头信息。
     - `retryInterval`：Number 类型，表示与服务器失去连接后，重新连接的时间间隔。默认为 1000 毫秒。
-### EventSource.readyState 属性
+#### EventSource.readyState 属性
 `readyState` 属性表示当前 `EventSource` 对象的状态，它是一个只读属性，它的值有以下几个：
 
 - `CONNECTING`：表示正在和服务器建立连接。
@@ -603,40 +600,22 @@ SSE 的实现比较简单，都是基于 HTTP 协议的，与普通的 Web 应�
 
 ```ts
 // SSE请求
-
 app.get('/api/sse', (req, res) => {
-
     res.writeHead(200, {
-
         'Content-Type': 'text/event-stream', // 设置响应头为SSE,核心代码
-
     });
-
     const txt = fs.readFileSync('./naiyexiang.txt', 'utf-8');
-
     const arr = txt.split(''); // 将文本分割成单个字符的数组
-
     let currntIndex = 0;
-
     let timer = setInterval(() => {
-
         if (currntIndex < arr.length) {
-
             res.write(`event: lol\n`); // 发送事件类型
-
             res.write(`data: ${ arr[currntIndex]}\n\n`); // 发送单个字符到客户端
-
             currntIndex++;
-
         } else {
-
             clearInterval(timer); // 发送完所有字符后清除定时器
-
         }
-
     }, 300);
-
-  
 
 });
 ```
@@ -652,9 +631,9 @@ sse.addEventListener('lol', (e) => {
 
 来进行接收
 
-# WebSocket
+## WebSocket
 
-## 概述
+### 概述
 
 WebSocket 是一种在单个 TCP 连接上进行全双工通信的网络协议。它是 HTML5 中的一种新特性，能够实现 Web 应用程序和服务器之间的实时通信，比如在线聊天、游戏、数据可视化等。
 
@@ -664,7 +643,7 @@ WebSocket 协议是基于握手协议（Handshake Protocol）的，它在建立�
 
 总之，WebSocket 提供了一种快速、可靠且灵活的方式，使 Web 应用程序能够实现实时通信，同时也提高了网络性能和用户体验。
 
-## API以及代码讲解
+### API以及代码讲解
 
 首先需要安装对应的库
 
@@ -706,7 +685,7 @@ wss.on('connection', (socket) => {
     </script>
 ```
 
-##### 前端发送后端接收
+#### 前端发送后端接收
 前端发送用`ws.send(text)`,后端接收使用`socket.on('message')`,示例代码如下：
 ```ts
 // 前端部分
@@ -739,7 +718,7 @@ wss.on('connection', (socket) => {
 
 所以可以将`e.toString()`进行处理即可。
 
-##### 后端发送前端接收
+#### 后端发送前端接收
 
 后端的话可以将字符进行处理，然后再回调给前端，使用`socket.send()`发送即可：
 
@@ -778,9 +757,9 @@ wss.clients.forEach((websocket) => {
 
 ![](../../assets/images/posts/heart%20break%2020260212151258.png)
 
-# # navigator.sendBeacon
+## navigator.sendBeacon
 
-## 使用 `navigator.sendBeacon` 实现高效的数据上报
+### 使用 `navigator.sendBeacon` 实现高效的数据上报
 
 在 web 开发中，我们经常需要将用户行为或性能数据上报到服务器。为了不影响用户体验，开发者通常会在页面卸载时进行数据上报。然而，传统的数据上报方式，如 `XMLHttpRequest` 或 `Fetch API`，容易受到页面卸载过程中的阻塞，导致数据丢失。为了解决这个问题，`navigator.sendBeacon` API 被引入，它可以在页面卸载时安全、可靠地发送数据。
 
@@ -819,25 +798,25 @@ wss.clients.forEach((websocket) => {
         })
 ```
 
-# HTTPS
+## HTTPS
 
-## HTTPS概述
+### HTTPS概述
 
 HTTPS，全称为 Hypertext Transfer Protocol Secure，是一种通过加密通道传输数据的安全协议。它是 HTTP 协议的安全版本，用于在 Web 浏览器和 Web 服务器之间进行安全的数据传输。HTTPS 在传输过程中使用了 SSL（Secure Sockets Layer）或 TLS（Transport Layer Security）协议来加密数据，确保敏感信息在传输过程中不会被窃取或篡改。
 
-##### http 缺点
+#### http 缺点
 - 通信使用明文(不加密)，内容可能会被盗用
 - 不验证通信方的身份，因此有可能遭遇伪装
 - 无法证明报文的完整性，所以有可能已遭篡改
 
-##### https优点
+#### https优点
 - 信息加密
 - 完整性校验
 - 身份验证
 
 **HTTPS = http + TLS/SSL**
 
-## TLS SSL
+### TLS SSL
 TLS（Transport Layer Security）和 SSL（Secure Sockets Layer）是用于保护网络通信的安全协议。它们都提供了加密和认证机制，用于确保数据传输的机密性和完整性。
 
 SSL 是最早的安全协议，而 TLS 是在 SSL 的基础上发展起来的。目前广泛使用的版本是 TLS 1.2 和 TLS 1.3。TLS 1.3 是最新的协议版本，在安全性、性能和功能方面有一些改进。
@@ -852,10 +831,9 @@ TLS 是SSL升级版 提高了安全性 并解决了SSL存在的一些安全性�
 SSl/TLS 工作原理类似的
 HTTP TLS/SSL 安全层 TCP
 
-
 ## 加密
 
-##### 对称加密
+### 对称加密
 
 常见的算法有 `AES DES` 加密
 举例 `麒麟->星月`发消息 但是他们的消息不想被别人知道，采用了对称加密，于是他们两个协商了一段密钥，`今生永相随`
@@ -870,11 +848,11 @@ HTTP TLS/SSL 安全层 TCP
 星月：`RSA + 公钥 + 明文（吃面） = XMZS==`
 麒麟：`RSA + 私钥 + 密文（XMZS==） = 吃面`
 
-## openSSL 生成私钥
+### openSSL 生成私钥
 
 windows: [OpenSSL](https://www.openssl.org/source/)
 
-## 常用命令
+#### 常用命令
 
 ##### 1. `openssl genpkey -algorithm RSA -out private-key.pem -aes256`
 生成私钥.pem文件
@@ -956,9 +934,9 @@ https.createServer({
 
 ```
 
-# JWT TOKEN
+## JWT TOKEN
 
-##### JWT是三部分组成的
+### JWT是三部分组成的
 
 1. 头部（Header）：头部通常由两部分组成：令牌的类型（即 “JWT”）和所使用的签名算法。头部通常采用 JSON 对象表示，并进行 Base64 URL 编码。
 	- alg：代表所使用的签名算法，例如 [HMAC](https://so.csdn.net/so/search?q=HMAC&spm=1001.2101.3001.7020) SHA256（HS256）或 RSA 等。  
@@ -1004,7 +982,7 @@ https.createServer({
 2. passport-jwt Passport-JWT是Passport库的一个插件，用于支持使用JSON Web Token (JWT) 进行身份验证和授权
 3. jsonwebtoken 生成token的库
 
-# 前端网络状态
+## 前端网络状态
 
 `online` 和 `offline` 事件是浏览器自带的两个事件，可以通过添加事件监听器来检测当前网络连接状态。当浏览器的网络连接发生变化，比如从在线状态切换到离线状态，或者从离线状态切换到在线状态时，这两个事件就会被触发。以下是示例代码：
 
@@ -1031,7 +1009,7 @@ console.log(navigator.connection)
 - `rtt`: 当前网络连接的估计往返时间（单位为毫秒）
 - `saveData`: 是否处于数据节省模式
 
-# XSS攻击
+## XSS攻击
 
 ![](../../assets/images/posts/Reflect%20XSS%2020260212203557.png)
 
@@ -1047,7 +1025,7 @@ console.log(navigator.connection)
 
 预防XSS则可以使用第三方库: [xss - npm](https://www.npmjs.com/package/xss)
 
-# TCP实现HTTP服务
+## TCP实现HTTP服务
 
 使用原生的`net`来实现这个应用服务
 
