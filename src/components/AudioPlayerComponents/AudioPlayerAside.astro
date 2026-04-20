@@ -1662,6 +1662,27 @@ import PrevIcon from "@/components/SVGComponents/prev.astro";
             // 改变记录的值和当前时间戳
             const current_time = Number(((e.target.value / 100) * total_played_time).toFixed(2));
 
+            // 修复性代码
+            // ///////////////////////////////////////////////////////////////////////////////
+            // ///////////////////////////////////////////////////////////////////////////////
+            // ///////////////////////////////////////////////////////////////////////////////
+
+            console.log('target =', e);
+            console.log('duration =', i.duration);
+            console.log('readyState =', i.readyState);
+            console.log('networkState =', i.networkState);
+            console.log('seekable.length =', i.seekable.length);
+
+            if (i.seekable.length > 0) {
+            console.log('seekable start =', i.seekable.start(0));
+            console.log('seekable end =', i.seekable.end(0));
+}
+
+            // ///////////////////////////////////////////////////////////////////////////////
+            // ///////////////////////////////////////////////////////////////////////////////
+            // ///////////////////////////////////////////////////////////////////////////////
+
+
             // 改变进度
             audio_entity.currentTime = current_time;
 
