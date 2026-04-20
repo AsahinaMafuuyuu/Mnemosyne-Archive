@@ -101,14 +101,11 @@ if (params.cover && params.cover.url) {
         const contentItem = document.querySelector(
             ".md-content",
         ) as HTMLElement;
-        // 获取到h2
-        const h1List = contentItem.getElementsByTagName("h1");
-        for (let i = 0; i < h1List.length; i++) {
-            let nav = document.createElement("a");
-            nav.setAttribute("href", `#${h1List[i].id}`);
-            nav.innerText = "#";
-            nav.classList.add("blog-anchor-nav");
-            h1List[i].appendChild(nav);
+        // 测试有无实例化
+        const testHeader = contentItem.querySelector('h2')
+        if (testHeader?.querySelector('a')) {
+            // 已经实例化，exit即可
+            return ;
         }
         // 获取到h2
         const h2List = contentItem.getElementsByTagName("h2");
@@ -119,7 +116,27 @@ if (params.cover && params.cover.url) {
             nav.classList.add("blog-anchor-nav");
             h2List[i].appendChild(nav);
         }
+        // 获取到h3
+        const h3List = contentItem.getElementsByTagName("h3");
+        for (let i = 0; i < h3List.length; i++) {
+            let nav = document.createElement("a");
+            nav.setAttribute("href", `#${h3List[i].id}`);
+            nav.innerText = "#";
+            nav.classList.add("blog-anchor-nav");
+            h3List[i].appendChild(nav);
+        }
+        // 获取到h4
+        const h4List = contentItem.getElementsByTagName("h4");
+        for (let i = 0; i < h4List.length; i++) {
+            let nav = document.createElement("a");
+            nav.setAttribute("href", `#${h4List[i].id}`);
+            nav.innerText = "#";
+            nav.classList.add("blog-anchor-nav");
+            h4List[i].appendChild(nav);
+        }
     }
     // 我觉得写一个算法更好，构建期完成是最好的
-    init();
+    document.addEventListener('astro:page-load', init)
+      
 </script>
+

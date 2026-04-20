@@ -165,18 +165,22 @@
 }
 
 .md-content .blog-anchor-nav {
-  @apply w-fit opacity-0 h-fit py-0.5 px-3 inline-block text-[28px] relative rounded-lg gap-1 transition-all ease-in-out duration-300 hover:bg-(--hover-color) hover:opacity-100;
+  @apply w-fit opacity-0 h-fit py-0.5 px-3 inline-block text-[28px] relative rounded-lg gap-1 transition-opacity ease-in-out duration-300;
+}
+
+.md-content .blog-anchor-nav:hover {
+  @apply opacity-100 border-0;
 }
 
 .md-content .blog-anchor-nav::before {
   content: '';
   position: absolute;
   background-color: transparent;
-  width: 100%;
+  /* width: 100%; */
   height: 100%;
   top: 0;
   left: 0;
-  cursor: pointer;
+  cursor: var(--cursor-pointer);
   z-index: 1;
 }
 
