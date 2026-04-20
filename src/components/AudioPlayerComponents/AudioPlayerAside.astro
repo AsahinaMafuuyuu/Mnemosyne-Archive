@@ -1660,7 +1660,7 @@ import PrevIcon from "@/components/SVGComponents/prev.astro";
             isUserControlPlayTimeSchedule = true;
 
             // 改变记录的值和当前时间戳
-            const current_time = (e.target.value / 100) * total_played_time;
+            const current_time = Number(((e.target.value / 100) * total_played_time).toFixed(2));
 
             // 改变进度
             audio_entity.currentTime = current_time;
@@ -1694,6 +1694,7 @@ import PrevIcon from "@/components/SVGComponents/prev.astro";
             isUserControlPlayTimeSchedule = false;
             // 需要查看当前是否播放
             // 如果是正在播放，他会自动渲染，若是暂停，则需要开启再关闭
+
             if (audio_entity.paused) {
                 // 然后这一帧开启动画渲染
                 startTick();
