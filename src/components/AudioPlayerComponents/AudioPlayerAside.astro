@@ -530,15 +530,19 @@ import PrevIcon from "@/components/SVGComponents/prev.astro";
             src: string;
         };
     }>("@/assets/images/*.png"); // 不用添加eager，eager代表需要进行立刻加载
-    const AudioList = import.meta.glob<{ default: string }>(
-        "@/assets/audios/*.mp3",
-    );
+
+    // 这里修改一下逻辑，直接src即可
+
+    // const AudioList = import.meta.glob<{ default: string }>(
+    //     "/assets/audios/*.mp3",
+    // );
     const LyricList = import.meta.glob<{ default: lyricType }>(
         "@/assets/lyrics/*.json",
     );
 
     // 导入playList
     import { PlayAudioList } from "@/stores/playList";
+    import AudioList from "@/components/AudioPlayerComponents/AudioList";
     /*****************************************************************************************/
     /*****************************************************************************************/
     /*****************************************************************************************/
@@ -844,7 +848,7 @@ import PrevIcon from "@/components/SVGComponents/prev.astro";
         return copy_arr;
     }
 
-    function getPlayAudioFileName() {
+    function getPlayAudioFileName():string {
         // 返回当前正在播放歌曲的名字，需要在播放歌曲处于正确index的情况下才能够调用
         return PlayAudioList[getPlayingAudioIndex()].filename;
     }
@@ -908,11 +912,7 @@ import PrevIcon from "@/components/SVGComponents/prev.astro";
     }
 
     async function loadAudio() {
-        PlayingAudioUrl = (
-            await AudioList[
-                `/src/assets/audios/${getPlayAudioFileName()}.mp3`
-            ]()
-        ).default as string;
+        PlayingAudioUrl = AudioList[getPlayAudioFileName()];
     }
 
     async function loadLyric() {
