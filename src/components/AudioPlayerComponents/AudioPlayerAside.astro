@@ -1667,15 +1667,15 @@ import PrevIcon from "@/components/SVGComponents/prev.astro";
             // ///////////////////////////////////////////////////////////////////////////////
             // ///////////////////////////////////////////////////////////////////////////////
 
-            console.log('target =', e);
-            console.log('duration =', i.duration);
-            console.log('readyState =', i.readyState);
-            console.log('networkState =', i.networkState);
-            console.log('seekable.length =', i.seekable.length);
+            console.log('target =', current_time);
+            console.log('duration =', audio_entity.duration);
+            console.log('readyState =', audio_entity.readyState);
+            console.log('networkState =', audio_entity.networkState);
+            console.log('seekable.length =', audio_entity.seekable.length);
 
-            if (i.seekable.length > 0) {
-            console.log('seekable start =', i.seekable.start(0));
-            console.log('seekable end =', i.seekable.end(0));
+            if (audio_entity.seekable.length > 0) {
+            console.log('seekable start =', audio_entity.seekable.start(0));
+            console.log('seekable end =', audio_entity.seekable.end(0));
 }
 
             // ///////////////////////////////////////////////////////////////////////////////

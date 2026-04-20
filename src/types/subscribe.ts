@@ -55,19 +55,19 @@ class Dispatcher implements EventSubscriber {
     }
 }
 
-const i = new Dispatcher();
+const audio_entity = new Dispatcher();
 
 const callback = (msg: string) => {
     console.log(`Received message: ${msg}`);
 };
 
-i.on('test', callback);
-i.emit('test', 'Hello, World!'); // 输出: Received message: Hello, World!
+audio_entity.on('test', callback);
+audio_entity.emit('test', 'Hello, World!'); // 输出: Received message: Hello, World!
 
-i.once('testOnce', (msg: string) => {   
+audio_entity.once('testOnce', (msg: string) => {   
     console.log(`Received message: ${msg}`);
 });
-i.emit('testOnce', 'Hello, Once!');
-i.emit('testOnce', 'Hello, Once Again!'); // 不会输出任何内容，因为事件已经被取消订阅了
-i.off('test', callback);
-i.emit('test', 'Hello, World!'); // 不会输出任何内容，因为事件已经被取消订阅了
+audio_entity.emit('testOnce', 'Hello, Once!');
+audio_entity.emit('testOnce', 'Hello, Once Again!'); // 不会输出任何内容，因为事件已经被取消订阅了
+audio_entity.off('test', callback);
+audio_entity.emit('test', 'Hello, World!'); // 不会输出任何内容，因为事件已经被取消订阅了
