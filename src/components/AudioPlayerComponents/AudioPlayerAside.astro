@@ -912,7 +912,17 @@ import PrevIcon from "@/components/SVGComponents/prev.astro";
     }
 
     async function loadAudio() {
-        PlayingAudioUrl = AudioList[getPlayAudioFileName()];
+        // 直接fetch得了
+        const audioUrl = await fetch(AudioList[getPlayAudioFileName()]).then(res => res.blob()).then(data => {
+            const objUrl = URL.createObjectURL(data);
+            return objUrl;
+        });
+
+        // 首先需要清理一下之前的url对象
+        if (PlayingAudioUrl) {
+            URL.revokeObjectURL(PlayingAudioUrl);
+        }
+        PlayingAudioUrl = audioUrl;
     }
 
     async function loadLyric() {
@@ -1660,28 +1670,7 @@ import PrevIcon from "@/components/SVGComponents/prev.astro";
             isUserControlPlayTimeSchedule = true;
 
             // 改变记录的值和当前时间戳
-            const current_time = Number(((e.target.value / 100) * total_played_time).toFixed(2));
-
-            // 修复性代码
-            // ///////////////////////////////////////////////////////////////////////////////
-            // ///////////////////////////////////////////////////////////////////////////////
-            // ///////////////////////////////////////////////////////////////////////////////
-
-            console.log('target =', current_time);
-            console.log('duration =', audio_entity.duration);
-            console.log('readyState =', audio_entity.readyState);
-            console.log('networkState =', audio_entity.networkState);
-            console.log('seekable.length =', audio_entity.seekable.length);
-
-            if (audio_entity.seekable.length > 0) {
-            console.log('seekable start =', audio_entity.seekable.start(0));
-            console.log('seekable end =', audio_entity.seekable.end(0));
-}
-
-            // ///////////////////////////////////////////////////////////////////////////////
-            // ///////////////////////////////////////////////////////////////////////////////
-            // ///////////////////////////////////////////////////////////////////////////////
-
+            const current_time = (e.target.value / 100) * total_played_time;
 
             // 改变进度
             audio_entity.currentTime = current_time;
